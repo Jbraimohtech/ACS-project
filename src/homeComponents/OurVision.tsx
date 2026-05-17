@@ -3,7 +3,7 @@ import React from 'react'
 const OurVision = () => {
   return (
     <div>
-        <div className='content-box'>
+        <div className='content-box-vision'>
         <div className='content-numbering'>
           <div className='number-reason-box'>
             <div className='number-reason-item'>

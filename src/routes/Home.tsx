@@ -7,6 +7,8 @@ import Transformation from '../homeComponents/Transformation'
 import OurMission from '../homeComponents/OurMission'
 import "../homeComponents/Home.css"
 import Blog from '../homeComponents/Blog'
+import ViewAllBlog from '../homeComponents/ViewAllBlog'
+import HomeFooter from '../homeComponents/HomeFooter'
 
 const Home = () => {
   return (
@@ -18,6 +20,8 @@ const Home = () => {
       <Transformation />
       <OurMission />
       <Blog />
+      <ViewAllBlog />
+      <HomeFooter />
     </div>
   )
 }
