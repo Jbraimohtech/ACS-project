@@ -1,0 +1,73 @@
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 15px 3%;
+    top: 0;
+    position: sticky;
+    z-index: 100;
+}
+
+.logo {
+    font-family: MyOutfitFontBold, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.nav-links {
+    flex: 1;
+    list-style: none;
+    text-align: center;
+}
+
+.nav-links .menu-link {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.access-box {
+    display: flex;
+    gap: 20px;
+}
+
+.login-btn {
+    background-color: var(--primary);
+    color: #fff;
+    min-width: 126px;
+    height: 56px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-btn {
+    background-color: var(--primary);
+    color: #fff;
+    min-width: 126px;
+    height: 56px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

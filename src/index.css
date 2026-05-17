@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'MyFontBold';
+  src: url("/../my-app/src/assets/fonts/manropeStatic/Manrope-Bold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'MyOutfitFontBold';
+  src: url("/../my-app/src/assets/fonts/manropeStatic/outfitStatic/Outfit-Bold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'myFont';
+  src: url("/../my-app/src/assets/fonts/manropeStatic/myFont/PlusJakartaSans-Regular.ttf") format('truetype');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'myFont', sans-serif;
+    overflow-x: hidden;
+}
+
+:root {
+  --primary: #0052CC;
+  --primary-hover: #4f46e5;
+
+  --bg: #0f172a;
+  --surface: #1e293b;
+
+  --text: #000;
+  --text-secondary: #64748B;
+
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* Other styles || They will also have their names on it */
