@@ -1,4 +1,5 @@
 import React from 'react'
+import YellowBtn from '../components/Navbar/YellowBtn'
 
 const Blog = () => {
   return (
@@ -19,22 +20,90 @@ const Blog = () => {
                     Stay Updated with <br />
                     Campaign News
                 </h2>
-
-                <div className='beside-marks-box-button'>
+                <YellowBtn>
                     <p>View All Blogs</p>
-                </div>
+                </YellowBtn>
             </div>
 
             <div className='blog-content-outline'>
-                <div className='blog-content-outline-one'></div>
+                <div className='blog-content-outline-one'>
+                    <div className='blog-img-one'></div>
+                    <div className='blog-img-one-letter'>
+                        <h4>
+                            Tax-Saving Strategies for <br />
+                            Small Business
+                        </h4>
+
+                        <p>
+                            Every member, volunteer, and contribution counts. And with this platform, we ensure every effort is recognized, every voice is heard, and every life is touched.
+                        </p>
+                        <div className='clock-box'>
+                            <div className='clock'></div>
+                            <p>July 29, 2026</p>
+                        </div>
+                        
+                    </div>
+                </div>
                 <div className='blog-content-outline-two'>
                     <div className='blog-content-outline-two-row'>
-                        <div className='blog-content-outline-two-row-plug'></div>
-                        <div className='blog-content-outline-two-row-plug'></div>
+                        <div className='blog-content-outline-grid'>
+                            <div className='row-image'></div>
+                            <div className='blog-img-one-letter-repeat '>
+                                <h4>
+                                    Tax-Saving Strategies for <br />
+                                    Small Business
+                                </h4>
+                                <div className='clock-box'>
+                                    <div className='clock'></div>
+                                    <p>July 29, 2026</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div className='blog-content-outline-grid'>
+                            <div className='row-image'></div>
+                            <div className='blog-img-one-letter-repeat '>
+                                <h4>
+                                    Tax-Saving Strategies for <br />
+                                    Small Business
+                                </h4>
+                                <div className='clock-box'>
+                                    <div className='clock'></div>
+                                    <p>July 29, 2026</p>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                     <div className='blog-content-outline-two-row'>
-                        <div className='blog-content-outline-two-row-plug'></div>
-                        <div className='blog-content-outline-two-row-plug'></div>
+                        <div className='blog-content-outline-grid'>
+                            <div className='row-image'></div>
+                            <div className='blog-img-one-letter-repeat '>
+                                <h4>
+                                    Tax-Saving Strategies for <br />
+                                    Small Business
+                                </h4>
+                                <div className='clock-box'>
+                                    <div className='clock'></div>
+                                    <p>July 29, 2026</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div className='blog-content-outline-grid'>
+                            <div className='row-image'></div>
+                            <div className='blog-img-one-letter-repeat '>
+                                <h4>
+                                    Tax-Saving Strategies for <br />
+                                    Small Business
+                                </h4>
+                                <div className='clock-box'>
+                                    <div className='clock'></div>
+                                    <p>July 29, 2026</p>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
