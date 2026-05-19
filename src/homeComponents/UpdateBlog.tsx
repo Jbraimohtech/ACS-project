@@ -1,5 +1,5 @@
 import React from 'react'
-import YellowBtn from '../components/Navbar/YellowBtn'
+import YellowBtn from '../components/Navbar/BlueBtn'
 
 const UpdateBlog = () => {
   return (
@@ -8,10 +8,10 @@ const UpdateBlog = () => {
             <div className='blog-content-numbering'>
                 <div className='number-blog-box'>
                     <div className='number-reason-item'>
-                        <p>05</p>
+                        <p>07</p>
                     </div>
                     <h3 className='number-blog-text'>
-                        Core Values
+                        Blog
                     </h3>
                 </div>
             </div>
@@ -47,7 +47,7 @@ const UpdateBlog = () => {
                 <div className='blog-content-outline-two'>
                     <div className='blog-content-outline-two-row'>
                         <div className='blog-content-outline-grid'>
-                            <div className='row-image'></div>
+                            <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
                                     Tax-Saving Strategies for <br />
@@ -61,7 +61,7 @@ const UpdateBlog = () => {
                             </div>
                         </div>
                         <div className='blog-content-outline-grid'>
-                            <div className='row-image'></div>
+                            <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
                                     Tax-Saving Strategies for <br />
@@ -77,7 +77,7 @@ const UpdateBlog = () => {
                     </div>
                     <div className='blog-content-outline-two-row'>
                         <div className='blog-content-outline-grid'>
-                            <div className='row-image'></div>
+                            <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
                                     Tax-Saving Strategies for <br />
@@ -91,7 +91,7 @@ const UpdateBlog = () => {
                             </div>
                         </div>
                         <div className='blog-content-outline-grid'>
-                            <div className='row-image'></div>
+                            <div className='blog-three'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
                                     Tax-Saving Strategies for <br />

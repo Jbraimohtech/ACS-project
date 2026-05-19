@@ -1,5 +1,5 @@
 import React from 'react'
-import BlogContent from '../homeComponents/Blog'
+import BlogContent from '../homeComponents/CoreValues'
 
 const Blog = () => {
   return (

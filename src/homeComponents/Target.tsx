@@ -2,7 +2,7 @@ import React from 'react'
 
 const Target = () => {
   return (
-    <div className='about-org-box'>
+    <div className='about-target-box'>
       <div className='about-org-con'>
         <div className='about-content-box'>
           <div className='content-numbering-mission'>
