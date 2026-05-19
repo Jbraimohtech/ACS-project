@@ -1,116 +1,56 @@
 import React from 'react'
-import YellowBtn from '../components/Navbar/YellowBtn'
+import MemberBox from '../components/Navbar/MemberBox'
+
 
 const Blog = () => {
   return (
-    <div>
-        <div className='blog-box'>
-            <div className='blog-content-numbering'>
-                <div className='number-blog-box'>
-                    <div className='number-reason-item'>
-                        <p>05</p>
-                    </div>
-                    <h3 className='number-blog-text'>
-                        Blog
-                    </h3>
-                </div>
+    <div className='core-values-box'>
+      <div className='about-org-con'>
+        <div className='about-content-box'>
+          <div className='content-numbering-mission'>
+            <div className='number-reason-box'>
+              <div className='number-reason-item'>
+                <p>05</p>
+              </div>
+              <h3 className='core-reason-text'>Core Values</h3>
             </div>
-            <div className='blog-content-title'>
-                <h2>
-                    Stay Updated with <br />
-                    Campaign News
-                </h2>
-                <YellowBtn>
-                    <p>View All Blogs</p>
-                </YellowBtn>
-            </div>
-
-            <div className='blog-content-outline'>
-                <div className='blog-content-outline-one'>
-                    <div className='blog-img-one'></div>
-                    <div className='blog-img-one-letter'>
-                        <h4>
-                            Tax-Saving Strategies for <br />
-                            Small Business
-                        </h4>
-
-                        <p>
-                            Every member, volunteer, and contribution counts. And with this platform, we ensure every effort is recognized, every voice is heard, and every life is touched.
-                        </p>
-                        <div className='clock-box'>
-                            <div className='clock'></div>
-                            <p>July 29, 2026</p>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div className='blog-content-outline-two'>
-                    <div className='blog-content-outline-two-row'>
-                        <div className='blog-content-outline-grid'>
-                            <div className='row-image'></div>
-                            <div className='blog-img-one-letter-repeat '>
-                                <h4>
-                                    Tax-Saving Strategies for <br />
-                                    Small Business
-                                </h4>
-                                <div className='clock-box'>
-                                    <div className='clock'></div>
-                                    <p>July 29, 2026</p>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div className='blog-content-outline-grid'>
-                            <div className='row-image'></div>
-                            <div className='blog-img-one-letter-repeat '>
-                                <h4>
-                                    Tax-Saving Strategies for <br />
-                                    Small Business
-                                </h4>
-                                <div className='clock-box'>
-                                    <div className='clock'></div>
-                                    <p>July 29, 2026</p>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div className='blog-content-outline-two-row'>
-                        <div className='blog-content-outline-grid'>
-                            <div className='row-image'></div>
-                            <div className='blog-img-one-letter-repeat '>
-                                <h4>
-                                    Tax-Saving Strategies for <br />
-                                    Small Business
-                                </h4>
-                                <div className='clock-box'>
-                                    <div className='clock'></div>
-                                    <p>July 29, 2026</p>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div className='blog-content-outline-grid'>
-                            <div className='row-image'></div>
-                            <div className='blog-img-one-letter-repeat '>
-                                <h4>
-                                    Tax-Saving Strategies for <br />
-                                    Small Business
-                                </h4>
-                                <div className='clock-box'>
-                                    <div className='clock'></div>
-                                    <p>July 29, 2026</p>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+          </div>
         </div>
+
+        <div className='say-no-box'>
+            <h1 className='say-no-box-caps'>Every feature was created to solve a real challenge in our daily operations:</h1>
+        </div>
+        <MemberBox>
+            <div className='member-icon'></div>
+            <h2 className='member-management-box-caps'>Integrity</h2>
+            <p className='member-management-box-letters'>Upholding ethical principles and accountability in all our endeavors.</p>
+        </MemberBox>
+        
+        <MemberBox>
+            <div className='member-icon'></div>
+            <h2 className='member-management-box-caps'>Integrity</h2>
+            <p className='member-management-box-letters'>Upholding ethical principles and accountability in all our endeavors.</p>
+        </MemberBox>
+      </div>
+
+      <div className='about-org-con'>
+        <MemberBox>
+            <div className='member-icon'></div>
+            <h2 className='member-management-box-caps'>Integrity</h2>
+            <p className='member-management-box-letters'>Upholding ethical principles and accountability in all our endeavors.</p>
+        </MemberBox>
+        <MemberBox>
+            <div className='member-icon'></div>
+            <h2 className='member-management-box-caps'>Integrity</h2>
+            <p className='member-management-box-letters'>Upholding ethical principles and accountability in all our endeavors.</p>
+        </MemberBox>
+        <MemberBox>
+            <div className='member-icon'></div>
+            <h2 className='member-management-box-caps'>Integrity</h2>
+            <p className='member-management-box-letters'>Upholding ethical principles and accountability in all our endeavors.</p>
+        </MemberBox>
+      </div>
     </div>
-    
   )
 }
 

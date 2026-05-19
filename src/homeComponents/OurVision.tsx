@@ -9,33 +9,21 @@ const OurVision = () => {
             <div className='number-reason-item'>
               <p>02</p>
             </div>
-            <h3 className='number-reason-text'>Our Vision</h3>
+            <h3 className='number-reason-text'>Our Mission</h3>
           </div>
         </div>
 
         <div className='reason-content-box'>
           <div className='reason-title-two'>
             <h2>
-              A Platform That Puts <br />
-              People First
+              Equipping Servants of God as <br /> Ambassadors - 2Cor 5:20
             </h2>
-            <div className='marks-box'>
-              <div className='yellow-mark'>
-                <div className='mark'></div>
-              </div>
+          </div>
+        </div>
 
-              <div className='mark-title'>
-                <h3>Connect Every Member</h3>
-                <p>Know who is part of our community, their journey, <br /> and how they engage.</p>
-              </div>
-            </div>
-          </div>
-          <div className='beside-marks-box'>
-            <div className='beside-marks-box-button'>
-              <p>Check out the system</p>
-            </div>
-            <div className='down-img'></div>
-          </div>
+        <div className='mission-images-box'>
+          <div className='man-and-woman'></div>
+          <div className='church-settings'></div>
         </div>
       </div>
     </div>
