@@ -31,6 +31,9 @@
     width: 100%;
     height: 142px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-head-text h1 {
@@ -38,6 +41,8 @@
     font-size: 56px;
     font-weight: 700;
     color: var(--light);
+    text-align: center;
+    width: 50%;
 }
 
 .home-body-text {
@@ -50,47 +55,11 @@
 
 .home-body-text p {
     font-family: myFont, sans-serif;
-    font-size: 18px;
     color: var(--light);
     font-weight: 600;
     font-size: 28px;
     margin: 16px;
     padding: 16px;
-}
-
-.search-box {
-    width: 807px;
-    height: 84px;
-    background: transparent;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    margin: 0 auto;
-    border-radius: 12px;
-    border: 1px solid #fff;
-}
-
-.search-box input{
-    padding: 6px;
-    background: transparent;
-    border: 0;
-    outline: 0;
-    color: var(--light);
-    font-size: 18px;
-    width: 90%;
-}
-
-.search-box input::placeholder {
-    font-size: 18px;
-    color: var(--light);
-}
-
-.search-icon {
-    background-image: url("../assets/images/Search-icon.png");
-    width: 27px;
-    height: 27px;
 }
 
 .middle-images {
@@ -173,6 +142,13 @@
     border-radius: 50%;
 }
 
+.small-white-icon-real {
+    width: 12px;
+    height: 12px;
+    background-color: var(--light);
+    border-radius: 50%;
+}
+
 .office-images {
     display: flex;
     flex-direction: column;
@@ -211,6 +187,16 @@
 
 /* The Content Styling */
 .the-content-part-org {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+    gap: 50px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.the-content-part-org-two {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -649,6 +635,7 @@
     font-size: 60px;
     color: var(--text);
     margin: 16px 0;
+    width: 70%;
 }
 
 .growth-reason-img-box {
@@ -920,6 +907,8 @@
     margin: 16px 0;
 }
 
+/* Putting images on top of each other */
+
 .down-img-our-mission-one {
     background-image: url("../assets/images/our-mission-img.jpg");
     background-size: cover;
@@ -942,6 +931,8 @@
     border-radius: 12px;
     position: relative;
 }
+
+/* End of Images on top of each others */
 
 .our-vision-img-box {
     display: flex;
@@ -1252,95 +1243,422 @@
     font-weight: 600;
     font-style: bold;
     color: var(--text);
-
-}
-
-/* footer component styling */
-
-.home-footer {
-    width: 100%;
-    height: 556px;
-    padding: 7% 3% 2% 3%;
-    gap: 10%;
-    bottom: 0;
-    position: relative;
-    background-color: #0F2A44;
-    margin-top: 100px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
 }
 
-.home-footer-col-one {
-    display: flex;
-    flex-direction: row;
-    color: #fff;
-    height: 750px;
-    overflow-y: hidden;
-}
-
-.home-footer-col-one-row {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    gap: 10px;
-}
-
-.home-footer-col-one-row h1 {
-    font-weight: 700;
-    font-style: bold;
-    font-size: 56px;
-    font-family: myFont;
-    color: #fff;
-    margin-bottom: 30px;
-}
-
-.home-footer-col-one-row h6 {
-    font-weight: 600;
-    font-style: bold;
-    font-size: 20px;
-    font-family: myFont;
-    color: #fff;
-    margin-bottom: 30px;
-}
-
-.home-footer-col-one-row p {
-    font-weight: 400;
-    font-style: bold;
-    font-size: 18px;
-    font-family: myFont;
-    color: #fff;
-}
-
-.home-footer-col-two-row {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    gap: 20px;
-}
-
-.home-footer-col-two-row h6 {
-    font-weight: 600;
-    font-style: bold;
-    font-size: 20px;
-    font-family: myFont;
-    color: #fff;
-}
-
-.home-footer-col-two-row p {
-    font-weight: 400;
-    font-style: bold;
-    font-size: 18px;
-    font-family: myFont;
-    color: #fff;
-}
-
-.home-footer-col-down {
-    width: 100%;
-    height: 50px;
-    color: #fff;
-}
 
 /* Media Query */
 @media (max-width: 480px ){
+    .home {
+        background-color: #fff;
+        padding: 0;
+        margin: 0;
+    }
+
+    .new-home-box {
+        position: relative;
+        width: 95%;
+        margin: 3%;
+    }
+
+    .new-home-style-image {
+        background-image: url("../assets/images/home-content-image.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 612px;
+        border-radius: 12px;
+        display: block;
+    }
+
+    .new-home-style {
+        background-color: #0052CC99;
+        width: 100%;
+        height: 612px;
+    }
     
+    .middle-images {
+        width: 94%;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        margin: 30px 3%;
+        border: 0;
+        gap: 10px;
+    }
+
+    .home-head-text {
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .home-head-text h1 {
+        font-family: MyOutfitFontBold, sans-serif;
+        font-size: 40px;
+        font-weight: 700;
+        color: var(--light);
+        text-align: center;
+        width: 90%;
+    }
+
+    .home-body-text {
+        width: 100%;
+        height: 200px;
+        overflow-y: hidden;
+        margin-top: -10px;
+        margin-bottom: -5px;
+    }
+
+    .home-body-text p {
+        font-family: myFont, sans-serif;
+        font-size: 18px;
+        color: var(--light);
+        font-weight: 500;
+        line-height: 28px;
+    }
+
+    .small-white-icon-real {
+        width: 6px;
+        height: 6px;
+        background-color: var(--light);
+        border-radius: 50%;
+    }
+
+    .small-blue-icon {
+        width: 14px;
+        height: 14px;
+        background-color: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .alhaji-img {
+        background-image: url("../assets/images/Alhaji-image.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 50%;
+        height: 206px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    
+    .inside-alhaji-img {
+        width: 121px;
+        height: 105px;
+        border: 1px solid #ffffffe0;
+        border-radius: 12px;
+        background-image: linear-gradient(
+            to right, 
+            rgba(124, 129, 138),
+            rgb(197, 197, 197)
+        );
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 25px 15px 15px 15px;
+        position: absolute;
+    }
+
+    .inside-alhaji-img h2 {
+        font-weight: 700;
+        font-style: bold;
+        font-size: 16px;
+        color: var(--light);
+    }
+
+    .inside-alhaji-icons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .inside-alhaji-icons p{
+        font-family: myFont;
+        font-weight: 300;
+        font-size: 12px;
+        color: var(--light);
+    }
+
+    .office-three-img {
+        display: none;
+    }
+    
+    .office-images {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 50%;
+        height: fit-content;
+    }
+
+    .new-office-content {
+        background-image: url("../assets/images/Office-three-img.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 99px;
+        border-radius: 12px;
+    }
+
+    .office-two-img {
+        background-image: url("../assets/images/Office-two-img.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 99px;
+        border-radius: 12px;
+    }
+
+    .content-box {
+        width: 100%;
+        height: fit-content;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: -10px 1% 0 0;
+    }
+    
+    
+    .number-reason-item {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .number-reason-item p {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--light);
+    }
+    
+    .number-reason-text {
+        font-family: MyOutfitFontBold, sans-serif;
+        font-size: 21px;
+        color: var(--text);
+        font-weight: 600;
+        margin-left: 16px;
+    }
+
+    .the-content-part-org {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        gap: 50px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .the-content-part-org-two {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: fit-content;
+        gap: 50px;
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .pray-military-img {
+        background-image: url("../assets/images/pray-military.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 413px;
+        border-radius: 12px;
+    }
+
+    .pray-sanctuary-img {
+        background-image: url("../assets/images/pray-santury.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 413px;
+        border-radius: 12px;
+    }
+    
+    .the-content-part-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .the-content-part-text-p{
+        display: block;
+        font-family: myFont;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--text);
+        text-align: justify;
+    }
+
+    .content-box-vision {
+        width: 100%;
+        height: fit-content;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        margin: 10px 1% 10% 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .reason-title-two {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .reason-title-two h2 {
+        font-weight: 700;
+        font-style: bold;
+        font-size: 28px;
+        color: var(--text);
+        margin: 16px 0;
+        width: 90%;
+    }
+
+    .mission-images-box {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        width: 100%;
+        margin: 10px -55% 50px 0;
+    }
+
+    .man-and-woman {
+        background-image: url("../assets/images/man&woman.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 73%;
+        height: 306px;
+        border-radius: 12px;
+        position: absolute;
+        transform: translate(-100px, 50px);
+        z-index: 1;
+    }
+    
+
+    .church-settings {
+        background-image: url("../assets/images/church-settings.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 73%;
+        height: 306px;
+        border-radius: 12px;
+        position: relative;
+    }
+    
+    .transform-content-box {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10%;
+        margin-top: 20px;
+    }
+
+    .transform-content-box h1 {
+        width: 80%;
+        font-weight: 700;
+        font-family: myFont;
+        font-style: bold;
+        font-size: 28px;
+        color: var(--text);
+        text-align: left;
+        width: 100%;
+    }
+
+    .pastor {
+        background-image: url("../assets/images/pastor.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 73%;
+        height: 306px;
+        border-radius: 12px;
+        position: relative;
+    }
+    
+
+    .commander {
+        background-image: url("../assets/images/commander.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 73%;
+        height: 306px;
+        border-radius: 12px;
+        position: absolute;
+        transform: translate(-100px, 50px);
+        z-index: 1;
+    }
+
+    .vision-images-new {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        width: 100%;
+        margin: 30px -55% 80px 0;
+    }
+    
+    .about-org-box {
+        background-color: #0F2A44;
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        width: 106%;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-left: -10px;
+        padding: 50px 7% 20px 6%;
+    }
+
+    .about-org-con {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        background: transparent;
+    }
+
+    .about-reason-text {
+        font-family: MyOutfitFontBold, sans-serif;
+        font-size: 24px;
+        color: var(--light);
+        font-weight: 600;
+        margin-left: 16px;
+    }
 }

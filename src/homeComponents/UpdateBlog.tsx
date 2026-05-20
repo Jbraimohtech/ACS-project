@@ -1,5 +1,5 @@
 import React from 'react'
-import YellowBtn from '../components/Navbar/BlueBtn'
+import YellowBtn from '../components/BlueBtn'
 
 const UpdateBlog = () => {
   return (

@@ -1,4 +1,5 @@
 import React from 'react'
+import "./Home.css"
 
 const OurMission = () => {
   return (
@@ -10,7 +11,7 @@ const OurMission = () => {
               <div className='number-reason-item'>
                 <p>04</p>
               </div>
-              <h3 className='about-reason-text'>About the Organisation</h3>
+              <h3 className='about-reason-text'>Aims and Objectives</h3>
             </div>
           </div>
         </div>

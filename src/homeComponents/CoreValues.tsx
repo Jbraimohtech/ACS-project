@@ -1,5 +1,5 @@
 import React from 'react'
-import MemberBox from '../components/Navbar/MemberBox'
+import MemberBox from '../components/MemberBox'
 
 
 const Blog = () => {

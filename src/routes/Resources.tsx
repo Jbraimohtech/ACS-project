@@ -1,10 +1,10 @@
 import React from 'react'
+import ResourcesContent from '../ResourcesComponents/ResourcesContent'
 
 const Resources = () => {
   return (
     <div className='resources'>
-      <h1>Resources</h1>
-      <p>This is the resources page.</p>
+      <ResourcesContent />
     </div>
   )
 }

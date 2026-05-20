@@ -1,9 +1,10 @@
 import React from 'react'
+import "./Home.css"
 
 const OurVision = () => {
   return (
     <div>
-        <div className='content-box-vision'>
+      <div className='content-box-vision'>
         <div className='content-numbering'>
           <div className='number-reason-box'>
             <div className='number-reason-item'>
@@ -16,7 +17,7 @@ const OurVision = () => {
         <div className='reason-content-box'>
           <div className='reason-title-two'>
             <h2>
-              Equipping Servants of God as <br /> Ambassadors - 2Cor 5:20
+              Equipping Servants of God as Ambassadors - 2Cor 5:20
             </h2>
           </div>
         </div>
