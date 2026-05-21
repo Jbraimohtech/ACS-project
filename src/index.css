@@ -34,6 +34,7 @@
   --success: #22c55e;
   --danger: #ef4444;
   --warning: #f59e0b;
+  --light: #fff;
 }
 
 .container {
@@ -43,3 +44,14 @@
 }
 
 /* Other styles || They will also have their names on it */
+
+/* Media Query */
+@media (max-width: 480px ){
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'myFont', sans-serif;
+      overflow-x: hidden;
+    }
+}

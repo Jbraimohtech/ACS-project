@@ -3,18 +3,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background: transparent;
     padding: 15px 3%;
     top: 0;
     position: sticky;
     z-index: 100;
+    margin:20px 0 100px 0;
 }
 
 .logo {
-    font-family: MyOutfitFontBold, sans-serif;
+    font-family: myFont;
     font-size: 48px;
     font-weight: bold;
-    color: var(--primary);
+    color: var(--light);
 }
 
 .nav-links {
@@ -28,7 +29,7 @@
     margin: 10px 20px;
     font-size: 18px;
     cursor: pointer;
-    color: var(--text);
+    color: var(--light);
     text-decoration: none;
 }
 
@@ -38,14 +39,14 @@
 }
 
 .login-btn {
-    background-color: var(--primary);
+    background: transparent;
     color: #fff;
     min-width: 126px;
     height: 56px;
     border-radius: 12px;
     font-size: 18px;
     cursor: pointer;
-    border: 0;
+    border: 1px solid #fff;
     outline: 0;
     text-decoration: none;
     text-align: center;
@@ -55,7 +56,7 @@
 }
 
 .signup-btn {
-    background-color: var(--primary);
+    background: transparent;
     color: #fff;
     min-width: 126px;
     height: 56px;
@@ -63,7 +64,7 @@
     border-radius: 12px;
     font-size: 18px;
     cursor: pointer;
-    border: 0;
+    border: 1px solid #fff;
     outline: 0;
     text-decoration: none;
     text-align: center;

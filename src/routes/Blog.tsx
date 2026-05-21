@@ -1,8 +1,9 @@
 import React from 'react'
+import BlogContent from '../homeComponents/CoreValues'
 
 const Blog = () => {
   return (
-    <div>Blog</div>
+    <BlogContent />
   )
 }
 
