@@ -17,7 +17,7 @@ const UpdateBlog = () => {
             </div>
             <div className='blog-content-title'>
                 <h2>
-                    Stay Updated with <br />
+                    Stay Updated with
                     Campaign News
                 </h2>
                 <YellowBtn>
@@ -50,7 +50,7 @@ const UpdateBlog = () => {
                             <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
-                                    Tax-Saving Strategies for <br />
+                                    Tax-Saving Strategies for
                                     Small Business
                                 </h4>
                                 <div className='clock-box'>
@@ -64,7 +64,7 @@ const UpdateBlog = () => {
                             <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
-                                    Tax-Saving Strategies for <br />
+                                    Tax-Saving Strategies for 
                                     Small Business
                                 </h4>
                                 <div className='clock-box'>
