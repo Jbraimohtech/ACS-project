@@ -8,7 +8,7 @@ const MiddleImages = () => {
                 <div className='inside-alhaji-img'>
                     <div className='inside-alhaji-icons'>
                         <div className='small-blue-icon'>
-                            <div className='small-white-icon'></div>
+                            <div className='small-white-icon-real'></div>
                         </div>
                         <p>Motto</p>
                     </div>

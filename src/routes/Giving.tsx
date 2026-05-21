@@ -1,10 +1,10 @@
 import React from 'react'
+import GivingContent from '../givingComponents/GivingContent'
 
 const Giving = () => {
   return (
     <div className='giving'>
-      <h1>Giving</h1>
-      <p>This is the giving page.</p>
+      <GivingContent />
     </div>
   )
 }

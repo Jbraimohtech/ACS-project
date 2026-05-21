@@ -7,7 +7,7 @@ const HomeFooter = () => {
         <div className='home-footer-col-one'>
             <div className='home-footer-col-one-row'>
                 <h1>LOGO</h1>
-                <h6>A unified platform built to strengthen our <br /> structure, serve our members, and advance <br /> our mission with order and purpose.</h6>
+                <h6>A unified platform built to strengthen our structure, serve our members, and advance  our mission with order and purpose.</h6>
                 <p>admin@platform.org</p>
             </div>
             <div className='home-footer-col-two-row'>

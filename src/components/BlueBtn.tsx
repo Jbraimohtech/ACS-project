@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../homeComponents/Home.css"
+import "../../src/homeComponents/Home.css"
 
 type CardProps = {
     children: React.ReactNode

@@ -36,7 +36,7 @@ const TheChallenge = () => {
           </div>
         </div>
 
-        <div className='the-content-part-org'>
+        <div className='the-content-part-org-two'>
           <div className='the-content-part-text'>
             <span className='the-content-part-text-p'>
               The organization came into being with the vision caught by 

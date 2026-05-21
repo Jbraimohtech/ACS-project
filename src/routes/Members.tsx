@@ -1,10 +1,10 @@
 import React from 'react'
+import MemberContent from '../memberComponents/MemberContent'
 
 const Members = () => {
   return (
     <div className='members'>
-      <h1>Members</h1>
-      <p>This is the members page.</p>
+      <MemberContent />
     </div>
   )
 }

@@ -8,7 +8,7 @@ import OurMission from '../homeComponents/AboutOrg'
 import "../homeComponents/Home.css"
 import Blog from '../homeComponents/CoreValues'
 import ViewAllBlog from '../homeComponents/ViewAllBlog'
-import HomeFooter from '../homeComponents/HomeFooter'
+import HomeFooter from '../components/HomeFooter'
 import Navbar from '../components/Navbar/Navbar'
 import Target from '../homeComponents/Target'
 import UpdateBlog from '../homeComponents/UpdateBlog'
