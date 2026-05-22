@@ -1,7 +1,13 @@
-import React from 'react'
 import "./Member.css";
 
-const members = [
+interface Member {
+  id: number;
+  name: string;
+  title: string;
+  image: string;
+}
+
+const members: Member[] =  [
   {
     id: 1,
     name: "Rev. Dr. Enebeli-Ebube Mikie Uche [Late]",
