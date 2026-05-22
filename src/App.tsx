@@ -9,6 +9,8 @@ import Giving from './routes/Giving'
 import Login from './routes/Login'
 import Register from './routes/Register'
 import { Routes, Route } from 'react-router-dom'
+import BlogDetails from './blogComponents/BlogDetails'
+import MobileScreenNav from './components/Navbar/MobileScreenNav'
 
 const App = () => {
   return (
@@ -31,6 +33,10 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         {/* Register */}
         <Route path='/register' element={<Register />} />
+        {/* Blog Details */}
+        <Route path='/blog-details' element={<BlogDetails />} />
+        {/* Mobile Screen Nav */}
+        <Route path='/mobile-screen-nav' element={<MobileScreenNav />} />
       </Routes>
     </div>
   )

@@ -1,14 +1,14 @@
 import React from 'react'
 import AllMainContent from '../components/AllMainContent'
-import Navbar from '../components/Navbar/Navbar'
 import SearchBox from '../components/SearchBox'
 import "../../src/EventsComponents/Event.css"
+import MobileScreenNav from '../components/Navbar/MobileScreenNav'
 
 const ResourcesContent = () => {
   return (
     <div>
       <AllMainContent> 
-        <Navbar />
+        <MobileScreenNav />
         <div className='event-head-text-box'>
           <div className='small-event-box'>
             <div className='small-white-icon'></div>

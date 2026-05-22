@@ -9,9 +9,9 @@ import "../homeComponents/Home.css"
 import Blog from '../homeComponents/CoreValues'
 import ViewAllBlog from '../homeComponents/ViewAllBlog'
 import HomeFooter from '../components/HomeFooter'
-import Navbar from '../components/Navbar/Navbar'
 import Target from '../homeComponents/Target'
 import UpdateBlog from '../homeComponents/UpdateBlog'
+import MobileScreenNav from '../components/Navbar/MobileScreenNav'
 
 const Home = () => {
   return (
@@ -19,7 +19,7 @@ const Home = () => {
       <div className='new-home-box'>
         <div className='new-home-style-image'>
           <div className='new-home-style'>
-            <Navbar />
+            <MobileScreenNav />
             <HomeContent />
           </div>
         </div>

@@ -14,7 +14,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
+    margin: 100px 0 50px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,6 +49,8 @@
     height: 142px;
     text-align: center;
     margin-bottom: 50px;
+    justify-content: center;
+    align-items: center;
 }
 
 .event-head-text-phone {
@@ -60,6 +62,8 @@
     font-size: 56px;
     font-weight: 700;
     color: var(--light);
+    width: 100%;
+    text-align: center;
 }
 
 .search-icon {
@@ -289,6 +293,7 @@
     .event-head-text-phone {
         display: flex;
         width: 100%;
+        margin-top: 50px;
         margin-bottom: 10px;
         justify-content: center;
         align-items: center;
