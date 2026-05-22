@@ -1,14 +1,16 @@
 import React from 'react'
 import AllMainContent from '../components/AllMainContent'
-import Navbar from '../components/Navbar/Navbar'
 import SearchBox from '../components/SearchBox'
 import "../../src/EventsComponents/Event.css"
+import MobileScreenNav from '../components/Navbar/MobileScreenNav'
+import MemberProfiles from './memberProfiles'
+import HomeFooter from '../components/HomeFooter'
 
 const MemberContent = () => {
   return (
     <div>
       <AllMainContent> 
-        <Navbar />
+        <MobileScreenNav />
         <div className='event-head-text-box'>
           <div className='small-event-box'>
             <div className='small-white-icon'></div>
@@ -27,6 +29,8 @@ const MemberContent = () => {
           <div className='search-icon'></div>
         </SearchBox>
       </AllMainContent>
+      <MemberProfiles />
+      <HomeFooter />
     </div>
   )
 }

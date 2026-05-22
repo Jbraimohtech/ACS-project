@@ -19,6 +19,10 @@
     font-weight: 700;
 }
 
+.logo-phone {
+    display: none;
+}
+
 .nav-links {
     flex: 1;
     list-style: none;
@@ -34,9 +38,20 @@
     text-decoration: none;
 }
 
+
+.sold-nav {
+    display: flex;
+    position: absolute;
+    right: 10%;
+    left: 20%;
+}
+
+
 .access-box {
     display: flex;
     gap: 20px;
+    position: absolute;
+    right: 3%;
 }
 
 .login-btn {
@@ -74,10 +89,57 @@
     align-items: center;
 }
 
+ header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 2rem;
+    background: transparent;
+    color: var(--light);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .phone-menu-link {
+    margin: 0 2rem;
+    color: var(--light);
+    text-decoration: none;
+}
+
+header .phone-nav-btn {
+    padding: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--light);
+    visibility: hidden;
+    opacity: 0;
+    font-size: 1.8rem;
+}
+
+ header .phone-nav-btn-close {
+    padding: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    visibility: hidden;
+    opacity: 0;
+    font-size: 1.8rem;
+ }
+
 @media (max-width: 480px ){
     .navbar {
         width: 100%;
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: space-between;
         background: transparent;
@@ -88,7 +150,26 @@
         margin:20px 0 60px 0;
     }
 
-    .nav-links, .access-box {
+    .login-btn {
+        background: transparent;
+        color: var(--text);
+        width: 150px;
+        font-size: 24px;
+        font-weight: 600;
+        border: 1px solid #64748B;
+    }
+
+    .signup-btn {
+        background: transparent;
+        color: var(--text);
+        width: 150px;
+        font-size: 24px;
+        font-weight: 600;
+        border: 1px solid #64748B;
+    }
+
+
+    .nav-links {
         display: none;
     }
 
@@ -96,7 +177,92 @@
         font-family: myFont;
         font-size: 32px;
         font-weight: bold;
-        color: var(--light);
+        color: var(--primary);
         font-weight: 700;
+        position: relative;
+        left: -0.5rem;
+        z-index: 1000;  
     }
+
+    .logo{
+        color:var(--light);
+        transition:0.3s ease;
+    }
+
+    .white-logo{
+        color:var(--primary);
+    }
+
+    header .phone-nav-btn {
+        visibility: visible;
+        opacity: 1;
+        font-size: 1.8rem;
+    }
+
+    header .phone-nav-btn-close {
+        visibility: visible;
+        opacity: 1;
+        font-size: 1rem;
+    }
+
+    header nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: baseline;
+        align-items: baseline;
+        gap: 1.5rem;
+        background-color: var(--light);
+        transition: 1s;
+        transform: translate(-100vh);
+        z-index: 999;
+    }
+
+    header .responsive-nav {
+        transform: translateY(0);
+    }
+
+    nav .nav-close-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 2rem;
+        color: var(--text);
+        font-size: 1rem;
+
+    }
+
+    nav .phone-menu-link {
+        font-size: 1.75rem;
+        color: var(--text);
+    }
+
+    nav .phone-menu-link:hover {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    .sold-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: baseline;
+        align-items: baseline;
+        left: 0;
+        position: relative;
+        height: fit-content;
+    }
+
+
+    .access-box {
+        display: flex;
+        gap: 20px;
+        position: relative;
+        left: 2rem;
+    }
+
 }
+

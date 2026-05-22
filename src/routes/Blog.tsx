@@ -1,9 +1,17 @@
 import React from 'react'
-import BlogContent from '../homeComponents/CoreValues'
+import BlogMainContent from '../blogComponents/BlogMainContent'
+import HomeFooter from '../components/HomeFooter'
+import BlogCategory from '../blogComponents/BlogCategory'
+import AllCategoryBoxCard from '../blogComponents/AllCategoryBoxCard'
 
 const Blog = () => {
   return (
-    <BlogContent />
+    <div>
+      <BlogMainContent />
+      <BlogCategory />
+      <AllCategoryBoxCard />
+      <HomeFooter />
+    </div>
   )
 }
 

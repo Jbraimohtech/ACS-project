@@ -2,13 +2,13 @@ import React from 'react'
 import SearchBox from '../components/SearchBox'
 import AllMainContent from '../components/AllMainContent';
 import "./Event.css"
-import Navbar from '../components/Navbar/Navbar';
+import MobileScreenNav from '../components/Navbar/MobileScreenNav';
 
 const EventContent = () => {
   return (
     <div>
       <AllMainContent> 
-        <Navbar />
+        <MobileScreenNav />
         <div className='event-head-text-box'>
           <div className='small-event-box'>
             <div className='small-white-icon'></div>

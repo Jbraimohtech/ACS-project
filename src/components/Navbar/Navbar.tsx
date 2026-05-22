@@ -1,8 +1,15 @@
 import React from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/mobile-screen-nav")
+  }
   return (
     <nav className='navbar'>
         {/* Navbar content */}
@@ -22,9 +29,9 @@ const Navbar = () => {
             <Link to='/register' className='signup-btn'>Register</Link>
         </div>
 
-        <div className='base-line-menu-btn'>
-          <div className='base-line-menu-btn-icon'></div>
-        </div>
+        <button className='base-line-menu-btn' onClick={handleClick}>
+          
+        </button>
     </nav>
   )
 }
