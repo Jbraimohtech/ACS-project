@@ -1,13 +1,19 @@
-import React from 'react'
 import "./Member.css";
+import mosesImg from "../assets/images/moses.jpg";
 
-const members = [
+interface Member {
+  id: number;
+  name: string;
+  title: string;
+  image: string;
+}
+
+const members: Member[] =  [
   {
     id: 1,
     name: "Rev. Dr. Enebeli-Ebube Mikie Uche [Late]",
     title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    image: mosesImg,
   },
 
   {
@@ -36,6 +42,62 @@ const members = [
 
   {
     id: 5,
+    name: "Rev. Dr. Awhotu Sapele Tamisere",
+    title: "Past Officer",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  },
+
+  {
+    id: 6,
+    name: "Rev. Dr. Awhotu Sapele Tamisere",
+    title: "Past Officer",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  },
+
+  {
+    id: 7,
+    name: "Rev. Dr. Awhotu Sapele Tamisere",
+    title: "Past Officer",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  },
+
+  {
+    id: 8,
+    name: "Rev. Dr. Awhotu Sapele Tamisere",
+    title: "Past Officer",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  },
+
+  {
+    id: 9,
+    name: "Rev. Dr. Awhotu Sapele Tamisere",
+    title: "Past Officer",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  },
+
+  {
+    id: 10,
+    name: "Rev. Dr. Awhotu Sapele Tamisere",
+    title: "Past Officer",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  },
+
+  {
+    id: 11,
+    name: "Rev. Dr. Awhotu Sapele Tamisere",
+    title: "Past Officer",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+  },
+
+  {
+    id: 12,
     name: "Rev. Dr. Awhotu Sapele Tamisere",
     title: "Past Officer",
     image:

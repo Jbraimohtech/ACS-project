@@ -92,12 +92,12 @@ body{
     outline: 0;
     color: var(--light);
     font-size: 18px;
-    width: 90%;
+    width: 70%;
 }
 
 .search-box input::placeholder {
     font-size: 18px;
-    color: var(--light);
+    color: #64748B;
 }
 
 .search-icon {
