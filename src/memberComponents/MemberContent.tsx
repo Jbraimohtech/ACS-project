@@ -5,27 +5,27 @@ import "../../src/EventsComponents/Event.css"
 import MobileScreenNav from '../components/Navbar/MobileScreenNav'
 import MemberProfiles from './memberProfiles'
 import HomeFooter from '../components/HomeFooter'
+import { FaChevronDown } from 'react-icons/fa'
 
 const MemberContent = () => {
   return (
     <div>
       <AllMainContent> 
         <MobileScreenNav />
-        <div className='event-head-text-box'>
-          <div className='small-event-box'>
-            <div className='small-white-icon'></div>
-            <p>Event</p>
-          </div>
-        </div>
-        <div  className='event-head-text'>
+        <div  className='member-head-text'>
           <h1>
-            Gatherings That <br />
-            Strengthen Our Mission
+            Our Members
           </h1>
         </div>
         
         <SearchBox>
-          <input type="text" placeholder='Search for members'/>
+          <div className='search-filter-box'>
+            <p>Filter</p>
+            <button>
+              <FaChevronDown />
+            </button>
+          </div>
+          <input type="text" placeholder='Search by name, ID, role, or unit'/>
           <div className='search-icon'></div>
         </SearchBox>
       </AllMainContent>
