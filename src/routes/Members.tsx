@@ -1,10 +1,10 @@
 
-import MemberContent from '../memberComponents/MemberContent'
+import MemberContent from '../MemberComponents/MemberContent'
 
 const Members = () => {
   return (
     <div className='members'>
-      <MemberContent />
+      <MemberContent/>
     </div>
   )
 }
