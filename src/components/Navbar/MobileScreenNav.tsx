@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom'
 import { useRef } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Rsvp from './Rsvp'
 import ViewDetails from './ViewDetails'
 

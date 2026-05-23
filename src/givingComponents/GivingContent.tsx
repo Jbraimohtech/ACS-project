@@ -1,4 +1,4 @@
-import React from 'react'
+
 import AllMainContent from '../components/AllMainContent'
 import Navbar from '../components/Navbar/Navbar'
 import SearchBox from '../components/SearchBox'

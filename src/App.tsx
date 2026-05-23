@@ -1,4 +1,4 @@
-import React from 'react'
+
 // import Navbar from './components/Navbar/Navbar'
 import Home from './routes/Home'
 import Events from './routes/Events'

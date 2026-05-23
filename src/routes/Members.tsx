@@ -1,4 +1,4 @@
-import React from 'react'
+
 import MemberContent from '../memberComponents/MemberContent'
 
 const Members = () => {

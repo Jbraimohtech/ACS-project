@@ -1,4 +1,4 @@
-import React from 'react'
+
 import "../../src/EventsComponents/Event.css"
 import EventContent from '../EventsComponents/EventContent'
 import Featured from '../EventsComponents/Featured'

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import GivingContent from '../givingComponents/GivingContent'
 
 const Giving = () => {
