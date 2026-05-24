@@ -3,7 +3,7 @@ import AllMainContent from '../components/AllMainContent'
 import SearchBox from '../components/SearchBox'
 import "../../src/EventsComponents/Event.css"
 import MobileScreenNav from '../components/Navbar/MobileScreenNav'
-import MemberProfiles from './memberProfiles'
+import MemberProfiles from './MemberProfiles'
 import HomeFooter from '../components/HomeFooter'
 import { FaChevronDown } from 'react-icons/fa'
 

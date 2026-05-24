@@ -1,4 +1,4 @@
-import React from 'react'
+
 import HomeContent from '../homeComponents/HomeContent'
 import MiddleImages from '../homeComponents/MiddleImages'
 import TheChallenge from '../homeComponents/AboutOne'

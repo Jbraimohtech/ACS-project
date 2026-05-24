@@ -1,4 +1,4 @@
-import React from 'react'
+
 import "./Event.css"
 import EventCard from '../components/EventCard'
 import RsvpViewBox from '../components/RsvpViewBox'

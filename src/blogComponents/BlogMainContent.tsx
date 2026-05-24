@@ -1,4 +1,4 @@
-import React from 'react'
+
 import AllMainContent from '../components/AllMainContent'
 import "./Blog.css"
 import MobileScreenNav from '../components/Navbar/MobileScreenNav'

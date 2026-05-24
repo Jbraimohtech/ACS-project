@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 
 const HomeFooter = () => {
   return (
@@ -12,24 +12,24 @@ const HomeFooter = () => {
             </div>
             <div className='home-footer-col-two-row'>
                 <h6>Platform Navigation</h6>
-                <p>Home</p>
-                <p>Members</p>
-                <p>Departments</p>
-                <p>Events</p>
-                <p>Reports</p>
+                <Link to="/" className='home-footer-col-two-row-link'>Home</Link>
+                <Link to="/members" className='home-footer-col-two-row-link'>Members</Link>
+                <Link to="/departments" className='home-footer-col-two-row-link'>Departments</Link>
+                <Link to="/events" className='home-footer-col-two-row-link'>Events</Link>
+                <Link to="/reports" className='home-footer-col-two-row-link'>Reports</Link>
             </div>
             <div className='home-footer-col-two-row'>
                 <h6>Organization</h6>
-                <p>About Us</p>
-                <p>Our Mission</p>
-                <p>Leadership Structure</p>
+                <Link to="/about-us" className='home-footer-col-two-row-link'>About Us</Link>
+                <Link to="/our-mission" className='home-footer-col-two-row-link'>Our Mission</Link>
+                <Link to="/leadership-structure" className='home-footer-col-two-row-link'>Leadership Structure</Link>
             </div>
             <div className='home-footer-col-two-row'>
                 <h6>Member Support</h6>
-                <p>Help Center</p>
-                <p>User Guide</p>
-                <p>Contact Admin</p>
-                <p>Report an Issue</p>
+                <Link to="/help-center" className='home-footer-col-two-row-link'>Help Center</Link>
+                <Link to="/user-guide" className='home-footer-col-two-row-link'>User Guide</Link>
+                <Link to="/contact-admin" className='home-footer-col-two-row-link'>Contact Admin</Link>
+                <Link to="/report-issues" className='home-footer-col-two-row-link'>Report an Issue</Link>
             </div>
         </div>
         {/* footer for copyright */}

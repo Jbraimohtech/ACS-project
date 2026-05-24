@@ -1,7 +1,14 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import YellowBtn from '../components/BlueBtn'
 
 const UpdateBlog = () => {
+    const navigate = useNavigate();
+
+  const goToViewBlog = () => {
+    navigate("/blog")
+  }
+
+
   return (
     <div>
         <div className='blog-box'>
@@ -21,7 +28,7 @@ const UpdateBlog = () => {
                     Campaign News
                 </h2>
                 <YellowBtn>
-                    <p>View All Blogs</p>
+                    <button className='view-all-btn-expand' onClick={goToViewBlog}>View All Blogs</button>
                 </YellowBtn>
             </div>
 

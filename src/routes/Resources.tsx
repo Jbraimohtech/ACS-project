@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ResourcesContent from '../ResourcesComponents/ResourcesContent'
 
 const Resources = () => {

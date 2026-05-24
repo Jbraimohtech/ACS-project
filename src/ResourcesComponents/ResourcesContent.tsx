@@ -1,4 +1,4 @@
-import React from 'react'
+
 import AllMainContent from '../components/AllMainContent'
 import SearchBox from '../components/SearchBox'
 import "../../src/EventsComponents/Event.css"
