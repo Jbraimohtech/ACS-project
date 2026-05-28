@@ -23,6 +23,7 @@ import LeadershipStructure from './otherFooterLinksPages/LeadershipStructure'
 import ReportIssue from './otherFooterLinksPages/ReportIssue'
 import Reports from './otherFooterLinksPages/Reports'
 import UserGuide from './otherFooterLinksPages/UserGuide'
+import ViewFeaturedDetails from './EventsComponents/ViewFeaturedDetails'
 
 const App = () => {
   return (
@@ -73,6 +74,8 @@ const App = () => {
         <Route path='/reports' element={<Reports />} />
         {/* To User Guide Page */}
         <Route path='/user-guide' element={<UserGuide />} />
+        {/* To View Featured Detail Page on Event Page */}
+        <Route path='/view-featured-details' element={<ViewFeaturedDetails />} />
       </Routes>
     </div>
   )

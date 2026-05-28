@@ -27,13 +27,19 @@ const RegisterContent : React.FC = () => {
 
       {/* Right Side */}
       <div className="right-panel">
+
+        <div className="the-language-box">
+          <div>
+            <h1 className="register-logo">LOGO</h1>
+          </div>
         {/* Language Selector */}
-        <div className="top-bar">
-          <select className="language-select">
-            <option>English (US)</option>
-            <option>French</option>
-            <option>Arabic</option>
-          </select>
+          <div className="top-bar">
+            <select className="language-select">
+              <option>English (US)</option>
+              <option>French</option>
+              <option>Arabic</option>
+            </select>
+          </div>
         </div>
 
         {/* Progress Steps */}

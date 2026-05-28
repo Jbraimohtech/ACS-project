@@ -29,13 +29,18 @@ const CreatePassword : React.FC = () => {
 
       {/* RIGHT SECTION */}
       <div className="right-section">
-        {/* TOP BAR */}
-        <div className="top-bar">
-          <select className="language-select">
-            <option>English (US)</option>
-            <option>French</option>
-            <option>Arabic</option>
-          </select>
+        <div className="the-language-box">
+          <div>
+            <h1 className="register-logo">LOGO</h1>
+          </div>
+        {/* Language Selector */}
+          <div className="top-bar">
+            <select className="language-select">
+              <option>English (US)</option>
+              <option>French</option>
+              <option>Arabic</option>
+            </select>
+          </div>
         </div>
 
         {/* HEADER */}

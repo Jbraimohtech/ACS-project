@@ -11,9 +11,9 @@ const BeAccountedFor = () => {
             <p>Attendance is not just recorded — 
                 it reflects commitment, discipline, and
                 participation in the mission.</p>
-            <div className='confirm-part-btn'>
+            <button className='confirm-part-btn'>
                 <p>Confirm participation</p>
-            </div>
+            </button>
         </div>
         <div className='be-accounted-for-image'></div>
     </div>

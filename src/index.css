@@ -26,11 +26,11 @@ body{
 }
 
 :root {
-  --primary: #0052CC;
+  --primary: #185656;
   --primary-hover: #4f46e5;
 
   --bg: #0f172a;
-  --surface: #1e293b;
+  --surface: #f8fafc;
 
   --text: #000;
   --text-secondary: #64748B;
@@ -42,8 +42,20 @@ body{
   --neutral: #E6E8EA;
 }
 
+button {
+    border: none;
+    outline: none;
+}
+
+button:focus,
+button:active,
+button :focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
 .container {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background: #fff;
 }
@@ -120,6 +132,7 @@ body{
   align-items: center;
   background-color: var(--primary);
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .view-details {
@@ -131,6 +144,7 @@ body{
   background-color: var(--light);
   border-radius: 12px;
   border: 1px solid #E5E7EB;
+  cursor: pointer;
 }
 
  /* Blue Btn Component Styles */
@@ -201,7 +215,7 @@ body{
     gap: 10%;
     bottom: 0;
     position: relative;
-    background-color: #0F2A44;
+    background-color: var(--primary);
     margin-top: 100px;
     display: flex;
     flex-direction: column;
@@ -317,7 +331,7 @@ body{
     display: flex;
     flex-direction: column;
     background-color: var(--primary);
-    margin: 50px 15% 5px 3%;
+    margin: 5px 15% 5px 3%;
     border-radius: 12px;
   }
 

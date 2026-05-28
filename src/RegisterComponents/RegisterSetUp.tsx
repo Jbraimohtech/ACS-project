@@ -9,6 +9,10 @@ const RegisterSetUp: React.FC = () => {
     navigate("/register-create-password")
   }
 
+  const goToRegister = () => {
+    navigate("/register")
+  }
+
 
   return (
     <div className="register-setup-container">
@@ -19,22 +23,33 @@ const RegisterSetUp: React.FC = () => {
 
       {/* RIGHT FORM */}
       <div className="register-set-up-right-section">
-        {/* TOP BAR */}
-        <div className="top-bar">
-          <select className="language-select">
-            <option>English (US)</option>
-            <option>French</option>
-            <option>Arabic</option>
-          </select>
+        <div className="the-language-box">
+          <div>
+            <h1 className="register-logo">LOGO</h1>
+          </div>
+        {/* Language Selector */}
+          <div className="top-bar">
+            <select className="language-select">
+              <option>English (US)</option>
+              <option>French</option>
+              <option>Arabic</option>
+            </select>
+          </div>
         </div>
 
-        {/* PROGRESS */}
-        <div className="progress-container">
-          <div className="progress active green"></div>
-          <div className="progress active blue"></div>
-          <div className="progress"></div>
-          <div className="progress"></div>
+        <div className="header-row">
+          <button className="back-btn" onClick={goToRegister}>←</button>
+
+          {/* PROGRESS */}
+          <div className="progress-container">
+            <div className="progress active green"></div>
+            <div className="progress active blue"></div>
+            <div className="progress"></div>
+            <div className="progress"></div>
+          </div>
         </div>
+
+        
 
         {/* TITLE */}
         <h1 className="title">Set Up your Account</h1>

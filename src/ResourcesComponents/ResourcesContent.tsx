@@ -1,32 +1,14 @@
 
-import AllMainContent from '../components/AllMainContent'
-import SearchBox from '../components/SearchBox'
+
 import "../../src/EventsComponents/Event.css"
-import MobileScreenNav from '../components/Navbar/MobileScreenNav'
 
 const ResourcesContent = () => {
   return (
     <div>
-      <AllMainContent> 
-        <MobileScreenNav />
-        <div className='event-head-text-box'>
-          <div className='small-event-box'>
-            <div className='small-white-icon'></div>
-            <p>Event</p>
-          </div>
-        </div>
-        <div  className='event-head-text'>
-          <h1>
-            Gatherings That <br />
-            Strengthen Our Mission
-          </h1>
-        </div>
-        
-        <SearchBox>
-          <input type="text" placeholder='Search for members'/>
-          <div className='search-icon'></div>
-        </SearchBox>
-      </AllMainContent>
+      <h3>
+        Please login to access the resources
+      </h3>
+      <button>Login</button>
     </div>
   )
 }

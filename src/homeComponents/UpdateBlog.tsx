@@ -4,9 +4,9 @@ import YellowBtn from '../components/BlueBtn'
 const UpdateBlog = () => {
     const navigate = useNavigate();
 
-  const goToViewBlog = () => {
-    navigate("/blog")
-  }
+    const goToViewBlog = () => {
+        navigate("/blog")
+    }
 
 
   return (

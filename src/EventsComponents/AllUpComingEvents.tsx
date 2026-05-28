@@ -1,9 +1,16 @@
 
 import "./Event.css";
 import EventCard from '../components/EventCard';
-import RsvpViewBox from '../components/RsvpViewBox';
+import { useNavigate } from "react-router-dom";
+
 
 const AllUpComingEvents = () => {
+    const navigate = useNavigate();
+
+    const goToViewFeaturedDetails = () => {
+        navigate("/view-featured-details")
+    }
+
   return (
     <div className='all-up-coming-events'>
         <p className='event-featured'>All Upcoming Events</p>
@@ -27,7 +34,15 @@ const AllUpComingEvents = () => {
                     <div className='attending-icon'></div>
                     <p>450+ attending</p>
                 </div>
-                <RsvpViewBox />
+                {/* the direct buttons to other parts of event pages */}
+                <div className='rsvp-box'>
+                    <button className="rsvp">
+                        <p className='rsvp-box-first-p'>RSVP</p>
+                    </button>
+                    <button className="view-details" onClick={goToViewFeaturedDetails}>
+                        <p className='rsvp-box-second-p'>View details</p>
+                    </button>
+                </div>
             </div>
         </EventCard>
         <div className='horizontal-line'></div>
@@ -51,7 +66,15 @@ const AllUpComingEvents = () => {
                     <div className='attending-icon'></div>
                     <p>450+ attending</p>
                 </div>
-                <RsvpViewBox />
+                {/* the direct buttons to other parts of event pages */}
+                <div className='rsvp-box'>
+                    <button className="rsvp">
+                        <p className='rsvp-box-first-p'>RSVP</p>
+                    </button>
+                    <button className="view-details" onClick={goToViewFeaturedDetails}>
+                        <p className='rsvp-box-second-p'>View details</p>
+                    </button>
+                </div>
             </div>
         </EventCard>
         <div className='horizontal-line'></div>
@@ -75,7 +98,15 @@ const AllUpComingEvents = () => {
                     <div className='attending-icon'></div>
                     <p>450+ attending</p>
                 </div>
-                <RsvpViewBox />
+                {/* the direct buttons to other parts of event pages */}
+                <div className='rsvp-box'>
+                    <button className="rsvp">
+                        <p className='rsvp-box-first-p'>RSVP</p>
+                    </button>
+                    <button className="view-details" onClick={goToViewFeaturedDetails}>
+                        <p className='rsvp-box-second-p'>View details</p>
+                    </button>
+                </div>
             </div>
         </EventCard>
     </div>
