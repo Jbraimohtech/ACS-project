@@ -1619,41 +1619,41 @@
 @media (max-width: 768px) {
   .attendance-modal,
   .register-modal {
-    padding: 28px;
-    border-radius: 20px;
+    padding: 20px;
+    border-radius: 10px;
   }
 
   .attendance-modal h2,
   .register-modal h2 {
-    font-size: 18px;
+    font-size: 1.25rem;
   }
 
   .attendance-modal p,
   .register-modal p {
-    font-size: 18px;
+    font-size: 1rem;
   }
 
   .going-btn,
   .not-going-btn,
   .continue-btn {
-    height: 64px;
-    font-size: 22px;
-    border-radius: 14px;
+    height: 42px;
+    font-size: 1rem;
+    border-radius: 10px;
   }
 
   .register-form input,
   .select-wrapper select,
   .phone-input {
-    height: 64px;
-    font-size: 20px;
-    border-radius: 14px;
+    height: 42px;
+    font-size: 1rem;
+    border-radius: 10px;
   }
 
   .country-code {
-    font-size: 20px;
+    font-size: 1rem;
   }
 
   .phone-input input {
-    font-size: 20px;
+    font-size: 1rem;
   }
 }

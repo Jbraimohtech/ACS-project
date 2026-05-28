@@ -25,6 +25,10 @@ const SendToEmail: React.FC = () => {
     navigate("/register-create-password")
   }
 
+  const goToPaymentPlan = () => {
+    navigate("/payment-plan")
+  }
+
 
   return (
     <div className="send-email-container">
@@ -99,7 +103,9 @@ const SendToEmail: React.FC = () => {
           </div>
 
           {/* BUTTON */}
-          <button className="continue-btn">Continue</button>
+          <button className="continue-btn" onClick={goToPaymentPlan}>
+            Continue
+          </button>
 
           {/* FOOTER */}
           <p className="footer-text">
