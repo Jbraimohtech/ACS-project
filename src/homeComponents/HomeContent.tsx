@@ -1,9 +1,11 @@
 
+import MobileScreenNav from '../components/Navbar/MobileScreenNav'
 import SearchBox from '../components/SearchBox'
 
 const HomeContent = () => {
   return (
-    <div>
+    <div className='home-content-all-main-content'>
+        <MobileScreenNav />
         <div className='home-head-text'>
             <h1>A Platform Born From Purpose, For Our People</h1>
         </div>

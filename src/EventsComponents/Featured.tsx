@@ -1,9 +1,12 @@
-
+import { X } from "lucide-react";
 import "./Event.css"
 import EventCard from '../components/EventCard'
 import { useNavigate } from "react-router-dom"
+import { useState } from "react";
 
 const Featured = () => {
+    const [showModal, setShowModal] =
+    useState(false);
     const navigate = useNavigate();
 
     const goToViewFeaturedDetails = () => {
@@ -48,7 +51,7 @@ const Featured = () => {
 
                     {/* the direct buttons to other parts of event pages */}
                     <div className='rsvp-box'>
-                        <button className="rsvp">
+                        <button className="rsvp" onClick={() => setShowModal(true)}>
                             <p className='rsvp-box-first-p'>RSVP</p>
                         </button>
                         <button className="view-details" onClick={goToViewFeaturedDetails}>
@@ -58,6 +61,44 @@ const Featured = () => {
                 </div>
             </EventCard>
         </div>
+
+        {/* MODAL */}
+        {showModal && (
+            <div className="event-modal-overlay">
+                <div className="attendance-modal">
+                    {/* CLOSE */}
+                    <button
+                    className="close-btn"
+                    onClick={() =>
+                        setShowModal(false)
+                    }
+                    >
+                    <X size={28} />
+                    </button>
+
+                    {/* CONTENT */}
+                    <h2>
+                    Confirm Your Attendance
+                    </h2>
+
+                    <p>
+                    Will you be attending
+                    this event?
+                    </p>
+
+                    {/* ACTIONS */}
+                    <div className="modal-actions">
+                    <button className="going-btn">
+                        Going
+                    </button>
+
+                    <button className="not-going-btn">
+                        Not Going
+                    </button>
+                    </div>
+                </div>
+            </div>
+        )}
     </div>
   )
 }

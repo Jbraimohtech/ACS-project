@@ -138,7 +138,7 @@
   height: 52px;
   border: none;
   border-radius: 10px;
-  background: #0f56d9;
+  background: var(--primary);
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -175,17 +175,19 @@
   border-radius: 12px;
   padding: 28px;
   text-align: center;
+  color: var(--primary);
 }
 
 .stat-card h3 {
   margin: 14px 0 10px;
-  color: #0f56d9;
-  font-size: 32px;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .stat-card span {
-  color: #2563eb;
-  font-size: 14px;
+  color: var(--primary);
+  font-size: 1rem;
 }
 
 /* RESPONSIVE */

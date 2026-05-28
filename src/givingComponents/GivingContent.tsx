@@ -134,7 +134,7 @@ const GivingContent : React.FC = () => {
 
           <div className="giving-stats-grid">
             <div className="stat-card">
-              <CalendarDays size={18} />
+              <CalendarDays size={24} />
 
               <h3>24%</h3>
 
@@ -144,7 +144,7 @@ const GivingContent : React.FC = () => {
             </div>
 
             <div className="stat-card">
-              <CalendarDays size={18} />
+              <CalendarDays size={24} />
 
               <h3>30%</h3>
 
@@ -152,7 +152,7 @@ const GivingContent : React.FC = () => {
             </div>
 
             <div className="stat-card">
-              <CalendarDays size={18} />
+              <CalendarDays size={24} />
 
               <h3>25%</h3>
 

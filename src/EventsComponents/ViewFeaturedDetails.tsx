@@ -3,6 +3,7 @@ import {
   MapPin,
   Download,
   CircleCheck,
+  X
 } from "lucide-react";
 import "./Event.css"
 import MobileScreenNav from "../components/Navbar/MobileScreenNav";
@@ -11,9 +12,12 @@ import HomeFooter from "../components/HomeFooter";
 import "../blogComponents/Blog.css"
 import BlogCard from "../components/BlogCard";
 import BeAccountedFor from "./BeAccountedFor";
+import { useState } from "react";
 
 
 const ViewFeaturedDetails: React.FC = () => {
+  const [showModal, setShowModal] =
+      useState(false);
   return (
     <div>
         <AllMainContent> 
@@ -81,7 +85,7 @@ const ViewFeaturedDetails: React.FC = () => {
                             </div>
                         {/* End of the phone view */}
 
-                        <button className="rsvp-btn">
+                        <button className="rsvp-btn" onClick={() => setShowModal(true)}>
                         <CircleCheck size={16} />
                         RSVP Now
                         </button>
@@ -344,6 +348,44 @@ const ViewFeaturedDetails: React.FC = () => {
 
       <BeAccountedFor />
       <HomeFooter />
+
+      {/* MODAL */}
+        {showModal && (
+          <div className="event-modal-overlay">
+              <div className="attendance-modal">
+                  {/* CLOSE */}
+                  <button
+                  className="close-btn"
+                  onClick={() =>
+                      setShowModal(false)
+                  }
+                  >
+                  <X size={28} />
+                  </button>
+
+                  {/* CONTENT */}
+                  <h2>
+                  Confirm Your Attendance
+                  </h2>
+
+                  <p>
+                  Will you be attending
+                  this event?
+                  </p>
+
+                  {/* ACTIONS */}
+                  <div className="modal-actions">
+                  <button className="going-btn">
+                      Going
+                  </button>
+
+                  <button className="not-going-btn">
+                      Not Going
+                  </button>
+                  </div>
+              </div>
+          </div>
+        )}
     </div>
   )
 }

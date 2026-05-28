@@ -145,7 +145,7 @@ body {
 }
 
 .continue-btn:hover {
-  background: #0d47a1;
+  background: #0e7474;
 }
 
 /* Footer */
@@ -391,7 +391,7 @@ body {
 }
 
 .continue-btn:hover {
-  background: #0c47b4;
+  background: #0e7474;
 }
 
 /* RESPONSIVE */
@@ -576,7 +576,7 @@ body {
   height: 52px;
   border: none;
   border-radius: 8px;
-  background: #0f5ae0;
+  background: var(--primary);
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -584,7 +584,7 @@ body {
 }
 
 .continue-btn:hover {
-  background: #0b47b8;
+  background: #0e7474;
 }
 
 /* RESPONSIVE */
@@ -711,7 +711,7 @@ body {
 }
 
 .progress.active.blue {
-  background: #2d67f8;
+  background: var(--primary);
 }
 
 /* CARD */
@@ -774,7 +774,7 @@ body {
 }
 
 .otp-input:focus {
-  border-color: #2d67f8;
+  border-color: var(--primary);
   background: white;
 }
 
@@ -793,7 +793,7 @@ body {
 .resend-btn {
   border: none;
   background: transparent;
-  color: #2d67f8;
+  color: var(--primary);
   font-weight: 600;
   cursor: pointer;
 }
@@ -805,7 +805,7 @@ body {
   height: 52px;
   border: none;
   border-radius: 8px;
-  background: #0f5ae0;
+  background: var(--primary);
   color: white;
   font-size: 16px;
   cursor: pointer;
@@ -814,7 +814,7 @@ body {
 }
 
 .continue-btn:hover {
-  background: #0c47b6;
+  background: #0e7474;
 }
 
 /* FOOTER */
@@ -825,7 +825,7 @@ body {
 }
 
 .footer-text a {
-  color: #0f5ae0;
+  color: var(--primary);
   font-weight: 600;
   text-decoration: none;
 }
@@ -852,5 +852,156 @@ body {
 
   .send-email-card {
     max-width: 100%;
+  }
+}
+
+/* BACKDROP */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* MODAL BOX */
+
+.modal {
+  width: 100%;
+  max-width: 479px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  /* ANIMATION */
+  animation: modalFade 0.3s ease;
+}
+
+/* CLOSE BUTTON */
+
+.registration-close-btn {
+  position: absolute;
+  top: 28%;
+  right: 28%;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TITLE */
+
+.modal h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #111827;
+}
+
+/* BUTTONS */
+
+.google-btn {
+  width: 100%;
+  height: 54px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+
+  transition: 0.2s ease;
+}
+
+.google-btn:hover {
+  background: #f9fafb;
+}
+
+/* GOOGLE ICON */
+
+.google-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.google-btn span {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* DIVIDER */
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: #e5e7eb;
+}
+
+.divider span {
+  position: relative;
+  background: white;
+  padding: 0 12px;
+
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* ANIMATION */
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+      scale(1);
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 500px) {
+  .modal {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .modal h2 {
+    font-size: 22px;
   }
 }
