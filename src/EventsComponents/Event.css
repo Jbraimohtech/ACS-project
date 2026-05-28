@@ -247,7 +247,7 @@
 }
 
 .confirm-part-btn {
-    width: 80%;
+    width: 360px;
     height: 85px;
     border-radius: 12px;
     background-color: var(--primary);
@@ -1282,4 +1282,378 @@
         gap: 10px;
     }
 
+}
+
+
+/* Overlay Event Modal */
+/* OVERLAY */
+
+.event-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 999;
+}
+
+/* MODAL */
+
+.attendance-modal {
+  width: 90%;
+  max-width: 560px;
+
+  background: white;
+  border-radius: 24px;
+
+  padding: 40px;
+
+  position: relative;
+
+  animation: modalFade 0.25s ease;
+}
+
+/* CLOSE BUTTON */
+
+.close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  color: #6b7280;
+}
+
+/* TEXT */
+
+.attendance-modal h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+
+  margin-bottom: 10px;
+}
+
+.attendance-modal p {
+  font-size: 14px;
+  color: #6b7280;
+
+  margin-bottom: 50px;
+}
+
+/* BUTTONS */
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.going-btn,
+.not-going-btn {
+  width: 100%;
+  height: 56px;
+
+  border-radius: 12px;
+
+  font-size: 1rem;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+/* GOING */
+
+.going-btn {
+  border: none;
+  background: #155e59;
+  color: white;
+}
+
+.going-btn:hover {
+  opacity: 0.9;
+}
+
+/* NOT GOING */
+
+.not-going-btn {
+  background: white;
+  border: 2px solid #ff4d4f;
+  color: #ff4d4f;
+}
+
+.not-going-btn:hover {
+  background: #fff5f5;
+}
+
+/* ANIMATION */
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+      scale(1);
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .attendance-modal {
+    padding: 28px;
+  }
+
+  .attendance-modal h2 {
+    font-size: 24px;
+  }
+
+  .attendance-modal p {
+    font-size: 14px;
+  }
+}
+
+/* Register Modal */
+/* OVERLAY */
+
+.register-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  z-index: 999;
+}
+
+/* BOTH MODALS */
+.register-modal {
+  width: 100%;
+  background: white;
+  border-radius: 24px;
+  position: relative;
+
+  animation: modalFade 0.25s ease;
+}
+
+/* REGISTER MODAL */
+
+.register-modal {
+  max-width: 460px;
+  padding: 32px;
+}
+
+/* TITLES */
+.register-modal h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.register-modal p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 40px;
+}
+
+/* ATTENDANCE BUTTONS */
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.going-btn {
+  border: none;
+  background: #155e59;
+  color: white;
+}
+
+.not-going-btn {
+  background: white;
+  border: 2px solid #ff4d4f;
+  color: #ff4d4f;
+}
+
+/* FORM */
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register-form input,
+.select-wrapper select {
+  width: 100%;
+  height: 42px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
+  padding: 0 5px;
+
+  font-size: 14px;
+  outline: none;
+}
+
+/* SELECT */
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.select-icon {
+  /* position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #dbeafe; */
+
+  display: none;
+}
+
+/* PHONE */
+
+.register-phone-input {
+  display: flex;
+  align-items: center;
+
+  height: 42px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
+  padding: 0 5px;
+
+}
+
+.country-code {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  gap: 5px;
+
+  font-size: 14px;
+  background-color: #EDEDED;
+  width: 30%;
+  height: 90%;
+  padding: 5px;
+  overflow-y: hidden;
+  border-radius: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: #9ca3af;
+  border-radius: 50%;
+}
+
+.register-phone-input input {
+  border: none;
+  flex: 1;
+  height: 100%;
+  font-size: 14px;
+  outline: none;
+}
+
+/* BUTTON */
+
+.register-continue-btn {
+  width: 100%;
+  height: 42px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #155e59;
+  color: white;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  margin-top: 10px;
+}
+
+/* ANIMATION */
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+      scale(1);
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .attendance-modal,
+  .register-modal {
+    padding: 28px;
+    border-radius: 20px;
+  }
+
+  .attendance-modal h2,
+  .register-modal h2 {
+    font-size: 18px;
+  }
+
+  .attendance-modal p,
+  .register-modal p {
+    font-size: 18px;
+  }
+
+  .going-btn,
+  .not-going-btn,
+  .continue-btn {
+    height: 64px;
+    font-size: 22px;
+    border-radius: 14px;
+  }
+
+  .register-form input,
+  .select-wrapper select,
+  .phone-input {
+    height: 64px;
+    font-size: 20px;
+    border-radius: 14px;
+  }
+
+  .country-code {
+    font-size: 20px;
+  }
+
+  .phone-input input {
+    font-size: 20px;
+  }
 }

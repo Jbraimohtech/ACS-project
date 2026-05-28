@@ -11,7 +11,7 @@ import ViewAllBlog from '../homeComponents/ViewAllBlog'
 import HomeFooter from '../components/HomeFooter'
 import Target from '../homeComponents/Target'
 import UpdateBlog from '../homeComponents/UpdateBlog'
-import MobileScreenNav from '../components/Navbar/MobileScreenNav'
+import "../components/Navbar/Navbar.css"
 
 const Home = () => {
   return (
@@ -19,7 +19,6 @@ const Home = () => {
       <div className='new-home-box'>
         <div className='new-home-style-image'>
           <div className='new-home-style'>
-            <MobileScreenNav />
             <HomeContent />
           </div>
         </div>

@@ -44,8 +44,8 @@
     position: absolute;
     right: 10%;
     left: 20%;
+    margin: -10px;
 }
-
 
 .access-box {
     display: flex;

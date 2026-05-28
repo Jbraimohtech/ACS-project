@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./Register.css"
-import { useState } from "react";
+import { X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const countries = [
   "Algeria",
@@ -11,6 +12,16 @@ const countries = [
 ];
 const RegisterContent : React.FC = () => {
   const [country, setCountry] = useState<string>("Algeria");
+  const [showModal, setShowModal] = useState<boolean>(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowModal(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const navigate = useNavigate();
 
   const goToRegisterSetUp = () => {
@@ -53,12 +64,12 @@ const RegisterContent : React.FC = () => {
         {/* Step Label */}
         <div className="step-label">
           <span>Step 1</span>
-          <h4>Country of Residence</h4>
+          <h4>Zone</h4>
         </div>
 
         {/* Card */}
         <div className="card">
-          <h2>Country of Residence</h2>
+          <h2>Zone</h2>
 
           <label htmlFor="country">Country</label>
 
@@ -85,6 +96,57 @@ const RegisterContent : React.FC = () => {
             </p>
         </div>
       </div>
+
+      {/* MODAL */}
+      {showModal && (
+        <div className="modal-overlay">
+          {/* CLOSE */}
+            <button
+              className="registration-close-btn"
+              onClick={() =>
+                setShowModal(false)
+              }
+            >
+              <X size={18} />
+            </button>
+          <div className="modal">
+            <h2>
+              Let’s get you started!
+            </h2>
+
+            {/* GOOGLE BUTTON */}
+            <button className="google-btn">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
+                alt="Google"
+              />
+
+              <span>
+                Sign Up with Google
+              </span>
+            </button>
+
+            {/* DIVIDER */}
+            <div className="divider">
+              <span>
+                or continue with
+              </span>
+            </div>
+
+            {/* EMAIL BUTTON */}
+            <button className="google-btn">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
+                alt="Google"
+              />
+
+              <span>
+                Email Address
+              </span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

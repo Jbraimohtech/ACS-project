@@ -141,7 +141,7 @@ body{
 .member-content button{
   width:80%;
   margin-top:25px;
-  background:#0452d8;
+  background: var(--primary);
   color:white;
   border:none;
   padding:15px;

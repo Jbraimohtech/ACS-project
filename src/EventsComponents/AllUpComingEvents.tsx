@@ -1,11 +1,27 @@
-
+import { X, ChevronDown, } from "lucide-react";
 import "./Event.css";
 import EventCard from '../components/EventCard';
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 
 const AllUpComingEvents = () => {
     const navigate = useNavigate();
+
+    const [showModal, setShowModal] =
+    useState(false);
+
+    const [showRegisterModal, setShowRegisterModal] =
+    useState(false);
+
+    // OPEN REGISTER MODAL
+    const handleGoing = () => {
+        setShowModal(false);
+
+        setTimeout(() => {
+        setShowRegisterModal(true);
+        }, 200);
+    };
 
     const goToViewFeaturedDetails = () => {
         navigate("/view-featured-details")
@@ -36,7 +52,7 @@ const AllUpComingEvents = () => {
                 </div>
                 {/* the direct buttons to other parts of event pages */}
                 <div className='rsvp-box'>
-                    <button className="rsvp">
+                    <button className="rsvp" onClick={() => setShowModal(true)}>
                         <p className='rsvp-box-first-p'>RSVP</p>
                     </button>
                     <button className="view-details" onClick={goToViewFeaturedDetails}>
@@ -68,7 +84,7 @@ const AllUpComingEvents = () => {
                 </div>
                 {/* the direct buttons to other parts of event pages */}
                 <div className='rsvp-box'>
-                    <button className="rsvp">
+                    <button className="rsvp" onClick={() => setShowModal(true)}>
                         <p className='rsvp-box-first-p'>RSVP</p>
                     </button>
                     <button className="view-details" onClick={goToViewFeaturedDetails}>
@@ -100,7 +116,7 @@ const AllUpComingEvents = () => {
                 </div>
                 {/* the direct buttons to other parts of event pages */}
                 <div className='rsvp-box'>
-                    <button className="rsvp">
+                    <button className="rsvp" onClick={() => setShowModal(true)}>
                         <p className='rsvp-box-first-p'>RSVP</p>
                     </button>
                     <button className="view-details" onClick={goToViewFeaturedDetails}>
@@ -109,6 +125,147 @@ const AllUpComingEvents = () => {
                 </div>
             </div>
         </EventCard>
+
+        {/* MODAL */}
+        {showModal && (
+            <div className="event-modal-overlay">
+                <div className="attendance-modal">
+                    {/* CLOSE */}
+                    <button
+                    className="close-btn"
+                    onClick={() =>
+                        setShowModal(false)
+                    }
+                    >
+                    <X size={28} />
+                    </button>
+
+                    {/* CONTENT */}
+                    <h2>
+                    Confirm Your Attendance
+                    </h2>
+
+                    <p>
+                    Will you be attending
+                    this event?
+                    </p>
+
+                    {/* ACTIONS */}
+                    <div className="modal-actions">
+                    <button className="going-btn" onClick={handleGoing}>
+                        Going
+                    </button>
+
+                    <button className="not-going-btn" onClick={() =>
+                        setShowModal(false)
+                    }>
+                        Not Going
+                    </button>
+                    </div>
+                </div>
+            </div>
+        )}
+
+        {/* REGISTER MODAL */}
+      {showRegisterModal && (
+        <div className="register-modal-overlay">
+          <div className="register-modal">
+            {/* CLOSE */}
+            <button
+              className="close-btn"
+              onClick={() =>
+                setShowRegisterModal(
+                  false
+                )
+              }
+            >
+              <X size={28} />
+            </button>
+
+            {/* TITLE */}
+            <h2>
+              Input your details to
+              register
+            </h2>
+
+            <p>
+              Will you be attending
+              this event?
+            </p>
+
+            {/* FORM */}
+            <form className="register-form">
+              <input
+                type="text"
+                placeholder="First Name"
+              />
+
+              <input
+                type="text"
+                placeholder="Surname"
+              />
+
+              {/* GENDER */}
+              <div className="select-wrapper">
+                <select>
+                  <option>
+                    Gender
+                  </option>
+
+                  <option>
+                    Male
+                  </option>
+
+                  <option>
+                    Female
+                  </option>
+                </select>
+
+                <ChevronDown
+                  size={24}
+                  className="select-icon"
+                />
+              </div>
+
+              <input
+                type="email"
+                placeholder="Email Address"
+              />
+
+              <input
+                type="text"
+                placeholder="Home Address"
+              />
+
+              {/* PHONE */}
+              <div className="register-phone-input">
+                <div className="country-code">
+                  <span className="dot"></span>
+
+                  <span>+234</span>
+
+                  <ChevronDown
+                    size={20}
+                  />
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Phone Number"
+                />
+              </div>
+
+              {/* BUTTON */}
+              <button
+                type="submit"
+                className="register-continue-btn"
+              >
+                Continue
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
