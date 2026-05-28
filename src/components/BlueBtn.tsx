@@ -5,6 +5,7 @@ type CardProps = {
     children: React.ReactNode
 }
 
+
 const YellowBtn = ({children} : CardProps) => {
   return (
     <div className='beside-marks-box-button'>{children}</div>

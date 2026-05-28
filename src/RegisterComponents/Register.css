@@ -28,6 +28,16 @@ body {
   margin-left: 20px;
 }
 
+.register-logo {
+  display: none;
+}
+
+.the-language-box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 /* Right Panel */
 .right-panel {
   flex: 1;
@@ -163,6 +173,8 @@ body {
     flex-direction: column;
     align-items: center;
     height: auto;
+    margin-top: -15%;
+    padding: 5px;
   }
 
   .left-panel {
@@ -171,8 +183,7 @@ body {
   }
 
   .register-image {
-    height: 300px;
-    width: 100%;
+    display: none;
   }
 
   .right-panel {
@@ -390,6 +401,8 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    padding: 20px;
+    margin-top: -15%;
   }
 
   .register-set-up-left-section,
@@ -580,6 +593,8 @@ body {
   .create-password-container {
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    margin-top: -20%;
   }
 
   .left-section,
@@ -821,6 +836,12 @@ body {
   .send-email-container {
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    margin-top: -20%;
+  }
+
+  .register-logo {
+    display: flex;
   }
 
   .left-section,
