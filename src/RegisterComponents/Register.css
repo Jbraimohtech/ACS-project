@@ -1483,6 +1483,10 @@ body {
     height: 62px;
     font-size: 14px;
   }
+
+  .provider-btn span {
+    font-size: 14px;
+  }
 }
 
 /* Add Payment Modal */
@@ -1761,6 +1765,7 @@ body {
 .provider-btn.active {
   background: white;
   color: #155e59;
+  width: 75%;
 }
 
 /* FORM */
@@ -1920,7 +1925,7 @@ body {
   }
 
   .provider-tabs {
-    flex-direction: column;
+    flex-direction: row;
   }
 }
 
@@ -2048,6 +2053,24 @@ body {
 
     text-align: center;
   }
+
+  
+  .registration-close-btn {
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* =========================
@@ -2163,6 +2186,8 @@ body {
 .successAdvanceButton:hover {
   background: #104a46;
 }
+
+
 
 /* ANIMATION */
 

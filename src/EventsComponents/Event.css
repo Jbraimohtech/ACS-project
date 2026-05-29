@@ -1508,7 +1508,7 @@
   border: 1px solid #d1d5db;
   border-radius: 10px;
 
-  padding: 0 5px;
+  padding: 0 10px;
 
   font-size: 14px;
   outline: none;
@@ -1617,6 +1617,12 @@
 /* RESPONSIVE */
 
 @media (max-width: 768px) {
+  .register-modal-overlay{
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+
+
   .attendance-modal,
   .register-modal {
     padding: 20px;
@@ -1641,16 +1647,31 @@
     border-radius: 10px;
   }
 
-  .register-form input,
+  .register-form {
+    gap: 10px;
+  }
+
+   input,
   .select-wrapper select,
   .phone-input {
     height: 42px;
     font-size: 1rem;
     border-radius: 10px;
+    gap: 5px;
   }
 
   .country-code {
-    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    gap: 5px;
+    font-size: 14px;
+    background-color: #EDEDED;
+    width: 35%;
+    height: 90%;
+    padding: 5px;
+    overflow-y: hidden;
+    border-radius: 10px;
   }
 
   .phone-input input {
