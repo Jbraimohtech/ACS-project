@@ -25,6 +25,7 @@ import Reports from './otherFooterLinksPages/Reports'
 import UserGuide from './otherFooterLinksPages/UserGuide'
 import ViewFeaturedDetails from './EventsComponents/ViewFeaturedDetails'
 import PaymentPlan from './RegisterComponents/PaymentPlan'
+import ProfilePage from './profilePageComponent/ProfilePage'
 
 const App = () => {
   return (
@@ -79,6 +80,8 @@ const App = () => {
         <Route path='/view-featured-details' element={<ViewFeaturedDetails />} />
         {/* To Payment Plan Page */}
         <Route path='/payment-plan' element={<PaymentPlan />} />
+        {/* To Profile Page */}
+        <Route path='/profile-page' element={<ProfilePage />} />
       </Routes>
     </div>
   )

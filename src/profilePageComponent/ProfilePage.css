@@ -1,0 +1,802 @@
+* {
+    box-sizing: border-box;
+    font-family: myFont , sans-serif;
+}
+
+/* ICONS */
+
+.dashboard-icon {
+    background-image: url("../assets/images/dashboard-icon.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.payments-icon {
+    background-image: url("../assets/images/gg_credit-card-payment.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.events-icon {
+    background-image: url("../assets/images/tabler_calendar.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.news-icon {
+    background-image: url("../assets/images/formkit_megaphone.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.resources-icon {
+    background-image: url("../assets/images/mynaui_folder.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.my-profile-icon {
+    background-image: url("../assets/images/iconoir_user-circle.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.log-out-icon {
+    background-image: url("../assets/images/mynaui_logout.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.dashboard-icon {
+    background-image: url("../assets/images/dashboard-icon.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.verified-profile {
+    background-image: url("../assets/images/Verification\ Icon\ Container.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.edit-profile-pen {
+    background-image: url("../assets/images/material-symbols_edit.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.edit-green-pen {
+    background-image: url("../assets/images/edit-green-pen.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.edit-profile-cover {
+    background-image: url("../assets/images/mynaui_camera-solid.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.edit-profile-location {
+    background-image: url("../assets/images/location-icon-profile.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 21px;
+}
+
+
+
+.profile-image-demo {
+    background-image: url("../assets/images/profile-images-demo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 226px;
+    height: 215px;
+    border-radius: 32px;
+}
+
+/* PAGE */
+/* =========================
+   TOP BAR
+========================= */
+.orionTopBarShell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+    margin-right: 34px;
+    margin-left: 34px;
+  margin-bottom: 0;
+  background: white;
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-top: 26px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.orionSearchCluster {
+  width: 330px;
+  height: 42px;
+
+  background: white;
+
+  border: 1px solid #edf1f5;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 14px;
+
+  gap: 10px;
+}
+
+.orionSearchIcon {
+  color: #9ca3af;
+}
+
+.auroraStatus {
+    font-size: 14px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffffc5;
+    border-radius: 12px;
+    width: fit-content;
+    padding: 4px 10px;
+    border: 1px solid #e5e7eb;
+}
+
+.auroraStatus-circle {
+    width: 10px;
+    height: 10px;
+    background: #22c55e;
+    border-radius: 50%;
+}
+
+.orionSearchInput {
+  flex: 1;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-size: 13px;
+
+  color: #111827;
+}
+
+.orionSearchInput::placeholder {
+  color: #9ca3af;
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.orionTopBarActions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* =========================
+   NOTIFICATION
+========================= */
+
+.orionNotificationButton {
+  width: 42px;
+  height: 42px;
+
+  background: white;
+
+  border: 1px solid #edf1f5;
+  border-radius: 50%;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.orionNotificationDot {
+  width: 8px;
+  height: 8px;
+
+  background: #ef4444;
+
+  border-radius: 50%;
+
+  position: absolute;
+  top: 10px;
+  right: 11px;
+}
+
+/* =========================
+   USER
+========================= */
+
+.orionUserProfileWidget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: white;
+
+  border: 1px solid #edf1f5;
+
+  border-radius: 999px;
+
+  padding: 6px 10px 6px 6px;
+
+  cursor: pointer;
+}
+
+.orionUserAvatar {
+  width: 42px;
+  height: 42px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+.orionUserMeta h4 {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #111827;
+
+  margin: 0;
+}
+
+.orionUserMeta span {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .orionTopBarShell {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .orionSearchCluster {
+    width: 100%;
+  }
+
+  .orionTopBarActions {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 600px) {
+  .orionUserMeta {
+    display: none;
+  }
+}
+
+.orionMainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.zenProfileLayout {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background: #f0f3fa;
+}
+
+/* ======================
+   SIDEBAR
+====================== */
+
+.quantumSidebarShell {
+  width: 20%;
+
+  background: transparent;
+
+  border-right: 1px solid #eef1f5;
+
+  padding: 28px 18px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.quantumLogoText {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+    width: 100%;
+  margin-bottom: 45px;
+  margin-left: 8%;
+}
+
+.quantumSidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.quantumSidebarNav button {
+    border: none;
+    background: transparent;
+
+    text-align: left;
+
+    padding: 12px 10px;
+
+    border-radius: 10px;
+
+    color: #374151;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: 0.2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.quantumSidebarNav button:hover {
+  background: #fff;
+}
+
+.quantumSidebarBottom {
+  margin-top: auto;
+}
+
+.quantumProfileBtn {
+  width: 100%;
+  height: 44px;
+
+  border: none;
+
+  background: #145e59;
+  color: white;
+
+  border-radius: 10px;
+
+  border: none;
+
+    text-align: left;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10%;
+}
+
+.quantumLogoutBtn {
+  margin-top: 12px;
+
+  color: #ef4444;
+
+  width: 100%;
+  height: 44px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  border: none;
+
+    text-align: left;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ======================
+   CONTENT
+====================== */
+
+.zenProfileContent {
+  flex: 1;
+
+  padding: 26px 34px;
+}
+
+/* ======================
+   COVER
+====================== */
+
+.auroraBannerShell {
+  height: 248px;
+
+  background: #145e59;
+
+  border-radius: 12px;
+
+  position: relative;
+}
+
+.auroraCoverButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+
+  border: 1px solid rgba(255,255,255,0.5);
+
+  background: transparent;
+  color: white;
+
+  height: 40px;
+  padding: 0 18px;
+
+  border-radius: 10px;
+
+  font-size: 13px;
+}
+
+/* ======================
+   PROFILE HEADER
+====================== */
+
+.auroraProfileSection {
+  display: flex;
+  align-items: center;
+
+  margin-top: -100px;
+
+  padding-left: 28px;
+
+  position: relative;
+}
+
+.auroraProfileImage {
+  width: 130px;
+  height: 130px;
+
+  object-fit: cover;
+
+  border-radius: 20px;
+
+  border: 6px solid white;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+}
+
+.auroraProfileDetails {
+  margin-left: 18px;
+  flex: 1;
+}
+
+.auroraNameRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15%;
+}
+
+.auroraNameRow h2 {
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.auroraMetaRow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 10px;
+}
+
+.auroraMetaRow span {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auroraMetaRow p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.auroraVerified {
+  color: #22c55e;
+}
+
+.auroraProfileDetails p {
+  margin-top: 4px;
+
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.auroraProfileDetails span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.auroraEditButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  width: 204px;
+  height: 62px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #145e59;
+  color: white;
+
+  font-weight: 500;
+  margin-top: 10%;
+}
+
+/* ======================
+   GRID
+====================== */
+
+.zenProfileCardsRow {
+  display: flex;
+  flex-wrap: wrap;
+    width: 90%;
+  gap: 16px;
+
+  margin-top: 30px;
+}
+
+/* ======================
+   CARDS
+====================== */
+.information-start-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 32%;
+}
+
+.info-stellarEditBtn {
+    width: 100%;
+    height: 46px;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+.stellarInfoCardTitle-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.stellarInfoCardTitle-line {
+    width: 64px;
+    height: 3px;
+
+    background: #145e59;
+}
+
+.stellarInfoCardTitle {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.stellarInfoCard {
+    height: 385px;
+    padding: 50px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stellarInfoCard,
+.nebulaActionCard {
+  background: white;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.04);
+}
+
+.stellarInfoCard h3,
+.nebulaActionCard h3 {
+  font-size: 14px;
+  font-weight: 700;
+
+  margin-bottom: 24px;
+
+  position: relative;
+}
+
+.stellarInfoCard h3::before,
+.nebulaActionCard h3::before {
+  content: "";
+
+  width: 36px;
+  height: 3px;
+
+  background: #145e59;
+
+  border-radius: 999px;
+
+  position: absolute;
+
+  top: -10px;
+  left: 0;
+}
+
+.stellarInfoGroup {
+  margin-bottom: 20px;
+}
+
+.stellarInfoGroup label {
+  display: block;
+
+  font-size: 12px;
+  color: #9ca3af;
+
+  margin-bottom: 6px;
+}
+
+.stellarInfoGroup p {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #111827;
+}
+
+/* ======================
+   EDIT BUTTON
+====================== */
+
+.stellarEditBtn {
+  width: 100%;
+  height: 46px;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #374151;
+
+  font-size: 14px;
+}
+
+.stellarEditBtn-bottom {
+  width: 100%;
+  height: 62px;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #185656;
+
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* ======================
+   QUICK ACTIONS
+====================== */
+
+.nebulaActionCard {
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+
+.nebulaActionCard button {
+  border: none;
+  background: transparent;
+
+  text-align: left;
+
+  padding: 0;
+
+  margin-bottom: 24px;
+
+  color: #145e59;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}

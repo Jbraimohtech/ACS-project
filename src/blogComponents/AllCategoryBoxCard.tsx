@@ -2,170 +2,77 @@
 import "./Blog.css"
 import BlogCard from '../components/BlogCard';
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const AllCategoryBoxCard = () => {
+interface Article {
+  id: string | number;
+  title: string;
+  description: string;
+  readTime?: string;
+  publishedTime?: string;
+}
+
+interface Props {
+  activeCategory: string;
+}
+
+const AllCategoryBoxCard = ({ activeCategory }: Props) => {
   const navigate = useNavigate();
+  const [articles, setArticles] = useState<Article[]>([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const res = await fetch(
+          `https://ambchapcorps.org/api/blog${activeCategory}`
+        );
+        const data = await res.json();
+        setArticles(Array.isArray(data.data) ? data.data : []);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+
+    fetchArticles();
+  }, [activeCategory]);
 
   return (
     <div className='all-category-box-card'>
-      <button className='category-clicks' onClick={() => navigate("/blog-details")}>
-        <BlogCard>
-          <div className='blog-card-prop'>
-            <div className='blog-first-img'></div>
-            <div className='blog-feature-details'>
-              <div className='article-clock-icon-box-container'>
-                <div className='article-clock-icon-box'>
-                    <div className='clock'></div>
-                    <p>5 min read</p>
-                    <span>Published 2 hours ago</span>
-                </div>
-                  
-                <h2>The Future of Decentralized Data Management
-                    in Global Enterprise</h2>
-                
-                <div className='article-clock-icon-box'>
-                    <p className='article-clock-icon-box-p'>Exploring how the next generation of cloud infrastructure is moving towards edge
-                        computing and sovereign data control protocols for high-security environments...</p>
+      {articles.length > 0 ? (
+        articles.map((article) => (
+          <div key={article.id} className='category-clicks'>
+            <BlogCard>
+              <div className='blog-card-prop'>
+                <div className='blog-first-img'></div>
+                <div className='blog-feature-details'>
+                  <div className='article-clock-icon-box-container'>
+                    <div className='article-clock-icon-box'>
+                      <div className='clock'></div>
+                      <p>{article.readTime || "5 min"} read</p>
+                      <span>{article.publishedTime || "Published 2 hours ago"}</span>
+                    </div>
+                    <h2>{article.title}</h2>
+                    <div className='article-clock-icon-box'>
+                      <p className='article-clock-icon-box-p'>{article.description}</p>
+                    </div>
+                  </div>
+                  <div className='read-article-box' onClick={() => navigate("/blog-details")}>
+                    <button className='read-article-btn'>Read Article</button>
+                    <div className='safe-data'></div>
+                    <div className='share-data'></div>
+                  </div>
                 </div>
               </div>
-              <div className='read-article-box'>
-                <button className='read-article-btn' onClick={() => navigate("/blog-details")}>Read Article</button>
-                <div className='safe-data'></div>
-                <div className='share-data'></div>
-              </div>
-            </div>
+            </BlogCard>
           </div>
-        </BlogCard>
-      </button>
-
-      <button className='category-clicks' onClick={() => navigate("/blog-details")}>
-        <BlogCard>
-          <div className='blog-card-prop'>
-            <div className='blog-first-img'></div>
-            <div className='blog-feature-details'>
-              <div className='article-clock-icon-box-container'>
-                <div className='article-clock-icon-box'>
-                    <div className='clock'></div>
-                    <p>5 min read</p>
-                    <span>Published 2 hours ago</span>
-                </div>
-                  
-                <h2>The Future of Decentralized Data Management
-                    in Global Enterprise</h2>
-                
-                <div className='article-clock-icon-box'>
-                    <p className='article-clock-icon-box-p'>Exploring how the next generation of cloud infrastructure is moving towards edge
-                        computing and sovereign data control protocols for high-security environments...</p>
-                </div>
-              </div>
-              <div className='read-article-box' onClick={() => navigate("/blog-details")}>
-                <button className='read-article-btn'>Read Article</button>
-                <div className='safe-data'></div>
-                <div className='share-data'></div>
-              </div>
-            </div>
-          </div>
-        </BlogCard>
-      </button>
-
-      <button className='category-clicks' onClick={() => navigate("/blog-details")}>
-        <BlogCard>
-          <div className='blog-card-prop'>
-            <div className='blog-first-img'></div>
-            <div className='blog-feature-details'>
-              <div className='article-clock-icon-box-container'>
-                <div className='article-clock-icon-box'>
-                    <div className='clock'></div>
-                    <p>5 min read</p>
-                    <span>Published 2 hours ago</span>
-                </div>
-                  
-                <h2>The Future of Decentralized Data Management
-                    in Global Enterprise</h2>
-                
-                <div className='article-clock-icon-box'>
-                    <p className='article-clock-icon-box-p'>Exploring how the next generation of cloud infrastructure is moving towards edge
-                        computing and sovereign data control protocols for high-security environments...</p>
-                </div>
-              </div>
-              <div className='read-article-box' onClick={() => navigate("/blog-details")}>
-                <button className='read-article-btn'>Read Article</button>
-                <div className='safe-data'></div>
-                <div className='share-data'></div>
-              </div>
-            </div>
-          </div>
-        </BlogCard>
-      </button>
-
-      <button className='category-clicks' onClick={() => navigate("/blog-details")}>
-        <BlogCard>
-          <div className='blog-card-prop'>
-            <div className='blog-first-img'></div>
-            <div className='blog-feature-details'>
-              <div className='article-clock-icon-box-container'>
-                <div className='article-clock-icon-box'>
-                    <div className='clock'></div>
-                    <p>5 min read</p>
-                    <span>Published 2 hours ago</span>
-                </div>
-                  
-                <h2>The Future of Decentralized Data Management
-                    in Global Enterprise</h2>
-                
-                <div className='article-clock-icon-box'>
-                    <p className='article-clock-icon-box-p'>Exploring how the next generation of cloud infrastructure is moving towards edge
-                        computing and sovereign data control protocols for high-security environments...</p>
-                </div>
-              </div>
-              <div className='read-article-box' onClick={() => navigate("/blog-details")}>
-                <button className='read-article-btn'>Read Article</button>
-                <div className='safe-data'></div>
-                <div className='share-data'></div>
-              </div>
-            </div>
-          </div>
-        </BlogCard>
-      </button>
-
-      <button className='category-clicks' onClick={() => navigate("/blog-details")}>
-        <BlogCard>
-          <div className='blog-card-prop'>
-            <div className='blog-first-img'></div>
-            <div className='blog-feature-details'>
-              <div className='article-clock-icon-box-container'>
-                <div className='article-clock-icon-box'>
-                    <div className='clock'></div>
-                    <p>5 min read</p>
-                    <span>Published 2 hours ago</span>
-                </div>
-                  
-                <h2>The Future of Decentralized Data Management
-                    in Global Enterprise</h2>
-                
-                <div className='article-clock-icon-box' >
-                    <p className='article-clock-icon-box-p'>Exploring how the next generation of cloud infrastructure is moving towards edge
-                        computing and sovereign data control protocols for high-security environments...</p>
-                </div>
-              </div>
-              <div className='read-article-box' onClick={() => navigate("/blog-details")}>
-                <button className='read-article-btn'>Read Article</button>
-                <div className='safe-data'></div>
-                <div className='share-data'></div>
-              </div>
-            </div>
-          </div>
-        </BlogCard>
-      </button>
-
-      <div className='view-more-articles-box'>
-        <button className='view-more-articles-button'>
-          <p>View More Articles</p>
-          <div className='container-drop-down'></div>
-        </button>
-      </div>
+        ))
+      ) : (
+        <div style={{ padding: '20px', textAlign: 'center', color: '#999' }}>
+          <p>No articles found for this category.</p>
+        </div>
+      )}
     </div>
   )
 }
 
-export default AllCategoryBoxCard;
+export default AllCategoryBoxCard
