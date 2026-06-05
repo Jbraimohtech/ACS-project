@@ -3,7 +3,8 @@ import {
   MapPin,
   Download,
   CircleCheck,
-  X
+  X, 
+  ChevronDown,
 } from "lucide-react";
 import "./Event.css"
 import MobileScreenNav from "../components/Navbar/MobileScreenNav";
@@ -12,12 +13,84 @@ import HomeFooter from "../components/HomeFooter";
 import "../blogComponents/Blog.css"
 import BlogCard from "../components/BlogCard";
 import BeAccountedFor from "./BeAccountedFor";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+
+
+interface User {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  profile_image: string | null;
+  gender: string | null;
+  phone: string | null;
+}
+
+interface Event {
+  id: number;
+  image: string | null;
+  user_id: number;
+  zone_id: number;
+  title: string;
+  dress_code: string | null;
+  wifi: string | null;
+  date: string;
+  description: string;
+  venue: string;
+  created_at: string;
+  updated_at: string;
+  user: User;
+}
+
 
 
 const ViewFeaturedDetails: React.FC = () => {
+  const [event, setEvent] = useState<Event | null>(null);
+  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] =
       useState(false);
+
+      const [showRegisterModal, setShowRegisterModal] =
+    useState(false);
+
+    const handleGoing = () => {
+        setShowModal(false);
+
+        setTimeout(() => {
+        setShowRegisterModal(true);
+        }, 200);
+    };
+
+    useEffect(() => {
+      const fetchEvent = async () => {
+        try {
+          const response = await fetch(
+            "https://ambchapcorps.org/api/event"
+          );
+
+          const result = await response.json();
+
+          setEvent(result.data?.[0] ?? null);
+
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchEvent();
+    }, []);
+
+   if (loading) {
+    return (
+      <div>
+        Loading event...
+      </div>
+    );
+  }
+
   return (
     <div>
         <AllMainContent> 
@@ -42,19 +115,26 @@ const ViewFeaturedDetails: React.FC = () => {
                                 FLAGSHIP EVENT
                             </span>
 
-                            <h2>
-                                Annual Tech Symposium 2024
-                            </h2>
+                            <h2>{event?.title}</h2>
 
                             <div className="event-meta">
                                 <span>
                                 <CalendarDays size={14} />
-                                Thur 04 SEP 2026
+                                {event &&
+                                  new Date(event.date).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                      weekday: "short",
+                                      day: "2-digit",
+                                      month: "short",
+                                      year: "numeric",
+                                    }
+                                  )}
                                 </span>
 
                                 <span>
                                 <MapPin size={14} />
-                                Las Vegas Convention Center
+                                {event?.venue}
                                 </span>
                             </div>
                         </div>
@@ -78,9 +158,9 @@ const ViewFeaturedDetails: React.FC = () => {
                         </div>
                         {/* This will be for the phone view */}
                             <div className="row-big-text-featured-phone">
-                                <h2>Global Tech Summit 2024</h2>
+                                <h2>{event?.title}</h2>
                                 <p>
-                                Convention Center • San Francisco, CA
+                                {event?.venue}
                                 </p>
                             </div>
                         {/* End of the phone view */}
@@ -103,11 +183,12 @@ const ViewFeaturedDetails: React.FC = () => {
           <div className="about-featured-card-one">
             <h3>About the Event</h3>
 
-            <p>
-                The Annual Tech Symposium 2024 brings together the world's leading
-                minds in artificial intelligence and decentralized networks. This year's
-                focus, "The Synergy of Autonomy," explores how AI agents are
-                transforming the landscape of distributed ledger technologies.
+            <p
+              style={{
+                whiteSpace: "pre-line",
+              }}
+            >
+              {event?.description}
             </p>
 
             <p>
@@ -256,7 +337,9 @@ const ViewFeaturedDetails: React.FC = () => {
 
               <div className="speaker-info">
                 <h4>
-                  Dr. Sarah Jenkins
+                  {event?.user.first_name}
+                  {" "}
+                  {event?.user.last_name}
                 </h4>
 
                 <p>
@@ -313,10 +396,7 @@ const ViewFeaturedDetails: React.FC = () => {
                     </div>
                     
 
-                    <h4>
-                        Las Vegas Convention
-                        Center
-                    </h4>
+                    <h4>{event?.venue}</h4>
 
                     <p>
                         3150 Paradise Rd,
@@ -335,11 +415,17 @@ const ViewFeaturedDetails: React.FC = () => {
         
             <div className="under-info-box">
                 <span>Dress Code</span>
-                <h4>Business Casual</h4>
+                <h4>
+                  {event?.dress_code ||
+                    "Not specified"}
+                </h4>
             </div>
             <div className="under-info-box">
               <span>VIP</span>
-              <h4>T8S204L4Qxx</h4>
+              <h4>
+                {event?.wifi ||
+                  "Not available"}
+              </h4>
             </div>
           </div>
           </div>
@@ -375,17 +461,118 @@ const ViewFeaturedDetails: React.FC = () => {
 
                   {/* ACTIONS */}
                   <div className="modal-actions">
-                  <button className="going-btn">
+                  <button className="going-btn" onClick={handleGoing}>
                       Going
                   </button>
 
-                  <button className="not-going-btn">
+                  <button className="not-going-btn" onClick={() =>
+                        setShowModal(false)}>
                       Not Going
                   </button>
                   </div>
               </div>
           </div>
         )}
+
+        {showRegisterModal && (
+        <div className="register-modal-overlay">
+          <div className="register-modal">
+            {/* CLOSE */}
+            <button
+              className="close-btn"
+              onClick={() =>
+                setShowRegisterModal(
+                  false
+                )
+              }
+            >
+              <X size={28} />
+            </button>
+
+            {/* TITLE */}
+            <h2>
+              Input your details to
+              register
+            </h2>
+
+            <p>
+              Will you be attending
+              this event?
+            </p>
+
+            {/* FORM */}
+            <form className="register-form">
+              <input
+                type="text"
+                placeholder="First Name"
+              />
+
+              <input
+                type="text"
+                placeholder="Surname"
+              />
+
+              {/* GENDER */}
+              <div className="select-wrapper">
+                <select>
+                  <option>
+                    Gender
+                  </option>
+
+                  <option>
+                    Male
+                  </option>
+
+                  <option>
+                    Female
+                  </option>
+                </select>
+
+                <ChevronDown
+                  size={24}
+                  className="select-icon"
+                />
+              </div>
+
+              <input
+                type="email"
+                placeholder="Email Address"
+              />
+
+              <input
+                type="text"
+                placeholder="Home Address"
+              />
+
+              {/* PHONE */}
+              <div className="register-phone-input">
+                <div className="country-code">
+                  <span className="dot"></span>
+
+                  <span>+234</span>
+
+                  <ChevronDown
+                    size={20}
+                  />
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Phone Number"
+                />
+              </div>
+
+              {/* BUTTON */}
+              <button
+                type="submit"
+                className="register-continue-btn"
+              >
+                Continue
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

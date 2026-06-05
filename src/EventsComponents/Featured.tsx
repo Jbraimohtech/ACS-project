@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { X, ChevronDown, } from "lucide-react";
 import "./Event.css"
 import EventCard from '../components/EventCard'
 import { useNavigate } from "react-router-dom"
@@ -7,6 +7,17 @@ import { useState } from "react";
 const Featured = () => {
     const [showModal, setShowModal] =
     useState(false);
+
+    const [showRegisterModal, setShowRegisterModal] =
+    useState(false);
+
+    const handleGoing = () => {
+        setShowModal(false);
+
+        setTimeout(() => {
+        setShowRegisterModal(true);
+        }, 200);
+    };
     const navigate = useNavigate();
 
     const goToViewFeaturedDetails = () => {
@@ -88,17 +99,118 @@ const Featured = () => {
 
                     {/* ACTIONS */}
                     <div className="modal-actions">
-                    <button className="going-btn">
+                    <button className="going-btn" onClick={handleGoing}>
                         Going
                     </button>
 
-                    <button className="not-going-btn">
+                    <button className="not-going-btn" onClick={() =>
+                        setShowModal(false)}>
                         Not Going
                     </button>
                     </div>
                 </div>
             </div>
         )}
+
+        {showRegisterModal && (
+        <div className="register-modal-overlay">
+          <div className="register-modal">
+            {/* CLOSE */}
+            <button
+              className="close-btn"
+              onClick={() =>
+                setShowRegisterModal(
+                  false
+                )
+              }
+            >
+              <X size={28} />
+            </button>
+
+            {/* TITLE */}
+            <h2>
+              Input your details to
+              register
+            </h2>
+
+            <p>
+              Will you be attending
+              this event?
+            </p>
+
+            {/* FORM */}
+            <form className="register-form">
+              <input
+                type="text"
+                placeholder="First Name"
+              />
+
+              <input
+                type="text"
+                placeholder="Surname"
+              />
+
+              {/* GENDER */}
+              <div className="select-wrapper">
+                <select>
+                  <option>
+                    Gender
+                  </option>
+
+                  <option>
+                    Male
+                  </option>
+
+                  <option>
+                    Female
+                  </option>
+                </select>
+
+                <ChevronDown
+                  size={24}
+                  className="select-icon"
+                />
+              </div>
+
+              <input
+                type="email"
+                placeholder="Email Address"
+              />
+
+              <input
+                type="text"
+                placeholder="Home Address"
+              />
+
+              {/* PHONE */}
+              <div className="register-phone-input">
+                <div className="country-code">
+                  <span className="dot"></span>
+
+                  <span>+234</span>
+
+                  <ChevronDown
+                    size={20}
+                  />
+                </div>
+
+                <input
+                  type="text"
+                  placeholder="Phone Number"
+                />
+              </div>
+
+              {/* BUTTON */}
+              <button
+                type="submit"
+                className="register-continue-btn"
+              >
+                Continue
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

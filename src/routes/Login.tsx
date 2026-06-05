@@ -1,9 +1,12 @@
+// import ProfilePage from "../profilePageComponent/ProfilePage"
+
+import LoginPage from "../loginComponents/LoginPage"
 
 const Login = () => {
   return (
     <div className='login'>
-      <h1>Login</h1>
-      <p>This is the login page.</p>
+      {/* <ProfilePage /> */}
+      <LoginPage />
     </div>
   )
 }

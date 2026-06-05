@@ -24,6 +24,10 @@ import ReportIssue from './otherFooterLinksPages/ReportIssue'
 import Reports from './otherFooterLinksPages/Reports'
 import UserGuide from './otherFooterLinksPages/UserGuide'
 import ViewFeaturedDetails from './EventsComponents/ViewFeaturedDetails'
+import PaymentPlan from './RegisterComponents/PaymentPlan'
+import ProfilePage from './profilePageComponent/ProfilePage'
+import EditProfilePage from './profileEditComponents/EditProfilePage'
+import ProfileSecurityPage from './profileSecurityComponent/ProfileSecurityPage'
 
 const App = () => {
   return (
@@ -76,6 +80,14 @@ const App = () => {
         <Route path='/user-guide' element={<UserGuide />} />
         {/* To View Featured Detail Page on Event Page */}
         <Route path='/view-featured-details' element={<ViewFeaturedDetails />} />
+        {/* To Payment Plan Page */}
+        <Route path='/payment-plan' element={<PaymentPlan />} />
+        {/* To Profile Page */}
+        <Route path='/profile-page' element={<ProfilePage />} />
+        {/* To Edit Profile Page */}
+        <Route path='/edit-profile-page' element={<EditProfilePage />} />
+        {/* To Profile Security Page */}
+        <Route path='/profile-security-page' element={<ProfileSecurityPage />} />
       </Routes>
     </div>
   )

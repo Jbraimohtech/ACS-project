@@ -3,24 +3,43 @@ import "./Register.css"
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const countries = [
-  "Algeria",
-  "United States",
-  "Canada",
-  "France",
-  "Germany",
-];
+interface Zone {
+  id: string | number;
+  name: string;
+  [key: string]: string | number;
+}
+
 const RegisterContent : React.FC = () => {
-  const [country, setCountry] = useState<string>("Algeria");
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [zones, setZones] = useState<Zone[]>([]);
+  const [zone, setZone] = useState<string | number>("");
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowModal(true);
-    }, 1000);
+    const fetchUsersZone = async () => {
+      try {
+        const res = await fetch(
+          "https://ambchapcorps.org/api/zone"
+        );
+        const result = await res.json();
+        console.log(result);
+        console.log(result.data);
+        setZones(result.data);
+      } catch (error) {
+        console.error("Error fetching zones:", error);
+      }
+    };
 
-    return () => clearTimeout(timer);
+    fetchUsersZone();
   }, []);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowModal(true);
+  //   }, 1000);
+
+  //   return () => clearTimeout(timer);
+  // }, []);
+  
 
   const navigate = useNavigate();
 
@@ -71,17 +90,17 @@ const RegisterContent : React.FC = () => {
         <div className="card">
           <h2>Zone</h2>
 
-          <label htmlFor="country">Country</label>
+          <label htmlFor="country">Zone</label>
 
-          <select
-            id="country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            className="country-select"
+          <select 
+            value={zone}
+            onChange={(e) => setZone(e.target.value)}
+            className="zone-select"
           >
-            {countries.map((c) => (
-              <option key={c} value={c}>
-                {c}
+            <option value="">Select a zone...</option>
+            {zones.map((z) => (
+              <option key={z.id} value={z.id}>
+                {z.name}
               </option>
             ))}
           </select>
@@ -97,7 +116,7 @@ const RegisterContent : React.FC = () => {
         </div>
       </div>
 
-      {/* MODAL */}
+     
       {showModal && (
         <div className="modal-overlay">
           {/* CLOSE */}
