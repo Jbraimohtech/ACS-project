@@ -1,26 +1,91 @@
 
+
+
 import AccountInfoCard from "./AccountInfoCard";
 import DashboardSidebar from "./DashboardSidebar";
 import PersonalInfoCard from "./PersonalInfoCard";
 import ProfileBanner from "./ProfileBanner";
 import "./ProfilePage.css"
 import QuickActionsCard from "./QuickActionsCard";
+import { useState } from "react";
 import {
   Bell,
   ChevronDown,
   Search,
+//   Menu,
 } from "lucide-react";
 
 
 const ProfilePage = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+//     const [showMobileSearch, setShowMobileSearch] =
+//   useState(false);
+
   return (
     <div className="zenProfileLayout">
-      <DashboardSidebar />
+       <DashboardSidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
 
         <div className="orionMainContent">
-            {/* TOP BAR */}
+            {/* MOBILE MENU */}
+        
+        {/* <div className="orionTopBarShellMobile">
+            <button
+                className="orionMobileMenuButton"
+                onClick={() => setSidebarOpen(true)}
+            >
+                <Menu size={22} />
+            </button>
+            
+            <div className="orionMobileLogo-crop">
+                 {!showMobileSearch ? (
+                <button
+                    className="orionMobileSearchTrigger"
+                    onClick={() =>
+                    setShowMobileSearch(true)
+                    }
+                >
+                    <Search size={22} />
+                </button>
+                ) : (
+                <div className="orionSearchCluster">
+                    <Search
+                    size={16}
+                    className="orionSearchIcon"
+                    />
 
+                    <input
+                    autoFocus
+                    type="text"
+                    placeholder="Search members, events..."
+                    className="orionSearchInput"
+                    />
+
+                    <button
+                    className="orionMobileSearchClose"
+                    onClick={() =>
+                        setShowMobileSearch(false)
+                    }
+                    >
+                    ✕
+                    </button>
+                </div>
+                )}
+                
+                <div className="notify-icon-profile-box">
+                    <div className="notify-icon-profile"></div>
+                </div>
+                <div className="notify-icon-profile-box">
+                    <div className="profile-image-small"></div>
+                </div>
+            </div>
+        </div> */}
+
+            {/* TOP BAR */}
             <div className="orionTopBarShell">
+                
                 <div className="orionSearchCluster">
                     <Search
                     size={16}
@@ -61,6 +126,8 @@ const ProfilePage = () => {
                     </div>
                 </div>
             </div>
+
+
 
             <main className="zenProfileContent">
                 <ProfileBanner />

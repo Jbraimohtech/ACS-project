@@ -1,0 +1,439 @@
+/* ===================================
+   PAGE WRAPPER
+=================================== */
+
+.auroraSecurityWrapper {
+  padding: 24px 32px 40px;
+  width: 100%;
+}
+
+/* ===================================
+   BREADCRUMB
+=================================== */
+
+.material-arrow-back-icon {
+    background-image: url("../assets/images/material-symbols_arrow-back-ios-rounded.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.auroraBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  margin-bottom: 20px;
+
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.auroraActiveCrumb {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+}
+
+.auroraActiveCrumb-one {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+}
+
+/* ===================================
+   HEADER
+=================================== */
+
+.auroraHeader h1 {
+  font-size: 46px;
+  font-weight: 700;
+
+  color: #111827;
+
+  margin-bottom: 8px;
+}
+
+.auroraHeader p {
+  color: #64748b;
+  font-size: 15px;
+
+  margin-bottom: 32px;
+}
+
+/* ===================================
+   GRID
+=================================== */
+
+.auroraTopGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 22px;
+
+  margin-bottom: 22px;
+}
+
+.auroraBottomGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 220px;
+  gap: 22px;
+}
+
+/* ===================================
+   CARD
+=================================== */
+
+.novaCard {
+  background: #ffffff;
+
+  border-radius: 14px;
+
+  padding: 22px;
+
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+}
+
+/* ===================================
+   CARD HEADER
+=================================== */
+
+.novaCardHeader {
+  margin-bottom: 18px;
+}
+
+.novaCardLine {
+  width: 42px;
+  height: 3px;
+
+  background: #145e59;
+
+  border-radius: 999px;
+
+  margin-bottom: 12px;
+}
+
+.novaCardHeader h3 {
+  font-size: 20px;
+  font-weight: 600;
+
+  color: #111827;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.novaCardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background: #e2f3ef;
+
+  margin-left: 10px;
+
+  color: #145e59;
+}
+
+.novaCardIcon.danger {
+  background: #fde7ea;
+  color: #d9465f;
+}
+
+/* ===================================
+   PASSWORD GRID
+=================================== */
+
+.novaPasswordGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  margin-bottom: 18px;
+}
+
+.novaField {
+  display: flex;
+  flex-direction: column;
+}
+
+.novaField label {
+  font-size: 13px;
+  color: #64748b;
+
+  margin-bottom: 8px;
+}
+
+.novaField input {
+  height: 52px;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 10px;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+
+  background: #fff;
+}
+
+/* ===================================
+   TWO FACTOR
+=================================== */
+
+.novaTwoFactorCard {
+  background: #f8fafc;
+
+  border-radius: 12px;
+
+  padding: 18px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.novaTwoFactorCard h4 {
+  font-size: 15px;
+  font-weight: 600;
+
+  margin-bottom: 4px;
+}
+
+.novaTwoFactorCard p {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* ===================================
+   SWITCH
+=================================== */
+
+.novaSwitch {
+  position: relative;
+  width: 42px;
+  height: 22px;
+}
+
+.novaSwitch input {
+  display: none;
+}
+
+.novaSwitch span {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  background: #d1d5db;
+
+  border-radius: 999px;
+
+  cursor: pointer;
+}
+
+.novaSwitch span::before {
+  content: "";
+
+  position: absolute;
+
+  width: 16px;
+  height: 16px;
+
+  top: 3px;
+  left: 3px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  transition: 0.25s;
+}
+
+.novaSwitch input:checked + span {
+  background: #145e59;
+}
+
+.novaSwitch input:checked + span::before {
+  transform: translateX(20px);
+}
+
+/* ===================================
+   BUTTON
+=================================== */
+
+.novaUpdateButton {
+  height: 44px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #145e59;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+/* ===================================
+   VISIBILITY
+=================================== */
+
+.visibilityOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  height: 54px;
+
+  padding: 0 16px;
+
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  margin-bottom: 10px;
+
+  cursor: pointer;
+}
+
+.visibilityOption.active {
+  border: 1px solid #dbeafe;
+}
+
+.visibilityOption input {
+  accent-color: #2563eb;
+}
+
+.visibilityToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 16px;
+
+  font-size: 14px;
+  color: #374151;
+}
+
+/* ===================================
+   TABLE
+=================================== */
+
+.auroraTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.auroraTable th {
+  text-align: left;
+
+  padding-bottom: 16px;
+
+  color: #64748b;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.auroraTable td {
+  padding: 12px 0;
+
+  border-top: 1px solid #f1f5f9;
+
+  font-size: 14px;
+
+  color: #111827;
+}
+
+/* ===================================
+   NOTIFICATIONS
+=================================== */
+
+.notificationItem {
+  display: flex;
+  align-items: center;
+
+  padding: 12px 0;
+
+  font-size: 14px;
+
+  border-bottom: 1px solid #f1f5f9;
+
+  color: #111827;
+}
+
+/* ===================================
+   QUICK ACTIONS
+=================================== */
+
+.novaQuickActions {
+  padding-top: 10px;
+}
+
+.quickAction {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 24px;
+
+  color: #145e59;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.quickAction span {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+
+  background: #dbe4ef;
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width: 1200px) {
+  .auroraTopGrid,
+  .auroraBottomGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .auroraSecurityWrapper {
+    padding: 20px;
+  }
+
+  .auroraHeader h1 {
+    font-size: 32px;
+  }
+
+  .novaPasswordGrid {
+    grid-template-columns: 1fr;
+  }
+}

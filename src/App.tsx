@@ -26,6 +26,8 @@ import UserGuide from './otherFooterLinksPages/UserGuide'
 import ViewFeaturedDetails from './EventsComponents/ViewFeaturedDetails'
 import PaymentPlan from './RegisterComponents/PaymentPlan'
 import ProfilePage from './profilePageComponent/ProfilePage'
+import EditProfilePage from './profileEditComponents/EditProfilePage'
+import ProfileSecurityPage from './profileSecurityComponent/ProfileSecurityPage'
 
 const App = () => {
   return (
@@ -82,6 +84,10 @@ const App = () => {
         <Route path='/payment-plan' element={<PaymentPlan />} />
         {/* To Profile Page */}
         <Route path='/profile-page' element={<ProfilePage />} />
+        {/* To Edit Profile Page */}
+        <Route path='/edit-profile-page' element={<EditProfilePage />} />
+        {/* To Profile Security Page */}
+        <Route path='/profile-security-page' element={<ProfileSecurityPage />} />
       </Routes>
     </div>
   )

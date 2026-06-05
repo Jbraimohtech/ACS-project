@@ -1,5 +1,14 @@
+import {useNavigate} from 'react-router-dom';
+
 
 const ProfileBanner = () => {
+  const navigate = useNavigate();
+
+  const goToEditProfile = () => {
+    navigate('/edit-profile-page');
+  };
+
+
   return (
     <>
       <div className="auroraBannerShell">
@@ -36,7 +45,7 @@ const ProfileBanner = () => {
           </div>
         </div>
 
-        <button className="auroraEditButton">
+        <button className="auroraEditButton" onClick={goToEditProfile}>
           <div className="edit-profile-pen"></div>
           Edit Profile
         </button>

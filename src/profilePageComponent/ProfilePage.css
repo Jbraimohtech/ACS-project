@@ -138,6 +138,12 @@
 /* =========================
    TOP BAR
 ========================= */
+.zenDashboardSidebar {
+   width: 280px;
+  min-width: 280px;
+  height: 100vh;
+}
+
 .orionTopBarShell {
   display: flex;
   align-items: center;
@@ -154,9 +160,9 @@
 /* =========================
    SEARCH
 ========================= */
-
+/* 
 .orionSearchCluster {
-  width: 330px;
+  width: 100%;
   height: 42px;
 
   background: white;
@@ -170,7 +176,7 @@
   padding: 0 14px;
 
   gap: 10px;
-}
+} */
 
 .orionSearchIcon {
   color: #9ca3af;
@@ -307,9 +313,10 @@
 
 @media (max-width: 900px) {
   .orionTopBarShell {
-    flex-direction: column;
+    /* flex-direction: column;
     align-items: stretch;
-    gap: 16px;
+    gap: 16px; */
+    display: none;
   }
 
   .orionSearchCluster {
@@ -346,7 +353,9 @@
 ====================== */
 
 .quantumSidebarShell {
-  width: 20%;
+  width: 280px;
+  min-width: 280px;
+  height: 100vh;
 
   background: transparent;
 
@@ -799,4 +808,418 @@
   font-weight: 600;
 
   cursor: pointer;
+}
+
+/* ==================================
+   MOBILE SIDEBAR
+================================== */
+
+.zenSidebarOverlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  z-index: 999;
+}
+
+.zenSidebarClose {
+  display: none;
+}
+
+.orionMobileMenuButton {
+  display: none;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  color: #1f2937;
+}
+
+.orionTopBarShellMobile {
+  display: none;
+  align-items: center;
+  padding: 12px 18px;
+}
+
+.orionMobileLogo-crop {
+  font-size: 24px;
+  font-weight: 800;
+  color: #111827;
+  display: none;
+}
+
+/* ==================================
+   MOBILE
+================================== */
+
+@media (max-width: 991px) {
+
+  .orionTopBarShellMobile {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .orionMobileLogo-crop {
+    display: flex;
+    gap: 8px;
+  }
+
+   .zenDashboardSidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 280px;
+    height: 100vh;
+
+    z-index: 1000;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.35s ease;
+  }
+
+  .auroraProfileDetails {
+    margin-top: 60%;
+    margin-left: -35%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .orionMobileMenuButton {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    color: #111827;
+
+    margin-right: 12px;
+  }
+
+  .zenDashboardSidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 280px;
+    height: 100vh;
+
+    z-index: 1000;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.35s ease;
+  }
+
+  .zenSidebarActive {
+    transform: translateX(0);
+  }
+
+  .zenSidebarClose {
+    display: flex;
+
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+  }
+
+  .orionSearchCluster {
+    flex: 1;
+  }
+}
+
+.orionMobileSearchTrigger {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orionMobileSearchClose {
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  color: #6b7280;
+}
+
+.orionTopBarShellMobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.orionMobileLogo {
+  flex: 1;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.orionSearchCluster {
+  width: 50%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  padding: 10px 14px;
+}
+
+.orionSearchInput {
+  flex: 1;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+}
+
+/* Distraction for only small screens */
+.notify-icon-profile-box {
+  display: none;
+}
+
+.stellarInfoCardMobile-only {
+  display: none;
+}
+
+.stellarInfoCardMobile-only-load {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  /* Your mobile-specific styles here */
+  .notify-icon-profile-box {
+    display: flex;
+    align-items: center;
+  }
+
+  .small-account-info-card-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 87%;
+  }
+
+  .small-account-info-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 50%;
+    height: 71px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 12px;
+  }
+
+  .small-account-info-card p {
+    font-size: 10px;
+    font-weight: 600;
+    color: #6b7280;
+  }
+
+  .small-account-info-card span {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .profile-image-demo {
+      background-image: url("../assets/images/profile-images-demo.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 125px;
+      height: 118px;
+      border-radius: 16px;
+  }
+
+  .notify-icon-profile {
+    display: flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background: url("../assets/images/notify-icon-profile.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .profile-image-small {
+    display: flex;
+    align-items: center;
+    width: 24px;
+    height:24px;
+    border-radius: 50%;
+    background: url("../assets/images/profile-image-small.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .auroraBannerShell {
+    height: 176px;
+
+    background: #145e59;
+    width: 100%;
+    border-radius: 0;
+
+    position: relative;
+  }
+
+  .zenProfileContent {
+    flex: 1;
+    padding: 26px 0;
+  }
+
+  .auroraCoverButton {
+    display: none;
+  }
+
+  .auroraProfileSection {
+    display: flex;
+    align-items: center;
+
+    margin-top: -42%;
+
+    padding-left: 28px;
+
+    position: relative;
+  }
+
+  .auroraEditButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 153.28px;
+      height: 44px;
+
+      border: none;
+      border-radius: 12px;
+
+      background: #145e59;
+      color: white;
+
+      font-weight: 500;
+      margin-top: 10%;
+      margin-right: 4%;
+  }
+  .auroraVerified {
+    color: #22c55e;
+    display: none;
+  }
+
+  .auroraStatus {
+    display: none;
+  }
+
+  .auroraMetaRow p {
+    display: none;
+  }
+
+  .auroraMetaRow span {
+    display: block;
+  }
+
+  .edit-profile-location {
+    display: none;
+  }
+
+  .zenProfileCardsRow {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+    margin-top: 30px;
+    margin: 10px 7%;
+  } 
+
+  .stellarInfoCardMobile-only {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    width: 87%;
+    height: 140px;
+    padding: 16px;
+    margin: 10px 0;
+    gap: 12px;
+  }
+
+  .stellarInfoCardMobile-only-load {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    border-radius: 12px;
+    width: 100%;
+    height: fit-content;
+    margin: 10px 0;
+    gap: 12px;
+  }
+
+  .stellarInfoCardMobile-only-load h2 {
+    font-size: 10px;
+    color: #5D5F68;
+  }
+
+  .information-start-card {
+    display: none;
+  }
+
+  .stellarInfoGroup-small {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .stellarInfoGroup-small label {
+    display: block;
+
+    font-size: 12px;
+    color: #9ca3af;
+  }
+
+  .stellarInfoGroup-small p {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #111827;
+  }
 }

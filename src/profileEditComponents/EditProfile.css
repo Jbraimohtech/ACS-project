@@ -1,0 +1,409 @@
+/* ==========================
+   PAGE
+========================== */
+.zenProfileLayout {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background: #f0f3fa;
+}
+
+.cosmosEditProfileWrapper {
+  padding: 24px 32px 40px;
+  width: 100%;
+}
+
+.cosmosEditProfileHeader {
+  margin-bottom: 28px;
+}
+
+.cosmosBackRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+
+  cursor: pointer;
+}
+
+.cosmosPageTitle {
+  font-size: 42px;
+  font-weight: 700;
+  color: #111827;
+
+  margin-bottom: 6px;
+}
+
+.cosmosPageSubtitle {
+  font-size: 15px;
+  color: #64748b;
+}
+
+/* ==========================
+   MAIN GRID
+========================== */
+
+.cosmosEditProfileGrid {
+  display: grid;
+  grid-template-columns: 260px 1fr 220px;
+  gap: 22px;
+
+  align-items: start;
+}
+
+/* ==========================
+   LEFT PANEL
+========================== */
+
+.orbitProfilePanel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.orbitUserCard {
+  background: #ffffff;
+
+  border-radius: 14px;
+
+  padding: 18px;
+
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+
+  text-align: center;
+}
+
+.orbitProfilePhoto {
+  width: 122px;
+  height: 122px;
+
+  border-radius: 20px;
+
+  object-fit: cover;
+
+  margin: 0 auto;
+  display: block;
+}
+
+.orbitMemberName {
+  margin-top: 16px;
+
+  font-size: 24px;
+  font-weight: 600;
+
+  color: #111827;
+}
+
+.orbitMemberRole {
+  margin-top: 4px;
+
+  font-size: 14px;
+
+  color: #94a3b8;
+}
+
+.orbitPhotoLink {
+  margin-top: 16px;
+
+  background: transparent;
+  border: none;
+
+  color: #145e59;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+/* ==========================
+   STATUS CARD
+========================== */
+
+.nebulaStatusCard {
+  background: #f8fafc;
+
+  border-radius: 14px;
+
+  padding: 18px;
+}
+
+.nebulaStatusTitle {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #64748b;
+
+  margin-bottom: 12px;
+}
+
+.nebulaStatusRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 10px;
+}
+
+.nebulaGreenDot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+}
+
+.nebulaStatusText {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #111827;
+}
+
+.nebulaStatusDescription {
+  font-size: 12px;
+  line-height: 1.6;
+
+  color: #94a3b8;
+}
+
+/* ==========================
+   FORM CARD
+========================== */
+
+.quantumFormCard {
+  background: #ffffff;
+
+  border-radius: 14px;
+
+  padding: 28px;
+
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+}
+
+/* ==========================
+   FORM GRID
+========================== */
+
+.quantumFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 18px;
+}
+
+.quantumField {
+  display: flex;
+  flex-direction: column;
+}
+
+.quantumField label {
+  font-size: 13px;
+
+  color: #64748b;
+
+  margin-bottom: 8px;
+}
+
+.quantumField input {
+  width: 100%;
+  height: 52px;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 10px;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.quantumField input:focus {
+  border-color: #145e59;
+}
+
+/* ROLE FIELD */
+
+.quantumRoleField {
+  height: 52px;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0 14px;
+
+  color: #111827;
+}
+
+.quantumRoleField svg {
+  color: #145e59;
+}
+
+.quantumFieldFull {
+  grid-column: span 2;
+}
+
+/* ==========================
+   ACTIONS
+========================== */
+
+.quantumFormActions {
+  margin-top: 32px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 14px;
+}
+
+.quantumCancelButton {
+  border: none;
+
+  background: transparent;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.quantumSaveButton {
+  height: 46px;
+
+  padding: 0 26px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #145e59;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.quantumSaveButton:hover {
+  background: #0f4b47;
+}
+
+/* ==========================
+   QUICK ACTIONS
+========================== */
+
+.galaxyQuickActions {
+  padding-top: 8px;
+}
+
+.galaxyQuickActionsTitle {
+  position: relative;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  margin-bottom: 28px;
+
+  color: #111827;
+}
+
+.galaxyQuickActionsTitle::before {
+  content: "";
+
+  position: absolute;
+
+  top: -10px;
+  left: 0;
+
+  width: 38px;
+  height: 3px;
+
+  border-radius: 999px;
+
+  background: #145e59;
+}
+
+.galaxyQuickActionItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 24px;
+
+  color: #145e59;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.galaxyQuickActionDot {
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  background: #dbe4ef;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 1200px) {
+  .cosmosEditProfileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .galaxyQuickActions {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cosmosEditProfileWrapper {
+    padding: 20px;
+  }
+
+  .cosmosPageTitle {
+    font-size: 32px;
+  }
+
+  .quantumFormGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .quantumFieldFull {
+    grid-column: auto;
+  }
+
+  .quantumFormActions {
+    flex-direction: column;
+  }
+
+  .quantumSaveButton {
+    width: 100%;
+  }
+}
