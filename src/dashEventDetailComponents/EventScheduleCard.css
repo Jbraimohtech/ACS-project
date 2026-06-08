@@ -1,0 +1,42 @@
+.cosmosScheduleCard {
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 28px;
+}
+
+.cosmosScheduleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 24px;
+}
+
+.cosmosScheduleHeader h2 {
+  font-size: 28px;
+}
+
+.cosmosScheduleHeader button {
+  border: none;
+  background: transparent;
+
+  color: #2563eb;
+
+  cursor: pointer;
+}
+
+.cosmosScheduleItem {
+  display: flex;
+
+  gap: 24px;
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid #eef2f6;
+}
+
+.cosmosScheduleItem strong {
+  min-width: 90px;
+}

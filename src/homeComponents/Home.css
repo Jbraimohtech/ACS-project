@@ -22,7 +22,7 @@
 }
 
 .home-content-all-main-content {
-     width: 95%;
+    width: 95%;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -1274,7 +1274,7 @@
     }
 
     .new-home-style {
-        background-color: #0052CC99;
+        background-color: #18565695;
         width: 100%;
         height: 612px;
     }

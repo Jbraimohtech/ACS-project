@@ -1,0 +1,71 @@
+.novaSuccessOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+}
+
+.novaSuccessModal {
+  width: 160px;
+  height: 95px;
+
+  background: #fff;
+  border-radius: 10px;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.novaSuccessClose {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 16px;
+  height: 16px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f3f5;
+  color: #8a8a8a;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.novaSuccessIcon {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background: #16a34a;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 6px;
+}
+
+.novaSuccessText {
+  font-size: 12px;
+  font-weight: 500;
+  color: #111827;
+}

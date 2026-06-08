@@ -1,0 +1,529 @@
+/* =========================
+   MEMBERSHIP ALERT
+========================= */
+
+.stellarMembershipAlert {
+  background: #fff1f2;
+
+  border: 1px solid #fecdd3;
+
+  border-radius: 14px;
+
+  padding: 16px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.stellarAlertLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #be123c;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.stellarMembershipAlert button {
+  border: none;
+
+  background: #be123c;
+
+  color: white;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+/* =========================
+   TOP GRID
+========================= */
+
+.stellarMembershipGrid {
+  display: grid;
+  grid-template-columns: 1.8fr 0.9fr;
+  gap: 24px;
+
+  margin-bottom: 28px;
+}
+
+/* =========================
+   CURRENT PLAN CARD
+========================= */
+
+.stellarCurrentPlanCard {
+  background: white;
+
+  border: 1px solid #edf1f7;
+
+  border-radius: 18px;
+
+  padding: 24px;
+  width: 65%;
+}
+
+.stellarPlanHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 24px;
+}
+
+.stellarPlanHeader p {
+  color: #6b7280;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: 1px;
+}
+
+.stellarPlanHeader h2 {
+  margin-top: 8px;
+
+  font-size: 34px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.stellarActiveBadge {
+  background: #dcfce7;
+
+  color: #15803d;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+}
+
+/* =========================
+   INVESTMENT CARD
+========================= */
+
+.stellarInvestmentCard {
+  background: linear-gradient(
+    135deg,
+    #0f766e,
+    #0d9488
+  );
+
+  border-radius: 16px;
+
+  padding: 24px;
+
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 24px;
+}
+
+.stellarInvestmentCard span {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.stellarInvestmentCard h1 {
+  margin-top: 10px;
+
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.stellarInvestmentCard small {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.stellarInvestmentCard p {
+  margin-top: 10px;
+
+  font-size: 13px;
+
+  opacity: 0.9;
+}
+
+/* =========================
+   BOTTOM SECTION
+========================= */
+
+.stellarPlanBottom {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: 20px;
+}
+
+/* =========================
+   INCLUDED CARD
+========================= */
+
+.stellarPlanBenefits {
+  border: 1px solid #edf1f7;
+
+  border-radius: 14px;
+
+  padding: 20px;
+}
+
+.stellarPlanBenefits h4 {
+  margin-bottom: 16px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.stellarPlanBenefits ul {
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stellarPlanBenefits li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #374151;
+
+  font-size: 14px;
+}
+
+/* =========================
+   PAYMENT METHOD CARD
+========================= */
+
+.stellarPaymentMethodCard {
+  border: 1px solid #edf1f7;
+
+  border-radius: 14px;
+
+  padding: 20px;
+}
+
+.stellarPaymentMethodCard p {
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #6b7280;
+
+  margin-bottom: 14px;
+}
+
+.stellarMiniCard {
+  background: #f9fafb;
+
+  border-radius: 12px;
+
+  padding: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 12px;
+}
+
+.stellarMiniCard span {
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+.stellarMiniCard strong {
+  color: #111827;
+}
+
+.stellarPaymentMethodCard small {
+  color: #6b7280;
+
+  display: block;
+
+  margin-bottom: 14px;
+}
+
+.stellarPaymentMethodCard button {
+  width: 100%;
+
+  border: none;
+
+  background: #f3f4f6;
+
+  border-radius: 8px;
+
+  height: 40px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+.quick-action-headText {
+    color: #64748B;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.stellarQuickActionsColumn-box {
+    width: 35%;
+}
+
+.stellarQuickActionsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.stellarPayNowCard {
+  background: white;
+
+  border: 1px solid #edf1f7;
+
+  border-radius: 16px;
+
+  padding: 20px;
+}
+
+.stellarPayNowCard h4 {
+  margin-bottom: 8px;
+
+  font-size: 18px;
+}
+
+.stellarPayNowCard p {
+  color: #6b7280;
+
+  font-size: 13px;
+
+  margin-bottom: 16px;
+}
+
+.stellarPayNowCard button {
+  width: 100%;
+  height: 42px;
+
+  border: none;
+
+  background: #0f766e;
+
+  color: white;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.stellarActionItem {
+  background: white;
+
+  border: 1px solid #edf1f7;
+
+  border-radius: 14px;
+
+  padding: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.stellarActionItem h5 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.stellarActionItem p {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.stellarUpgradeCard {
+  background: linear-gradient(
+    135deg,
+    #0f766e,
+    #14b8a6
+  );
+
+  color: white;
+
+  border-radius: 16px;
+
+  padding: 20px;
+}
+
+.stellarUpgradeCard h4 {
+  margin-bottom: 10px;
+}
+
+.stellarUpgradeCard p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================
+   PAYMENT HISTORY
+========================= */
+
+.stellarPaymentHistory {
+  background: white;
+
+  border: 1px solid #edf1f7;
+
+  border-radius: 18px;
+
+  padding: 24px;
+}
+
+.stellarHistoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.stellarHistoryHeader h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stellarHistoryHeader button {
+  border: 1px solid #d1d5db;
+
+  background: white;
+
+  padding: 8px 16px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.stellarPaymentHistory table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stellarPaymentHistory th {
+  text-align: left;
+
+  padding: 14px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+
+  border-bottom: 1px solid #edf1f7;
+}
+
+.stellarPaymentHistory td {
+  padding: 16px 14px;
+
+  border-bottom: 1px solid #f3f4f6;
+
+  font-size: 14px;
+}
+
+.stellarPaidBadge {
+  background: #dcfce7;
+
+  color: #15803d;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stellarPendingBadge {
+  background: #fef3c7;
+
+  color: #b45309;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.MembershipPage-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.stellarMembershipTopSection {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1024px) {
+  .stellarMembershipGrid,
+  .stellarPlanBottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .stellarMembershipAlert {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .stellarInvestmentCard {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stellarInvestmentCard h1 {
+    font-size: 36px;
+  }
+
+  .stellarPaymentHistory {
+    overflow-x: auto;
+  }
+
+  .stellarPaymentHistory table {
+    min-width: 700px;
+  }
+}

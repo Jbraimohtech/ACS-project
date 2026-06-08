@@ -28,6 +28,10 @@ import PaymentPlan from './RegisterComponents/PaymentPlan'
 import ProfilePage from './profilePageComponent/ProfilePage'
 import EditProfilePage from './profileEditComponents/EditProfilePage'
 import ProfileSecurityPage from './profileSecurityComponent/ProfileSecurityPage'
+import BillingPaymentPage from './BillingPaymentComponents/BillingPaymentPage'
+import EventContentPage from './dashboardEventComponents/EventContentPage'
+import EventDetailsPage from './dashEventDetailComponents/EventDetailsPage'
+import PastEventsPage from './dashEventDetailComponents/PastEventPage'
 
 const App = () => {
   return (
@@ -88,6 +92,14 @@ const App = () => {
         <Route path='/edit-profile-page' element={<EditProfilePage />} />
         {/* To Profile Security Page */}
         <Route path='/profile-security-page' element={<ProfileSecurityPage />} />
+        {/* To Billing Payment Page */}
+        <Route path='/billing-payment-page' element={<BillingPaymentPage />} />
+        {/* To Event Content Dashboard Page */}
+        <Route path='/event-content-page' element={<EventContentPage />} />
+        {/* To Event Detail Dashboard Page */}
+        <Route path='/event-detail-page' element={<EventDetailsPage />} />
+        {/* To Past Event Page */}
+        <Route path='/past-event-page' element={<PastEventsPage />} />
       </Routes>
     </div>
   )

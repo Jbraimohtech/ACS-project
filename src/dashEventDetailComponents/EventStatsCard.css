@@ -1,0 +1,84 @@
+.novaStatsCard {
+  background: white;
+
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+
+
+  padding: 30px;
+
+  min-height: 400px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.novaStatsLabel {
+  font-size: 12px;
+
+  letter-spacing: 1px;
+
+  color: #8d97a4;
+
+  margin-bottom: 12px;
+}
+
+.novaStatsCard h2 {
+  font-size: 52px;
+  font-weight: 700;
+
+  color: #2563eb;
+}
+
+.novaStatsCard span {
+  color: #7b8794;
+
+  margin-bottom: 28px;
+}
+
+.novaRsvpButton {
+  height: 50px;
+
+  border: none;
+  width: 60%;
+
+  border-radius: 12px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-weight: 600;
+
+  margin-top: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+}
+
+.novaCalendarButton {
+  height: 50px;
+
+  margin-top: 14px;
+
+  border: 1px solid #dfe5ec;
+
+  border-radius: 12px;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+
+  gap: 8px;
+
+  cursor: pointer;
+}

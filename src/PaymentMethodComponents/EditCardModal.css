@@ -1,0 +1,222 @@
+.novaEditOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+}
+
+.novaEditModal {
+  width: 535px;
+  background: #ffffff;
+  border-radius: 14px;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+
+  overflow: hidden;
+}
+
+.novaEditHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 20px 20px 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.novaEditHeader h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+
+  margin: 0 0 4px;
+}
+
+.novaEditHeader p {
+  font-size: 12px;
+  color: #6b7280;
+
+  margin: 0;
+}
+
+.novaEditClose {
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+  color: #94a3b8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CARD */
+
+.novaCardPreview {
+  margin: 20px;
+
+  padding: 18px;
+
+  background: #0f5d57;
+  border-radius: 12px;
+
+  color: white;
+
+  position: relative;
+}
+
+.novaCardChip {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.8);
+
+  margin-bottom: 30px;
+}
+
+.novaCardNumber {
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 500;
+
+  margin-bottom: 24px;
+}
+
+.novaCardFooter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.novaCardFooter span {
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+.novaCardFooter h4 {
+  margin-top: 4px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* FORM */
+
+.novaFieldGroup {
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+
+.novaFieldGroup label {
+  display: block;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  color: #374151;
+
+  margin-bottom: 6px;
+}
+
+.novaFieldGroup input {
+  width: 100%;
+  height: 46px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  background: #f9fafb;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+  color: #111827;
+
+  outline: none;
+}
+
+.novaFieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  padding: 0 20px;
+}
+
+.novaFieldRow .novaFieldGroup {
+  padding: 0;
+}
+
+/* CHECKBOX */
+
+.novaCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 6px 20px 20px;
+
+  font-size: 13px;
+  color: #374151;
+
+  cursor: pointer;
+}
+
+.novaCheckbox input {
+  width: 16px;
+  height: 16px;
+
+  accent-color: #0f5d57;
+}
+
+/* FOOTER BUTTONS */
+
+.novaEditActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  padding: 20px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.novaCancelBtn {
+  height: 42px;
+  padding: 0 24px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  background: white;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.novaSaveBtn {
+  height: 42px;
+  padding: 0 24px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #0f5d57;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.novaSaveBtn:hover {
+  background: #0c4d48;
+}

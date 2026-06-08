@@ -1,0 +1,96 @@
+.stellarSuccessOverlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(5px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+}
+
+.stellarSuccessModal {
+  position: relative;
+
+  width: 260px;
+  min-height: 150px;
+
+  background: white;
+
+  border-radius: 10px;
+
+  padding: 28px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12);
+
+  animation: stellarPopIn 0.25s ease;
+}
+
+@keyframes stellarPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.stellarSuccessClose {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 18px;
+  height: 18px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f5f9;
+
+  color: #64748b;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.stellarSuccessIcon {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: #16a34a;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+}
+
+.stellarSuccessTitle {
+  margin: 0;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #111827;
+}

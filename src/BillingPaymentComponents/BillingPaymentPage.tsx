@@ -1,0 +1,107 @@
+import DashboardSidebar from "../profilePageComponent/DashboardSidebar"
+import BillingPaymentsHeader from "./BillingPaymentsHeader"
+import BillingPaymentsTabs from "./BillingPaymentsTabs"
+import DonationFormCard from "./DonationFormCard"
+import DonationHistoryCard from "./DonationHistoryCard"
+import DonationStatsCards from "./DonationStatsCards"
+import "./BillingPayment.css"
+import {
+  Bell,
+  ChevronDown,
+  Search,
+} from "lucide-react";
+import { useState } from "react";
+import MembershipPage from "../memberShipComponents/MembershipPage"
+
+
+const BillingPaymentPage = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<
+    "membership" |
+    "donations" |
+    "payment-methods"
+  >("membership");
+  
+    return (
+      <div className="zenProfileLayout">
+        <DashboardSidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
+          <div className="orionMainContent">
+              {/* TOP BAR */}
+  
+              <div className="orionTopBarShell">
+                  <div className="orionSearchCluster">
+                      <Search
+                      size={16}
+                      className="orionSearchIcon"
+                      />
+  
+                      <input
+                      type="text"
+                      placeholder="Search members, events,..."
+                      className="orionSearchInput"
+                      />
+                  </div>
+  
+                  <div className="orionTopBarActions">
+                      {/* NOTIFICATION */}
+  
+                      <button className="orionNotificationButton">
+                      <Bell size={18} />
+  
+                      <span className="orionNotificationDot"></span>
+                      </button>
+  
+                      {/* USER */}
+  
+                      <div className="orionUserProfileWidget">
+                      <img
+                          src="/profile.jpg"
+                          alt="User"
+                          className="orionUserAvatar"
+                      />
+  
+                      <div className="orionUserMeta">
+                          <h4>Chukwutem Emmanuel</h4>
+                          <span>User ID: 12345434</span>
+                      </div>
+  
+                      <ChevronDown size={16} />
+                      </div>
+                  </div>
+              </div>
+                <div className="stellarBillingWrapper">
+
+                <BillingPaymentsHeader />
+
+                <BillingPaymentsTabs
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                />
+
+                {activeTab === "membership" && (
+                  <MembershipPage />
+                )}
+
+                {activeTab === "donations" && (
+                  <div className="stellarBillingGrid">
+
+                    <DonationFormCard />
+
+                    <div className="stellarBillingRight">
+                      <DonationStatsCards />
+                      <DonationHistoryCard />
+                    </div>
+
+                  </div>
+                )}
+
+                </div>
+                </div>
+    </div>
+  )
+}
+
+export default BillingPaymentPage

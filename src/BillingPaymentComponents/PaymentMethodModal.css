@@ -1,0 +1,268 @@
+/* OVERLAY */
+
+.novaPaymentOverlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.42);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+  padding: 20px;
+}
+
+/* MODAL */
+
+.novaPaymentModal {
+  width: 100%;
+  max-width: 470px;
+
+  background: #ffffff;
+
+  border-radius: 14px;
+
+  padding: 20px;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.12);
+
+  animation: modalFadeIn 0.25s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HEADER */
+
+.novaPaymentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 14px;
+}
+
+.novaPaymentHeader h2 {
+  font-size: 24px;
+  font-weight: 600;
+
+  color: #111827;
+
+  margin: 15px 0;
+}
+
+.novaPaymentHeader button {
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  color: #8c8c8c;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SAVED METHODS */
+
+.novaSavedMethods {
+  font-size: 10px;
+  font-weight: 700;
+
+  color: #94a3b8;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 20px;
+  display: flex;
+}
+
+/* PAYMENT CARDS */
+
+.novaPaymentCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 1px solid #e7eaee;
+
+  border-radius: 10px;
+
+  padding: 12px 14px;
+
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+  transition: all 0.25s ease;
+
+  cursor: pointer;
+}
+
+.novaPaymentCardActive {
+  border: 1.5px solid #165f5a;
+  background: #f9fcfc;
+}
+
+/* CARD TEXT */
+
+.novaPaymentCard h4 {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #1f2937;
+}
+
+.novaPaymentCard span {
+  display: block;
+
+  margin-top: 2px;
+
+  font-size: 10px;
+  color: #8b95a5;
+}
+
+/* RADIO */
+
+.novaPaymentCard input[type="radio"] {
+  width: 14px;
+  height: 14px;
+
+  accent-color: #165f5a;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+/* ADD PAYMENT */
+
+.novaAddPaymentButton {
+  width: 100%;
+  height: 42px;
+
+  border: 1px dashed #d9dee5;
+
+  background: #ffffff;
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  color: #5b6472;
+
+  cursor: pointer;
+
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.novaAddPaymentButton:hover {
+  background: #fafafa;
+}
+
+/* CONTINUE BUTTON */
+
+.novaContinueButton {
+  width: 100%;
+  height: 46px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #165f5a;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-bottom: 10px;
+}
+
+.novaContinueButton:hover {
+  background: #114d49;
+}
+
+/* CANCEL BUTTON */
+
+.novaCancelButton {
+  width: 100%;
+  height: 42px;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #6b7280;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+/* FOOTER */
+
+.novaPaymentFooter {
+  text-align: center;
+
+  margin-top: 14px;
+
+  font-size: 9px;
+  line-height: 1.4;
+
+  color: #a1a1aa;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .novaPaymentModal {
+    max-width: 100%;
+    padding: 18px;
+  }
+
+  .novaPaymentHeader h2 {
+    font-size: 13px;
+  }
+
+  .novaPaymentCard {
+    padding: 10px 12px;
+  }
+
+  .novaPaymentCard h4 {
+    font-size: 11px;
+  }
+
+  .novaPaymentCard span {
+    font-size: 9px;
+  }
+}
