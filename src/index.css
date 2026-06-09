@@ -510,7 +510,7 @@ button :focus-visible {
       gap: 10%;
       bottom: 0;
       position: relative;
-      background-color: #0F2A44;
+      background-color: #122C2C;
       display: flex;
       flex-direction: column;
   }

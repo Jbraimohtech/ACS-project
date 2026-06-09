@@ -1,0 +1,442 @@
+/* =========================
+   PAGE WRAPPER
+========================= */
+
+.stellarBillingWrapper {
+  width: 100%;
+
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.stellarBreadcrumb {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #7d8597;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.stellarHeaderBlock {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.stellarHeaderBlock h1 {
+  font-size: 42px;
+  font-weight: 700;
+
+  color: #101828;
+
+  margin: 0;
+}
+
+.stellarHeaderBlock p {
+  margin: 0;
+
+  font-size: 15px;
+
+  color: #667085;
+}
+
+/* =========================
+   TABS
+========================= */
+
+.stellarTabs {
+  display: flex;
+  align-items: center;
+
+  gap: 28px;
+}
+
+.stellarTabs button {
+  background: transparent;
+  border: none;
+
+  padding-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #667085;
+
+  cursor: pointer;
+}
+
+.stellarTabActive {
+  color: #0f5f5c !important;
+
+  border-bottom: 2px solid #0f5f5c;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.stellarBillingGrid {
+  display: grid;
+
+  grid-template-columns: 340px 1fr;
+
+  gap: 24px;
+}
+
+.stellarBillingRight {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+/* =========================
+   DONATION CARD
+========================= */
+
+.auroraDonationCard {
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 24px;
+
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.auroraDonationCard h3 {
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #101828;
+}
+
+.auroraDonationCard p {
+  margin: 0;
+
+  color: #667085;
+  font-size: 14px;
+}
+
+.auroraDonationCard label {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #344054;
+}
+
+.auroraDonationCard input {
+  width: 100%;
+
+  height: 48px;
+
+  border: none;
+
+  background: #f2f4f7;
+
+  border-radius: 10px;
+
+  padding: 0 14px;
+
+  font-size: 14px;
+}
+
+.auroraAmountOptions {
+  display: flex;
+
+  gap: 8px;
+}
+
+.auroraAmountOptions button {
+  flex: 1;
+
+  height: 34px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #f2f4f7;
+
+  cursor: pointer;
+
+  font-size: 13px;
+}
+
+.auroraAmountActive {
+  background: #dce7ff !important;
+
+  color: #1d4ed8;
+}
+
+.auroraSelectField {
+  height: 48px;
+
+  background: #f2f4f7;
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 14px;
+
+  color: #475467;
+
+  cursor: pointer;
+}
+
+.auroraDonateButton {
+  height: 48px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #115e59;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.auroraDonateButton:hover {
+  background: #0d4d48;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.orbitStatsGrid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 18px;
+}
+
+.orbitStatCard {
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 22px;
+
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.orbitStatCard span {
+  color: #667085;
+
+  font-size: 13px;
+}
+
+.orbitStatCard h2 {
+  margin-top: 10px;
+  margin-bottom: 8px;
+
+  font-size: 34px;
+
+  color: #101828;
+}
+
+.orbitStatCard small {
+  color: #16a34a;
+
+  font-size: 12px;
+}
+
+/* =========================
+   HISTORY CARD
+========================= */
+
+.galaxyHistoryCard {
+  background: white;
+
+  border-radius: 14px;
+
+  padding: 24px;
+
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.galaxyHistoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 24px;
+}
+
+.galaxyHistoryHeader h3 {
+  margin: 0;
+
+  font-size: 22px;
+}
+
+.galaxyHistoryHeader p {
+  margin-top: 4px;
+
+  color: #667085;
+
+  font-size: 13px;
+}
+
+.galaxyHistoryHeader button {
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  color: #115e59;
+
+  font-weight: 600;
+}
+
+.galaxyHistoryTable {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.galaxyHistoryTable thead {
+  background: #f2f4f7;
+}
+
+.galaxyHistoryTable th {
+  text-align: left;
+
+  padding: 14px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #475467;
+}
+
+.galaxyHistoryTable td {
+  padding: 18px 14px;
+
+  border-bottom: 1px solid #f2f4f7;
+
+  font-size: 14px;
+
+  color: #344054;
+}
+
+.galaxyEventTag {
+  background: #e0ecff;
+
+  color: #2563eb;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+}
+
+.galaxyZoneTag {
+  background: #fde7eb;
+
+  color: #d14d72;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+.galaxyPagination {
+  margin-top: 24px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 14px;
+
+  color: #667085;
+
+  font-size: 14px;
+}
+
+.galaxyPagination span {
+  cursor: pointer;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1024px) {
+  .stellarBillingGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .orbitStatsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .stellarHeaderBlock h1 {
+    font-size: 30px;
+  }
+
+  .stellarTabs {
+    overflow-x: auto;
+
+    white-space: nowrap;
+  }
+
+  .galaxyHistoryCard {
+    overflow-x: auto;
+  }
+
+  .galaxyHistoryTable {
+    min-width: 650px;
+  }
+}

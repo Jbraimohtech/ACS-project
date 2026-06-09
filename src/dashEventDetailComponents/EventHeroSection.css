@@ -1,0 +1,56 @@
+.auroraHeroCard {
+  position: relative;
+
+  height: 400px;
+  width: 50%;
+
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  background-image: url("../assets/images/ofiice-five-img.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.auroraHeroImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.auroraHeroOverlay {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 30px;
+
+  color: white;
+
+  background: linear-gradient(
+    transparent,
+    rgba(0,0,0,.85)
+  );
+}
+
+.auroraBadge {
+  background: #0f766e;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.auroraHeroOverlay h1 {
+  margin-top: 14px;
+
+  font-size: 38px;
+  font-weight: 700;
+}

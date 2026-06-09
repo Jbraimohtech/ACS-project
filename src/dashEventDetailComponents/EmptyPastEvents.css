@@ -1,0 +1,66 @@
+.novaEmptyEventsWrapper {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 90px;
+}
+
+.novaEmptyEventsIcon {
+  width: 72px;
+  height: 72px;
+
+  border-radius: 50%;
+
+  background: #7f7897;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 34px;
+
+  margin-bottom: 18px;
+}
+
+.novaEmptyEventsTitle {
+  font-size: 22px;
+  font-weight: 600;
+
+  color: #222;
+
+  margin-bottom: 8px;
+}
+
+.novaEmptyEventsText {
+  font-size: 14px;
+  color: #8d97a4;
+
+  margin-bottom: 20px;
+}
+
+.novaEmptyEventsButton {
+  height: 46px;
+  padding: 0 28px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #0f5c59;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.novaEmptyEventsButton:hover {
+  background: #0b4947;
+}

@@ -1,5 +1,6 @@
 import "./ProfilePage.css"
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface DashboardSidebarProps {
   sidebarOpen: boolean;
@@ -8,12 +9,28 @@ interface DashboardSidebarProps {
   >;
 }
 
+    // const navigate = useNavigate();
+
+    // const goToPaymentPage = navigate = () = {
+    //   ("/payment-page")
+    // }
+
 const DashboardSidebar = ({
   sidebarOpen,
   setSidebarOpen,
 }: DashboardSidebarProps) => {
+  const navigate = useNavigate();
+
+  const goToBillingPaymentPage = () => {
+    navigate('/billing-payment-page');
+  };
+
+  const goToEventContentPage = () => {
+    navigate('/event-content-page');
+  };
 
   return (
+
     <>
     {sidebarOpen && (
       <div
@@ -41,11 +58,11 @@ const DashboardSidebar = ({
               <div className="dashboard-icon"></div>
               <span>Dashboard</span>
           </button>
-          <button className="quantumSidebarNav-btn">
+          <button className="quantumSidebarNav-btn" onClick={goToBillingPaymentPage}>
               <div className="payments-icon"></div>
               <span>Payments</span>
           </button>
-          <button className="quantumSidebarNav-btn">
+          <button className="quantumSidebarNav-btn" onClick={goToEventContentPage}>
               <div className="events-icon"></div>
               <span>Events</span>
           </button>
