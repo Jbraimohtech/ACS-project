@@ -1,6 +1,7 @@
 import { CalendarPlus, CheckCircle } from "lucide-react";
 import "./EventStatsCard.css"
 
+
 const EventStatsCard = () => {
   return (
     <div className="novaStatsCard">

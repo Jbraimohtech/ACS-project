@@ -262,14 +262,16 @@
 
 .blog-details-img-one {
   width: 88%;
-  height:411px;
-  background-image: url("../assets/images/blog-detail-img-one.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 411px;
+
+  object-fit: cover;
+
   border-radius: 12px;
-  margin-top:40px;
+
+  margin-top: 40px;
   margin-left: 80px;
+
+  display: block;
 }
 
 .blog-layout{
@@ -569,11 +571,13 @@
 
   .article-clock-icon-box {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 100%;
     height: fit-content;
     gap: 5px;
+    margin-left: 60px;
   }
 
   .read-article-box {

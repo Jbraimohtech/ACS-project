@@ -7,13 +7,9 @@ import Resources from './routes/Resources'
 import Members from './routes/Members'
 import Giving from './routes/Giving'
 import Login from './routes/Login'
-import Register from './routes/Register'
 import { Routes, Route } from 'react-router-dom'
 import BlogDetails from './blogComponents/BlogDetails'
 import MobileScreenNav from './components/Navbar/MobileScreenNav'
-import RegisterSetUp from './RegisterComponents/RegisterSetUp'
-import CreatePassword from './RegisterComponents/CreatePassword'
-import SendToEmail from './RegisterComponents/SendToEmail'
 import AboutUs from './otherFooterLinksPages/AboutUs'
 import OurMissionLink from './otherFooterLinksPages/OurMissionLink'
 import ContactAdmin from './otherFooterLinksPages/ContactAdmin'
@@ -24,7 +20,6 @@ import ReportIssue from './otherFooterLinksPages/ReportIssue'
 import Reports from './otherFooterLinksPages/Reports'
 import UserGuide from './otherFooterLinksPages/UserGuide'
 import ViewFeaturedDetails from './EventsComponents/ViewFeaturedDetails'
-import PaymentPlan from './RegisterComponents/PaymentPlan'
 import ProfilePage from './profilePageComponent/ProfilePage'
 import EditProfilePage from './profileEditComponents/EditProfilePage'
 import ProfileSecurityPage from './profileSecurityComponent/ProfileSecurityPage'
@@ -32,6 +27,10 @@ import BillingPaymentPage from './BillingPaymentComponents/BillingPaymentPage'
 import EventContentPage from './dashboardEventComponents/EventContentPage'
 import EventDetailsPage from './dashEventDetailComponents/EventDetailsPage'
 import PastEventsPage from './dashEventDetailComponents/PastEventPage'
+import DashboardPage from './dashboardPageComponent/DashboardPage'
+import NewsFeedPage from './newsFeedComponents/NewsFeedPage'
+import PaymentPlan from './RegisterComponents/PaymentPlan'
+import RegisterWizard from './RegisterComponents/RegisterWizard'
 
 const App = () => {
   return (
@@ -45,7 +44,7 @@ const App = () => {
         {/* Blog */}
         <Route path='/blog' element={<Blog />} />
         {/* Resources */}
-        <Route path='/resources' element={<Resources />} />
+        <Route path='/resource' element={<Resources />} />
         {/* Members */}
         <Route path='/members' element={<Members />} />
         {/* Giving */}
@@ -53,17 +52,12 @@ const App = () => {
         {/* Login */}
         <Route path='/login' element={<Login />} />
         {/* Register */}
-        <Route path='/register' element={<Register />} />
+        <Route path='/register' element={<RegisterWizard />} />
         {/* Blog Details */}
-        <Route path='/blog-details' element={<BlogDetails />} />
+        <Route path="/blog-details/:id" element={<BlogDetails />} />
         {/* Mobile Screen Nav */}
         <Route path='/mobile-screen-nav' element={<MobileScreenNav />} />
         {/* To Set Up Register Page */}
-        <Route path='/register-setup' element={<RegisterSetUp />} />
-        {/* To Create Password Page */}
-        <Route path='/register-create-password' element={<CreatePassword />} />
-        {/* To Send Email Page */}
-        <Route path='/register-create-email' element={<SendToEmail />} />
         {/* To About Us Page */}
         <Route path='/about-us' element={<AboutUs />} />
         {/* To Our Mission Page */}
@@ -83,7 +77,7 @@ const App = () => {
         {/* To User Guide Page */}
         <Route path='/user-guide' element={<UserGuide />} />
         {/* To View Featured Detail Page on Event Page */}
-        <Route path='/view-featured-details' element={<ViewFeaturedDetails />} />
+        <Route path='/view-featured-details/:id' element={<ViewFeaturedDetails />} />
         {/* To Payment Plan Page */}
         <Route path='/payment-plan' element={<PaymentPlan />} />
         {/* To Profile Page */}
@@ -97,9 +91,13 @@ const App = () => {
         {/* To Event Content Dashboard Page */}
         <Route path='/event-content-page' element={<EventContentPage />} />
         {/* To Event Detail Dashboard Page */}
-        <Route path='/event-detail-page' element={<EventDetailsPage />} />
+        <Route path='/event-detail-page/:id' element={<EventDetailsPage />} />
         {/* To Past Event Page */}
         <Route path='/past-event-page' element={<PastEventsPage />} />
+        {/* To  Dashboard Page */}
+        <Route path='/dashboard-page' element={<DashboardPage />} />
+        {/* To  News Feed Page */}
+        <Route path='/news-page' element={<NewsFeedPage />} />
       </Routes>
     </div>
   )

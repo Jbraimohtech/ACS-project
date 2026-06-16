@@ -1,57 +1,52 @@
-import "./EventSpeakersCard.css"
+import "./EventSpeakersCard.css";
 
+interface Speaker {
+  id: number;
+  name: string;
+  title: string;
+  image: string;
+}
 
-const EventSpeakersCard = () => {
+interface EventSpeakersCardProps {
+  speakers: Speaker[];
+}
+
+const EventSpeakersCard = ({
+  speakers,
+}: EventSpeakersCardProps) => {
   return (
     <div className="orionSpeakersCard">
       <h3 className="orionSpeakersTitle">
         Featured Speakers
       </h3>
 
-      <div className="orionSpeakerItem">
-        <img
-          src="/speaker1.jpg"
-          alt=""
-          className="orionSpeakerAvatar"
-        />
+      {speakers.length > 0 ? (
+        speakers.map((speaker) => (
+          <div
+            className="orionSpeakerItem"
+            key={speaker.id}
+          >
+            <img
+              src={`https://ambchapcorps.org/uploads/${speaker.image}`}
+              alt={speaker.name}
+              className="orionSpeakerAvatar"
+            />
 
-        <div>
-          <h4>Dr. Sarah Jenkins</h4>
-          <p>Chief AI Officer, Zenith Labs</p>
-        </div>
-      </div>
-
-      <div className="orionSpeakerItem">
-        <img
-          src="/speaker2.jpg"
-          alt=""
-          className="orionSpeakerAvatar"
-        />
-
-        <div>
-          <h4>Marcus Chen</h4>
-          <p>Founder, Decentralize.io</p>
-        </div>
-      </div>
-
-      <div className="orionSpeakerItem">
-        <img
-          src="/speaker3.jpg"
-          alt=""
-          className="orionSpeakerAvatar"
-        />
-
-        <div>
-          <h4>Elena Rodriguez</h4>
-          <p>Lead Dev, Neural Protocols</p>
-        </div>
-      </div>
+            <div>
+              <h4>{speaker.name}</h4>
+              <p>{speaker.title}</p>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No speakers available</p>
+      )}
 
       <button className="orionViewAllSpeakers">
-        View All 24 Speakers
+        View All {speakers.length} Speakers
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default EventSpeakersCard
+export default EventSpeakersCard;

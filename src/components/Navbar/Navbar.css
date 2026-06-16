@@ -1,268 +1,149 @@
-.navbar {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.novaNavbar {
+  height: 80px;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 48px;
+}
+
+.novaLogo {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.novaNavLinks {
+  display: flex;
+  gap: 40px;
+}
+
+.novaNavLinks a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.novaAuthButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.novaLoginBtn,
+.novaRegisterBtn {
+  border: 1px solid rgba(255,255,255,.4);
+
+  padding: 16px 32px;
+  border-radius: 10px;
+
+  color: white;
+  text-decoration: none;
+}
+
+.novaMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+}
+
+/* Mobile Drawer */
+
+.novaMobileMenu {
+  position: fixed;
+  inset: 0;
+  background: white;
+
+  transform: translateX(-100%);
+  transition: .3s ease;
+
+  z-index: 999;
+}
+
+.novaMobileMenuOpen {
+  transform: translateX(0);
+}
+
+.novaMobileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 24px;
+}
+
+.novaMobileLogo {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0f5c56;
+  text-decoration: none;
+}
+
+.novaMobileHeader button {
+  border: none;
+  background: none;
+}
+
+.novaMobileLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  padding: 60px 24px;
+}
+
+.novaMobileLinks a {
+  text-decoration: none;
+  font-size: 32px;
+  color: #101828;
+  font-weight: 500;
+}
+
+.novaMobileActions {
+  display: flex;
+  gap: 20px;
+
+  padding: 24px;
+}
+
+.novaMobileLogin,
+.novaMobileRegister {
+  flex: 1;
+
+  border: 1px solid #94a3b8;
+  border-radius: 14px;
+
+  text-align: center;
+  text-decoration: none;
+
+  padding: 18px;
+  color: #101828;
+  font-size: 20px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .novaNavbar {
     background: transparent;
-    padding: 15px 3%;
-    top: 0;
-    position: sticky;
-    z-index: 100;
-    margin:20px 0 100px 0;
-}
+    padding: 0 24px;
+  }
 
-.logo {
-    font-family: myFont;
-    font-size: 48px;
-    font-weight: bold;
-    color: var(--light);
-    font-weight: 700;
-}
+  .novaLogo {
+    color: #fff;
+  }
 
-.logo-phone {
+  .novaNavLinks,
+  .novaAuthButtons {
     display: none;
-}
+  }
 
-.nav-links {
-    flex: 1;
-    list-style: none;
-    text-align: center;
-}
-
-.nav-links .menu-link {
-    display: inline-block;
-    margin: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    color: var(--light);
-    text-decoration: none;
-}
-
-
-.sold-nav {
-    display: flex;
-    position: absolute;
-    right: 10%;
-    left: 20%;
-    margin: -10px;
-}
-
-.access-box {
-    display: flex;
-    gap: 20px;
-    position: absolute;
-    right: 3%;
-}
-
-.login-btn {
-    background: transparent;
+  .novaMenuButton {
+    display: block;
     color: #fff;
-    min-width: 126px;
-    height: 56px;
-    border-radius: 12px;
-    font-size: 18px;
-    cursor: pointer;
-    border: 1px solid #fff;
-    outline: 0;
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  }
 }
-
-.signup-btn {
-    background: transparent;
-    color: #fff;
-    min-width: 126px;
-    height: 56px;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 18px;
-    cursor: pointer;
-    border: 1px solid #fff;
-    outline: 0;
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
- header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 80px;
-    padding: 0 2rem;
-    background: transparent;
-    color: var(--light);
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-nav .phone-menu-link {
-    margin: 0 2rem;
-    color: var(--light);
-    text-decoration: none;
-}
-
-header .phone-nav-btn {
-    padding: 5px;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--light);
-    visibility: hidden;
-    opacity: 0;
-    font-size: 1.8rem;
-}
-
- header .phone-nav-btn-close {
-    padding: 5px;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text);
-    visibility: hidden;
-    opacity: 0;
-    font-size: 1.8rem;
- }
-
-@media (max-width: 480px ){
-    .navbar {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        background: transparent;
-        padding: 15px 3%;
-        top: 0;
-        position: sticky;
-        z-index: 100;
-        margin:20px 0 60px 0;
-    }
-
-    .login-btn {
-        background: transparent;
-        color: var(--text);
-        width: 150px;
-        font-size: 24px;
-        font-weight: 600;
-        border: 1px solid #64748B;
-    }
-
-    .signup-btn {
-        background: transparent;
-        color: var(--text);
-        width: 150px;
-        font-size: 24px;
-        font-weight: 600;
-        border: 1px solid #64748B;
-    }
-
-
-    .nav-links {
-        display: none;
-    }
-
-    .logo {
-        font-family: myFont;
-        font-size: 32px;
-        font-weight: bold;
-        color: var(--primary);
-        font-weight: 700;
-        position: relative;
-        left: -0.5rem;
-        z-index: 1000;  
-    }
-
-    .logo{
-        color:var(--light);
-        transition:0.3s ease;
-    }
-
-    .white-logo{
-        color:var(--primary);
-    }
-
-    header .phone-nav-btn {
-        visibility: visible;
-        opacity: 1;
-        font-size: 1.8rem;
-    }
-
-    header .phone-nav-btn-close {
-        visibility: visible;
-        opacity: 1;
-        font-size: 1rem;
-    }
-
-    header nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: baseline;
-        align-items: baseline;
-        gap: 1.5rem;
-        background-color: var(--light);
-        transition: 1s;
-        transform: translate(-100vh);
-        z-index: 999;
-    }
-
-    header .responsive-nav {
-        transform: translateY(0);
-    }
-
-    nav .nav-close-btn {
-        position: absolute;
-        top: 0.5rem;
-        right: 2rem;
-        color: var(--text);
-        font-size: 1rem;
-
-    }
-
-    nav .phone-menu-link {
-        font-size: 1.75rem;
-        color: var(--text);
-    }
-
-    nav .phone-menu-link:hover {
-        color: var(--primary);
-        text-decoration: none;
-    }
-
-    .sold-nav {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        justify-content: baseline;
-        align-items: baseline;
-        left: 0;
-        position: relative;
-        height: fit-content;
-    }
-
-
-    .access-box {
-        display: flex;
-        gap: 20px;
-        position: relative;
-        left: 2rem;
-    }
-
-}
-

@@ -2,16 +2,16 @@
 import AllMainContent from '../components/AllMainContent'
 import SearchBox from '../components/SearchBox'
 import "../../src/EventsComponents/Event.css"
-import MobileScreenNav from '../components/Navbar/MobileScreenNav'
 import MemberProfiles from './MemberProfiles'
 import HomeFooter from '../components/HomeFooter'
 import { FaChevronDown } from 'react-icons/fa'
+import Navbar from '../components/Navbar/Navbar'
 
 const MemberContent = () => {
   return (
     <div>
       <AllMainContent> 
-        <MobileScreenNav />
+        <Navbar />
         <div  className='member-head-text'>
           <h1>
             Our Members

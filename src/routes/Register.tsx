@@ -1,9 +1,9 @@
-import RegisterContent from "../RegisterComponents/RegisterContent"
+import RegisterWizard from "../RegisterComponents/RegisterWizard"
 
 const Register = () => {
   return (
     <div className='register'>
-      <RegisterContent />
+      <RegisterWizard />
     </div>
   )
 }
