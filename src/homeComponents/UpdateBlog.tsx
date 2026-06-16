@@ -1,12 +1,64 @@
 import { useNavigate } from 'react-router-dom';
 import YellowBtn from '../components/BlueBtn'
+import { useEffect, useState } from 'react';
+
+interface Article {
+  id: number;
+  title: string;
+  content: string;
+  created_at: string;
+  image: string | null;
+}
+
+// Helper function to safely format date
+const formatDate = (dateString: string | undefined): string => {
+  if (!dateString) return "";
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return dateString;
+    }
+    return date.toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  } catch {
+    return dateString || "";
+  }
+};
 
 const UpdateBlog = () => {
+    const [article, setArticle] = useState<Article | null>(null);
     const navigate = useNavigate();
 
     const goToViewBlog = () => {
         navigate("/blog")
     }
+
+    useEffect(() => {
+    
+        const fetchArticle = async () => {
+          try {
+            const response = await fetch(
+              `https://ambchapcorps.org/api/blog`
+            );
+    
+            const data = await response.json();
+            
+            // The API returns an array, get the first article
+            if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+              setArticle(data.data[0]);
+            } else if (data.data && !Array.isArray(data.data)) {
+              setArticle(data.data);
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchArticle();
+      }, []);
 
 
   return (
@@ -34,11 +86,21 @@ const UpdateBlog = () => {
 
             <div className='blog-content-outline'>
                 <div className='blog-content-outline-one'>
-                    <div className='blog-img-one'></div>
+                    <img
+                        src={
+                            article?.image
+                            ? `https://ambchapcorps.org/storage/${article.image}`
+                            : "/src/assets/images/blog-img-one.jpg"
+                        }
+                        alt={article?.title || "Blog"}
+                        className="blog-img-one"
+                        onError={(e) => {
+                            e.currentTarget.src = "/src/assets/images/blog-img-one.jpg";
+                        }}
+                    />
                     <div className='blog-img-one-letter'>
                         <h4>
-                            Tax-Saving Strategies for <br />
-                            Small Business
+                            {article?.title}
                         </h4>
 
                         <p>
@@ -46,7 +108,7 @@ const UpdateBlog = () => {
                         </p>
                         <div className='clock-box'>
                             <div className='clock'></div>
-                            <p>July 29, 2026</p>
+                            <p>{formatDate(article?.created_at)}</p>
                         </div>
                         
                     </div>
@@ -57,12 +119,11 @@ const UpdateBlog = () => {
                             <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
-                                    Tax-Saving Strategies for
-                                    Small Business
+                                    {article?.title}
                                 </h4>
                                 <div className='clock-box'>
                                     <div className='clock'></div>
-                                    <p>July 29, 2026</p>
+                                    <p>{formatDate(article?.created_at)}</p>
                                 </div>
                                 
                             </div>
@@ -71,12 +132,11 @@ const UpdateBlog = () => {
                             <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
-                                    Tax-Saving Strategies for 
-                                    Small Business
+                                    {article?.title}
                                 </h4>
                                 <div className='clock-box'>
                                     <div className='clock'></div>
-                                    <p>July 29, 2026</p>
+                                    <p>{formatDate(article?.created_at)}</p>
                                 </div>
                                 
                             </div>
@@ -87,12 +147,11 @@ const UpdateBlog = () => {
                             <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
-                                    Tax-Saving Strategies for <br />
-                                    Small Business
+                                    {article?.title}
                                 </h4>
                                 <div className='clock-box'>
                                     <div className='clock'></div>
-                                    <p>July 29, 2026</p>
+                                    <p>{formatDate(article?.created_at)}</p>
                                 </div>
                                 
                             </div>
@@ -101,12 +160,11 @@ const UpdateBlog = () => {
                             <div className='blog-three'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
-                                    Tax-Saving Strategies for <br />
-                                    Small Business
+                                    {article?.title}
                                 </h4>
                                 <div className='clock-box'>
                                     <div className='clock'></div>
-                                    <p>July 29, 2026</p>
+                                    <p>{formatDate(article?.created_at)}</p>
                                 </div>
                                 
                             </div>

@@ -1,0 +1,181 @@
+.resourcesWrapper {
+  padding: 40px;
+}
+
+.resourceTabs {
+  display: flex;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.resourceTabs button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.resourceTabActive {
+  color: #0f5b55;
+  font-weight: 600;
+  border-bottom: 2px solid #0f5b55;
+}
+
+.resourceFilters {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.resourceFilters button {
+  height: 38px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 999px;
+  background: #f3f4f6;
+  cursor: pointer;
+}
+
+.resourceFilterActive {
+  background: #0f5b55 !important;
+  color: white;
+}
+
+.resourceGrid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.resourceCard {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.resourceImage {
+  position: relative;
+  height: 180px;
+}
+
+.resourceImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.resourcePlay {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+}
+
+.resourceContent {
+  padding: 14px;
+}
+
+.resourceContent h4 {
+  margin-bottom: 6px;
+}
+
+.resourceContent p {
+  font-size: 12px;
+  color: #7b7b7b;
+}
+
+.resourceActionBtn {
+  width: 100%;
+  margin-top: 12px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  background: #0f5b55;
+  color: white;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 1200px) {
+  .resourceGrid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .resourceGrid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .resourceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .resourceTabs {
+    overflow-x: auto;
+  }
+
+  .resourceFilters {
+    overflow-x: auto;
+  }
+}
+
+.resourcesHeader {
+  margin-bottom: 32px;
+}
+
+.resourcesHeader h1 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.resourcesHeader p {
+  margin-top: 10px;
+  max-width: 700px;
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+.resourcesSection {
+  margin-top: 40px;
+}
+
+.resourcesSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.resourcesSectionHeader h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.resourcesSectionHeader button {
+  border: none;
+  background: none;
+  color: #0f5b55;
+  cursor: pointer;
+}
+
+.resourceCount {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  font-size: 12px;
+  font-weight: 600;
+}

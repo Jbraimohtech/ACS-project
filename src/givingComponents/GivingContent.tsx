@@ -5,8 +5,8 @@ import {
 } from "lucide-react";
 import AllMainContent from '../components/AllMainContent'
 import "../../src/EventsComponents/Event.css"
-import MobileScreenNav from '../components/Navbar/MobileScreenNav'
 import "./Giving.css"
+import Navbar from "../components/Navbar/Navbar";
 
 const GivingContent : React.FC = () => {
     const [donationType, setDonationType] =
@@ -15,7 +15,7 @@ const GivingContent : React.FC = () => {
   return (
     <div>
       <AllMainContent> 
-        <MobileScreenNav />
+        <Navbar />
         <div className='event-head-text-box'>
           
         </div>

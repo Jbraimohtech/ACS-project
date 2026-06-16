@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import type { User } from "../types/User";
 
-const PersonalInfoCard = () => {
+interface Props {
+  user: User | null;
+}
+const PersonalInfoCard = ({ user }: Props) => {
   const navigate = useNavigate();
 
   const goToEditProfile = () => {
@@ -14,12 +18,16 @@ const PersonalInfoCard = () => {
         <div className="stellarInfoCardMobile-only">
           <div className="stellarInfoGroup-small">
             <label>Phone Number</label>
-            <p>+ (123) 1800-567-8990</p>
+            <p>
+              {user?.phone || "No phone number"}
+            </p>
           </div>
 
           <div className="stellarInfoGroup-small">
             <label>Email Address</label>
-            <p>emmanuel@gmail.com</p>
+            <p>
+            {user?.email}
+          </p>
           </div>
         </div>
 
@@ -42,7 +50,9 @@ const PersonalInfoCard = () => {
           </div>
           <div className="small-account-info-card">
             <p>User ID</p>
-            <span>#1234567</span>
+            <p>
+              {user?.membership_id || "No ID"}
+            </p>
           </div>
         </div>
       </div>
@@ -57,17 +67,21 @@ const PersonalInfoCard = () => {
 
       <div className="stellarInfoGroup">
         <label>Full Name</label>
-        <p>Chukwutem Emmanuel</p>
+        <p>
+          {user?.first_name} {user?.last_name}
+        </p>
       </div>
 
       <div className="stellarInfoGroup">
         <label>Phone Number</label>
-        <p>+ (123) 1800-567-8990</p>
+        <p>
+          {user?.phone || "No phone number"}
+        </p>
       </div>
 
       <div className="stellarInfoGroup">
         <label>Email Address</label>
-        <p>emmanuel@gmail.com</p>
+        <p>{user?.email}</p>
       </div>
 
       <button className="stellarEditBtn-bottom" onClick={goToEditProfile}>

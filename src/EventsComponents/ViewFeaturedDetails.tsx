@@ -7,13 +7,14 @@ import {
   ChevronDown,
 } from "lucide-react";
 import "./Event.css"
-import MobileScreenNav from "../components/Navbar/MobileScreenNav";
 import AllMainContent from "../components/AllMainContent";
 import HomeFooter from "../components/HomeFooter";
 import "../blogComponents/Blog.css"
 import BlogCard from "../components/BlogCard";
 import BeAccountedFor from "./BeAccountedFor";
 import { useState, useEffect } from "react";
+import Navbar from "../components/Navbar/Navbar";
+import { useParams } from "react-router-dom";
 
 
 
@@ -48,13 +49,11 @@ interface Event {
 const ViewFeaturedDetails: React.FC = () => {
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
-  const [showModal, setShowModal] =
-      useState(false);
-
-      const [showRegisterModal, setShowRegisterModal] =
-    useState(false);
-
-    const handleGoing = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const { id } = useParams();
+  
+  const handleGoing = () => {
         setShowModal(false);
 
         setTimeout(() => {
@@ -63,25 +62,33 @@ const ViewFeaturedDetails: React.FC = () => {
     };
 
     useEffect(() => {
+      if (!id) return;
+
       const fetchEvent = async () => {
         try {
           const response = await fetch(
-            "https://ambchapcorps.org/api/event"
+            `https://ambchapcorps.org/api/event/${id}`
           );
 
+          if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+          }
+
           const result = await response.json();
+          console.log("Fetched event:", result);
 
-          setEvent(result.data?.[0] ?? null);
-
+          // Handle both wrapped { status, data: {...} } and direct event responses
+          const eventData = result.data || result;
+          setEvent(eventData);
         } catch (error) {
-          console.error(error);
+          console.error("Error fetching event:", error);
         } finally {
           setLoading(false);
         }
       };
 
       fetchEvent();
-    }, []);
+    }, [id]);
 
    if (loading) {
     return (
@@ -94,10 +101,10 @@ const ViewFeaturedDetails: React.FC = () => {
   return (
     <div>
         <AllMainContent> 
-        <MobileScreenNav />
+        <Navbar />
         <div  className='view-featured-head-text'>
           <h1>
-            Annual Tech <br /> Symposium 2024
+            {event?.title}
           </h1>
         </div>
 
@@ -191,16 +198,9 @@ const ViewFeaturedDetails: React.FC = () => {
               {event?.description}
             </p>
 
-            <p>
-                Expect deep-dive sessions into zero-knowledge proofs, agentic
-                workflows, and the future of cross-chain interoperability. We gather to
-                bridge the gap between theoretical research and enterprise-scale
-                implementation.
-            </p>
-
             {/* Phone only */}
             <span className="about-featured-card-phone-text">
-                Join us for the 10th Annual Tech Symposium, where global leaders and innovators gather to discuss the future of AI, quantum computing, and sustainable technology. This year features over 50 sessions designed for product managers and technology executives.
+              {event?.description}
             </span>
             {/* End phone only */}
 

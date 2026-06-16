@@ -1,27 +1,29 @@
-import "./EventVenueCard.css"
+import "./EventVenueCard.css";
 import { MapPin } from "lucide-react";
 
-const EventVenueCard = () => {
+interface EventVenueCardProps {
+  event: {
+    venue: string;
+  };
+}
+
+const EventVenueCard = ({
+  event,
+}: EventVenueCardProps) => {
   return (
     <div className="novaVenueCard">
       <img
         src="/map-placeholder.jpg"
-        alt=""
+        alt="Venue Map"
         className="novaVenueMap"
       />
 
       <div className="novaVenueContent">
         <h3>Venue</h3>
 
-        <h4>
-          Las Vegas Convention Center
-        </h4>
+        <h4>{event.venue}</h4>
 
-        <p>
-          3150 Paradise Rd,
-          Las Vegas, NV 89109,
-          United States
-        </p>
+        <p>{event.venue}</p>
 
         <button className="novaDirectionsButton">
           <MapPin size={15} />
@@ -29,7 +31,7 @@ const EventVenueCard = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EventVenueCard
+export default EventVenueCard;

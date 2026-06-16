@@ -1,6 +1,17 @@
-import "./EventInfoCard.css"
+import "./EventInfoCard.css";
 
-const EventInfoCard = () => {
+interface Event {
+  dress_code: string;
+  wifi: string;
+}
+
+interface EventInfoCardProps {
+  event: Event;
+}
+
+const EventInfoCard = ({
+  event,
+}: EventInfoCardProps) => {
   return (
     <div className="galaxyInfoCard">
       <h3 className="galaxyInfoTitle">
@@ -9,20 +20,15 @@ const EventInfoCard = () => {
 
       <div className="galaxyInfoRow">
         <span>Dress Code</span>
-        <strong>Business Casual</strong>
+        <strong>{event.dress_code}</strong>
       </div>
 
       <div className="galaxyInfoRow">
         <span>Wifi</span>
-        <strong>TS2024_Guest</strong>
-      </div>
-
-      <div className="galaxyInfoRow">
-        <span>Lanyards</span>
-        <strong>Front Desk Pickup</strong>
+        <strong>{event.wifi}</strong>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EventInfoCard
+export default EventInfoCard;

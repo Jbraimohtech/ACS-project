@@ -1,68 +1,63 @@
-import {
-  MapPin,
-  Users,
-} from "lucide-react";
+import { MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
+interface Event {
+  id: number;
+  title: string;
+  description: string;
+  venue: string;
+  date: string;
+  image: string;
+  is_featured: number;
+}
 
-const EventCard = () => {
+interface EventCardProps {
+  event: Event;
+}
+
+const EventCard = ({ event }: EventCardProps) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    navigate(`/event-detail-page/${event.id}`);
+  };
+
   return (
     <div className="stellarEventRow">
-
       <div className="stellarDateBlock">
         <span>Thur</span>
-
         <h2>04</h2>
-
         <p>SEP</p>
-
         <p>2026</p>
       </div>
 
       <div className="stellarEventImage"></div>
 
       <div className="stellarEventInfo">
-
-        <h2>
-          Annual Tech
-          <br />
-          Symposium 2024
-        </h2>
+        <h2>{event.title}</h2>
 
         <div className="stellarEventLocation">
           <MapPin size={14} />
-
-          <span>
-            Las vegas convention center,
-            las vegas, USA
-          </span>
+          <span>{event.venue}</span>
         </div>
 
-        <p>
-          Join industry leaders for a two-day
-          deep dive into the future of AI,
-          decentralized networks, and the
-          evolution of digital ecosystems.
-        </p>
-
-        <div className="stellarAttendance">
-          <Users size={13} />
-          450+ attending
-        </div>
+        <p>{event.description}</p>
 
         <div className="stellarEventActions">
           <button className="stellarRSVPButton">
             RSVP
           </button>
 
-          <button className="stellarDetailsButton">
+          <button
+            className="stellarDetailsButton"
+            onClick={handleViewDetails}
+          >
             View details
           </button>
         </div>
-
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default EventCard
+export default EventCard;

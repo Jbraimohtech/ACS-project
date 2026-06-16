@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 interface Article {
-  id: string | number;
+  id: number;
   title: string;
-  description: string;
-  readTime?: string;
-  publishedTime?: string;
+  content: string;
+  created_at: string;
 }
 
 interface Props {
@@ -24,8 +23,8 @@ const AllCategoryBoxCard = ({ activeCategory }: Props) => {
     const fetchArticles = async () => {
       try {
         const res = await fetch(
-          `https://ambchapcorps.org/api/blog${activeCategory}`
-        );
+        `https://ambchapcorps.org/api/blog?category=${activeCategory}`
+      );
         const data = await res.json();
         setArticles(Array.isArray(data.data) ? data.data : []);
       } catch (error) {
@@ -48,15 +47,20 @@ const AllCategoryBoxCard = ({ activeCategory }: Props) => {
                   <div className='article-clock-icon-box-container'>
                     <div className='article-clock-icon-box'>
                       <div className='clock'></div>
-                      <p>{article.readTime || "5 min"} read</p>
-                      <span>{article.publishedTime || "Published 2 hours ago"}</span>
+                      <p>{article.title || "5 min"} read</p>
+                      <span>
+                        {new Date(article.created_at)
+                          .toLocaleDateString()}
+                      </span>
                     </div>
                     <h2>{article.title}</h2>
                     <div className='article-clock-icon-box'>
-                      <p className='article-clock-icon-box-p'>{article.description}</p>
+                      <p className='article-clock-icon-box-p'>{article.content}</p>
                     </div>
                   </div>
-                  <div className='read-article-box' onClick={() => navigate("/blog-details")}>
+                  <div className='read-article-box' onClick={() =>
+                    navigate(`/blog-details/${article.id}`)
+                  }>
                     <button className='read-article-btn'>Read Article</button>
                     <div className='safe-data'></div>
                     <div className='share-data'></div>

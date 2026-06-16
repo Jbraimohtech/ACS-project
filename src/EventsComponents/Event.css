@@ -276,6 +276,23 @@
     border-radius: 12px;
 }
 
+.first-text-box-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px
+}
+
+.first-text-box-left p {
+  font-size: 24px;
+}
+
+.first-text-box-left h1 {
+  font-size: 48px;
+}
+
 .be-accounted-for-image-phone {
     display: none;
 }

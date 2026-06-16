@@ -1,7 +1,14 @@
+
 import {useNavigate} from 'react-router-dom';
+import type { User } from "../types/User";
 
+interface Props {
+  user: User | null;
+}
 
-const ProfileBanner = () => {
+const ProfileBanner = ({
+  user,
+}: Props) => {
   const navigate = useNavigate();
 
   const goToEditProfile = () => {
@@ -19,28 +26,51 @@ const ProfileBanner = () => {
       </div>
 
       <div className="auroraProfileSection">
-        <div className="profile-image-demo"></div>
+        <img
+          src={
+            user?.profile_image
+              ? `https://ambchapcorps.org/storage/${user.profile_image}`
+              : "/profile.jpg"
+          }
+          alt="Profile"
+          className="profile-image-demo"
+          onError={(e) => {
+            e.currentTarget.src =
+              "/profile.jpg";
+          }}
+        />
 
         <div className="auroraProfileDetails">
           <div className="auroraNameRow">
-            <h2>Chukwutem Emmanuel</h2>
+            <h2>
+              {user?.first_name}
+              {" "}
+              {user?.last_name}
+            </h2>
 
             <span className="auroraVerified">
               <div className="verified-profile"></div>
             </span>
 
             <span className="auroraStatus">
-              Active
+              {user?.status}
+              <div className="auroraStatus-circle"></div>
               <div className="auroraStatus-circle"></div>
             </span>
+              
+            
           </div>
 
           <div className="auroraMetaRow">
             <p>Unit Coordinator</p>
 
             <span>
-              <div className="edit-profile-location"></div>
-              Ikeja, Lagos
+              <span>
+                <div className="edit-profile-location"></div>
+
+                {user?.zone?.name ??
+                  "No Zone Assigned"}
+              </span>
             </span>
           </div>
         </div>

@@ -1,9 +1,40 @@
+import "./EventHeroSection.css";
 
-import "./EventHeroSection.css"
+interface Event {
+  id: number;
+  image: string;
+  user_id: number;
+  zone_id: number | null;
+  title: string;
+  dress_code: string;
+  wifi: string;
+  date: string;
+  description: string;
+  venue: string;
+  is_featured: number;
 
-const EventHeroSection = () => {
+  created_at: string;
+  updated_at: string;
+
+  user: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+  };
+
+  zone: unknown;
+}
+
+interface EventHeroSectionProps {
+  event: Event;
+}
+
+const EventHeroSection = ({
+  event,
+}: EventHeroSectionProps) => {
   return (
-     <div className="auroraHeroCard">
+    <div className="auroraHeroCard">
       <div className="auroraHeroImage"></div>
 
       <div className="auroraHeroOverlay">
@@ -11,17 +42,14 @@ const EventHeroSection = () => {
           FLAGSHIP EVENT
         </span>
 
-        <h1>
-          Annual Tech Symposium 2024
-        </h1>
+        <h1>{event.title}</h1>
 
         <p>
-          Thur 04 SEP 2026 • Las Vegas
-          Convention Center
+          {event.date} • {event.venue}
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EventHeroSection
+export default EventHeroSection;

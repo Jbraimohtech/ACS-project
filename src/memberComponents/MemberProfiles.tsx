@@ -1,111 +1,53 @@
+import { useNavigate } from "react-router-dom";
 import "./Member.css";
-import mosesImg from "../assets/images/moses.jpg";
+import { useEffect, useState } from "react";
 
 interface Member {
   id: number;
-  name: string;
-  title: string;
-  image: string;
+  first_name: string;
+  last_name: string | null;
+  profile_image: string | null;
+  membership_id: string;
+  status: string;
 }
 
-const members: Member[] =  [
-  {
-    id: 1,
-    name: "Rev. Dr. Enebeli-Ebube Mikie Uche [Late]",
-    title: "Past Officer",
-    image: mosesImg,
-  },
-
-  {
-    id: 2,
-    name: "Archbishop C. A. O. Apena [JP]",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 3,
-    name: "Bishop Anthony Karuna",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 4,
-    name: "Rev Dr. Edet F. Akpa",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 5,
-    name: "Rev. Dr. Awhotu Sapele Tamisere",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 6,
-    name: "Rev. Dr. Awhotu Sapele Tamisere",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 7,
-    name: "Rev. Dr. Awhotu Sapele Tamisere",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 8,
-    name: "Rev. Dr. Awhotu Sapele Tamisere",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 9,
-    name: "Rev. Dr. Awhotu Sapele Tamisere",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 10,
-    name: "Rev. Dr. Awhotu Sapele Tamisere",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 11,
-    name: "Rev. Dr. Awhotu Sapele Tamisere",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-
-  {
-    id: 12,
-    name: "Rev. Dr. Awhotu Sapele Tamisere",
-    title: "Past Officer",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-  },
-];
-
 const MemberProfiles = () => {
+  const [members, setMembers] = useState<Member[]>([]);
+const [loading, setLoading] = useState(true);
+
+const navigate = useNavigate();
+
+const goToProfileAbout = () => {
+  navigate("/about-us")
+}
+
+useEffect(() => {
+  const fetchMembers = async () => {
+    try {
+      const response = await fetch(
+        "https://ambchapcorps.org/api/members"
+      );
+
+      const result = await response.json();
+
+      setMembers(result.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchMembers();
+}, []);
+
+if (loading) {
+  return (
+    <div className="membersLoading">
+      Loading members...
+    </div>
+  );
+}
   return (
     <div className='member-profiles-box'>
         {/* TABS */}
@@ -141,28 +83,42 @@ const MemberProfiles = () => {
         <div className="members-grid">
 
           {members.map((member) => (
-
-            <div className="member-card" key={member.id}>
-
+            <div
+              className="member-card"
+              key={member.id}
+            >
               <img
-                src={member.image}
-                alt={member.name}
+                src={
+                  member.profile_image
+                    ? `https://ambchapcorps.org/storage/${member.profile_image}`
+                    : "/images/default-avatar.jpg"
+                }
+                alt={member.first_name}
+                onError={(e) => {
+                  e.currentTarget.src =
+                    "/images/default-avatar.jpg";
+                }}
               />
 
               <div className="member-content">
+                <h3>
+                  {member.first_name}
+                  {member.last_name
+                    ? ` ${member.last_name}`
+                    : ""}
+                </h3>
 
-                <h3>{member.name}</h3>
+                <p>{member.membership_id}</p>
 
-                <p>{member.title}</p>
+                <span>
+                  {member.status}
+                </span>
 
-                <button>
+                <button onClick={goToProfileAbout}>
                   View Profile
                 </button>
-
               </div>
-
             </div>
-
           ))}
 
         </div>

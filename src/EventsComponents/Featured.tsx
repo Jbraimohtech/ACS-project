@@ -2,7 +2,29 @@ import { X, ChevronDown, } from "lucide-react";
 import "./Event.css"
 import EventCard from '../components/EventCard'
 import { useNavigate } from "react-router-dom"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+interface Event {
+  id: number;
+  image: string | null;
+  user_id: number;
+  zone_id: number | null;
+  title: string;
+  dress_code: string | null;
+  wifi: string | null;
+  date: string;
+  description: string;
+  venue: string;
+  is_featured: number;
+  created_at: string;
+  updated_at: string;
+  user: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+  };
+}
 
 const Featured = () => {
     const [showModal, setShowModal] =
@@ -21,8 +43,39 @@ const Featured = () => {
     const navigate = useNavigate();
 
     const goToViewFeaturedDetails = () => {
-        navigate("/view-featured-details")
+        navigate(
+          `/view-featured-details/${featuredEvent?.id}`
+        )
     }
+
+    const [featuredEvent, setFeaturedEvent] = useState<Event | null>(null);
+
+    useEffect(() => {
+      const fetchEvents = async () => {
+        try {
+          const response = await fetch(
+            "https://ambchapcorps.org/api/event"
+          );
+
+          if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+          }
+
+          const result = await response.json();
+          console.log("Featured event response:", result);
+
+          // Handle both wrapped { status, data: [...] } and direct array responses
+          const eventsArray = result.data || result;
+          const featured = Array.isArray(eventsArray) ? eventsArray.find((event: Event) => event.is_featured === 1) : null;
+
+          setFeaturedEvent(featured || null);
+        } catch (error) {
+          console.error("Error fetching featured event:", error);
+        }
+      };
+
+      fetchEvents();
+    }, []);
 
 
   return (
@@ -41,34 +94,58 @@ const Featured = () => {
         <div className='under-event-featured'>
             <EventCard>
                 <div className='first-text-box'>
-                    <div className='first-text'>
-                        <p>Thur</p>
-                        <h1>04</h1>
-                        <p>SEP <br /> 2026</p>
-                    </div>
-                    <div className='featured-first-img'></div>
+                  <div className='first-text-box-left'>
+                    <p>
+                      {featuredEvent &&
+                        new Date(
+                          featuredEvent.date
+                        ).toLocaleDateString("en-US", {
+                          weekday: "short",
+                        })}
+                    </p>
+
+                    <h1>
+                      {featuredEvent &&
+                        new Date(
+                          featuredEvent.date
+                        ).getDate()}
+                    </h1>
+
+                    <p>
+                      {featuredEvent &&
+                        new Date(
+                          featuredEvent.date
+                        ).toLocaleDateString("en-US", {
+                          month: "short",
+                          year: "numeric",
+                        })}
+                    </p>
+                  </div>
+                  <div className='featured-first-img'></div>
                 </div>
                 <div className='feature-details'>
-                    <h2>Annual Tech Symposium 2024</h2>
-                    <div className='location-icon-box'>
-                        <div className='location-icon'></div>
-                        <p>Las vegas convention center, las vagas, USA</p>
-                    </div>
-                    <p className='middle-location-icon-text'>Join industry leaders for a two-day deep dive into the future of AI, <br /> decentralized networks, and the evolution of digital ecosystems.</p>
-                    <div className='location-icon-box'>
-                        <div className='attending-icon'></div>
-                        <p>450+ attending</p>
-                    </div>
+                  <h2>{featuredEvent?.title}</h2>
+                  <div className='location-icon-box'>
+                      <div className='location-icon'></div>
+                      <p>{featuredEvent?.venue}</p>
+                  </div>
+                  <p className='middle-location-icon-text'>
+                    {featuredEvent?.description}
+                  </p>
+                  <div className='location-icon-box'>
+                      <div className='attending-icon'></div>
+                      <p>450+ attending</p>
+                  </div>
 
-                    {/* the direct buttons to other parts of event pages */}
-                    <div className='rsvp-box'>
-                        <button className="rsvp" onClick={() => setShowModal(true)}>
-                            <p className='rsvp-box-first-p'>RSVP</p>
-                        </button>
-                        <button className="view-details" onClick={goToViewFeaturedDetails}>
-                            <p className='rsvp-box-second-p'>View details</p>
-                        </button>
-                    </div>
+                  {/* the direct buttons to other parts of event pages */}
+                  <div className='rsvp-box'>
+                      <button className="rsvp" onClick={() => setShowModal(true)}>
+                          <p className='rsvp-box-first-p'>RSVP</p>
+                      </button>
+                      <button className="view-details" onClick={goToViewFeaturedDetails}>
+                          <p className='rsvp-box-second-p'>View details</p>
+                      </button>
+                  </div>
                 </div>
             </EventCard>
         </div>

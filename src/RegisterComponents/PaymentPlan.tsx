@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Register.css'
+import './PaymentPlan.css'
 
 const PaymentPlan: React.FC = () => {
   const [plan, setPlan] = useState<"monthly" | "yearly">("monthly");
@@ -301,4 +301,4 @@ const PaymentPlan: React.FC = () => {
   );
 };
 
-export default PaymentPlan
+export default PaymentPlan;

@@ -1,6 +1,6 @@
-import "./ProfilePage.css"
+import "./ProfilePage.css";
 import { X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 interface DashboardSidebarProps {
   sidebarOpen: boolean;
@@ -9,11 +9,6 @@ interface DashboardSidebarProps {
   >;
 }
 
-    // const navigate = useNavigate();
-
-    // const goToPaymentPage = navigate = () = {
-    //   ("/payment-page")
-    // }
 
 const DashboardSidebar = ({
   sidebarOpen,
@@ -21,76 +16,109 @@ const DashboardSidebar = ({
 }: DashboardSidebarProps) => {
   const navigate = useNavigate();
 
-  const goToBillingPaymentPage = () => {
-    navigate('/billing-payment-page');
-  };
-
-  const goToEventContentPage = () => {
-    navigate('/event-content-page');
+  const goToProfilePage = () => {
+    navigate("/profile-page");
   };
 
   return (
-
     <>
-    {sidebarOpen && (
-      <div
-        className="zenSidebarOverlay"
-        onClick={() => setSidebarOpen(false)}
-      />
-    )}
+      {sidebarOpen && (
+        <div
+          className="zenSidebarOverlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-    <aside
-      className={`zenDashboardSidebar ${
-        sidebarOpen ? "zenSidebarActive" : ""
-      }`}
-    >
-      <button
-        className="zenSidebarClose"
-        onClick={() => setSidebarOpen(false)}
+      <aside
+        className={`zenDashboardSidebar ${
+          sidebarOpen ? "zenSidebarActive" : ""
+        }`}
       >
-        <X size={22} />
-      </button>
-      <aside className="quantumSidebarShell">
-        <h2 className="quantumLogoText">ACS</h2>
+        <button
+          className="zenSidebarClose"
+          onClick={() => setSidebarOpen(false)}
+        >
+          <X size={22} />
+        </button>
 
-        <nav className="quantumSidebarNav">
-          <button className="quantumSidebarNav-btn">
+        <aside className="quantumSidebarShell">
+          <h2 className="quantumLogoText">ACS</h2>
+
+          <nav className="quantumSidebarNav">
+
+            <NavLink
+              to="/dashboard-page"
+              className={({ isActive }) =>
+                `quantumSidebarNav-btn ${isActive ? "quantumSidebarNav-btn-active" : ""}`
+              }
+            >
               <div className="dashboard-icon"></div>
               <span>Dashboard</span>
-          </button>
-          <button className="quantumSidebarNav-btn" onClick={goToBillingPaymentPage}>
+            </NavLink>
+
+            <NavLink
+              to="/billing-payment-page"
+              className={({ isActive }) =>
+                `quantumSidebarNav-btn ${isActive ? "quantumSidebarNav-btn-active" : ""}`
+              }
+            >
               <div className="payments-icon"></div>
               <span>Payments</span>
-          </button>
-          <button className="quantumSidebarNav-btn" onClick={goToEventContentPage}>
+            </NavLink>
+
+            <NavLink
+              to="/event-content-page"
+              className={({ isActive }) =>
+                `quantumSidebarNav-btn ${isActive ? "quantumSidebarNav-btn-active" : ""}`
+              }
+            >
               <div className="events-icon"></div>
               <span>Events</span>
-          </button>
-          <button className="quantumSidebarNav-btn">
+            </NavLink>
+
+            <NavLink
+              to="/news-page"
+              className={({ isActive }) =>
+                `quantumSidebarNav-btn ${isActive ? "quantumSidebarNav-btn-active" : ""}`
+              }
+            >
               <div className="news-icon"></div>
               <span>News</span>
-          </button>
-          <button className="quantumSidebarNav-btn">
+            </NavLink>
+
+            <NavLink
+              to="/resource"
+              className={({ isActive }) =>
+                `quantumSidebarNav-btn ${isActive ? "quantumSidebarNav-btn-active" : ""}`
+              }
+            >
               <div className="resources-icon"></div>
               <span>Resources</span>
-          </button>
-        </nav>
+            </NavLink>
 
-        <div className="quantumSidebarBottom">
-          <button className="quantumProfileBtn">
-            <div className="my-profile-icon"></div>
+          </nav>
+
+          <div className="quantumSidebarBottom">
+            <NavLink
+              to="/profile-page"
+              className={({ isActive }) =>
+                `quantumProfileBtn ${isActive ? "quantumProfileBtn-active" : ""}`
+              }
+              onClick={goToProfilePage}
+            >
+              <div className="my-profile-icon"></div>
               <span>My Profile</span>
-          </button>
+            </NavLink>
 
-          <button className="quantumLogoutBtn">
-            <div className="log-out-icon"></div>
+            <button className="quantumLogoutBtn">
+              <div className="log-out-icon"></div>
               <span>Log out</span>
-          </button>
-        </div>
-      </aside>
+            </button>
+          </div>
+        </aside>
       </aside>
     </>
   );
-}
+};
 
-export default DashboardSidebar
+export default DashboardSidebar;

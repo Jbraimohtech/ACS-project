@@ -1,13 +1,13 @@
 
 import AllMainContent from '../components/AllMainContent'
 import "./Blog.css"
-import MobileScreenNav from '../components/Navbar/MobileScreenNav'
+import Navbar from '../components/Navbar/Navbar'
 
 const BlogMainContent = () => {
   return (
     <div>
         <AllMainContent> 
-        <MobileScreenNav />
+        <Navbar />
         <div className='event-head-text-box'>
           <div className='small-event-box'>
             <div className='small-white-icon'></div>
@@ -23,7 +23,7 @@ const BlogMainContent = () => {
         {/* This is for only media query and it is not expected to be on big screens */}
           <div  className='event-head-text-phone'>
             <h1>
-              Andrea Luises
+              Blogs
             </h1>
           </div>
         {/* The end of it from media query*/}

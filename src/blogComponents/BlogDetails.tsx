@@ -1,110 +1,130 @@
 import AllMainContent from "../components/AllMainContent";
 import HomeFooter from "../components/HomeFooter";
-import MobileScreenNav from "../components/Navbar/MobileScreenNav";
 import "./Blog.css";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Navbar from "../components/Navbar/Navbar";
+
+
+interface Article {
+  id: number;
+  title: string;
+  content: string;
+  image: string | null;
+  created_at: string;
+
+  category: {
+    id: number;
+    name: string;
+  };
+
+  user: {
+    first_name: string;
+    last_name: string;
+  };
+
+  zone: {
+    id: number;
+    name: string;
+  };
+}
 
 function BlogDetails() {
+  const { id } = useParams();
+  const [article, setArticle] = useState<Article | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchArticle = async () => {
+      try {
+        const response = await fetch(
+          `https://ambchapcorps.org/api/blog/${id}`
+        );
+
+        const data = await response.json();
+
+        setArticle(data.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticle();
+  }, [id]);
+
+  if (loading) {
+  return (
+    <div className="blogLoading">
+      Loading article...
+    </div>
+  );
+}
   return (
     <div>
+      
         <AllMainContent> 
-        <MobileScreenNav />
+        <Navbar />
         <div className='event-head-text-box'>
           <div className='blog-d-small-event-box'>
             <p>Blogs details</p>
           </div>
         </div>
         <div className='event-head-text'>
-            <h1>
-                The Power of Order
-            <br />
-            in a Kingdom System
-            </h1> 
+            <h1>{article?.title}</h1>
         </div>
 
         {/* This is for only media query and it is not expected to be on big screens */}
           <div  className='event-head-text-phone'>
-            <h1>
-              Andrea Luises
-            </h1>
+            <h1>{article?.title}</h1>
           </div>
         {/* The end of it from media query*/}
       </AllMainContent>
 
       {/* BLOG CONTENT */}
       <section className="blog-details-content">
-        <div className="intro">
-          <div className="shade-circle-box">
-            <div className="shade-circle"></div>
-            <p>
-              In every system that thrives, there is one constant: order. <br />
-              Not just activity. Not just intention. But structure — intentional, defined, and sustained.
-            </p>
-          </div>
-          
-          <div className="shade-circle-box">
-            <div className="shade-circle"></div>
-            <p>
-              Many communities fail not because they lack passion, but because they lack alignment. Effort exists, but direction is scattered. <br />
-              People are willing, but systems are weak.
-            </p>
-          </div>
-
-          <div className="shade-circle-box">
-            <div className="shade-circle"></div>
-            <p>
-              This is why order is not optional. It is foundational.
-            </p>
-          </div>
+        <div className="blogArticleContent">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: article?.content || "",
+            }}
+          />
         </div>
 
-        <div className="blog-details-img-one"></div>
+        <img
+          src={
+            article?.image
+              ? `https://ambchapcorps.org/storage/${article.image}`
+              : "/src/assets/images/blog-detail-img-two.jpg"
+          }
+          alt={article?.title || "Blog"}
+          className="blog-details-img-one"
+          onError={(e) => {
+            e.currentTarget.src = "/images/default-blog.jpg";
+          }}
+        />
 
         <div className="blog-layout">
           {/* LEFT */}
           <div className="blog-layout-left">
 
-            <h2>Order Is the <br /> Foundation of Growth</h2>
+              <div className="blog-layout-left">
 
-            <p>
-              Growth without structure leads to confusion.
-            </p>
-
-            <p>
-              When roles are unclear, responsibilities overlap. When communication is scattered, people disconnect. When systems are weak, even strong individuals become ineffective.
-            </p>
-
-            <p>
-              Order creates clarity. And clarity creates momentum.
-            </p>
-
-            <h2>Every <br /> Member Has a Place</h2>
-
-            <span className="blog-layout-left-pp">
-              A system is only as strong as its ability to recognize and position its members correctly.
-            </span>
-            <span className="blog-layout-left-pp">In a well-structured body:</span>
-            <ul className="text-list">
-              <li>Everyone is Known</li>
-              <li>Everyone is accounted for</li>
-              <li>Everyone understands their role</li>
-            </ul>
-            <span className="blog-layout-left-pp">
-              This is not control — it is alignment. <br />
-              And alignment produces strength.
-            </span>  
-            
-            <div className="scripture-box">
-              <h3>Scriptures</h3>
-              <p>
-                "Let all things be done decently and in order."
-              </p>
-              <span>1 Corinthians 14:40</span>
+            <div className="blogArticleContent">
+              {article?.content
+                ?.split("\n")
+                .filter(Boolean)
+                .map((paragraph, index) => (
+                  <p key={index}>
+                    {paragraph}
+                  </p>
+              ))}
             </div>
 
-            <p>
-              This incentive does two things: it lowers the barrier to entry for entrepreneurs and immediately tackles local unemployment rates. It's a win-win solution that has been proven to work
-            </p>
-
+          </div>
           </div>
 
           {/* RIGHT */}
@@ -117,9 +137,20 @@ function BlogDetails() {
               </div>
               <div className="blog-details-date">
                   <p className="date">
-                    29 Jun 2022,
+                    {article
+                      ? new Date(
+                          article.created_at
+                        ).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })
+                      : ""}
                   </p>
-                  <span>by John Wright</span>
+                  <span>
+                    by {article?.user?.first_name}{" "}
+                      {article?.user?.last_name}
+                    </span>
               </div>
               
               <h4>
@@ -132,7 +163,7 @@ function BlogDetails() {
                 followed by a community barbecue.
               </p>
               <div className="flex-blog-announce">
-                <div className="flex-blog-announce-events">Announcements</div>
+                <div className="flex-blog-announce-events">{article?.category?.name}</div>
                 <div className="flex-blog-announce-events">Event Reports</div>
               </div>
               <div className="blog-explore-topics">

@@ -14,9 +14,6 @@ const BlogCategory = ({
 
   const categories = [
     "All",
-    "Products updates",
-    "Industry Insights",
-    "Announcements",
   ];
 
   return (

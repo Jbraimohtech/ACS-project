@@ -2,13 +2,13 @@
 import SearchBox from '../components/SearchBox'
 import AllMainContent from '../components/AllMainContent';
 import "./Event.css"
-import MobileScreenNav from '../components/Navbar/MobileScreenNav';
+import Navbar from '../components/Navbar/Navbar';
 
 const EventContent = () => {
   return (
     <div>
       <AllMainContent> 
-        <MobileScreenNav />
+        <Navbar />
         <div className='event-head-text-box'>
           <div className='small-event-box'>
             <div className='small-white-icon'></div>
@@ -25,7 +25,7 @@ const EventContent = () => {
         {/* This is for only media query and it is not expected to be on big screens */}
           <div  className='event-head-text-phone'>
             <h1>
-              Andrea Luises
+              Events
             </h1>
           </div>
         {/* The end of it from media query*/}

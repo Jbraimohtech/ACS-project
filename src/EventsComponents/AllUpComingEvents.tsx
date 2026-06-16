@@ -2,14 +2,37 @@ import { X, ChevronDown, } from "lucide-react";
 import "./Event.css";
 import EventCard from '../components/EventCard';
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+interface Event {
+  id: number;
+  image: string | null;
+  user_id: number;
+  zone_id: number | null;
+  title: string;
+  dress_code: string | null;
+  wifi: string | null;
+  date: string;
+  description: string;
+  venue: string;
+  is_featured: number;
+  created_at: string;
+  updated_at: string;
+  user: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+  };
+}
 
 const AllUpComingEvents = () => {
     const navigate = useNavigate();
 
     const [showModal, setShowModal] =
     useState(false);
+
+    const [events, setEvents] = useState<Event[]>([]);
 
     const [showRegisterModal, setShowRegisterModal] =
     useState(false);
@@ -23,108 +46,125 @@ const AllUpComingEvents = () => {
         }, 200);
     };
 
-    const goToViewFeaturedDetails = () => {
-        navigate("/view-featured-details")
-    }
+    useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(
+          "https://ambchapcorps.org/api/event"
+        );
+
+        if (!response.ok) {
+          throw new Error(`API Error: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("Upcoming events response:", result);
+
+        // Handle both wrapped { status, data: [...] } and direct array responses
+        const eventsArray = result.data || result;
+        setEvents(Array.isArray(eventsArray) ? eventsArray : []);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+        setEvents([]);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   return (
     <div className='all-up-coming-events'>
         <p className='event-featured'>All Upcoming Events</p>
-        <EventCard>
-            <div className='first-text-box'>
-                <div className='first-text'>
-                    <p>Thur</p>
-                    <h1>04</h1>
-                    <p>SEP <br /> 2026</p>
+        {events.map((event) => (
+          <div key={event.id}>
+            <EventCard>
+              <div className="first-text-box">
+                <div className="first-text">
+
+                  <p>
+                    {new Date(
+                      event.date
+                    ).toLocaleDateString(
+                      "en-US",
+                      {
+                        weekday: "short",
+                      }
+                    )}
+                  </p>
+
+                  <h1>
+                    {new Date(
+                      event.date
+                    ).getDate()}
+                  </h1>
+
+                  <p>
+                    {new Date(
+                      event.date
+                    ).toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "short",
+                        year: "numeric",
+                      }
+                    )}
+                  </p>
+
                 </div>
-                <div className='featured-first-img'></div>
-            </div>
-            <div className='feature-details'>
-                <h2>Annual Tech Symposium 2024</h2>
-                <div className='location-icon-box'>
-                    <div className='location-icon'></div>
-                    <p>Las vegas convention center, las vagas, USA</p>
+
+                <div className="featured-first-img"></div>
+              </div>
+
+              <div className="feature-details">
+
+                <h2>{event.title}</h2>
+
+                <div className="location-icon-box">
+                  <div className="location-icon"></div>
+
+                  <p>{event.venue}</p>
                 </div>
-                <p className='middle-location-icon-text'>Join industry leaders for a two-day deep dive into the future of AI, <br /> decentralized networks, and the evolution of digital ecosystems.</p>
-                <div className='location-icon-box'>
-                    <div className='attending-icon'></div>
-                    <p>450+ attending</p>
+
+                <p className="middle-location-icon-text">
+                  {event.description}
+                </p>
+
+                <div className="location-icon-box">
+                  <div className="attending-icon"></div>
+
+                  <p>Attendance Open</p>
                 </div>
-                {/* the direct buttons to other parts of event pages */}
-                <div className='rsvp-box'>
-                    <button className="rsvp" onClick={() => setShowModal(true)}>
-                        <p className='rsvp-box-first-p'>RSVP</p>
-                    </button>
-                    <button className="view-details" onClick={goToViewFeaturedDetails}>
-                        <p className='rsvp-box-second-p'>View details</p>
-                    </button>
+
+                <div className="rsvp-box">
+
+                  <button
+                    className="rsvp"
+                    onClick={() =>
+                      setShowModal(true)
+                    }
+                  >
+                    RSVP
+                  </button>
+
+                  <button
+                    className="view-details"
+                    onClick={() =>
+                      navigate(
+                        `/view-featured-details/${event.id}`
+                      )
+                    }
+                  >
+                    View Details
+                  </button>
+
                 </div>
-            </div>
-        </EventCard>
-        <div className='horizontal-line'></div>
-        <EventCard>
-            <div className='first-text-box'>
-                <div className='first-text'>
-                    <p>Thur</p>
-                    <h1>04</h1>
-                    <p>SEP <br /> 2026</p>
-                </div>
-                <div className='featured-first-img'></div>
-            </div>
-            <div className='feature-details'>
-                <h2>Annual Tech Symposium 2024</h2>
-                <div className='location-icon-box'>
-                    <div className='location-icon'></div>
-                    <p>Las vegas convention center, las vagas, USA</p>
-                </div>
-                <p className='middle-location-icon-text'>Join industry leaders for a two-day deep dive into the future of AI, <br /> decentralized networks, and the evolution of digital ecosystems.</p>
-                <div className='location-icon-box'>
-                    <div className='attending-icon'></div>
-                    <p>450+ attending</p>
-                </div>
-                {/* the direct buttons to other parts of event pages */}
-                <div className='rsvp-box'>
-                    <button className="rsvp" onClick={() => setShowModal(true)}>
-                        <p className='rsvp-box-first-p'>RSVP</p>
-                    </button>
-                    <button className="view-details" onClick={goToViewFeaturedDetails}>
-                        <p className='rsvp-box-second-p'>View details</p>
-                    </button>
-                </div>
-            </div>
-        </EventCard>
-        <div className='horizontal-line'></div>
-        <EventCard>
-            <div className='first-text-box'>
-                <div className='first-text'>
-                    <p>Thur</p>
-                    <h1>04</h1>
-                    <p>SEP <br /> 2026</p>
-                </div>
-                <div className='featured-first-img'></div>
-            </div>
-            <div className='feature-details'>
-                <h2>Annual Tech Symposium 2024</h2>
-                <div className='location-icon-box'>
-                    <div className='location-icon'></div>
-                    <p>Las vegas convention center, las vagas, USA</p>
-                </div>
-                <p className='middle-location-icon-text'>Join industry leaders for a two-day deep dive into the future of AI, <br /> decentralized networks, and the evolution of digital ecosystems.</p>
-                <div className='location-icon-box'>
-                    <div className='attending-icon'></div>
-                    <p>450+ attending</p>
-                </div>
-                {/* the direct buttons to other parts of event pages */}
-                <div className='rsvp-box'>
-                    <button className="rsvp" onClick={() => setShowModal(true)}>
-                        <p className='rsvp-box-first-p'>RSVP</p>
-                    </button>
-                    <button className="view-details" onClick={goToViewFeaturedDetails}>
-                        <p className='rsvp-box-second-p'>View details</p>
-                    </button>
-                </div>
-            </div>
-        </EventCard>
+
+              </div>
+            </EventCard>
+
+            <div className="horizontal-line"></div>
+          </div>
+        ))}
 
         {/* MODAL */}
         {showModal && (

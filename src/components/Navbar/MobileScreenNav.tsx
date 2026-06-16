@@ -53,7 +53,7 @@ const MobileScreenNav = () => {
                         Blog
                     </Link>
 
-                    <Link to='/resources' className='phone-menu-link'>
+                    <Link to='/resource' className='phone-menu-link'>
                         Resources
                     </Link>
 

@@ -1,5 +1,10 @@
+import type { User } from "../types/User";
 
-const AccountInfoCard = () => {
+interface Props {
+  user: User | null;
+}
+
+const AccountInfoCard = ({ user }: Props) => {
    return (
     <div className="information-start-card">
       <div className="stellarInfoCardTitle-box">
@@ -9,17 +14,27 @@ const AccountInfoCard = () => {
       <div className="stellarInfoCard">
       <div className="stellarInfoGroup">
         <label>Joining Date</label>
-        <p>Oct 14, 2021</p>
+        <p>
+          {new Date(
+            user?.created_at || ""
+          ).toLocaleDateString()}
+        </p>
       </div>
 
       <div className="stellarInfoGroup">
         <label>Zone</label>
-        <p>Edo Zone</p>
+        <p>
+          {user?.zone?.name ||
+            "No Zone Assigned"}
+        </p>
       </div>
 
       <div className="stellarInfoGroup">
         <label>Role</label>
-        <p>Member</p>
+        <p>
+          {user?.membership_id ||
+            `User #${user?.id}`}
+        </p>
       </div>
 
       <div className="stellarInfoGroup">

@@ -7,19 +7,77 @@ import PersonalInfoCard from "./PersonalInfoCard";
 import ProfileBanner from "./ProfileBanner";
 import "./ProfilePage.css"
 import QuickActionsCard from "./QuickActionsCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Bell,
   ChevronDown,
   Search,
-//   Menu,
+  Menu,
 } from "lucide-react";
+import type { User } from "../types/User";
 
+
+// interface User {
+//   id: number;
+//   first_name: string;
+//   last_name: string;
+//   profile_image: string | null;
+//   gender: string | null;
+//   email: string;
+//   phone: string | null;
+//   membership_id: string | null;
+//   status: string;
+//   payment_status: number;
+//   created_at: string;
+
+//   zone: {
+//     id: number;
+//     name: string;
+//   } | null;
+// }
 
 const ProfilePage = () => {
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-//     const [showMobileSearch, setShowMobileSearch] =
-//   useState(false);
+    const [showMobileSearch, setShowMobileSearch] =
+  useState(false);
+
+  
+  useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const response = await fetch(
+        "https://ambchapcorps.org/api/user"
+      );
+
+      const data = await response.json();
+
+      console.log(data);
+
+      if (data.user && data.user.length > 0) {
+        setUser(data.user[0]);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+
+  fetchUser();
+}, []);
+
+
+
+if (loading) {
+  return (
+    <div className="profileLoading">
+      Loading profile...
+    </div>
+  );
+}
 
   return (
     <div className="zenProfileLayout">
@@ -31,7 +89,7 @@ const ProfilePage = () => {
         <div className="orionMainContent">
             {/* MOBILE MENU */}
         
-        {/* <div className="orionTopBarShellMobile">
+        <div className="orionTopBarShellMobile">
             <button
                 className="orionMobileMenuButton"
                 onClick={() => setSidebarOpen(true)}
@@ -78,10 +136,25 @@ const ProfilePage = () => {
                     <div className="notify-icon-profile"></div>
                 </div>
                 <div className="notify-icon-profile-box">
-                    <div className="profile-image-small"></div>
+                    {/* <div className="profile-image-small">
+
+                    </div> */}
+                    <img
+                        src={
+                            user?.profile_image
+                            ? `https://ambchapcorps.org/storage/${user.profile_image}`
+                            : "/profile.jpg"
+                        }
+                        alt="Profile"
+                        className="profile-image-small"
+                        onError={(e) => {
+                            e.currentTarget.src = "/profile.jpg";
+                        }}
+                        />
+                    
                 </div>
             </div>
-        </div> */}
+        </div>
 
             {/* TOP BAR */}
             <div className="orionTopBarShell">
@@ -112,14 +185,27 @@ const ProfilePage = () => {
 
                     <div className="orionUserProfileWidget">
                     <img
-                        src="/profile.jpg"
-                        alt="User"
+                        src={
+                            user?.profile_image
+                            ? `https://ambchapcorps.org/storage/${user.profile_image}`
+                            : "/profile.jpg"
+                        }
+                        alt={`${user?.first_name} ${user?.last_name}`}
                         className="orionUserAvatar"
+                        onError={(e) => {
+                            e.currentTarget.src = "/profile.jpg";
+                        }}
                     />
 
                     <div className="orionUserMeta">
-                        <h4>Chukwutem Emmanuel</h4>
-                        <span>User ID: 12345434</span>
+                        <h4>
+                            {user?.first_name} {user?.last_name}
+                        </h4>
+                        <span>
+                            {user?.membership_id
+                                ? `ID: ${user.membership_id}`
+                                : `User #${user?.id}`}
+                        </span>
                     </div>
 
                     <ChevronDown size={16} />
@@ -130,11 +216,11 @@ const ProfilePage = () => {
 
 
             <main className="zenProfileContent">
-                <ProfileBanner />
+                <ProfileBanner user={user} />
 
                 <section className="zenProfileCardsRow">
-                    <PersonalInfoCard />
-                    <AccountInfoCard />
+                    <PersonalInfoCard user={user} />
+                    <AccountInfoCard user={user} />
                     <QuickActionsCard />
                 </section>
             </main>

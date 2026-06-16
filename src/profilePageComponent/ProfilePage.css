@@ -122,16 +122,11 @@
     height: 21px;
 }
 
-
-
 .profile-image-demo {
-    background-image: url("../assets/images/profile-images-demo.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 226px;
-    height: 215px;
-    border-radius: 32px;
+  width: 226px;
+  height: 215px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* PAGE */
@@ -139,8 +134,8 @@
    TOP BAR
 ========================= */
 .zenDashboardSidebar {
-   width: 280px;
-  min-width: 280px;
+   width: 15%;
+  min-width: 15%;
   height: 100vh;
 }
 
@@ -353,7 +348,7 @@
 ====================== */
 
 .quantumSidebarShell {
-  width: 280px;
+  width: 15%;
   min-width: 280px;
   height: 100vh;
 
@@ -376,13 +371,98 @@
   margin-left: 8%;
 }
 
+/* Dashboard styling */
+
 .quantumSidebarNav {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-content: flex-start;
 }
 
+.quantumSidebarNav-btn,
+.quantumProfileBtn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  height: 48px;
+
+  padding: 0 16px;
+
+  text-decoration: none;
+  color: #1f2937;
+
+  border-radius: 12px;
+
+  transition: all 0.25s ease;
+}
+
+.quantumSidebarNav-btn span,
+.quantumProfileBtn span {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.quantumSidebarNav-btn:hover,
+.quantumProfileBtn:hover {
+  background: rgba(10, 92, 84, 0.08);
+}
+
+.quantumSidebarNav-btn-active,
+.quantumProfileBtn-active {
+  background: #0d5c54;
+  color: white;
+}
+
+.quantumSidebarNav-btn-active span,
+.quantumProfileBtn-active span {
+  color: white;
+}
+
+.quantumSidebarNav-btn-active .dashboard-icon,
+.quantumSidebarNav-btn-active .payments-icon,
+.quantumSidebarNav-btn-active .events-icon,
+.quantumSidebarNav-btn-active .news-icon,
+.quantumSidebarNav-btn-active .resources-icon,
+.quantumProfileBtn-active .my-profile-icon {
+  filter: brightness(0) invert(1);
+}
+
+.quantumSidebarBottom {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quantumLogoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  height: 48px;
+  padding: 0 16px;
+
+  background: transparent;
+  border: none;
+
+  color: #ef4444;
+  cursor: pointer;
+
+  border-radius: 12px;
+
+  transition: all 0.25s ease;
+}
+
+.quantumLogoutBtn:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* .quantumSidebarNav a,
 .quantumSidebarNav button {
     border: none;
     background: transparent;
@@ -400,28 +480,62 @@
 
     transition: 0.2s;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     justify-content: flex-start;
     width: 100%;
+    text-decoration: none;
 }
 
-.quantumSidebarNav button:hover {
-  background: #fff;
+.quantumSidebarNav-btn {
+  background: transparent;
+  border-radius: 12px;
+  width: 100%;
+}
+
+
+.quantumSidebarNav-btn-active,
+.quantumProfileBtn-active {
+  background-color: #16a34a;
+  color: #fff;
+  border-radius: 12px;
+}
+
+.quantumSidebarNav-btn-active span,
+.quantumProfileBtn-active span {
+  color: #fff;
+}
+
+.quantumSidebarNav-btn-active .dashboard-icon,
+.quantumSidebarNav-btn-active .payments-icon,
+.quantumSidebarNav-btn-active .events-icon,
+.quantumSidebarNav-btn-active .news-icon,
+.quantumSidebarNav-btn-active .resources-icon,
+.quantumSidebarNav-btn-active .my-profile-icon {
+  filter: brightness(0) invert(1);
+}
+
+.quantumSidebarNav a:hover:not(.quantumSidebarNav-btn-active),
+.quantumSidebarNav button:hover:not(.quantumSidebarNav-btn-active) {
+  background: #f5fbfa;
 }
 
 .quantumSidebarBottom {
   margin-top: auto;
-}
-
-.quantumProfileBtn {
   width: 100%;
-  height: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+} */
+
+/* .quantumProfileBtn {
+  width: 100%;
+  min-height: 44px;
 
   border: none;
 
-  background: #145e59;
-  color: white;
+  background: #edf7f6;
+  color: #145e59;
 
   border-radius: 10px;
 
@@ -439,10 +553,7 @@
     align-items: center;
     gap: 10px;
     padding-left: 10%;
-}
-
-.quantumLogoutBtn {
-  margin-top: 12px;
+    text-decoration: none;
 
   color: #ef4444;
 
@@ -466,7 +577,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-}
+} */
 
 /* ======================
    CONTENT
@@ -842,6 +953,7 @@
   display: none;
   align-items: center;
   padding: 12px 18px;
+  margin-bottom: -30px;
 }
 
 .orionMobileLogo-crop {
@@ -1082,16 +1194,11 @@
   }
 
   .profile-image-small {
-    display: flex;
-    align-items: center;
-    width: 24px;
-    height:24px;
-    border-radius: 50%;
-    background: url("../assets/images/profile-image-small.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
   .auroraBannerShell {
     height: 176px;

@@ -1,11 +1,13 @@
 
-import MobileScreenNav from '../components/Navbar/MobileScreenNav'
+// import MobileScreenNav from '../components/Navbar/MobileScreenNav'
+import Navbar from '../components/Navbar/Navbar'
 import SearchBox from '../components/SearchBox'
 
 const HomeContent = () => {
   return (
     <div className='home-content-all-main-content'>
-        <MobileScreenNav />
+        {/* <MobileScreenNav /> */}
+        <Navbar />
         <div className='home-head-text'>
             <h1>A Platform Born From Purpose, For Our People</h1>
         </div>
