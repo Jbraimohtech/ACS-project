@@ -1,13 +1,57 @@
 .novaNavbar {
   height: 80px;
   background: transparent;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 0 48px;
+  width: 100%;
+  position: relative;
+  z-index: 998;
+  transition: all 0.3s ease;
 }
+
+.novaNavbarContent-fixed {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92%, 1180px);
+  height: fit-content;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 12px 24px;
+  z-index: 1000;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  animation: novaNavbarFadeIn 0.3s ease forwards;
+}
+
+.novaNavbarContent-fixed .novaLogo,
+.novaNavbarContent-fixed .novaNavLinks a,
+.novaNavbarContent-fixed .novaLoginBtn,
+.novaNavbarContent-fixed .novaRegisterBtn,
+.novaNavbarContent-fixed .novaMenuButton {
+  color: #0f5c56;
+}
+
+.novaNavbarContent-fixed .novaLoginBtn,
+.novaNavbarContent-fixed .novaRegisterBtn {
+  border-color: rgba(15, 92, 86, 0.25);
+}
+
+@keyframes novaNavbarFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 
 .novaLogo {
   font-size: 48px;
@@ -91,7 +135,7 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-
+  max-height: 100vh;
   padding: 60px 24px;
 }
 
@@ -133,6 +177,13 @@
     padding: 0 24px;
   }
 
+  .novaNavbarContent-fixed {
+    top: 12px;
+    width: min(94%, 680px);
+    padding: 10px 16px;
+    border-radius: 999px;
+  }
+
   .novaLogo {
     color: #fff;
   }
@@ -145,5 +196,9 @@
   .novaMenuButton {
     display: block;
     color: #fff;
+  }
+
+  .novaNavbarContent-fixed .novaMenuButton {
+    color: #0f5c56;
   }
 }

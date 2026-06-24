@@ -77,7 +77,6 @@ const EventDetailsPage = () => {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   const [event, setEvent] = useState<Event | null>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -115,17 +114,11 @@ const EventDetailsPage = () => {
         console.error("Error fetching event:", err);
         const errorMessage = err instanceof Error ? err.message : "Failed to load event";
         setError(errorMessage);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchEvent();
   }, [id]);
-
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
 
   if (error) {
     return <h2>{error}</h2>;

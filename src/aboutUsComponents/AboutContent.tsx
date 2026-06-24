@@ -1,7 +1,18 @@
 import "./AboutUs.css"
+import type { Member } from "../types/member"
 
+interface Props {
+  member: Member;
+}
 
-const AboutContent = () => {
+const AboutContent = ({
+  member,
+}: Props) => {
+
+  // const imageUrl = member.profile_image
+  // ? `https://ambchapcorps.org/storage/${member.profile_image}`
+  // : "/src/assets/images/about-image.jpg";
+
   return (
     <div>
         {/* MAIN CONTENT */}
@@ -10,58 +21,53 @@ const AboutContent = () => {
         <div className="profile-card">
           <div className="profile-image-wrapper">
             <div className="about-us-image">
+                {/* <img
+                  src={imageUrl}
+                  alt={member.first_name}
+                  className="about-us-image"
+                  onError={(e) => {
+                    e.currentTarget.src = "/src/assets/images/about-image.jpg";
+                  }}
+                /> */}
                 <div className="profile-badge">
-                    <h4>Andrea Luises</h4>
+                    <h4>
+                      {member.first_name}{" "}
+                      {member.last_name ?? ""}
+                    </h4>
                     <p>Regional Manager</p>
                 </div>
             </div>
           </div>
 
           <p className="profile-description">
-            A dedicated member actively contributing to operational
-            coordination and community development within the system.
+            Member ID: {member.membership_id}
           </p>
 
           <div className="info-group">
             <h4>Phone Number:</h4>
-            <p>+ (123) 1800-567-8990</p>
+            <p>{member.phone}</p>
           </div>
 
-            <div className="info-flow-container">
-                <div className="info-row">
-                    <div>
-                    <h4>Role</h4>
-                    <p>Unit Coordinator</p>
-                    </div>
+          <div className="info-group">
+            <h4>Email:</h4>
+            <p>{member.email}</p>
+          </div>
 
-                    <div>
-                    <h4>Region</h4>
-                    <p>Lagos Island</p>
-                    </div>
-                </div>
+          <div className="info-group">
+            <h4>Status:</h4>
+            <p>{member.status}</p>
+          </div>
 
-                <div className="info-row">
-                    <div>
-                    <h4>Unit:</h4>
-                    <p>Operations Unit</p>
-                    </div>
-                    
-
-                    <div>
-                    <h4>Status:</h4>
-                    <p className="status">
-                        <span className="status-dot"></span>
-                        Active Member
-                    </p>
-                </div>
-            </div>
+          <div className="info-group">
+            <h4>Gender:</h4>
+            <p>{member.gender || "N/A"}</p>
           </div>
         </div>
 
         {/* RIGHT DETAILS */}
         <div className="details-card">
           <p className="details-text">
-            Daniel actively contributes to operational coordination and
+            {member.first_name} actively contributes to operational coordination and
             maintains consistent participation across system activities.
           </p>
 
@@ -69,39 +75,39 @@ const AboutContent = () => {
           <div className="stats-grid">
             <div className="stat-card">
               <div className="bar-chart"></div>
-              <h3>18+</h3>
-              <p>Events Participated</p>
+              <h3>Member</h3>
+              <p>Since {member.membership_start_date ? new Date(member.membership_start_date).getFullYear() : "N/A"}</p>
             </div>
 
             <div className="stat-card">
               <div className="calendar-days"></div>
               <h3>
-                High <span className="green-dot"></span>
+                Active <span className="green-dot"></span>
               </h3>
               <p>Engagement level</p>
             </div>
 
             <div className="stat-card">
               <div className="about-us-clock"></div>
-              <h3>2 days ago</h3>
-              <p>Last Activity</p>
+              <h3>Zone {member.zone_id}</h3>
+              <p>Assignment</p>
             </div>
           </div>
 
           {/* RESPONSIBILITY */}
           <div className="responsibility">
-            <h2>Responsibility Scope</h2>
+            <h2>Member Details</h2>
 
             <p>
-              Coordinates unit activities, oversees participation,
-              and ensures operational alignment within assigned group.
+              {member.first_name} {member.last_name} is an active member of our organization with 
+              excellent participation records and commitment to our mission.
             </p>
           </div>
         </div>
       </section>
 
     </div>
-  )
+  );
 }
 
-export default AboutContent
+export default AboutContent;

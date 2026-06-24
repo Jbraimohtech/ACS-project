@@ -51,16 +51,12 @@ const EventContentPage = () => {
   const [events, setEvents] =
     useState<Event[]>([]);
 
-  const [loading, setLoading] =
-    useState(true);
-
   const [error, setError] =
     useState<string | null>(null);
 
   useEffect(() => {
     const loadEvents = async () => {
       try {
-        setLoading(true);
         const response = await fetch(
           "https://ambchapcorps.org/api/event"
         );
@@ -80,8 +76,6 @@ const EventContentPage = () => {
         setError(
           "Unable to load events."
         );
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -141,14 +135,6 @@ const EventContentPage = () => {
       `/event-detail-page/${id}`
     );
   };
-
-  if (loading) {
-    return (
-      <div className="loadingState">
-        Loading events...
-      </div>
-    );
-  }
 
   if (error) {
     return (

@@ -1,5 +1,6 @@
 
-// import Navbar from './components/Navbar/Navbar'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import Home from './routes/Home'
 import Events from './routes/Events'
 import Blog from './routes/Blog'
@@ -7,10 +8,11 @@ import Resources from './routes/Resources'
 import Members from './routes/Members'
 import Giving from './routes/Giving'
 import Login from './routes/Login'
-import { Routes, Route } from 'react-router-dom'
 import BlogDetails from './blogComponents/BlogDetails'
 import MobileScreenNav from './components/Navbar/MobileScreenNav'
+import ScrollToTop from './components/ScrollToTop'
 import AboutUs from './otherFooterLinksPages/AboutUs'
+import MemberProfile from './otherFooterLinksPages/MemberProfile'
 import OurMissionLink from './otherFooterLinksPages/OurMissionLink'
 import ContactAdmin from './otherFooterLinksPages/ContactAdmin'
 import Departments from './otherFooterLinksPages/Departments'
@@ -31,10 +33,25 @@ import DashboardPage from './dashboardPageComponent/DashboardPage'
 import NewsFeedPage from './newsFeedComponents/NewsFeedPage'
 import PaymentPlan from './RegisterComponents/PaymentPlan'
 import RegisterWizard from './RegisterComponents/RegisterWizard'
+import MemberSearch from './MemberComponents/MemberSearch'
+import { getToken } from './utils/auth'
 
 const App = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = getToken();
+    const isLoginRoute = location.pathname === '/login' || location.pathname === '/register';
+
+    if (token && isLoginRoute) {
+      navigate('/dashboard-page', { replace: true });
+    }
+  }, [location.pathname, navigate]);
+
   return (
     <div className='container'>
+      <ScrollToTop />
       {/* <Navbar /> */}
       <Routes>
         {/* Home */}
@@ -58,6 +75,8 @@ const App = () => {
         {/* Mobile Screen Nav */}
         <Route path='/mobile-screen-nav' element={<MobileScreenNav />} />
         {/* To Set Up Register Page */}
+        {/* To Member Profile Page */}
+        <Route path='/member/:id' element={<MemberProfile />} />
         {/* To About Us Page */}
         <Route path='/about-us' element={<AboutUs />} />
         {/* To Our Mission Page */}
@@ -98,6 +117,8 @@ const App = () => {
         <Route path='/dashboard-page' element={<DashboardPage />} />
         {/* To  News Feed Page */}
         <Route path='/news-page' element={<NewsFeedPage />} />
+        {/* To  News Feed Page */}
+        <Route path='/member-search' element={<MemberSearch />} />
       </Routes>
     </div>
   )

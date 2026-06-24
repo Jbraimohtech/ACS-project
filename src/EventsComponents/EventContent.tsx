@@ -24,14 +24,20 @@ const EventContent = () => {
 
         {/* This is for only media query and it is not expected to be on big screens */}
           <div  className='event-head-text-phone'>
-            <h1>
+            <h1> 
               Events
             </h1>
           </div>
         {/* The end of it from media query*/}
         <SearchBox>
-          <input type="text" placeholder='Search for members'/>
-          <div className='search-icon'></div>
+          <input type="text" name="query" placeholder='Search for members'/>
+          <button
+            type="submit"
+            className='search-icon-button-box'
+            aria-label='Search'
+          >
+            <div className='search-icon' ></div>
+          </button>
         </SearchBox>
       </AllMainContent>
     </div>

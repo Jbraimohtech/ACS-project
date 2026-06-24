@@ -68,8 +68,9 @@
 
     .about-us-head-text {
         display: flex;
+        flex-direction: column;
         width: 100%;
-        margin-top: 15%;
+        margin-top: 5%;
         justify-content: center;
         align-items: center;
     }
@@ -229,8 +230,8 @@
 /* STATS */
 
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 18px;
   margin-bottom: 36px;
 }
@@ -249,7 +250,7 @@
 .stat-card h3 {
   margin-top: 10px;
   font-size: 28px;
-  color: #0f56d9;
+  color: var(--primary);
 }
 
 .stat-card p {
@@ -365,7 +366,15 @@
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    width: 120%;
+  }
+
+  .stat-card {
+    width: 133px;
+    height: 140px;
+    padding: 1px;
   }
 
   .footer-grid {

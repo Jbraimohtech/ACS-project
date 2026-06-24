@@ -1,53 +1,21 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Member.css";
-import { useEffect, useState } from "react";
+import type { Member } from "../types/member";
 
-interface Member {
-  id: number;
-  first_name: string;
-  last_name: string | null;
-  profile_image: string | null;
-  membership_id: string;
-  status: string;
+interface MemberProfilesProps {
+  members: Member[];
 }
 
-const MemberProfiles = () => {
-  const [members, setMembers] = useState<Member[]>([]);
-const [loading, setLoading] = useState(true);
+const MemberProfiles: React.FC<MemberProfilesProps> = ({ members }) => {
 
 const navigate = useNavigate();
 
-const goToProfileAbout = () => {
-  navigate("/about-us")
+const goToProfileAbout = (memberId: number) => {
+  navigate(`/member/${memberId}`)
 }
 
-useEffect(() => {
-  const fetchMembers = async () => {
-    try {
-      const response = await fetch(
-        "https://ambchapcorps.org/api/members"
-      );
 
-      const result = await response.json();
-
-      setMembers(result.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchMembers();
-}, []);
-
-if (loading) {
-  return (
-    <div className="membersLoading">
-      Loading members...
-    </div>
-  );
-}
   return (
     <div className='member-profiles-box'>
         {/* TABS */}
@@ -114,7 +82,7 @@ if (loading) {
                   {member.status}
                 </span>
 
-                <button onClick={goToProfileAbout}>
+                <button onClick={() => goToProfileAbout(member.id)}>
                   View Profile
                 </button>
               </div>

@@ -1,6 +1,7 @@
 import "./ProfilePage.css";
 import { X } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../utils/auth";
 
 interface DashboardSidebarProps {
   sidebarOpen: boolean;
@@ -18,6 +19,12 @@ const DashboardSidebar = ({
 
   const goToProfilePage = () => {
     navigate("/profile-page");
+  };
+
+  const handleLogout = () => {
+    logout();
+    setSidebarOpen(false);
+    navigate("/login");
   };
 
   return (
@@ -110,7 +117,7 @@ const DashboardSidebar = ({
               <span>My Profile</span>
             </NavLink>
 
-            <button className="quantumLogoutBtn">
+            <button className="quantumLogoutBtn" onClick={handleLogout}>
               <div className="log-out-icon"></div>
               <span>Log out</span>
             </button>

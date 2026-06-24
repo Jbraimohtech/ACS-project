@@ -43,10 +43,27 @@
   align-items: center;
 }
 
-.dashboardAvatar {
+.dashboardAvatar,
+.orionUserAvatar {
   width: 42px;
   height: 42px;
   border-radius: 50%;
+  object-fit: cover;
+}
+
+.orionUserAvatarInitials,
+.dashboardAvatarInitials {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #145c57;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
 }
 
 .statsGrid {

@@ -1,0 +1,67 @@
+.contact-admin-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #f4f6f8;
+}
+
+.contact-admin-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.contact-admin-container h1 {
+  margin-bottom: 10px;
+}
+
+.contact-admin-container p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0d6efd;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.contact-btn {
+  width: 100%;
+  border: none;
+  background: #185656;
+  color: white;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.contact-btn:hover {
+  opacity: 0.9;
+}

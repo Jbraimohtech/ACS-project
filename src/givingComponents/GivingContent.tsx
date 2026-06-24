@@ -66,20 +66,20 @@ const GivingContent : React.FC = () => {
             <input
               type="text"
               placeholder="First name"
-              className="input"
+              className="giving-input"
             />
 
-            <input
+            <input 
               type="text"
               placeholder="Last name"
-              className="input"
+              className="giving-input"
             />
           </div>
 
           <input
             type="email"
             placeholder="Email address"
-            className="input full"
+            className="giving-input full"
           />
 
           {/* PHONE */}
@@ -92,11 +92,12 @@ const GivingContent : React.FC = () => {
             <input
               type="text"
               placeholder="Phone Number"
+              className="giving-input-phone full"
             />
           </div>
 
           {/* AMOUNT */}
-          <select className="input full">
+          <select className="giving-input full">
             <option>Amount</option>
             <option>$10</option>
             <option>$25</option>
@@ -108,13 +109,13 @@ const GivingContent : React.FC = () => {
             <input
               type="text"
               placeholder="card"
-              className="input"
+              className="giving-input-card"
             />
 
             <input
               type="text"
               placeholder="card"
-              className="input"
+              className="giving-input-card"
             />
           </div>
 
@@ -136,7 +137,7 @@ const GivingContent : React.FC = () => {
             <div className="stat-card">
               <CalendarDays size={24} />
 
-              <h3>24%</h3>
+              <h1>24%</h1>
 
               <span>
                 Campaign Events Hosted
@@ -144,9 +145,9 @@ const GivingContent : React.FC = () => {
             </div>
 
             <div className="stat-card">
-              <CalendarDays size={24} />
+              <CalendarDays size={24}/>
 
-              <h3>30%</h3>
+              <h1>30%</h1>
 
               <span>Digital Outreach</span>
             </div>
@@ -154,7 +155,7 @@ const GivingContent : React.FC = () => {
             <div className="stat-card">
               <CalendarDays size={24} />
 
-              <h3>25%</h3>
+              <h1>25%</h1>
 
               <span>Operations</span>
             </div>

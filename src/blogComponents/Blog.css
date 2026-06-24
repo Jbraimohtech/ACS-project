@@ -115,6 +115,28 @@
     cursor: pointer;
 }
 
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0 8px;
+}
+
+.load-more-btn {
+    border: none;
+    outline: none;
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.load-more-btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
 .article-clock-icon-box-container {
     display: flex;
     flex-direction: column;

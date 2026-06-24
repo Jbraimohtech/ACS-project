@@ -1,4 +1,5 @@
 import type { RegisterData } from "./RegisterWizard";
+import { useState } from "react";
 
 interface Props {
   data: RegisterData;
@@ -7,7 +8,7 @@ interface Props {
   >;
   nextStep: () => void;
   prevStep: () => void;
-  loading?: boolean;
+  isSubmitting: boolean;
 }
 
 const StepPassword = ({
@@ -15,8 +16,36 @@ const StepPassword = ({
   setData,
   nextStep,
   prevStep,
-  loading,
+  isSubmitting,
 }: Props) => {
+  const [passwordError, setPasswordError] = useState("");
+
+  const handleContinue = () => {
+    // Reset error
+    setPasswordError("");
+
+    // Validate password not empty
+    if (!data.password || !data.confirmPassword) {
+      setPasswordError("Both password fields are required.");
+      return;
+    }
+
+    // Validate password length
+    if (data.password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long.");
+      return;
+    }
+
+    // Validate passwords match
+    if (data.password !== data.confirmPassword) {
+      setPasswordError("Passwords do not match. Please ensure both passwords are the same.");
+      return;
+    }
+
+    // If all validations pass, proceed
+    nextStep();
+  };
+
   return (
     <div className="wizardCard">
 
@@ -24,7 +53,6 @@ const StepPassword = ({
         <button
           className="backButton"
           onClick={prevStep}
-          disabled={loading}
         >
           ←
         </button>
@@ -34,15 +62,15 @@ const StepPassword = ({
 
       <input
             type="password"
-            placeholder="Password"
+            placeholder="Password (min 6 characters)"
             value={data.password}
-            onChange={(e) =>
+            onChange={(e) => {
+                setPasswordError("");
                 setData({
                 ...data,
                 password: e.target.value,
                 })
-            }
-            disabled={loading}
+            }}
         />
 
 
@@ -50,23 +78,27 @@ const StepPassword = ({
         type="password"
         placeholder="Confirm Password"
         value={data.confirmPassword}
-        onChange={(e) =>
+        onChange={(e) => {
+            setPasswordError("");
             setData({
             ...data,
             confirmPassword: e.target.value,
             })
-        }
-        disabled={loading}
+        }}
       />
 
-        <button
-            onClick={nextStep}
-            disabled={loading}
-            >
-            {loading
-                ? "Creating Account..."
-                : "Continue"}
-        </button>
+      {passwordError && (
+        <p style={{ color: "red", fontSize: "12px" }}>
+          {passwordError}
+        </p>
+      )}
+
+      <button
+        onClick={handleContinue}
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Submitting..." : "Continue"}
+      </button>
 
     </div>
   );

@@ -7,7 +7,9 @@ const HomeContent = () => {
   return (
     <div className='home-content-all-main-content'>
         {/* <MobileScreenNav /> */}
-        <Navbar />
+        <div className='stay-with-home-nav'>
+            <Navbar />
+        </div>
         <div className='home-head-text'>
             <h1>A Platform Born From Purpose, For Our People</h1>
         </div>
@@ -19,8 +21,14 @@ const HomeContent = () => {
             </p>
         </div>
         <SearchBox>
-            <input className='search-input' type="text" placeholder='Search for members'/>
-            <div className='search-icon'></div>
+            <input type="text" name="query" placeholder='Search for members'/>
+            <button
+                type="submit"
+                className='search-icon-button-box'
+                aria-label='Search'
+            >
+                <div className='search-icon' ></div>
+            </button>
         </SearchBox>
     </div>
   )
