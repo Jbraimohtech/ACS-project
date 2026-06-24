@@ -6,7 +6,7 @@
 
 .new-home-box {
     position: relative;
-    width: 96%;
+    width: 95%;
     margin: 2% 2% 2% 3%;
 }
 
@@ -22,13 +22,22 @@
 }
 
 .home-content-all-main-content {
-    width: 95%;
+    width: 100%;
   height: fit-content;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   background: transparent;
-  margin: 30px 15% 50px 3%;
   border-radius: 12px;
+}
+
+.stay-with-home-nav {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .new-home-style {

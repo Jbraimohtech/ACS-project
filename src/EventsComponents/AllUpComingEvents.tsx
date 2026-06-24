@@ -2,7 +2,7 @@ import { X, ChevronDown, } from "lucide-react";
 import "./Event.css";
 import EventCard from '../components/EventCard';
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface Event {
   id: number;
@@ -28,11 +28,15 @@ interface Event {
 
 const AllUpComingEvents = () => {
     const navigate = useNavigate();
+    const PAGE_SIZE = 10;
 
     const [showModal, setShowModal] =
     useState(false);
 
     const [events, setEvents] = useState<Event[]>([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [showRegisterModal, setShowRegisterModal] =
     useState(false);
@@ -46,11 +50,12 @@ const AllUpComingEvents = () => {
         }, 200);
     };
 
-    useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchEvents = useCallback(async (nextPage: number, append = false) => {
+      setIsLoading(true);
+
       try {
         const response = await fetch(
-          "https://ambchapcorps.org/api/event"
+          `https://ambchapcorps.org/api/event?page=${nextPage}&per_page=${PAGE_SIZE}`
         );
 
         if (!response.ok) {
@@ -58,19 +63,35 @@ const AllUpComingEvents = () => {
         }
 
         const result = await response.json();
-        console.log("Upcoming events response:", result);
-
-        // Handle both wrapped { status, data: [...] } and direct array responses
         const eventsArray = result.data || result;
-        setEvents(Array.isArray(eventsArray) ? eventsArray : []);
+        const fetchedEvents = Array.isArray(eventsArray) ? eventsArray : [];
+
+        setEvents((prevEvents) =>
+          append ? [...prevEvents, ...fetchedEvents] : fetchedEvents
+        );
+        setHasMore(fetchedEvents.length === PAGE_SIZE);
+        setPage(nextPage);
       } catch (error) {
         console.error("Error fetching events:", error);
         setEvents([]);
+        setHasMore(false);
+      } finally {
+        setIsLoading(false);
       }
-    };
+    }, [PAGE_SIZE]);
 
-    fetchEvents();
-  }, []);
+    useEffect(() => {
+      const timeoutId = window.setTimeout(() => {
+        void fetchEvents(1);
+      }, 0);
+
+      return () => window.clearTimeout(timeoutId);
+    }, [fetchEvents]);
+
+  const loadMoreEvents = () => {
+    if (isLoading || !hasMore) return;
+    void fetchEvents(page + 1, true);
+  };
 
   return (
     <div className='all-up-coming-events'>
@@ -143,7 +164,7 @@ const AllUpComingEvents = () => {
                       setShowModal(true)
                     }
                   >
-                    RSVP
+                     <p className="rsvp-box-first-p">RSVP</p>
                   </button>
 
                   <button
@@ -154,7 +175,7 @@ const AllUpComingEvents = () => {
                       )
                     }
                   >
-                    View Details
+                     <p className="rsvp-box-second-p">View Details</p>
                   </button>
 
                 </div>
@@ -165,6 +186,18 @@ const AllUpComingEvents = () => {
             <div className="horizontal-line"></div>
           </div>
         ))}
+
+        {hasMore && (
+          <div className="load-more-wrapper">
+            <button
+              className="load-more-btn"
+              onClick={loadMoreEvents}
+              disabled={isLoading}
+            >
+              {isLoading ? "Loading..." : "Load more events"}
+            </button>
+          </div>
+        )}
 
         {/* MODAL */}
         {showModal && (

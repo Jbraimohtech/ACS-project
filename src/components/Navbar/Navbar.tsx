@@ -1,16 +1,37 @@
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./Navbar.css";
 
 const Navbar = () => {
+  const headerRef = useRef<HTMLElement | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const threshold = headerRef.current?.offsetHeight || 80;
+      setIsScrolled(window.scrollY > threshold);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   return (
     <>
       {/* Desktop Navbar */}
-      <header className="novaNavbar">
+      <header
+        ref={headerRef}
+        className={`novaNavbar ${isScrolled ? "novaNavbarContent-fixed" : ""}`}
+      >
 
         <Link
           to="/"
@@ -42,6 +63,7 @@ const Navbar = () => {
             Register
           </Link>
         </div>
+
 
         {/* Mobile Menu Button */}
         <button

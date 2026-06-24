@@ -23,7 +23,8 @@
 
 .giving-head-text {
     width: 100%;
-    height: 142px;
+    height: fit-content;
+    display: flex;
     text-align: center;
     margin-bottom: 50px;
     justify-content: center;
@@ -46,7 +47,7 @@
   padding: 24px;
   border-radius: 14px;
   box-shadow: 0 4px 18px rgba(0,0,0,0.05);
-  width: 35%;
+  width: 45%;
   margin-top: 100px;
 }
 
@@ -70,6 +71,7 @@
 
 .tab.active {
   background: white;
+  color: #16a34a;
 }
 
 /* FORM */
@@ -88,10 +90,11 @@
 
 .giving-input {
   width: 100%;
-  height: 52px;
+  height: 72px;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   padding: 0 16px;
+  background: transparent;
   margin-bottom: 16px;
   outline: none;
 }
@@ -101,14 +104,51 @@
 }
 
 .phone-input {
-  display: flex;
+  /* display: flex;
   border: 1px solid var(--surface);
   align-items: center;
   border-radius: 10px;
   height: 52px;
   padding: 0 16px;
   margin-bottom: 16px;
-  background: white;
+  background: white; */
+  width: 100%;
+  height: 72px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0 16px;
+  margin-bottom: 16px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.giving-input-phone {
+  width: 80%;
+  height: 60px;
+  border: none;
+  border-radius: 10px;
+  padding: 0 16px;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+
+.giving-input-card {
+  width: 100%;
+  height: 42px;
+  border-radius: 10px;
+  padding: 0 16px;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .country-code {
@@ -148,24 +188,26 @@
 /* INFO SECTION */
 
 .giving-info-section {
-  padding-top: 100px;
-  width: 65%;
-  margin-top: 150px;
+  width: 55%;
+  margin-top: 250px;
+  padding: 24px;
 }
 
 .giving-info-section h2 {
-  font-size: 52px;
+  font-size: 40px;
   margin-bottom: 14px;
 }
 
 .giving-info-section p {
   color: #6b7280;
   margin-bottom: 34px;
+  font-size: 20px;
 }
 
 .giving-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 220px);
+  width: 110%;
+  display: flex;
+  flex-wrap: wrap;
   gap: 18px;
 }
 
@@ -175,19 +217,21 @@
   border-radius: 12px;
   padding: 28px;
   text-align: center;
-  color: var(--primary);
+  color: #16a34a;
+  width: 288px;
 }
 
-.stat-card h3 {
+.stat-card h1 {
   margin: 14px 0 10px;
   font-size: 24px;
   font-weight: 600;
-  color: var(--text);
+  color: #000;
 }
 
 .stat-card span {
   color: var(--primary);
   font-size: 1rem;
+  color: #16a34a;
 }
 
 /* RESPONSIVE */
@@ -198,6 +242,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .giving-input-card, .giving-input-phone, .phone-input, .giving-input {
+      height: 52px;
     }
   
   .giving-section-content {
@@ -228,7 +276,7 @@
     }
 
   .giving-stats-grid {
-    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
   }
 
   .giving-head-text h1 {
@@ -253,5 +301,17 @@
 
   .giving-info-section h2 {
     font-size: 36px;
+  }
+
+  .stat-card {
+    width: 40%;
+  }
+
+  .stat-card h1 {
+    font-size: 18px;
+  }
+
+  .stat-card p{
+    font-size: 12px;
   }
 }

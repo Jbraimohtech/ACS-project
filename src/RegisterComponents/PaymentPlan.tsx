@@ -260,8 +260,6 @@ const PaymentPlan: React.FC = () => {
         </div>
       )}
 
-      /* SUCCESS MODAL */
-
         {showSuccessModal && (
         <div className="zenithVeilBackdrop">
             <div className="successQuantumBox">

@@ -15,7 +15,6 @@ import NewsHeader from "./NewsHeader";
 import NewsTabs from "./NewsTabs";
 import NewsCategoryFilters from "./NewsCategoryFilters";
 import NewsList from "./NewsList";
-import LoadingNews from "./LoadingNews";
 import EmptyNews from "./EmptyNews";
 
 import { fetchBlogs } from "../services/blogService";
@@ -31,9 +30,6 @@ const NewsFeedPage = () => {
 
   const [blogs, setBlogs] =
     useState<Blog[]>([]);
-
-  const [loading, setLoading] =
-    useState(true);
 
   const [error, setError] =
     useState<string | null>(null);
@@ -63,8 +59,6 @@ const NewsFeedPage = () => {
   useEffect(() => {
     const loadBlogs = async () => {
       try {
-        setLoading(true);
-
         const data =
           await fetchBlogs();
 
@@ -75,8 +69,6 @@ const NewsFeedPage = () => {
         setError(
           "Failed to load news articles."
         );
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -176,9 +168,6 @@ const NewsFeedPage = () => {
       (prev) => prev + 6
     );
   };
-
-  if (loading)
-    return <LoadingNews />;
 
   if (error)
     return (

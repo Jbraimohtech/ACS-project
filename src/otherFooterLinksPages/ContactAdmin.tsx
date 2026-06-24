@@ -1,8 +1,120 @@
+import { useState } from "react";
+import "./ContactAdmin.css";
 
 const ContactAdmin = () => {
-  return (
-    <div>ContactAdmin</div>
-  )
-}
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
 
-export default ContactAdmin
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    const payload = {
+      fullName,
+      email,
+      subject,
+      message,
+    };
+
+    console.log(payload);
+
+    // Example API call
+    // await fetch("https://ambchapcorps.org/api/contact-admin", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(payload),
+    // });
+
+    alert("Message sent successfully!");
+
+    setFullName("");
+    setEmail("");
+    setSubject("");
+    setMessage("");
+  };
+
+  return (
+    <div className="contact-admin-page">
+      <div className="contact-admin-container">
+        <h1>Contact Administrator</h1>
+
+        <p>
+          Need help? Have a question, complaint, or suggestion?
+          Send a message directly to the administration team.
+        </p>
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Full Name</label>
+
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              value={fullName}
+              onChange={(e) =>
+                setFullName(e.target.value)
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Email Address</label>
+
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Subject</label>
+
+            <input
+              type="text"
+              placeholder="Enter subject"
+              value={subject}
+              onChange={(e) =>
+                setSubject(e.target.value)
+              }
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Message</label>
+
+            <textarea
+              rows={10}
+              placeholder="Type your message..."
+              value={message}
+              onChange={(e) =>
+                setMessage(e.target.value)
+              }
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="contact-btn"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default ContactAdmin;

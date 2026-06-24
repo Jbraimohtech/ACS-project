@@ -54,7 +54,7 @@ const Featured = () => {
       const fetchEvents = async () => {
         try {
           const response = await fetch(
-            "https://ambchapcorps.org/api/event"
+            "https://ambchapcorps.org/api/event?page=1&per_page=10"
           );
 
           if (!response.ok) {

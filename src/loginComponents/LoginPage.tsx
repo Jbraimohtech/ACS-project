@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../utils/auth";
+import { setToken, setUser } from "../utils/auth";
 
 interface User {
   id: number;
@@ -26,9 +26,6 @@ const LoginPage = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  const [loading, setLoading] =
-    useState(false);
-
   const [error, setError] =
     useState("");
 
@@ -48,7 +45,7 @@ const LoginPage = () => {
         password,
       });
 
-      setLoading(true);
+
       setError("");
       
 
@@ -86,18 +83,10 @@ const LoginPage = () => {
 
         if (data.token) {
           setToken(data.token);
-
-          localStorage.setItem(
-            "token",
-            data.token
-          );
         }
 
         if (data.user) {
-          localStorage.setItem(
-            "user",
-            JSON.stringify(data.user)
-          );
+          setUser(data.user);
         }
 
         navigate("/dashboard-page");
@@ -109,8 +98,6 @@ const LoginPage = () => {
             "Something went wrong"
           );
         }
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -177,11 +164,8 @@ const LoginPage = () => {
           <button
             type="submit"
             className="novaLoginButton"
-            disabled={loading}
           >
-            {loading
-              ? "Logging in..."
-              : "Login"}
+            Login
           </button>
         </form>
 

@@ -32,7 +32,6 @@ interface Article {
 function BlogDetails() {
   const { id } = useParams();
   const [article, setArticle] = useState<Article | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
@@ -48,25 +47,16 @@ function BlogDetails() {
         setArticle(data.data);
       } catch (error) {
         console.error(error);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchArticle();
   }, [id]);
-
-  if (loading) {
-  return (
-    <div className="blogLoading">
-      Loading article...
-    </div>
-  );
-}
   return (
     <div>
       
         <AllMainContent> 
+          <div className="inside-all-main-content">
         <Navbar />
         <div className='event-head-text-box'>
           <div className='blog-d-small-event-box'>
@@ -82,6 +72,7 @@ function BlogDetails() {
             <h1>{article?.title}</h1>
           </div>
         {/* The end of it from media query*/}
+        </div>
       </AllMainContent>
 
       {/* BLOG CONTENT */}

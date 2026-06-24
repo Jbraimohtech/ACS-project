@@ -1,6 +1,4 @@
 
-
-
 import AccountInfoCard from "./AccountInfoCard";
 import DashboardSidebar from "./DashboardSidebar";
 import PersonalInfoCard from "./PersonalInfoCard";
@@ -8,6 +6,7 @@ import ProfileBanner from "./ProfileBanner";
 import "./ProfilePage.css"
 import QuickActionsCard from "./QuickActionsCard";
 import { useState, useEffect } from "react";
+import { getToken, getUser } from "../utils/auth";
 import {
   Bell,
   ChevronDown,
@@ -37,47 +36,73 @@ import type { User } from "../types/User";
 // }
 
 const ProfilePage = () => {
-    const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState<User | null>(() => {
+      const storedUser = getUser();
+      if (!storedUser) return null;
+      if (Array.isArray(storedUser)) {
+        return storedUser.length > 0 ? (storedUser[0] as User) : null;
+      }
+      return storedUser as User;
+    });
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showMobileSearch, setShowMobileSearch] =
   useState(false);
 
   
   useEffect(() => {
+  const token = getToken();
+  if (!token) {
+    return;
+  }
+
   const fetchUser = async () => {
     try {
       const response = await fetch(
-        "https://ambchapcorps.org/api/user"
+        "https://ambchapcorps.org/api/user",
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
+
+      if (!response.ok) {
+        return;
+      }
 
       const data = await response.json();
 
       console.log(data);
 
       if (data.user && data.user.length > 0) {
-        setUser(data.user[0]);
+        const apiUser = data.user[0] as User;
+        
+        // Validate that this is not a default/demo user
+        const firstName = apiUser.first_name?.toLowerCase() || "";
+        const lastName = apiUser.last_name?.toLowerCase() || "";
+        const email = apiUser.email?.toLowerCase() || "";
+        
+        const isDefaultUser =
+          firstName === "super" ||
+          lastName === "super" ||
+          email === "super@example.com" ||
+          firstName === "admin" ||
+          lastName === "admin" ||
+          email === "admin@example.com";
+
+        if (!isDefaultUser) {
+          setUser(apiUser);
+        }
       }
     } catch (error) {
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
   
 
   fetchUser();
 }, []);
-
-
-
-if (loading) {
-  return (
-    <div className="profileLoading">
-      Loading profile...
-    </div>
-  );
-}
 
   return (
     <div className="zenProfileLayout">

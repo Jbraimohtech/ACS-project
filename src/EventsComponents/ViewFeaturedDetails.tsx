@@ -48,7 +48,6 @@ interface Event {
 
 const ViewFeaturedDetails: React.FC = () => {
   const [event, setEvent] = useState<Event | null>(null);
-  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const { id } = useParams();
@@ -82,21 +81,11 @@ const ViewFeaturedDetails: React.FC = () => {
           setEvent(eventData);
         } catch (error) {
           console.error("Error fetching event:", error);
-        } finally {
-          setLoading(false);
         }
       };
 
       fetchEvent();
     }, [id]);
-
-   if (loading) {
-    return (
-      <div>
-        Loading event...
-      </div>
-    );
-  }
 
   return (
     <div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { RegisterData } from "./RegisterWizard";
+import { Link } from "react-router-dom";
 
 interface Props {
   data: RegisterData;
@@ -24,7 +25,7 @@ const StepZone = ({
   nextStep,
 }: Props) => {
   const [zones, setZones] = useState<Zone[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchZones = async () => {
@@ -46,16 +47,28 @@ const StepZone = ({
 
         const result = await response.json();
 
-        setZones(result.data);
-      } catch (error) {
-        console.error("Error fetching zones:", error);
-      } finally {
-        setLoading(false);
+        if (result.data && Array.isArray(result.data)) {
+          setZones(result.data);
+        } else {
+          setError("No zones available");
+        }
+      } catch (err) {
+        console.error("Error fetching zones:", err);
+        setError("Failed to load zones. Please try again.");
+        alert("Failed to load zones. Please refresh the page.");
       }
     };
 
     fetchZones();
   }, []);
+
+  const handleContinue = () => {
+    if (!data.zone) {
+      alert("Please select a zone to continue.");
+      return;
+    }
+    nextStep();
+  };
 
   return (
     <div className="wizardCardZoneAspect">
@@ -67,18 +80,25 @@ const StepZone = ({
       <div className="wizardCard-zonePickBox">
         <h2>Zone</h2>
 
+        {error && (
+          <p style={{color: "red", fontSize: "14px", marginBottom: "10px"}}>
+            {error}
+          </p>
+        )}
+
         <select
           value={data.zone}
           onChange={(e) =>
             setData((prev) => ({
               ...prev,
-              zone: Number(e.target.value),
+              zone: e.target.value ? Number(e.target.value) : "",
             }))
           }
+          disabled={zones.length === 0}
         >
           <option value="">
-            {loading
-              ? "Loading zones..."
+            {zones.length === 0
+              ? "No zones available"
               : "Select Zone"}
           </option>
 
@@ -93,12 +113,16 @@ const StepZone = ({
         </select>
 
         <button
-          onClick={nextStep}
+          onClick={handleContinue}
           disabled={!data.zone}
         >
           Continue
         </button>
       </div>
+
+      <p className="wizardCard-signIn">
+        Got an account? <span className="wizardCard-signIn-span"><Link to="/login" style={{textDecoration: "none", color: "black"}}>Sign in</Link></span> 
+      </p>
     </div>
   );
 };
