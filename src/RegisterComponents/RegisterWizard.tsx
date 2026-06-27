@@ -145,7 +145,7 @@ const RegisterWizard = () => {
         <div className="wizardTopBar">
 
           <h1 className="wizardLogo">
-            LOGO
+            <div className="novaLogoIcon"></div>
           </h1>
 
           <select>

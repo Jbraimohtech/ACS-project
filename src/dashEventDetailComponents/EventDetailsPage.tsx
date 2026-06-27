@@ -1,6 +1,5 @@
 import {
   Bell,
-  ChevronDown,
   Search,
   Menu,
 } from "lucide-react";
@@ -15,6 +14,8 @@ import EventInfoCard from "./EventInfoCard";
 import EventScheduleCard from "./EventScheduleCard";
 import EventSpeakersCard from "./EventSpeakersCard";
 import EventVenueCard from "./EventVenueCard";
+import LoadingBrand from "../components/LoadingBrand";
+import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
 
 
 interface Schedule {
@@ -78,6 +79,7 @@ const EventDetailsPage = () => {
 
   const [event, setEvent] = useState<Event | null>(null);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!id) {
@@ -86,6 +88,7 @@ const EventDetailsPage = () => {
 
     const fetchEvent = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(
           `https://ambchapcorps.org/api/event/${id}`
         );
@@ -114,11 +117,27 @@ const EventDetailsPage = () => {
         console.error("Error fetching event:", err);
         const errorMessage = err instanceof Error ? err.message : "Failed to load event";
         setError(errorMessage);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchEvent();
   }, [id]);
+
+  if (isLoading) {
+    return (
+      <div className="zenProfileLayout">
+        <DashboardSidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
+        <div className="orionMainContent">
+          <LoadingBrand />
+        </div>
+      </div>
+    );
+  }
 
   if (error) {
     return <h2>{error}</h2>;
@@ -157,20 +176,7 @@ const EventDetailsPage = () => {
               <span className="orionNotificationDot"></span>
             </button>
 
-            <div className="orionUserProfileWidget">
-              <img
-                src="/profile.jpg"
-                alt="User"
-                className="orionUserAvatar"
-              />
-
-              <div className="orionUserMeta">
-                <h4>Chukwutem Emmanuel</h4>
-                <span>User ID: 12345434</span>
-              </div>
-
-              <ChevronDown size={16} />
-            </div>
+            <DashboardUserProfileWidget />
           </div>
         </div>
 
@@ -248,7 +254,9 @@ const EventDetailsPage = () => {
 
           <div className="stellarEventBottomGrid">
             <div>
-              <EventAboutCard event={event} />
+              <div className="stellarEventAboutSection-small">
+                <EventAboutCard event={event} />
+              </div>
               <EventScheduleCard
                 schedules={event.schedules}
               />

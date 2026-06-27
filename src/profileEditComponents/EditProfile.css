@@ -369,6 +369,116 @@
 }
 
 /* ==========================
+   TOP BAR
+========================== */
+.orionMainContent {
+  flex: 1;
+  min-height: 100vh;
+  background: #f0f3fa;
+}
+
+.orionTopBarShell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.orionSidebarToggle {
+  display: none;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.orionSearchCluster {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3f4f6;
+  border-radius: 999px;
+  padding: 10px 14px;
+}
+
+.orionSearchInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+.orionTopBarActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.orionNotificationButton {
+  border: none;
+  background: #f3f4f6;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.orionNotificationDot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+}
+
+.orionUserProfileWidget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+}
+
+.orionUserAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #145e59;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.orionUserMeta h4 {
+  font-size: 14px;
+  margin: 0;
+  color: #111827;
+}
+
+.orionUserMeta span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ==========================
    RESPONSIVE
 ========================== */
 
@@ -405,5 +515,17 @@
 
   .quantumSaveButton {
     width: 100%;
+  }
+
+  .orionTopBarShell {
+    padding: 16px 20px;
+  }
+
+  .orionSidebarToggle {
+    display: flex;
+  }
+
+  .orionUserMeta {
+    display: none;
   }
 }

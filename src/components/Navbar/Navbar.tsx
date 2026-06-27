@@ -19,11 +19,16 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
 
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    document.documentElement.style.overflow = menuOpen ? "hidden" : "";
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
-  }, []);
+  }, [menuOpen]);
 
   return (
     <>
@@ -37,7 +42,7 @@ const Navbar = () => {
           to="/"
           className="novaLogo"
         >
-          LOGO
+          <div className="novaLogoIcon"></div>
         </Link>
 
         <nav className="novaNavLinks">
@@ -92,7 +97,7 @@ const Navbar = () => {
             to="/"
             className="novaMobileLogo"
           >
-            LOGO
+            <div className="novaMobileLogoIcon"></div>
           </Link>
 
           <button

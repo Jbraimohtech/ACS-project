@@ -99,10 +99,14 @@
   margin-top:20px;
 }
 
+.novaNewsActions button:not(.readBtn) {
+  display: none;
+}
+
 .readBtn{
   height:44px;
   padding:0 22px;
-  background:#155eef;
+  background:#0f766e;
   color:white;
   border:none;
   border-radius:10px;
@@ -124,4 +128,45 @@
 
 .stellarNewsWrapper {
     padding: 40px;
+}
+
+@media (max-width: 768px) {
+  .novaNewsCard {
+    flex-direction: column;
+  }
+
+  .novaNewsImage {
+    width: 100%;
+    height: 180px;
+  }
+
+  .novaNewsContent {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 16px 20px;
+  }
+
+  .novaNewsMeta {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .novaNewsContent h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .novaNewsContent p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .novaNewsActions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .readBtn {
+    width: 100%;
+  }
 }

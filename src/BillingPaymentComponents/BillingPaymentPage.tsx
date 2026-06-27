@@ -7,12 +7,12 @@ import DonationStatsCards from "./DonationStatsCards"
 import "./BillingPayment.css"
 import {
   Bell,
-  ChevronDown,
   Search,
   Menu,
 } from "lucide-react";
 import { useState } from "react";
 import MembershipPage from "../memberShipComponents/MembershipPage"
+import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget"
 
 
 const BillingPaymentPage = () => {
@@ -59,20 +59,7 @@ const BillingPaymentPage = () => {
 
                     {/* USER */}
 
-                    <div className="orionUserProfileWidget">
-                    <img
-                        src="/profile.jpg"
-                        alt="User"
-                        className="orionUserAvatar"
-                    />
-
-                    <div className="orionUserMeta">
-                        <h4>Chukwutem Emmanuel</h4>
-                        <span>User ID: 12345434</span>
-                    </div>
-
-                    <ChevronDown size={16} />
-                    </div>
+                    <DashboardUserProfileWidget />
                 </div>
             </div>
 
@@ -123,9 +110,11 @@ const BillingPaymentPage = () => {
                     </button>
                 </div>
                 )}
+
+                <div className="notify-icon-profile"></div>
                 
                 <div className="notify-icon-profile-box">
-                    <div className="notify-icon-profile"></div>
+                    
                 </div>
                 <div className="notify-icon-profile-box">
                     <div className="profile-image-small"></div>

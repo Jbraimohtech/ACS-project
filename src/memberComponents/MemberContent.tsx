@@ -7,6 +7,7 @@ import MemberProfiles from './MemberProfiles'
 import HomeFooter from '../components/HomeFooter'
 import { FaChevronDown } from 'react-icons/fa'
 import Navbar from '../components/Navbar/Navbar'
+import LoadingBrand from '../components/LoadingBrand'
 import type { Member } from '../types/member'
 
 const MemberContent = () => {
@@ -97,7 +98,7 @@ const MemberContent = () => {
         </SearchBox>
       </AllMainContent>
 
-      {loading && <p>Loading members...</p>}
+      {loading && <LoadingBrand />}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {!loading && members.length === 0 && !error && (

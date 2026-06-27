@@ -165,6 +165,54 @@
   font-size: 14px;
 }
 
+.auroraFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.auroraInput {
+  width: 100%;
+  height: 48px;
+  border: none;
+  background: #f2f4f7;
+  border-radius: 10px;
+  padding: 0 14px;
+  font-size: 14px;
+}
+
+.auroraInput.full {
+  width: 100%;
+}
+
+.auroraPhoneInput {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  background: #f2f4f7;
+}
+
+.auroraCountryCode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 12px;
+  margin-right: 12px;
+  border-right: 1px solid #d0d5dd;
+  color: #344054;
+}
+
+.auroraGreenDot {
+  width: 10px;
+  height: 10px;
+  background: #16a34a;
+  border-radius: 50%;
+}
+
 .auroraAmountOptions {
   display: flex;
 
@@ -232,6 +280,77 @@
 
 .auroraDonateButton:hover {
   background: #0d4d48;
+}
+
+.auroraPaymentConfirmationCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auroraSectionLabel {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 0;
+}
+
+.auroraPaymentConfirmationCard h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #111827;
+}
+
+.auroraPaymentAccountBox {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #374151;
+}
+
+.auroraUploadLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.auroraUploadWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.auroraUploadInput {
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+  text-align: center;
+}
+
+.auroraPaymentActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.auroraBackButton {
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background: #e5e7eb;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auroraPaymentActions .auroraDonateButton {
+  flex: 1;
+  height: 56px;
 }
 
 /* =========================
@@ -414,6 +533,7 @@
 @media (max-width: 1024px) {
   .stellarBillingGrid {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .orbitStatsGrid {
@@ -422,14 +542,46 @@
 }
 
 @media (max-width: 768px) {
+  .stellarBillingWrapper {
+    padding: 16px;
+    gap: 16px;
+  }
+
   .stellarHeaderBlock h1 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .stellarTabs {
     overflow-x: auto;
-
     white-space: nowrap;
+    gap: 16px;
+    padding-bottom: 4px;
+  }
+
+  .stellarBillingGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stellarBillingRight {
+    gap: 16px;
+  }
+
+  .auroraDonationCard,
+  .orbitStatCard,
+  .galaxyHistoryCard {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .auroraAmountOptions {
+    flex-wrap: wrap;
+  }
+
+  .auroraAmountOptions button {
+    flex: 0 0 calc(50% - 4px);
   }
 
   .galaxyHistoryCard {
@@ -437,6 +589,24 @@
   }
 
   .galaxyHistoryTable {
-    min-width: 650px;
+    min-width: 620px;
+  }
+
+  .auroraUploadInput {
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    padding: 12px;
+    background: #fff;
+    text-align: center;
+    
+  }
+
+  .auroraUploadWrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: #f2f4f7;
+    padding-top: 15px;
+    border-radius: 10px;
   }
 }

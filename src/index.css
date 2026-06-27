@@ -27,7 +27,7 @@ body{
 
 :root {
   --primary: #185656;
-  --primary-hover: #4f46e5;
+  --primary-hover: #2a7a5f;
 
   --bg: #0f172a;
   --surface: #f8fafc;
@@ -53,6 +53,14 @@ body{
 button {
     border: none;
     outline: none;
+}
+
+.country-flag-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
 }
 
 button:focus,

@@ -1,6 +1,9 @@
 
 import { useState } from "react";
 import "./ReportIssue.css";
+import AllMainContent from "../components/AllMainContent";
+import Navbar from "../components/Navbar/Navbar";
+import HomeFooter from "../components/HomeFooter";
 
 
 const ReportIssue = () => {
@@ -34,7 +37,17 @@ const ReportIssue = () => {
 
 
   return (
-     <div className="report-page">
+     <div>
+        <AllMainContent>
+          <Navbar />
+          <div className='about-us-head-text'>
+            <h1>Report Issue</h1>
+            <div className="our-missionSmallText-box">
+              <p className="our-missionSmallText">Make your report.</p>
+            </div>
+          </div>
+        </AllMainContent>
+        <div className="report-page">
       <div className="report-container">
         <h1>Submit a Report</h1>
 
@@ -75,6 +88,9 @@ const ReportIssue = () => {
           </button>
         </form>
       </div>
+      
+    </div>
+    <HomeFooter />
     </div>
   );
 };

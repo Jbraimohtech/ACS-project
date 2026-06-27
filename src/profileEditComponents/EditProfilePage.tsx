@@ -1,70 +1,55 @@
-import DashboardSidebar from "../profilePageComponent/DashboardSidebar"
-import EditProfile from "./EditProfile"
-import "./EditProfile.css"
-import {
-  Bell,
-  ChevronDown,
-  Search,
-} from "lucide-react";
+import DashboardSidebar from "../profilePageComponent/DashboardSidebar";
+import EditProfile from "./EditProfile";
+import "./EditProfile.css";
+import "../profilePageComponent/ProfilePage.css";
+import { Bell, ChevronDown, Menu, Search } from "lucide-react";
 import { useState } from "react";
 
 const EditProfilePage = () => {
- const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="zenProfileLayout">
-      <DashboardSidebar
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-      />
-        <div className="orionMainContent">
-            {/* TOP BAR */}
+      <DashboardSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-            <div className="orionTopBarShell">
-                <div className="orionSearchCluster">
-                    <Search
-                    size={16}
-                    className="orionSearchIcon"
-                    />
+      <div className="orionMainContent">
+        <div className="orionTopBarShell">
+          <button className="orionSidebarToggle" onClick={() => setSidebarOpen(true)}>
+            <Menu size={18} />
+          </button>
 
-                    <input
-                    type="text"
-                    placeholder="Search members, events,..."
-                    className="orionSearchInput"
-                    />
-                </div>
+          <div className="orionSearchCluster">
+            <Search size={16} className="orionSearchIcon" />
+            <input
+              type="text"
+              placeholder="Search members, events,..."
+              className="orionSearchInput"
+            />
+          </div>
 
-                <div className="orionTopBarActions">
-                    {/* NOTIFICATION */}
+          <div className="orionTopBarActions">
+            <button className="orionNotificationButton">
+              <Bell size={18} />
+              <span className="orionNotificationDot"></span>
+            </button>
 
-                    <button className="orionNotificationButton">
-                    <Bell size={18} />
+            <div className="orionUserProfileWidget">
+              <div className="orionUserAvatar">E</div>
 
-                    <span className="orionNotificationDot"></span>
-                    </button>
+              <div className="orionUserMeta">
+                <h4>Member</h4>
+                <span>User Account</span>
+              </div>
 
-                    {/* USER */}
-
-                    <div className="orionUserProfileWidget">
-                    <img
-                        src="/profile.jpg"
-                        alt="User"
-                        className="orionUserAvatar"
-                    />
-
-                    <div className="orionUserMeta">
-                        <h4>Chukwutem Emmanuel</h4>
-                        <span>User ID: 12345434</span>
-                    </div>
-
-                    <ChevronDown size={16} />
-                    </div>
-                </div>
+              <ChevronDown size={16} />
             </div>
-        <EditProfile />
+          </div>
         </div>
-    </div>
-  )
-}
 
-export default EditProfilePage
+        <EditProfile />
+      </div>
+    </div>
+  );
+};
+
+export default EditProfilePage;

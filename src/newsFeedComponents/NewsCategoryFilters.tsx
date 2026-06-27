@@ -11,7 +11,7 @@ interface Props {
 }
 
 const NewsCategoryFilters = ({
-  categories,
+  // categories,
   selectedCategory,
   onChange,
 }: Props) => {
@@ -33,7 +33,7 @@ const NewsCategoryFilters = ({
         All Categories
       </button>
 
-      {categories.map(
+      {/* {categories.map(
         (category) => (
           <button
             key={category}
@@ -52,7 +52,7 @@ const NewsCategoryFilters = ({
             {category}
           </button>
         )
-      )}
+      )} */}
 
     </div>
   );

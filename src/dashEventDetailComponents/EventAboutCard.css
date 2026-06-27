@@ -5,7 +5,8 @@
 
   padding: 28px;
 
-  margin-bottom: 20px;
+  height: 100%;
+  margin-left: -10px;
 }
 
 .nebulaAboutCard h2 {
@@ -40,4 +41,11 @@
   text-align: center;
 
   font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .nebulaAboutCard {
+    width: 100%;
+  }
 }

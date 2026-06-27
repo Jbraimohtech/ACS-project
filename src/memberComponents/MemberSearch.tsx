@@ -7,6 +7,7 @@ import "./Member.css";
 import HomeFooter from "../components/HomeFooter";
 import { FaChevronDown } from "react-icons/fa";
 import Navbar from "../components/Navbar/Navbar";
+import LoadingBrand from "../components/LoadingBrand";
 import type { Member } from "../types/member";
 
 const MemberSearch = () => {
@@ -103,7 +104,7 @@ const [query, setQuery] = useState(() => queryParam);
       </AllMainContent>
 
       <section className="member-search-results">
-        {hasSearched && loading && <p>Searching...</p>}
+        {hasSearched && loading && <LoadingBrand />}
 
         {hasSearched && !loading && members.length === 0 && (
           <p>No members found for "{query}"</p>

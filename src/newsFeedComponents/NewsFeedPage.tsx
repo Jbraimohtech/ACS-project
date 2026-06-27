@@ -1,6 +1,5 @@
 import {
   Bell,
-  ChevronDown,
   Menu,
   Search,
 } from "lucide-react";
@@ -12,7 +11,6 @@ import DashboardSidebar from "../profilePageComponent/DashboardSidebar";
 import "./NewsFeedPage.css";
 
 import NewsHeader from "./NewsHeader";
-import NewsTabs from "./NewsTabs";
 import NewsCategoryFilters from "./NewsCategoryFilters";
 import NewsList from "./NewsList";
 import EmptyNews from "./EmptyNews";
@@ -20,6 +18,8 @@ import EmptyNews from "./EmptyNews";
 import { fetchBlogs } from "../services/blogService";
 
 import type { Blog } from "../types/blog";
+import LoadingBrand from "../components/LoadingBrand";
+import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
 
 const NewsFeedPage = () => {
   const [sidebarOpen, setSidebarOpen] =
@@ -33,6 +33,8 @@ const NewsFeedPage = () => {
 
   const [error, setError] =
     useState<string | null>(null);
+  const [isLoading, setIsLoading] =
+    useState(true);
 
   const [searchTerm, setSearchTerm] =
     useState("");
@@ -40,25 +42,13 @@ const NewsFeedPage = () => {
   const [visibleCount, setVisibleCount] =
     useState(6);
 
-  const [activeTab, setActiveTab] =
-    useState<"all" | "myzone">(
-      "all"
-    );
-
   const [selectedCategory, setSelectedCategory] =
     useState("all");
-
-  /**
-   * Replace this with your authenticated user
-   */
-
-  const currentUser = {
-    zone_id: 2,
-  };
 
   useEffect(() => {
     const loadBlogs = async () => {
       try {
+        setIsLoading(true);
         const data =
           await fetchBlogs();
 
@@ -69,6 +59,8 @@ const NewsFeedPage = () => {
         setError(
           "Failed to load news articles."
         );
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -93,35 +85,12 @@ const NewsFeedPage = () => {
   }, [blogs]);
 
   /**
-   * Filter by tab
-   */
-
-  const tabFilteredBlogs =
-    useMemo(() => {
-      switch (activeTab) {
-        case "myzone":
-          return blogs.filter(
-            (blog) =>
-              blog.zone_id ===
-              currentUser.zone_id
-          );
-
-        default:
-          return blogs;
-      }
-    }, [
-      blogs,
-      activeTab,
-      currentUser.zone_id,
-    ]);
-
-  /**
    * Search + Category Filter
    */
 
   const filteredBlogs =
     useMemo(() => {
-      return tabFilteredBlogs.filter(
+      return blogs.filter(
         (blog) => {
           const matchesSearch =
             blog.title
@@ -148,7 +117,7 @@ const NewsFeedPage = () => {
         }
       );
     }, [
-      tabFilteredBlogs,
+      blogs,
       searchTerm,
       selectedCategory,
     ]);
@@ -175,6 +144,20 @@ const NewsFeedPage = () => {
         {error}
       </div>
     );
+
+  if (isLoading) {
+    return (
+      <div className="zenProfileLayout">
+        <DashboardSidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
+        <div className="orionMainContent">
+          <LoadingBrand />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="zenProfileLayout">
@@ -211,6 +194,7 @@ const NewsFeedPage = () => {
               className="orionSearchInput"
             />
 
+
           </div>
 
           <div className="orionTopBarActions">
@@ -220,28 +204,7 @@ const NewsFeedPage = () => {
               <span className="orionNotificationDot"></span>
             </button>
 
-            <div className="orionUserProfileWidget">
-
-              <img
-                src="/profile.jpg"
-                alt="User"
-                className="orionUserAvatar"
-              />
-
-              <div className="orionUserMeta">
-                <h4>
-                  Chukwutem Emmanuel
-                </h4>
-
-                <span>
-                  User ID:
-                  12345434
-                </span>
-              </div>
-
-              <ChevronDown size={16} />
-
-            </div>
+            <DashboardUserProfileWidget />
 
           </div>
 
@@ -328,15 +291,6 @@ const NewsFeedPage = () => {
         <div className="stellarNewsWrapper">
 
           <NewsHeader totalArticles={filteredBlogs.length} />
-
-          <NewsTabs
-            activeTab={
-              activeTab
-            }
-            setActiveTab={
-              setActiveTab
-            }
-          />
 
           <NewsCategoryFilters
             categories={

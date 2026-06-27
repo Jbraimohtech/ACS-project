@@ -3,10 +3,10 @@
 /* CONTENT */
 .giving-content-component-box {
     width: 95%;
-    height: 676px;
+    min-height: 676px;
     display: flex;
     flex-direction: column;
-    background-color: var(--primary);
+    /* background-color: var(--primary); */
     margin: 30px 15% -100px 3%;
     border-radius: 12px;
 }
@@ -185,11 +185,64 @@
   margin-top: 8px;
 }
 
+.payment-actions-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.payment-action-btn {
+  margin-top: 0;
+  flex: 1;
+}
+
+.payment-action-btn:first-child {
+  background: #d1d5db;
+  color: #111827;
+}
+
+.payment-confirmation-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-confirmation-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.payment-account-box {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #374151;
+}
+
+.upload-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.upload-input {
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+
 /* INFO SECTION */
 
 .giving-info-section {
   width: 55%;
-  margin-top: 250px;
+  margin-top: 220px;
   padding: 24px;
 }
 
@@ -254,7 +307,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-     margin: -120px 10px 50px 0;
+     margin: -50px 10px 50px 0;
   }
 
   .donation-card {
@@ -295,7 +348,7 @@
     grid-template-columns: 1fr;
   }
 
-  .stats-grid {
+  .giving-stats-grid {
     grid-template-columns: 1fr;
   }
 

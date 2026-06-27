@@ -9,44 +9,12 @@ const ResourcesTabs = ({
 }: Props) => {
   return (
     <div className="resourceTabs">
-
       <button
-        className={
-          activeTab === "resources"
-            ? "resourceTabActive"
-            : ""
-        }
-        onClick={() =>
-          setActiveTab("resources")
-        }
+        className={activeTab === "resources" ? "resourceTabActive" : ""}
+        onClick={() => setActiveTab("resources")}
       >
         Resources
       </button>
-
-      <button
-        onClick={() =>
-          setActiveTab("downloads")
-        }
-      >
-        My Downloads
-      </button>
-
-      <button
-        onClick={() =>
-          setActiveTab("recent")
-        }
-      >
-        Recent Access
-      </button>
-
-      <button
-        onClick={() =>
-          setActiveTab("saved")
-        }
-      >
-        Saved
-      </button>
-
     </div>
   );
 };

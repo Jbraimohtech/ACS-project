@@ -6,6 +6,13 @@
   display: flex;
   gap: 32px;
   margin-top: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.resourceTabs::-webkit-scrollbar {
+  display: none;
 }
 
 .resourceTabs button {
@@ -24,6 +31,14 @@
   display: flex;
   gap: 12px;
   margin: 24px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 2px;
+}
+
+.resourceFilters::-webkit-scrollbar {
+  display: none;
 }
 
 .resourceFilters button {
@@ -51,6 +66,14 @@
   background: white;
   border-radius: 14px;
   overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resourceCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 91, 85, 0.12);
 }
 
 .resourceImage {

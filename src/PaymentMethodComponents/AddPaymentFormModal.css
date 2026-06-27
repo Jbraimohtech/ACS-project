@@ -1,6 +1,7 @@
 .novaCardOverlay {
   position: fixed;
   inset: 0;
+  padding: 20px;
 
   background: rgba(0,0,0,0.25);
 
@@ -9,18 +10,27 @@
   justify-content: center;
 
   z-index: 9999;
+  overflow-y: auto;
 }
 
 .novaCardModal {
-  width: 520px;
+  width: min(560px, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   background: white;
 
   border-radius: 14px;
 
-  padding: 24px;
+  padding: 20px 22px;
 
   box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.novaCardModal::-webkit-scrollbar {
+  display: none;
 }
 
 /* HEADER */
@@ -41,7 +51,7 @@
 }
 
 .novaCardHeader h2 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
 
   color: #111827;
@@ -62,10 +72,10 @@
 }
 
 .novaCardSubtitle {
-  margin-top: 6px;
-  margin-bottom: 24px;
+  margin-top: 4px;
+  margin-bottom: 16px;
 
-  font-size: 13px;
+  font-size: 12px;
 
   color: #6b7280;
 }
@@ -76,13 +86,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  gap: 12px;
+  gap: 10px;
 
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .novaProviderTabs button {
-  height: 48px;
+  height: 42px;
 
   border: 1px solid #e5e7eb;
 
@@ -98,13 +108,164 @@
 
   cursor: pointer;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
+}
+
+.novaProviderTabs button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  background: #f9fafb;
+  color: #9ca3af;
 }
 
 .novaProviderActive {
   border: 2px solid #0f766e !important;
   color: #0f766e;
+}
+
+.novaProviderTab {
+  color: #374151;
+}
+
+.novaCardFormShell {
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+  margin-bottom: 8px;
+}
+
+.novaProviderDisabledMessage {
+  padding: 16px;
+  border: 1px dashed #d1d5db;
+  border-radius: 12px;
+  background: #f9fafb;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.novaProviderDisabledMessage p {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.novaProviderDisabledMessage span {
+  font-size: 13px;
+}
+
+.novaPaymentConfirmationCard {
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+  margin-bottom: 8px;
+}
+
+.novaSectionLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0f766e;
+  margin: 0 0 6px;
+}
+
+.novaPaymentConfirmationCard h4 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #111827;
+}
+
+.novaPaymentAccountBox {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.novaPaymentAccountBox p {
+  margin: 3px 0;
+  font-size: 13px;
+  color: #374151;
+}
+
+.novaFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.novaInput {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.novaInput.full {
+  margin-bottom: 10px;
+}
+
+.novaPhoneInput {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.novaCountryCode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 68px;
+  padding: 10px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  color: #374151;
+  font-size: 13px;
+}
+
+.novaGreenDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0f766e;
+}
+
+.novaAmountLabel {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.novaUploadLabel {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.novaUploadWrapper {
+  margin-bottom: 12px;
+}
+
+.novaUploadInput {
+  width: 100%;
+  border: 1px dashed #d1d5db;
+  border-radius: 10px;
+  padding: 9px 10px;
+  background: #fff;
 }
 
 /* FIELDS */
@@ -156,14 +317,14 @@
   display: flex;
   justify-content: flex-end;
 
-  gap: 12px;
+  gap: 10px;
 
-  margin-top: 24px;
+  margin-top: 16px;
 }
 
 .novaBackButton {
-  width: 90px;
-  height: 44px;
+  width: 84px;
+  height: 40px;
 
   border: 1px solid #e5e7eb;
 
@@ -175,8 +336,8 @@
 }
 
 .novaAddCardButton {
-  width: 120px;
-  height: 44px;
+  width: 112px;
+  height: 40px;
 
   border: none;
 
@@ -189,4 +350,10 @@
   font-weight: 600;
 
   cursor: pointer;
+}
+
+.novaAddCardButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: #9ca3af;
 }

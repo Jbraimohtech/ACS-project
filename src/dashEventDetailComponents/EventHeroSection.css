@@ -54,3 +54,11 @@
   font-size: 38px;
   font-weight: 700;
 }
+
+@media (max-width: 480px) {
+  .auroraHeroCard {
+    height: 400px;
+    width: 100%;
+    border-radius: 12px;
+  }
+}
