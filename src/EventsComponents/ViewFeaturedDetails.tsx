@@ -15,6 +15,9 @@ import BeAccountedFor from "./BeAccountedFor";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
+import { getEventImage } from '../utils/eventUtils';
+import LoadingBrand from '../components/LoadingBrand';
+import EventSpeakersCard from "../dashEventDetailComponents/EventSpeakersCard";
 
 
 
@@ -50,6 +53,7 @@ const ViewFeaturedDetails: React.FC = () => {
   const [event, setEvent] = useState<Event | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   
   const handleGoing = () => {
@@ -65,6 +69,7 @@ const ViewFeaturedDetails: React.FC = () => {
 
       const fetchEvent = async () => {
         try {
+          setIsLoading(true);
           const response = await fetch(
             `https://ambchapcorps.org/api/event/${id}`
           );
@@ -81,6 +86,8 @@ const ViewFeaturedDetails: React.FC = () => {
           setEvent(eventData);
         } catch (error) {
           console.error("Error fetching event:", error);
+        } finally {
+          setIsLoading(false);
         }
       };
 
@@ -98,78 +105,84 @@ const ViewFeaturedDetails: React.FC = () => {
         </div>
 
       </AllMainContent>
-         {/* MAIN GRID */}
+      {isLoading ? (
+        <div className="featured-content-grid">
+          <LoadingBrand />
+        </div>
+      ) : (
       <section className="featured-content-grid">
         {/* EVENT CARD */}
-        <button className='event-featured-category-clicks'>
-        <BlogCard>
+        <div className='event-featured-category-clicks'>
+          <BlogCard>
             <div className="featured-event-blog-card">
-                <div className='blog-card-prop'>
-                    <div className='blog-first-img-featured'>
-                        <div className="featured-badge-and-title">
-                            <span className="featured-badge">
-                                FLAGSHIP EVENT
-                            </span>
+              <div className='blog-card-prop'>
+                {event?.image ? (
+                  <img
+                    src={getEventImage(event.image)}
+                    alt={event?.title}
+                    className='blog-first-img-featured'
+                  />
+                ) : null}
+                <span className="featured-badge-and-title">
+                  <span className="featured-badge">
+                    FLAGSHIP EVENT
+                  </span>
 
-                            <h2>{event?.title}</h2>
+                  <h2>{event?.title}</h2>
 
-                            <div className="event-meta">
-                                <span>
-                                <CalendarDays size={14} />
-                                {event &&
-                                  new Date(event.date).toLocaleDateString(
-                                    "en-US",
-                                    {
-                                      weekday: "short",
-                                      day: "2-digit",
-                                      month: "short",
-                                      year: "numeric",
-                                    }
-                                  )}
-                                </span>
+                  <div className="event-meta">
+                    <span>
+                      <CalendarDays size={14} />
+                      {event
+                        ? new Date(event.date).toLocaleDateString("en-US", {
+                            weekday: "short",
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                          })
+                        : ""}
+                    </span>
 
-                                <span>
-                                <MapPin size={14} />
-                                {event?.venue}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    <span>
+                      <MapPin size={14} />
+                      {event?.venue}
+                    </span>
+                  </div>
+                </span>
+              </div>
+              <div className='blog-feature-details'>
+                <div className="attendance-card">
+                  <div className="under-attendance-card">
+                    <div className="small-line"></div>
+
+                    <span className="mini-label">
+                      ATTENDANCE STATUS
+                    </span>
+                  </div>
+
+                  <div className="row-big-text-featured">
+                    <h2>450+</h2>
+                    <p>
+                      Attending from top firms
+                    </p>
+                  </div>
+
+                  <div className="row-big-text-featured-phone">
+                    <h2>{event?.title}</h2>
+                    <p>
+                      {event?.venue}
+                    </p>
+                  </div>
+
+                  <button className="rsvp-btn" onClick={() => setShowModal(true)}>
+                    <CircleCheck size={16} />
+                    RSVP Now
+                  </button>
                 </div>
-                <div className='blog-feature-details'>
-                    <div className="attendance-card">
-                        <div className="under-attendance-card">
-                            <div className="small-line"></div>
-
-                            <span className="mini-label">
-                            ATTENDANCE STATUS
-                            </span>
-                        </div>
-                        
-                        <div className="row-big-text-featured">
-                            <h2>450+</h2>
-                            <p>
-                            Attending from top firms
-                            </p>
-                        </div>
-                        {/* This will be for the phone view */}
-                            <div className="row-big-text-featured-phone">
-                                <h2>{event?.title}</h2>
-                                <p>
-                                {event?.venue}
-                                </p>
-                            </div>
-                        {/* End of the phone view */}
-
-                        <button className="rsvp-btn" onClick={() => setShowModal(true)}>
-                        <CircleCheck size={16} />
-                        RSVP Now
-                        </button>
-                    </div>
-                </div>
+              </div>
             </div>
-        </BlogCard>
-      </button>
+          </BlogCard>
+        </div>
 
           <div className="row-featured-details">
         {/* LEFT COLUMN */}
@@ -313,7 +326,8 @@ const ViewFeaturedDetails: React.FC = () => {
         {/* RIGHT COLUMN */}
         <div className="right-column-featured">
           {/* SPEAKERS */}
-          <div className="about-featured-card-two">
+          <EventSpeakersCard speakers={event?.user ? [event.user] : []} />
+          {/* <div className="about-featured-card-two">
             <div className="small-line"></div>
 
             <h3>Featured Speakers</h3>
@@ -326,9 +340,9 @@ const ViewFeaturedDetails: React.FC = () => {
 
               <div className="speaker-info">
                 <h4>
-                  {event?.user.first_name}
+                  {event?.user?.first_name ?? ""}
                   {" "}
-                  {event?.user.last_name}
+                  {event?.user?.last_name ?? ""}
                 </h4>
 
                 <p>
@@ -372,7 +386,7 @@ const ViewFeaturedDetails: React.FC = () => {
             <button className="view-btn">
               View All 24 Speakers
             </button>
-          </div>
+          </div> */}
 
           {/* VENUE */}
             <div className="about-featured-card-map">
@@ -420,6 +434,7 @@ const ViewFeaturedDetails: React.FC = () => {
           </div>
         </div>
       </section>
+      )}
 
       <BeAccountedFor />
       <HomeFooter />
@@ -536,7 +551,7 @@ const ViewFeaturedDetails: React.FC = () => {
               {/* PHONE */}
               <div className="register-phone-input">
                 <div className="country-code">
-                  <span className="dot"></span>
+                  <img src="/src/assets/images/nigeria-flag.svg" alt="Nigeria flag" className="country-flag-icon" />
 
                   <span>+234</span>
 

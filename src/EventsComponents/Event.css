@@ -57,6 +57,10 @@
     display: none;
 }
 
+.event-blog-head-text-phone {
+    display: none;
+}
+
 .event-head-text h1 {
     font-family: myFont, sans-serif;
     font-size: 56px;
@@ -156,13 +160,12 @@
 }
 
 .featured-first-img {
-    background-image: url("../assets/images/ofiice-five-img.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     width: 70%;
     height: 299px;
     border-radius: 12px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .location-icon-box {
@@ -344,6 +347,15 @@
         display: none;
     }
 
+    .event-blog-head-text-phone {
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto;
+    }
+
     .event-head-text-phone {
         display: flex;
         width: 100%;
@@ -359,6 +371,15 @@
         font-weight: 700;
         color: var(--light);
         text-align: center;
+    }
+
+    .event-blog-head-text-phone h1 {
+        font-family: myFont, sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--light);
+        text-align: center;
+        margin: 1rem auto;
     }
 
     .event-featured {
@@ -641,7 +662,7 @@
 }
 
 .featured-badge {
-  background: #2563eb;
+  background: #06702d;
   width: 123.67px;
   height: 24px;
   color: #fff;
@@ -742,7 +763,7 @@
 .small-horizontal-line {
     width: 32px;
     height: 2px;
-    background: #2563eb;
+    background: #16a34a;
     margin-bottom: 14px;
 }
 
@@ -880,7 +901,7 @@
 
 .blue {
   background: #dbeafe;
-  color: #2563eb;
+  color: #16a34a;
 }
 
 .purple {
@@ -949,13 +970,9 @@
 .blog-first-img-featured {
     width: 670px;
     height: 400px;
-    background-image: url("../assets/images/blog-img.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .featured-badge-and-title {
@@ -963,6 +980,10 @@
     flex-direction: column;
     gap: 10px;
     padding: 20px;
+    position: absolute;
+    top: 180%;
+    left: 30%;
+    transform: translate(-50%, -50%);
 }
 
 .featured-badge-and-title h2 {
@@ -1176,7 +1197,7 @@
     display: flex;
     width: 100%;
     height: fit-content;
-    margin-top: 0px;
+    margin-top: 30px;
     margin-bottom: 10px;
     justify-content: center;
     align-items: center;

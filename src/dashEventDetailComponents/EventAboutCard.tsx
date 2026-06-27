@@ -17,7 +17,7 @@ const EventAboutCard = ({
 
       <p>{event.description}</p>
 
-      <div className="feature-grid">
+      {/* <div className="feature-grid">
         <div className="feature-item">
           <div className="ai-workshop-icon"></div>
           <span>12+ AI Workshops</span>
@@ -32,7 +32,7 @@ const EventAboutCard = ({
           <div className="rocket-icon"></div>
           <span>Startup Pitches</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

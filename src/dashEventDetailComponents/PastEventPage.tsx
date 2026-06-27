@@ -7,12 +7,12 @@ import PastEventCard from "./PastEventCard";
 import {
   Search,
   Bell,
-  ChevronDown,
   Menu,
 } from "lucide-react";
 import PastEventsPagination from "./PastEventPagination";
 import PastEventsFilters from "./PastEventFilter";
 import PastEventsHeader from "./PastEventsHeader";
+import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
 
 const PastEventsPage = () => {
   const [sidebarOpen, setSidebarOpen] =
@@ -54,20 +54,7 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
 
                     {/* USER */}
 
-                    <div className="orionUserProfileWidget">
-                    <img
-                        src="/profile.jpg"
-                        alt="User"
-                        className="orionUserAvatar"
-                    />
-
-                    <div className="orionUserMeta">
-                        <h4>Chukwutem Emmanuel</h4>
-                        <span>User ID: 12345434</span>
-                    </div>
-
-                    <ChevronDown size={16} />
-                    </div>
+                    <DashboardUserProfileWidget />
                 </div>
             </div>
 

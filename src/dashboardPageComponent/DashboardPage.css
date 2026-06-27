@@ -11,6 +11,10 @@
     display: none;
 }
 
+.viewButtonToEvent {
+  cursor: pointer;
+}
+
 .orionTopBarShellMobile-left {
     display: flex;
     gap: 5px;
@@ -128,6 +132,18 @@
 .listItem {
   padding: 16px;
   border-bottom: 1px solid #ececec;
+}
+
+.listItem a {
+  color: #111111;
+  text-decoration: none;
+  display: block;
+}
+
+.listItem a:hover,
+.listItem a:focus {
+  color: #111111;
+  text-decoration: none;
 }
 
 .profileCard {

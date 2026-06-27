@@ -43,3 +43,21 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 480px) {
+  .stellarEventTopGrid {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 0px;
+  }
+
+  .stellarEventRightColumn {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .stellarEventAboutSection-small {
+    display: none;
+  }
+  
+}

@@ -31,8 +31,11 @@ const ResourcePreviewModal = ({
 
             <div className="novaPreviewImage">
               <img
-                src="/marketing-resource.jpg"
-                alt="resource"
+                src={resource.download_url || (resource.file ? `https://ambchapcorps.org/storage/${resource.file}` : "/profile.jpg")}
+                alt={resource.title}
+                onError={(e) => {
+                  e.currentTarget.src = "/profile.jpg";
+                }}
               />
             </div>
 
@@ -93,7 +96,7 @@ const ResourcePreviewModal = ({
             </div>
 
             <a
-              href={`https://ambchapcorps.org/storage/resources/${resource.file}`}
+              href={resource.download_url || (resource.file ? `https://ambchapcorps.org/storage/${resource.file}` : "#")}
               target="_blank"
               rel="noopener noreferrer"
               className="novaDownloadBtn"

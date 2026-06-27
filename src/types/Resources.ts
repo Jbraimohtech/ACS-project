@@ -4,7 +4,8 @@ export interface Resource {
   title: string;
   description: string;
   file: string;
-  type: string;           
+  type: string;
   created_at: string;
   updated_at: string;
+  download_url?: string;
 }

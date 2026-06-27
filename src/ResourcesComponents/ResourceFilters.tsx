@@ -26,7 +26,7 @@ const ResourceFilters = ({
         All Categories
       </button>
 
-      <button
+      {/* <button
         onClick={() =>
           setActiveFilter("pdf")
         }
@@ -48,7 +48,7 @@ const ResourceFilters = ({
         }
       >
         Audio
-      </button>
+      </button> */}
 
     </div>
   );

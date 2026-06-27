@@ -49,7 +49,7 @@ const DashboardSidebar = ({
         </button>
 
         <aside className="quantumSidebarShell">
-          <h2 className="quantumLogoText">ACS</h2>
+          <h2 className="quantumLogoText"><div className="novaLogoIcon"></div></h2>
 
           <nav className="quantumSidebarNav">
 

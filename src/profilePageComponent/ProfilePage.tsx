@@ -114,72 +114,70 @@ const ProfilePage = () => {
         <div className="orionMainContent">
             {/* MOBILE MENU */}
         
-        <div className="orionTopBarShellMobile">
-            <button
-                className="orionMobileMenuButton"
-                onClick={() => setSidebarOpen(true)}
-            >
-                <Menu size={22} />
-            </button>
-            
-            <div className="orionMobileLogo-crop">
-                 {!showMobileSearch ? (
+            <div className="orionTopBarShellMobile">
                 <button
-                    className="orionMobileSearchTrigger"
-                    onClick={() =>
-                    setShowMobileSearch(true)
-                    }
+                    className="orionMobileMenuButton"
+                    onClick={() => setSidebarOpen(true)}
                 >
-                    <Search size={22} />
+                    <Menu size={22} />
                 </button>
-                ) : (
-                <div className="orionSearchCluster">
-                    <Search
-                    size={16}
-                    className="orionSearchIcon"
-                    />
-
-                    <input
-                    autoFocus
-                    type="text"
-                    placeholder="Search members, events..."
-                    className="orionSearchInput"
-                    />
-
-                    <button
-                    className="orionMobileSearchClose"
-                    onClick={() =>
-                        setShowMobileSearch(false)
-                    }
-                    >
-                    ✕
-                    </button>
-                </div>
-                )}
                 
-                <div className="notify-icon-profile-box">
-                    <div className="notify-icon-profile"></div>
-                </div>
-                <div className="notify-icon-profile-box">
-                    {/* <div className="profile-image-small">
-
-                    </div> */}
-                    <img
-                        src={
-                            user?.profile_image
-                            ? `https://ambchapcorps.org/storage/${user.profile_image}`
-                            : "/profile.jpg"
+                <div className="orionMobileLogo-crop">
+                    {!showMobileSearch ? (
+                    <button
+                        className="orionMobileSearchTrigger"
+                        onClick={() =>
+                        setShowMobileSearch(true)
                         }
-                        alt="Profile"
-                        className="profile-image-small"
-                        onError={(e) => {
-                            e.currentTarget.src = "/profile.jpg";
-                        }}
+                    >
+                        <Search size={22} />
+                    </button>
+                    ) : (
+                    <div className="orionSearchCluster">
+                        <Search
+                        size={16}
+                        className="orionSearchIcon"
                         />
-                    
+
+                        <input
+                        autoFocus
+                        type="text"
+                        placeholder="Search members, events..."
+                        className="orionSearchInput"
+                        />
+
+                        <button
+                        className="orionMobileSearchClose"
+                        onClick={() =>
+                            setShowMobileSearch(false)
+                        }
+                        >
+                        ✕
+                        </button>
+                    </div>
+                    )}
+
+                    <div className="notify-icon-profile"></div>
+                    <div className="notify-icon-profile-box">
+                        {/* <div className="profile-image-small">
+
+                        </div> */}
+                        <img
+                            src={
+                                user?.profile_image
+                                ? `https://ambchapcorps.org/storage/${user.profile_image}`
+                                : "/profile.jpg"
+                            }
+                            alt="Profile"
+                            className="profile-image-small"
+                            onError={(e) => {
+                                e.currentTarget.src = "/profile.jpg";
+                            }}
+                            />
+                        
+                    </div>
                 </div>
             </div>
-        </div>
 
             {/* TOP BAR */}
             <div className="orionTopBarShell">

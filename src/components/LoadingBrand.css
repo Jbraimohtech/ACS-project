@@ -1,0 +1,47 @@
+.brand-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  width: 100%;
+}
+
+.brand-loading-inline {
+  padding: 0;
+  width: auto;
+}
+
+.brand-loading-ring {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid rgba(107, 114, 128, 0.18);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  animation: brand-spin 1s linear infinite;
+}
+
+.brand-loading-ring::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 2px solid rgba(107, 114, 128, 0.16);
+  border-top-color: #0f766e;
+  border-radius: 50%;
+}
+
+.brand-loading-logo {
+  width: 34px;
+  height: 34px;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes brand-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

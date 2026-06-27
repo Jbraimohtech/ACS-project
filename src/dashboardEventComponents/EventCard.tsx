@@ -25,10 +25,33 @@ const EventCard = ({ event }: EventCardProps) => {
   return (
     <div className="stellarEventRow">
       <div className="stellarDateBlock">
-        <span>Thur</span>
-        <h2>04</h2>
-        <p>SEP</p>
-        <p>2026</p>
+        {(() => {
+          const date = new Date(event.date);
+          const day = date.toLocaleDateString("en-US", { weekday: "short" });
+          const dateNum = date.getDate();
+          const month = date.toLocaleDateString("en-US", { month: "short" });
+          const year = date.getFullYear();
+
+          return (
+            <>
+              <span>
+                {day}
+              </span>
+
+              <h2>
+                {dateNum}
+              </h2>
+
+              <p>
+                {month}
+              </p>
+
+              <p>
+                {year}
+              </p>
+            </>
+          );
+        })()}
       </div>
 
       <div className="stellarEventImage"></div>

@@ -3,12 +3,12 @@ import DashboardSidebar from "../profilePageComponent/DashboardSidebar"
 import "../profileEditComponents/EditProfile.css"
 import {
   Bell,
-  ChevronDown,
   Search,
   Menu,
 } from "lucide-react";
 import ProfileSecurity from "./ProfileSecurity";
 import { useState } from "react";
+import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
 
 const ProfileSecurityPage = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -49,20 +49,7 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
 
                     {/* USER */}
 
-                    <div className="orionUserProfileWidget">
-                    <img
-                        src="/profile.jpg"
-                        alt="User"
-                        className="orionUserAvatar"
-                    />
-
-                    <div className="orionUserMeta">
-                        <h4>Chukwutem Emmanuel</h4>
-                        <span>User ID: 12345434</span>
-                    </div>
-
-                    <ChevronDown size={16} />
-                    </div>
+                    <DashboardUserProfileWidget />
                 </div>
             </div>
 

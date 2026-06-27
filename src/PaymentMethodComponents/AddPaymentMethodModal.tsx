@@ -1,6 +1,6 @@
 import AddPaymentFormModal from "./AddPaymentFormModal";
 import "./AddPaymentMethodModal.css"
-import { X, Trash2, Pencil, PlusCircle, ShieldCheck } from "lucide-react";
+import { X, PlusCircle, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 
 
@@ -26,41 +26,6 @@ const AddPaymentMethodModal = ({
                 <button onClick={onClose}>
                     <X size={18} />
                 </button>
-            </div>
-
-            <div className="novaMethodCard novaMethodCardActive">
-            <img src="/visa.png" alt="" />
-
-            <div className="novaMethodInfo">
-                <h4>
-                Visa ending in 4242
-                <span>ACTIVE</span>
-                </h4>
-
-                <p>Expires 12/26</p>
-            </div>
-
-            <div className="novaMethodActions">
-                <Pencil size={15} />
-                <Trash2 size={15} />
-            </div>
-            </div>
-
-            <div className="novaMethodCard">
-            <img src="/mastercard.png" alt="" />
-
-            <div className="novaMethodInfo">
-                <h4>
-                Mastercard ending in 8831
-                </h4>
-
-                <p>Expires 08/25</p>
-            </div>
-
-            <div className="novaMethodActions">
-                <Pencil size={15} />
-                <Trash2 size={15} />
-            </div>
             </div>
 
             <button

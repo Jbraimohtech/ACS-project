@@ -10,36 +10,71 @@ import ResourcesTabs from "./ResourcesTabs";
 import "./ResourcesContent.css"
 import {
   Bell,
-  ChevronDown,
   Search,
   Menu,
 } from "lucide-react";
 import type { Resource } from "../types/Resources";
+import LoadingBrand from "../components/LoadingBrand";
+import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
+import { getToken } from "../utils/auth";
 
 const ResourcesContent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("resources");
   const [activeFilter, setActiveFilter] = useState("all");
-    const [showMobileSearch, setShowMobileSearch] = useState(false);
-    const [resources, setResources] = useState<Resource[]>([]);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [resources, setResources] = useState<Resource[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-  const fetchResources = async () => {
-    try {
-      const response = await fetch(
-        "https://ambchapcorps.org/api/resources"
-      );
+  useEffect(() => {
+    const fetchResources = async () => {
+      try {
+        setIsLoading(true);
+        const token = getToken();
+        const response = await fetch(
+          "https://ambchapcorps.org/api/dashboard/resources",
+          {
+            headers: {
+              Accept: "application/json",
+              ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+          }
+        );
 
-      const data = await response.json();
+        if (!response.ok) {
+          throw new Error("Unable to load resources");
+        }
 
-      setResources(data.data || []);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+        const data = await response.json().catch(() => ({}));
+        const list = Array.isArray(data?.data)
+          ? data.data
+          : Array.isArray(data)
+            ? data
+            : [];
 
-  fetchResources();
-}, []);
+        setResources(
+          list.map((item: Record<string, unknown>) => ({
+            id: Number(item.id ?? 0),
+            user_id: Number(item.user_id ?? 0),
+            title: String(item.title ?? "Untitled resource"),
+            description: String(item.description ?? ""),
+            file: String(item.file ?? ""),
+            type: String(item.type ?? "pdf"),
+            created_at: String(item.created_at ?? ""),
+            updated_at: String(item.updated_at ?? ""),
+            download_url: item.download_url ? String(item.download_url) : undefined,
+          })) as Resource[]
+        );
+      } catch (error) {
+        console.error(error);
+        setResources([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchResources();
+  }, []);
 
   return (
     <div className="zenProfileLayout">
@@ -76,20 +111,7 @@ const ResourcesContent = () => {
 
                     {/* USER */}
 
-                    <div className="orionUserProfileWidget">
-                    <img
-                        src="/profile.jpg"
-                        alt="User"
-                        className="orionUserAvatar"
-                    />
-
-                    <div className="orionUserMeta">
-                        <h4>Chukwutem Emmanuel</h4>
-                        <span>User ID: 12345434</span>
-                    </div>
-
-                    <ChevronDown size={16} />
-                    </div>
+                    <DashboardUserProfileWidget />
                 </div>
             </div>
 
@@ -165,13 +187,19 @@ const ResourcesContent = () => {
             setActiveFilter={setActiveFilter}
           />
 
-            <RecentAccessSection
-                resources={resources.slice(0, 4)}
-            />
+            {isLoading ? (
+              <LoadingBrand />
+            ) : (
+              <>
+                <RecentAccessSection
+                  resources={resources.slice(0, 4)}
+                />
 
-            <AllResourcesSection
-                resources={resources}
-            />
+                <AllResourcesSection
+                  resources={resources}
+                />
+              </>
+            )}
 
         </div>
 

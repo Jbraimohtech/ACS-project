@@ -2,7 +2,6 @@ import {
   ChevronLeft,
   Search,
   Bell,
-  ChevronDown,
   Menu,
 } from "lucide-react";
 
@@ -18,6 +17,8 @@ import {
 } from "react";
 
 import { useNavigate } from "react-router-dom";;
+import LoadingBrand from "../components/LoadingBrand";
+import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
 
 export interface Event {
   id: number;
@@ -53,10 +54,13 @@ const EventContentPage = () => {
 
   const [error, setError] =
     useState<string | null>(null);
+  const [isLoading, setIsLoading] =
+    useState(true);
 
   useEffect(() => {
     const loadEvents = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(
           "https://ambchapcorps.org/api/event"
         );
@@ -76,6 +80,8 @@ const EventContentPage = () => {
         setError(
           "Unable to load events."
         );
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -144,6 +150,20 @@ const EventContentPage = () => {
     );
   }
 
+  if (isLoading) {
+    return (
+      <div className="zenProfileLayout">
+        <DashboardSidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
+        <div className="orionMainContent">
+          <LoadingBrand />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="zenProfileLayout">
       <DashboardSidebar
@@ -184,25 +204,7 @@ const EventContentPage = () => {
               <span className="orionNotificationDot" />
             </button>
 
-            <div className="orionUserProfileWidget">
-              <img
-                src="/profile.jpg"
-                alt="User"
-                className="orionUserAvatar"
-              />
-
-              <div className="orionUserMeta">
-                <h4>
-                  Chukwutem Emmanuel
-                </h4>
-
-                <span>
-                  User ID: 12345434
-                </span>
-              </div>
-
-              <ChevronDown size={16} />
-            </div>
+            <DashboardUserProfileWidget />
           </div>
         </div>
 
@@ -273,8 +275,10 @@ const EventContentPage = () => {
               </div>
             )}
 
+            <div className="notify-icon-profile"></div>
+
             <div className="notify-icon-profile-box">
-              <div className="notify-icon-profile"></div>
+              
             </div>
 
             <div className="notify-icon-profile-box">

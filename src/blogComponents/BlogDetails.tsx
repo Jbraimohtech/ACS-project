@@ -4,6 +4,7 @@ import "./Blog.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
+import LoadingBrand from "../components/LoadingBrand";
 
 
 interface Article {
@@ -32,12 +33,14 @@ interface Article {
 function BlogDetails() {
   const { id } = useParams();
   const [article, setArticle] = useState<Article | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
 
     const fetchArticle = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(
           `https://ambchapcorps.org/api/blog/${id}`
         );
@@ -47,6 +50,8 @@ function BlogDetails() {
         setArticle(data.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -68,14 +73,18 @@ function BlogDetails() {
         </div>
 
         {/* This is for only media query and it is not expected to be on big screens */}
-          <div  className='event-head-text-phone'>
+          <div  className='event-blog-head-text-phone'>
             <h1>{article?.title}</h1>
           </div>
         {/* The end of it from media query*/}
         </div>
       </AllMainContent>
 
-      {/* BLOG CONTENT */}
+      {isLoading ? (
+        <div className="blog-details-content">
+          <LoadingBrand />
+        </div>
+      ) : (
       <section className="blog-details-content">
         <div className="blogArticleContent">
           <div
@@ -85,18 +94,13 @@ function BlogDetails() {
           />
         </div>
 
-        <img
-          src={
-            article?.image
-              ? `https://ambchapcorps.org/storage/${article.image}`
-              : "/src/assets/images/blog-detail-img-two.jpg"
-          }
-          alt={article?.title || "Blog"}
-          className="blog-details-img-one"
-          onError={(e) => {
-            e.currentTarget.src = "/images/default-blog.jpg";
-          }}
-        />
+        {article?.image ? (
+          <img
+            src={`https://ambchapcorps.org/storage/${article.image}`}
+            alt={article?.title || "Blog"}
+            className="blog-details-img-one"
+          />
+        ) : null}
 
         <div className="blog-layout">
           {/* LEFT */}
@@ -172,6 +176,7 @@ function BlogDetails() {
           </div>
         </div>
       </section>
+      )}
       <HomeFooter />
 
     </div>

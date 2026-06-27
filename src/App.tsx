@@ -31,6 +31,7 @@ import EventDetailsPage from './dashEventDetailComponents/EventDetailsPage'
 import PastEventsPage from './dashEventDetailComponents/PastEventPage'
 import DashboardPage from './dashboardPageComponent/DashboardPage'
 import NewsFeedPage from './newsFeedComponents/NewsFeedPage'
+import DashboardNewsDetails from './newsFeedComponents/DashboardNewsDetails'
 import PaymentPlan from './RegisterComponents/PaymentPlan'
 import RegisterWizard from './RegisterComponents/RegisterWizard'
 import MemberSearch from './MemberComponents/MemberSearch'
@@ -117,6 +118,8 @@ const App = () => {
         <Route path='/dashboard-page' element={<DashboardPage />} />
         {/* To  News Feed Page */}
         <Route path='/news-page' element={<NewsFeedPage />} />
+        {/* To Dashboard News Detail Page */}
+        <Route path='/news/:id' element={<DashboardNewsDetails />} />
         {/* To  News Feed Page */}
         <Route path='/member-search' element={<MemberSearch />} />
       </Routes>

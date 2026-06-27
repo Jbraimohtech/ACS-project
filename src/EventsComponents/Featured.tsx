@@ -3,6 +3,9 @@ import "./Event.css"
 import EventCard from '../components/EventCard'
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
+import fallbackEventImage from '../assets/images/ofiice-five-img.jpg';
+import { getEventImage } from '../utils/eventUtils';
+import LoadingBrand from '../components/LoadingBrand';
 
 interface Event {
   id: number;
@@ -49,10 +52,12 @@ const Featured = () => {
     }
 
     const [featuredEvent, setFeaturedEvent] = useState<Event | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       const fetchEvents = async () => {
         try {
+          setIsLoading(true);
           const response = await fetch(
             "https://ambchapcorps.org/api/event?page=1&per_page=10"
           );
@@ -71,6 +76,8 @@ const Featured = () => {
           setFeaturedEvent(featured || null);
         } catch (error) {
           console.error("Error fetching featured event:", error);
+        } finally {
+          setIsLoading(false);
         }
       };
 
@@ -92,6 +99,9 @@ const Featured = () => {
 
         <p className='event-featured'>Featured Events</p>
         <div className='under-event-featured'>
+            {isLoading ? (
+              <LoadingBrand />
+            ) : (
             <EventCard>
                 <div className='first-text-box'>
                   <div className='first-text-box-left'>
@@ -121,7 +131,11 @@ const Featured = () => {
                         })}
                     </p>
                   </div>
-                  <div className='featured-first-img'></div>
+                  <img
+                    src={featuredEvent?.image ? getEventImage(featuredEvent.image) : fallbackEventImage}
+                    alt={featuredEvent?.title || 'Featured event'}
+                    className='featured-first-img'
+                  />
                 </div>
                 <div className='feature-details'>
                   <h2>{featuredEvent?.title}</h2>
@@ -148,6 +162,7 @@ const Featured = () => {
                   </div>
                 </div>
             </EventCard>
+            )}
         </div>
 
         {/* MODAL */}
@@ -262,7 +277,7 @@ const Featured = () => {
               {/* PHONE */}
               <div className="register-phone-input">
                 <div className="country-code">
-                  <span className="dot"></span>
+                  <img src="/src/assets/images/nigeria-flag.svg" alt="Nigeria flag" className="country-flag-icon" />
 
                   <span>+234</span>
 

@@ -15,8 +15,8 @@
   justify-content: space-between;
   align-items: center;
 
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin: 24px auto;
+  width: 94.5%;
 }
 
 .stellarAlertLeft {
@@ -28,6 +28,17 @@
 
   font-size: 14px;
   font-weight: 500;
+}
+
+.stellarAlertText {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.stellarAlertText p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 .stellarMembershipAlert button {
@@ -490,6 +501,7 @@
     display: flex;
     width: 100%;
     gap: 30px;
+    margin-bottom: 30px;
 }
 
 /* =========================
@@ -525,5 +537,20 @@
 
   .stellarPaymentHistory table {
     min-width: 700px;
+  }
+
+  .stellarMembershipTopSection {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 30px;
+      margin-bottom: 30px;
+  }
+
+  .stellarCurrentPlanCard {
+    width: 100%;
+  }
+  .stellarQuickActionsColumn-box {
+      width: 100%;
   }
 }

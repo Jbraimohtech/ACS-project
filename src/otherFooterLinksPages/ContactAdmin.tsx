@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./ContactAdmin.css";
+import HomeFooter from "../components/HomeFooter";
+import AllMainContent from "../components/AllMainContent";
+import Navbar from "../components/Navbar/Navbar";
 
 const ContactAdmin = () => {
   const [fullName, setFullName] = useState("");
@@ -39,6 +42,17 @@ const ContactAdmin = () => {
   };
 
   return (
+    <div>
+      <AllMainContent>
+          <Navbar />
+          <div className='about-us-head-text'>
+            <h1>Contact Administrator</h1>
+            <div className="our-missionSmallText-box">
+              <p className="our-missionSmallText">Have questions or need assistance? Contact our administration team.</p>
+            </div>
+          </div>
+        </AllMainContent>
+    
     <div className="contact-admin-page">
       <div className="contact-admin-container">
         <h1>Contact Administrator</h1>
@@ -113,6 +127,8 @@ const ContactAdmin = () => {
           </button>
         </form>
       </div>
+    </div>
+    <HomeFooter />
     </div>
   );
 };

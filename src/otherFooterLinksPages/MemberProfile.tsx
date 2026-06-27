@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar/Navbar'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import type { Member } from '../types/member'
+import LoadingBrand from '../components/LoadingBrand'
 
 const MemberProfile = () => {
   const { id } = useParams<{ id: string }>()
@@ -34,7 +35,11 @@ const MemberProfile = () => {
   }, [id])
 
   if (loading) {
-    return <div className='member-loading'>Loading member profile...</div>
+    return (
+      <div className='member-loading'>
+        <LoadingBrand />
+      </div>
+    )
   }
 
   if (!member) {

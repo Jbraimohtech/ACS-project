@@ -3,6 +3,9 @@ import "./Event.css";
 import EventCard from '../components/EventCard';
 import { useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
+import fallbackEventImage from '../assets/images/ofiice-five-img.jpg';
+import { getEventImage } from '../utils/eventUtils';
+import LoadingBrand from '../components/LoadingBrand';
 
 interface Event {
   id: number;
@@ -33,8 +36,9 @@ const AllUpComingEvents = () => {
     const [showModal, setShowModal] =
     useState(false);
 
-    const [events, setEvents] = useState<Event[]>([]);
-    const [page, setPage] = useState(1);
+    const [allEvents, setAllEvents] = useState<Event[]>([]);
+    const [visibleEvents, setVisibleEvents] = useState<Event[]>([]);
+    const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -50,12 +54,12 @@ const AllUpComingEvents = () => {
         }, 200);
     };
 
-    const fetchEvents = useCallback(async (nextPage: number, append = false) => {
+    const fetchEvents = useCallback(async () => {
       setIsLoading(true);
 
       try {
         const response = await fetch(
-          `https://ambchapcorps.org/api/event?page=${nextPage}&per_page=${PAGE_SIZE}`
+          `https://ambchapcorps.org/api/event?page=1&per_page=${PAGE_SIZE}`
         );
 
         if (!response.ok) {
@@ -63,17 +67,21 @@ const AllUpComingEvents = () => {
         }
 
         const result = await response.json();
-        const eventsArray = result.data || result;
-        const fetchedEvents = Array.isArray(eventsArray) ? eventsArray : [];
+        const eventsArray = Array.isArray(result?.data)
+          ? result.data
+          : Array.isArray(result)
+            ? result
+            : [];
+        const fetchedEvents = eventsArray as Event[];
 
-        setEvents((prevEvents) =>
-          append ? [...prevEvents, ...fetchedEvents] : fetchedEvents
-        );
-        setHasMore(fetchedEvents.length === PAGE_SIZE);
-        setPage(nextPage);
+        setAllEvents(fetchedEvents);
+        setVisibleEvents(fetchedEvents.slice(0, PAGE_SIZE));
+        setHasMore(fetchedEvents.length > PAGE_SIZE);
+        setPage(1);
       } catch (error) {
         console.error("Error fetching events:", error);
-        setEvents([]);
+        setAllEvents([]);
+        setVisibleEvents([]);
         setHasMore(false);
       } finally {
         setIsLoading(false);
@@ -82,7 +90,7 @@ const AllUpComingEvents = () => {
 
     useEffect(() => {
       const timeoutId = window.setTimeout(() => {
-        void fetchEvents(1);
+        void fetchEvents();
       }, 0);
 
       return () => window.clearTimeout(timeoutId);
@@ -90,13 +98,19 @@ const AllUpComingEvents = () => {
 
   const loadMoreEvents = () => {
     if (isLoading || !hasMore) return;
-    void fetchEvents(page + 1, true);
+
+    const nextPage = page + 1;
+    const nextVisibleEvents = allEvents.slice(0, nextPage * PAGE_SIZE);
+
+    setVisibleEvents(nextVisibleEvents);
+    setPage(nextPage);
+    setHasMore(nextVisibleEvents.length < allEvents.length);
   };
 
   return (
     <div className='all-up-coming-events'>
         <p className='event-featured'>All Upcoming Events</p>
-        {events.map((event) => (
+        {visibleEvents.map((event) => (
           <div key={event.id}>
             <EventCard>
               <div className="first-text-box">
@@ -133,7 +147,11 @@ const AllUpComingEvents = () => {
 
                 </div>
 
-                <div className="featured-first-img"></div>
+                <img
+                  src={event.image ? getEventImage(event.image) : fallbackEventImage}
+                  alt={event.title}
+                  className="featured-first-img"
+                />
               </div>
 
               <div className="feature-details">
@@ -194,7 +212,7 @@ const AllUpComingEvents = () => {
               onClick={loadMoreEvents}
               disabled={isLoading}
             >
-              {isLoading ? "Loading..." : "Load more events"}
+             {isLoading ? <LoadingBrand /> : "Load more events"} 
             </button>
           </div>
         )}
@@ -313,7 +331,7 @@ const AllUpComingEvents = () => {
               {/* PHONE */}
               <div className="register-phone-input">
                 <div className="country-code">
-                  <span className="dot"></span>
+                  <img src="/src/assets/images/nigeria-flag.svg" alt="Nigeria flag" className="country-flag-icon" />
 
                   <span>+234</span>
 

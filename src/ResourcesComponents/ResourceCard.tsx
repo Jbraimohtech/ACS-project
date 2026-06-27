@@ -23,8 +23,11 @@ const ResourceCard = ({
       <div className="resourceImage">
 
         <img
-          src={`https://ambchapcorps.org/storage/${resource.file}`}
+          src={resource.download_url || (resource.file ? `https://ambchapcorps.org/storage/${resource.file}` : "/profile.jpg")}
           alt={resource.title}
+          onError={(e) => {
+            e.currentTarget.src = "/profile.jpg";
+          }}
         />
 
         <button className="resourcePlay">

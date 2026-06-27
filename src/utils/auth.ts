@@ -23,6 +23,10 @@ export const getToken = () => {
 };
 
 export const setUser = (user: unknown) => {
+  if (!user || typeof user !== "object") {
+    return;
+  }
+
   localStorage.setItem(USER_KEY, JSON.stringify(user));
 };
 
