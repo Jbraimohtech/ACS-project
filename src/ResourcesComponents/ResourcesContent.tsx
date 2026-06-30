@@ -1,5 +1,6 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../src/EventsComponents/Event.css"
 import DashboardSidebar from "../profilePageComponent/DashboardSidebar";
 import AllResourcesSection from "./AllResourcesSection";
@@ -17,8 +18,10 @@ import type { Resource } from "../types/Resources";
 import LoadingBrand from "../components/LoadingBrand";
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
 import { getToken } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 
 const ResourcesContent = () => {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("resources");
   const [activeFilter, setActiveFilter] = useState("all");
@@ -26,14 +29,23 @@ const ResourcesContent = () => {
   const [resources, setResources] = useState<Resource[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const query = formData.get("query")?.toString().trim() || "";
+
+    if (query) {
+      navigate(`/member-search?query=${encodeURIComponent(query)}`);
+    }
+  };
+
   useEffect(() => {
     const fetchResources = async () => {
       try {
         setIsLoading(true);
         const token = getToken();
-        const response = await fetch(
-          "https://ambchapcorps.org/api/dashboard/resources",
-          {
+        const response = await fetch(`${API_BASE}/dashboard/resources`, {
             headers: {
               Accept: "application/json",
               ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -87,7 +99,7 @@ const ResourcesContent = () => {
 
             <div className="orionTopBarShell">
 
-                <div className="orionSearchCluster">
+                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                     <Search
                     size={16}
                     className="orionSearchIcon"
@@ -95,10 +107,11 @@ const ResourcesContent = () => {
 
                     <input
                     type="text"
-                    placeholder="Search members, events,..."
+                    name="query"
+                    placeholder="Search for members"
                     className="orionSearchInput"
                     />
-                </div>
+                </form>
 
                 <div className="orionTopBarActions">
                     {/* NOTIFICATION */}
@@ -139,7 +152,7 @@ const ResourcesContent = () => {
                     <Search size={22} />
                 </button>
                 ) : (
-                <div className="orionSearchCluster">
+                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                     <Search
                     size={16}
                     className="orionSearchIcon"
@@ -148,11 +161,13 @@ const ResourcesContent = () => {
                     <input
                     autoFocus
                     type="text"
+                    name="query"
                     placeholder="Search members, events..."
                     className="orionSearchInput"
                     />
 
                     <button
+                    type="button"
                     className="orionMobileSearchClose"
                     onClick={() =>
                         setShowMobileSearch(false)
@@ -160,7 +175,7 @@ const ResourcesContent = () => {
                     >
                     ✕
                     </button>
-                </div>
+                </form>
                 )}
                 
                 <div className="notify-icon-profile-box">

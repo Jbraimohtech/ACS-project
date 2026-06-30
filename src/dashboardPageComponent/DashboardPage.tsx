@@ -6,12 +6,12 @@ import {
   MessageCircle,
   User,
   Bell,
-  ChevronDown,
   Search,
     Menu,
 } from "lucide-react";
-import { useEffect, useState } from "react";
-import { getToken, getUser, setUser as persistUser } from "../utils/auth";
+import { useEffect, useState, type FormEvent } from "react";
+import { getProfileImageUrl, getToken, getUser, normalizeUserPayload, extractDashboardUser, setUser as persistUser, isMembershipApproved } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 import type { User as UserType } from "../types/User";
 import LoadingBrand from "../components/LoadingBrand";
 import { useNavigate } from "react-router-dom";
@@ -50,6 +50,7 @@ interface DashboardData {
     date: string;
     description: string;
   }[];
+  upcoming_events_count: number;
 
   quick_resources: {
     title: string;
@@ -59,6 +60,11 @@ interface DashboardData {
   user: {
     name: string;
     email: string;
+    membership_id?: string | null;
+    profile_image?: string | null;
+    first_name?: string | null;
+    last_name?: string | null;
+    zone?: string | null;
   };
 }
 
@@ -83,13 +89,27 @@ const isGenericUserName = (value?: string | null) => {
 };
 
 const getPreferredUserName = (fallbackUser: UserType | null, dashboardName?: string | null) => {
-  const fallbackName = [fallbackUser?.first_name, fallbackUser?.last_name]
+  const firstName = fallbackUser?.first_name?.trim();
+  const lastName = fallbackUser?.last_name?.trim();
+
+  if (firstName || lastName) {
+    if (firstName && lastName) {
+      return `${lastName} ${firstName}`;
+    }
+
+    return [firstName, lastName].filter(Boolean).join(" ").trim();
+  }
+
+  const directName = [
+    (fallbackUser as UserType & { name?: string | null; full_name?: string | null })?.name,
+    (fallbackUser as UserType & { name?: string | null; full_name?: string | null })?.full_name,
+  ]
     .filter(Boolean)
     .join(" ")
     .trim();
 
-  if (fallbackName) {
-    return fallbackName;
+  if (directName && !isGenericUserName(directName)) {
+    return directName;
   }
 
   const candidate = dashboardName?.trim();
@@ -106,11 +126,38 @@ const normalizeDashboardData = (incoming: unknown, fallbackUser: UserType | null
   const source = (payload ?? {}) as Record<string, unknown>;
   const nextPayment = (source.last_payment ?? source.lastPayment ?? source.next_payment ?? source.nextPayment ?? {}) as Record<string, unknown>;
   const dues = (source.dues ?? {}) as Record<string, unknown>;
-  const upcomingEvents = Array.isArray(source.upcoming_events)
-    ? source.upcoming_events
-    : Array.isArray(source.events)
-      ? source.events
-      : [];
+
+  const extractArray = (value: unknown): unknown[] => {
+    if (Array.isArray(value)) {
+      return value;
+    }
+
+    if (value && typeof value === "object") {
+      const nested = (value as Record<string, unknown>).data;
+      if (Array.isArray(nested)) {
+        return nested;
+      }
+    }
+
+    return [];
+  };
+
+  const upcomingEvents = [
+    ...extractArray(source.upcoming_events),
+    ...extractArray(source.events),
+    ...extractArray(source.data),
+    ...extractArray((source.data as Record<string, unknown> | undefined)?.upcoming_events),
+    ...extractArray((source.data as Record<string, unknown> | undefined)?.events),
+  ];
+
+  const upcomingEventsCount = Number(
+    source.upcoming_events_count ??
+    source.events_count ??
+    (typeof source.upcoming_events === "number" ? source.upcoming_events : undefined) ??
+    (typeof source.events === "number" ? source.events : undefined) ??
+    upcomingEvents.length
+  );
+
   const quickResources = Array.isArray(source.quick_resources)
     ? source.quick_resources
     : Array.isArray(source.resources)
@@ -148,11 +195,10 @@ const normalizeDashboardData = (incoming: unknown, fallbackUser: UserType | null
       date: String(event.date ?? event.start_date ?? ""),
       description: String(event.description ?? ""),
     })),
+    upcoming_events_count: Number(upcomingEventsCount ?? 0),
     quick_resources: (quickResources as Array<Record<string, unknown>>).map((resource, index) => ({
       title: String(resource.title ?? resource.name ?? `Resource ${index + 1}`),
-      url: resource.file
-        ? `https://ambchapcorps.org/storage/${String(resource.file)}`
-        : String(resource.url ?? resource.link ?? "#"),
+      url: String(resource.download_url ?? resource.url ?? resource.link ?? (resource.file ? `https://ambchapcorps.org/storage/${String(resource.file)}` : "#")),
     })),
     user: {
       name: getPreferredUserName(
@@ -160,11 +206,17 @@ const normalizeDashboardData = (incoming: unknown, fallbackUser: UserType | null
         String(userInfo.name ?? userInfo.full_name ?? userInfo.first_name ?? "") || null
       ),
       email: String(userInfo.email ?? source.email ?? fallbackUser?.email ?? ""),
+      membership_id: String(userInfo.membership_id ?? userInfo.membershipId ?? source.membership_id ?? "") || null,
+      profile_image: String(userInfo.profile_image ?? userInfo.profileImage ?? source.profile_image ?? "") || null,
+      first_name: String(userInfo.first_name ?? userInfo.firstName ?? "") || null,
+      last_name: String(userInfo.last_name ?? userInfo.lastName ?? "") || null,
+      zone: String(userInfo.zone ?? source.zone ?? source.zone_name ?? "") || null,
     },
   };
 };
 
 const DashboardPage = () => {
+    const navigate = useNavigate();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showMobileSearch, setShowMobileSearch] = useState(false);
     const [isLoadingUser, setIsLoadingUser] = useState(() => !!getToken());
@@ -177,7 +229,16 @@ const DashboardPage = () => {
       return storedUser as UserType;
     });
     const [dashboard, setDashboard] = useState<DashboardData | null>(null);
-    const navigate = useNavigate();
+    const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.currentTarget);
+      const query = formData.get("query")?.toString().trim() || "";
+
+      if (query) {
+        navigate(`/member-search?query=${encodeURIComponent(query)}`);
+      }
+    };
 
     const goToDashboardEvents = () => {
       navigate("/event-content-page");
@@ -188,12 +249,12 @@ const DashboardPage = () => {
       : "";
     const dashboardUserName = getPreferredUserName(user, dashboard?.user?.name);
     const dashboardUserEmail = user?.email || dashboard?.user?.email || "";
-    const profileDisplayName = getPreferredUserName(user, dashboard?.user?.name);
     const accountStatus = dashboard?.account_status || "active";
     const nextPaymentAmount = Number(dashboard?.next_payment?.amount ?? 0);
     const nextPaymentDueDate = dashboard?.next_payment?.due_date;
     const paymentMessage = dashboard?.dues?.message || (dashboard?.dues?.is_owing ? "Payment is due." : "No pending dues.");
     const upcomingEvents = dashboard?.upcoming_events ?? [];
+    const upcomingEventsCount = dashboard?.upcoming_events_count ?? upcomingEvents.length;
     const quickResources = dashboard?.quick_resources ?? [];
 
     const getDaysUntilDue = (dateValue?: string | null) => {
@@ -230,7 +291,16 @@ const DashboardPage = () => {
 
     useEffect(() => {
       const token = getToken();
+      const storedUser = getUser() as { NewMemberNotPaid?: unknown; status?: unknown; payment_status?: unknown } | null;
+
+      if (storedUser?.NewMemberNotPaid && !isMembershipApproved(storedUser)) {
+        navigate('/payment-plan', { replace: true });
+        setIsLoadingUser(false);
+        return;
+      }
+
       if (!token) {
+        setIsLoadingUser(false);
         return;
       }
 
@@ -241,38 +311,38 @@ const DashboardPage = () => {
         try {
           setIsLoadingUser(true);
 
-          const [userResponse, dashboardResponse] = await Promise.allSettled([
-            fetch("https://ambchapcorps.org/api/user", {
-              headers: {
-                Accept: "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-              signal: controller.signal,
-            }),
-            fetch("https://ambchapcorps.org/api/dashboard", {
-              headers: {
-                Accept: "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-              signal: controller.signal,
-            }),
-          ]);
+              const response = await fetch(`${API_BASE}/dashboard`, {
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            signal: controller.signal,
+          });
+
+          if (!response.ok) {
+            throw new Error("Unable to load dashboard data");
+          }
+
+          const result = await response.json().catch(() => ({}));
+
+          const approvedAccount = isMembershipApproved(result) || isMembershipApproved(result.user);
+
+          if (result.NewMemberNotPaid === true && !approvedAccount) {
+            navigate("/payment-plan", { replace: true });
+            return;
+          }
 
           let resolvedUser = user;
 
-          if (userResponse.status === "fulfilled" && userResponse.value.ok) {
-            const data = await userResponse.value.json();
-            let apiUser: unknown = data.user ?? data.data ?? data;
+          if (result && typeof result === "object") {
+            const apiUser = extractDashboardUser(result);
+            const normalizedUser = normalizeUserPayload(apiUser);
 
-            if (Array.isArray(apiUser)) {
-              apiUser = apiUser.length > 0 ? apiUser[0] : null;
-            }
-
-            if (apiUser && typeof apiUser === "object") {
-              const parsedUser = apiUser as UserType;
-              const firstName = parsedUser.first_name?.toLowerCase() || "";
-              const lastName = parsedUser.last_name?.toLowerCase() || "";
-              const email = parsedUser.email?.toLowerCase() || "";
+            if (normalizedUser) {
+              const parsedUser = normalizedUser as unknown as UserType;
+              const firstName = (parsedUser.first_name ?? "").toLowerCase();
+              const lastName = (parsedUser.last_name ?? "").toLowerCase();
+              const email = (parsedUser.email ?? "").toLowerCase();
 
               const isDefaultUser =
                 firstName === "super" ||
@@ -290,12 +360,8 @@ const DashboardPage = () => {
                 }
               }
             }
-          }
 
-          if (dashboardResponse.status === "fulfilled" && dashboardResponse.value.ok) {
-            const result = await dashboardResponse.value.json();
-
-            if (isActive && result && typeof result === "object") {
+            if (isActive) {
               setDashboard(normalizeDashboardData(result, resolvedUser));
             }
           }
@@ -314,9 +380,9 @@ const DashboardPage = () => {
         isActive = false;
         controller.abort();
       };
-    }, [user]);
+    }, []);
 
-  if (isLoadingUser && !user) {
+  if (isLoadingUser) {
     return (
       <div className="zenProfileLayout">
         <DashboardSidebar
@@ -337,68 +403,7 @@ const DashboardPage = () => {
         setSidebarOpen={setSidebarOpen}
       />
         <div className="orionMainContent">
-            {/* TOP BAR */}
-
-            <div className="orionTopBarShell">
-
-                <div className="orionSearchCluster">
-                    <Search
-                    size={16}
-                    className="orionSearchIcon"
-                    />
-
-                    <input
-                    type="text"
-                    placeholder="Search members, events,..."
-                    className="orionSearchInput"
-                    />
-                </div>
-
-                <div className="orionTopBarActions">
-                    {/* NOTIFICATION */}
-
-                    <button className="orionNotificationButton">
-                    <Bell size={18} />
-
-                    <span className="orionNotificationDot"></span>
-                    </button>
-
-                    {/* USER */}
-
-                    <div className="orionUserProfileWidget">
-                      {user?.profile_image ? (
-                        <img
-                          src={`https://ambchapcorps.org/storage/${user.profile_image}`}
-                          alt="User"
-                          className="orionUserAvatar"
-                          onError={(e) => {
-                            e.currentTarget.src = "/profile.jpg";
-                          }}
-                        />
-                      ) : (
-                        <div className="orionUserAvatarInitials">
-                          {initials}
-                        </div>
-                      )}
-
-                      <div className="orionUserMeta">
-                          <h4>
-                            {profileDisplayName}
-                          </h4>
-
-                          <span>
-                            {user?.membership_id
-                              ? `ID: ${user.membership_id}`
-                              : `User #${user?.id}`}
-                          </span>
-                      </div>
-
-                      <ChevronDown size={16} />
-                    </div>
-                </div>
-            </div>
-
-            
+            {/* TOP BAR (mobile-first) */}
 
                 {/* Mobile Header */}
                 <div className="orionTopBarShellMobile">
@@ -410,7 +415,7 @@ const DashboardPage = () => {
                             <Menu size={22} />
                         </button>
 
-                        <p className="dashboard-p">Dashboard</p>
+                        {/* mobile title removed to avoid duplication with sidebar */}
                     </div>
             
             <div className="orionMobileLogo-crop">
@@ -424,7 +429,7 @@ const DashboardPage = () => {
                     <Search size={22} />
                 </button>
                 ) : (
-                <div className="orionSearchCluster">
+                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                     <Search
                     size={16}
                     className="orionSearchIcon"
@@ -433,11 +438,13 @@ const DashboardPage = () => {
                     <input
                     autoFocus
                     type="text"
-                    placeholder="Search members, events..."
+                    name="query"
+                    placeholder="Search for members"
                     className="orionSearchInput"
                     />
 
                     <button
+                    type="button"
                     className="orionMobileSearchClose"
                     onClick={() =>
                         setShowMobileSearch(false)
@@ -445,7 +452,7 @@ const DashboardPage = () => {
                     >
                     ✕
                     </button>
-                </div>
+                </form>
                 )}
 
                 <div className="notify-icon-profile"></div>
@@ -476,18 +483,21 @@ const DashboardPage = () => {
         </h1>
         </div>
 
-        <div className="dashboardIcons">
+        <button 
+          className="dashboardIcons"
+          onClick={() => navigate("/profile-page")}
+        >
           <Bell size={18} />
           {user?.profile_image ? (
             <img
-              src={`https://ambchapcorps.org/storage/${user.profile_image}`}
+              src={getProfileImageUrl(user?.profile_image)}
               alt="Profile"
               className="dashboardAvatar"
             />
           ) : (
             <div className="dashboardAvatarInitials">{initials}</div>
           )}
-        </div>
+        </button>
       </div>
 
       {/* Stats */}
@@ -524,9 +534,8 @@ const DashboardPage = () => {
         <div className="statCard">
           <Calendar size={18} />
           <h3>
-            {upcomingEvents.length}
+            {upcomingEventsCount}
           </h3>
-          <p>Upcoming Events</p>
           <span>Upcoming Events</span>
         </div>
 
@@ -552,26 +561,30 @@ const DashboardPage = () => {
               <h2>Upcoming events</h2>
             </div>
 
-            {upcomingEvents.map((event) => (
-              <div
-                className="eventCard"
-                key={event.id}
-              >
-                <div>
-                  <small>
-                    {new Date(event.date).toLocaleDateString()}
-                  </small>
+            {upcomingEvents.length === 0 ? (
+              <div className="empty-list">No upcoming events</div>
+            ) : (
+              upcomingEvents.map((event) => (
+                <div
+                  className="eventCard"
+                  key={event.id}
+                >
+                  <div>
+                    <small>
+                      {new Date(event.date).toLocaleDateString()}
+                    </small>
 
-                  <h4>{event.title}</h4>
+                    <h4>{event.title}</h4>
 
-                  <p>{event.venue}</p>
+                    <p>{event.venue}</p>
+                  </div>
+
+                  <button onClick={goToDashboardEvents} className="viewButtonToEvent">
+                    View
+                  </button>
                 </div>
-
-                <button onClick={goToDashboardEvents} className="viewButtonToEvent">
-                  View
-                </button>
-              </div>
-            ))}
+              ))
+            )}
           </section>
 
           {/* Announcements */}
@@ -648,19 +661,20 @@ const DashboardPage = () => {
           <div className="profileCard">
             <img
               src={
-                user?.profile_image
-                  ? `https://ambchapcorps.org/storage/${user.profile_image}`
-                  : "/profile.jpg"
+                getProfileImageUrl(user?.profile_image)
               }
               alt="Profile"
             />
 
             <h3>
-              {profileDisplayName}
+              {dashboardUserName}
             </h3>
 
             <p>
-              {dashboardUserEmail}
+              {dashboardUserEmail || "Complete your profile"}
+            </p>
+            <p>
+              {user?.membership_id || dashboard?.user?.membership_id ? `ID: ${user?.membership_id ?? dashboard?.user?.membership_id}` : `User #${user?.id ?? "N/A"}`}
             </p>
 
             <button onClick={() => navigate("/profile-page")} className="viewProfileButton">

@@ -6,6 +6,7 @@ import AboutOne from '../homeComponents/AboutOne'
 import OurMission from '../homeComponents/AboutOrg'
 import HomeFooter from '../components/HomeFooter'
 import Navbar from '../components/Navbar/Navbar'
+import BeAccountedFor from '../EventsComponents/BeAccountedFor'
 
 const AboutUs = () => {
   return (
@@ -20,6 +21,7 @@ const AboutUs = () => {
 
       <AboutOne />
       <OurMission />
+      <BeAccountedFor />
       <HomeFooter />
     </div>
   )

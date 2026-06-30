@@ -6,102 +6,182 @@ import {
 import AllMainContent from '../components/AllMainContent'
 import "../../src/EventsComponents/Event.css"
 import Navbar from "../components/Navbar/Navbar";
+import { getToken } from "../utils/auth";
 
-interface PaymentType {
-  id: number;
-  description: string;
+interface PaymentAccount {
+  id?: number;
+  account_name: string;
+  bank_name: string;
+  account_number: string;
+}
+
+interface BankAccountsPayload {
+  membership_fee_account?: PaymentAccount;
+  donation_account?: PaymentAccount;
 }
 
 
 
 const GivingContent : React.FC = () => {
-  const [paymentTypes, setPaymentTypes] = useState<PaymentType[]>([]);
   const [donationType, setDonationType] =
     useState<"one-time" | "monthly">("one-time");
 
   const [showPaymentStep, setShowPaymentStep] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
-
   const [paymentMethod, setPaymentMethod] = useState("");
-
   const [description, setDescription] = useState("");
-
-  const [paymentProof, setPaymentProof] =
-    useState<File | null>(null);
-
-  const [loading, setLoading] =
-    useState(false);
+  const [paymentProof, setPaymentProof] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [bankAccounts, setBankAccounts] = useState<BankAccountsPayload | null>(null);
+  const [selectedAccountType, setSelectedAccountType] = useState<"donation" | "membership">("donation");
 
   const handleSubmit = async () => {
-  if (!paymentProof) {
-    alert("Please upload payment proof.");
-    return;
-  }
-
-  try {
-    setLoading(true);
-
-    const formData = new FormData();
-
-    formData.append("amount", amount);
-
-    formData.append(
-      "payment_method",
-      paymentMethod
-    );
-
-    formData.append(
-      "description",
-      description
-    );
-
-    formData.append(
-      "payment_proof_image",
-      paymentProof
-    );
-
-    const response = await fetch(
-      "https://ambchapcorps.org/api/payment/pay",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-
-    const result =
-      await response.json();
-
-    console.log(result);
-
-    if (response.ok) {
-      alert("Payment submitted successfully!");
-    } else {
-      alert(result.message);
+    if (!amount.trim() || Number.isNaN(Number(amount)) || Number(amount) <= 0) {
+      alert("Please enter a valid payment amount.");
+      return;
     }
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
-};
 
-useEffect(() => {
-  const fetchPaymentTypes = async () => {
+    if (!paymentMethod.trim()) {
+      alert("Please select a payment method.");
+      return;
+    }
+
+    if (!description.trim()) {
+      alert("Please select a payment description.");
+      return;
+    }
+
+    if (!paymentProof) {
+      alert("Please upload payment proof.");
+      return;
+    }
+
     try {
-      const response = await fetch(
-        "https://ambchapcorps.org/api/payment/paymentType"
-      );
+      setLoading(true);
 
-      const result = await response.json();
+      const token = getToken();
+      const formData = new FormData();
+      const chosenAccount = selectedAccountType === "membership"
+        ? bankAccounts?.membership_fee_account
+        : bankAccounts?.donation_account;
 
-      setPaymentTypes(result.data || []);
+      formData.append("first_name", firstName.trim());
+      formData.append("last_name", lastName.trim());
+      formData.append("email", email.trim());
+      formData.append("phone", phone.trim());
+      formData.append("amount", amount.trim());
+      formData.append("payment_method", paymentMethod.trim());
+      formData.append("description", description.trim());
+      formData.append("payment_proof_image", paymentProof);
+
+      if (chosenAccount?.id) {
+        formData.append("bank_account_id", String(chosenAccount.id));
+      } else if (chosenAccount) {
+        formData.append("bank_account_name", chosenAccount.account_name ?? "");
+      }
+
+      const response = await fetch("https://ambchapcorps.org/api/payment/pay", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: formData,
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        alert("Payment submitted successfully!");
+        setShowPaymentStep(false);
+      } else {
+        const errorMessage =
+          typeof result?.message === "string"
+            ? result.message
+            : result?.errors && typeof result.errors === "object"
+              ? Object.values(result.errors)
+                  .flatMap((value) => (Array.isArray(value) ? value : [String(value)]))
+                  .join("\n")
+              : "Payment failed. Please try again.";
+
+        alert(errorMessage);
+      }
     } catch (error) {
       console.error(error);
+      alert("Payment failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  fetchPaymentTypes();
-}, []);
+  useEffect(() => {
+    const token = getToken();
+    if (!token) return;
+
+    let active = true;
+
+    const fetchDashboard = async () => {
+      try {
+        const response = await fetch("https://ambchapcorps.org/api/dashboard", {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) return;
+
+        const data = await response.json().catch(() => ({}));
+        const payload = data && typeof data === "object" ? (data.data ?? data) : data;
+        const user = payload && typeof payload === "object" ? (payload.user ?? payload) : null;
+
+        if (!active || !user) return;
+
+        setFirstName(user.first_name ?? user.firstName ?? "");
+        setLastName(user.last_name ?? user.lastName ?? "");
+        setEmail(user.email ?? "");
+        setPhone(user.phone ?? user.phone_number ?? user.mobile ?? "");
+      } catch (err) {
+        console.debug("Failed to prefill giving form from dashboard", err);
+      }
+    };
+
+    const fetchBankAccounts = async () => {
+      try {
+        const response = await fetch("https://ambchapcorps.org/api/bank-accounts", {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) return;
+
+        const data = await response.json().catch(() => ({}));
+        const payload = data && typeof data === "object" ? (data.data ?? data) : data;
+
+        if (!active) return;
+
+        setBankAccounts({
+          membership_fee_account: payload?.membership_fee_account ?? payload?.membership ?? undefined,
+          donation_account: payload?.donation_account ?? payload?.donation ?? undefined,
+        });
+      } catch (err) {
+        console.error("Failed to fetch bank accounts", err);
+      }
+    };
+
+    fetchDashboard();
+    fetchBankAccounts();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
       <div>
@@ -160,12 +240,16 @@ useEffect(() => {
                   type="text"
                   placeholder="First name"
                   className="giving-input"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
 
                 <input
                   type="text"
                   placeholder="Last name"
                   className="giving-input"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
 
@@ -173,6 +257,8 @@ useEffect(() => {
                 type="email"
                 placeholder="Email address"
                 className="giving-input full"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               {/* PHONE */}
@@ -186,6 +272,8 @@ useEffect(() => {
                   type="text"
                   placeholder="Phone Number"
                   className="giving-input-phone full"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
 
@@ -199,6 +287,15 @@ useEffect(() => {
                   setAmount(e.target.value)
                 }
               />
+
+              <select
+                className="giving-input full"
+                value={selectedAccountType}
+                onChange={(e) => setSelectedAccountType(e.target.value as "donation" | "membership")}
+              >
+                <option value="donation">Donation Account</option>
+                <option value="membership">Membership Account</option>
+              </select>
 
               <select
                 className="giving-input full"
@@ -232,17 +329,14 @@ useEffect(() => {
                 }
               >
                 <option value="">
-                  Select Payment Type
+                  Select Payment Description
                 </option>
-
-                {paymentTypes.map((item) => (
-                  <option
-                    key={item.id}
-                    value={item.description}
-                  >
-                    {item.description}
-                  </option>
-                ))}
+                <option value="membership_fee">
+                  Membership Fee
+                </option>
+                <option value="donation">
+                  Donation Fee
+                </option>
               </select>
 
               <button className="donate-btn" onClick={() => setShowPaymentStep(true)}>
@@ -261,22 +355,28 @@ useEffect(() => {
 
   <div className="payment-account-box">
     <p>
-      <strong>Account Name:</strong>
-      ACC Project Foundation
+      <strong>Account Name:</strong>{" "}
+      {(selectedAccountType === "membership"
+        ? bankAccounts?.membership_fee_account?.account_name
+        : bankAccounts?.donation_account?.account_name) ?? "Loading..."}
     </p>
 
     <p>
-      <strong>Bank:</strong>
-      Zenith Bank
+      <strong>Bank:</strong>{" "}
+      {(selectedAccountType === "membership"
+        ? bankAccounts?.membership_fee_account?.bank_name
+        : bankAccounts?.donation_account?.bank_name) ?? "Loading..."}
     </p>
 
     <p>
-      <strong>Account Number:</strong>
-      2180233627
+      <strong>Account Number:</strong>{" "}
+      {(selectedAccountType === "membership"
+        ? bankAccounts?.membership_fee_account?.account_number
+        : bankAccounts?.donation_account?.account_number) ?? "Loading..."}
     </p>
 
     <p>
-      <strong>Amount:</strong> ₦{amount}
+      <strong>Amount:</strong> ₦{amount || "0.00"}
     </p>
   </div>
 
@@ -303,15 +403,6 @@ useEffect(() => {
       POS
     </option>
   </select>
-
-  <textarea
-    className="giving-input full"
-    placeholder="Description"
-    value={description}
-    onChange={(e) =>
-      setDescription(e.target.value)
-    }
-  />
 
   <label
     className="upload-label"

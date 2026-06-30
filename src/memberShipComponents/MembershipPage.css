@@ -122,6 +122,9 @@
   padding: 8px 14px;
 
   border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* =========================
@@ -428,7 +431,7 @@
   font-weight: 700;
 }
 
-.stellarHistoryHeader button {
+.stellarHistoryHeader select {
   border: 1px solid #d1d5db;
 
   background: white;
@@ -553,4 +556,19 @@
   .stellarQuickActionsColumn-box {
       width: 100%;
   }
+}
+
+.stellarInvoiceButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  padding: 4px;
+}
+
+.stellarInvoiceButton:hover {
+  color: #2563eb;
 }

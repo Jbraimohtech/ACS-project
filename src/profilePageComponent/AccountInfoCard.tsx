@@ -5,6 +5,9 @@ interface Props {
 }
 
 const AccountInfoCard = ({ user }: Props) => {
+  const zoneLabel = user?.zone?.name || user?.zone_name || "No Zone Assigned";
+  const roleLabel = user?.role || user?.role_name || "Member";
+
    return (
     <div className="information-start-card">
       <div className="stellarInfoCardTitle-box">
@@ -23,23 +26,17 @@ const AccountInfoCard = ({ user }: Props) => {
 
       <div className="stellarInfoGroup">
         <label>Zone</label>
-        <p>
-          {user?.zone?.name ||
-            "No Zone Assigned"}
-        </p>
+        <p>{zoneLabel}</p>
       </div>
 
       <div className="stellarInfoGroup">
         <label>Role</label>
-        <p>
-          {user?.membership_id ||
-            `User #${user?.id}`}
-        </p>
+        <p>{roleLabel}</p>
       </div>
 
       <div className="stellarInfoGroup">
         <label>Member ID</label>
-        <p>#12345</p>
+        <p>{user?.membership_id ? `#${user.membership_id}` : `#${user?.id ?? "N/A"}`}</p>
       </div>
       </div>
     </div>

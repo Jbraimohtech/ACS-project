@@ -1,6 +1,7 @@
 
 import DashboardSidebar from "../profilePageComponent/DashboardSidebar";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./PastEventPage.css";
 import PastEventCard from "./PastEventCard";
@@ -15,9 +16,21 @@ import PastEventsHeader from "./PastEventsHeader";
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
 
 const PastEventsPage = () => {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] =
     useState(false);
 const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const query = formData.get("query")?.toString().trim() || "";
+
+    if (query) {
+      navigate(`/member-search?query=${encodeURIComponent(query)}`);
+    }
+  };
 
   return (
     <div className="zenProfileLayout">
@@ -30,7 +43,7 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
 
             <div className="orionTopBarShell">
 
-                <div className="orionSearchCluster">
+                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                     <Search
                     size={16}
                     className="orionSearchIcon"
@@ -38,10 +51,11 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
 
                     <input
                     type="text"
-                    placeholder="Search members, events,..."
+                    name="query"
+                    placeholder="Search for members"
                     className="orionSearchInput"
                     />
-                </div>
+                </form>
 
                 <div className="orionTopBarActions">
                     {/* NOTIFICATION */}
@@ -82,7 +96,7 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
                     <Search size={22} />
                 </button>
                 ) : (
-                <div className="orionSearchCluster">
+                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                     <Search
                     size={16}
                     className="orionSearchIcon"
@@ -91,11 +105,13 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
                     <input
                     autoFocus
                     type="text"
-                    placeholder="Search members, events..."
+                    name="query"
+                    placeholder="Search for members"
                     className="orionSearchInput"
                     />
 
                     <button
+                    type="button"
                     className="orionMobileSearchClose"
                     onClick={() =>
                         setShowMobileSearch(false)
@@ -103,7 +119,7 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
                     >
                     ✕
                     </button>
-                </div>
+                </form>
                 )}
                 
                 <div className="notify-icon-profile-box">

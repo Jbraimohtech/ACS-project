@@ -78,7 +78,7 @@ const [query, setQuery] = useState(() => queryParam);
 
           <input
             type="text"
-            placeholder="Search by name, ID, role, or unit"
+            placeholder="Search for members"
             name="query"
             value={query}
             onChange={(e) => {
@@ -120,11 +120,11 @@ const [query, setQuery] = useState(() => queryParam);
                   src={
                     member.profile_image
                       ? `https://ambchapcorps.org/storage/${member.profile_image}`
-                      : "/images/default-avatar.jpg"
+                      : "../assets/images/imageProfile-demo.jpeg"
                   }
                   alt={member.first_name}
                   onError={(e) => {
-                    e.currentTarget.src = "/images/default-avatar.jpg";
+                    e.currentTarget.src = "../assets/images/imageProfile-demo.jpeg";
                   }}
                 />
 

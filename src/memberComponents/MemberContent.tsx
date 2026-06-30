@@ -84,7 +84,7 @@ const MemberContent = () => {
           <input
             type='text'
             name='query'
-            placeholder='Search by name, ID, role, or unit'
+            placeholder='Search for members'
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />

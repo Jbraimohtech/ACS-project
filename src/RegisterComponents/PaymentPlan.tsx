@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './PaymentPlanWizard.css';
+import { getToken, setUser, getUser } from '../utils/auth';
+import { useNavigate } from 'react-router-dom';
 
 interface PaymentPlan {
   id: number;
@@ -18,6 +20,18 @@ interface PaymentHistory {
   created_at: string;
 }
 
+interface PaymentAccount {
+  id?: number;
+  account_name: string;
+  bank_name: string;
+  account_number: string;
+}
+
+interface BankAccountsPayload {
+  membership_fee_account?: PaymentAccount;
+  donation_account?: PaymentAccount;
+}
+
 interface PaymentFormState {
   firstName: string;
   lastName: string;
@@ -25,7 +39,6 @@ interface PaymentFormState {
   phone: string;
   amount: string;
   paymentMethod: string;
-  description: string;
 }
 
 const initialFormState: PaymentFormState = {
@@ -35,10 +48,10 @@ const initialFormState: PaymentFormState = {
   phone: '',
   amount: '',
   paymentMethod: '',
-  description: '',
 };
 
 const PaymentPlan: React.FC = () => {
+  const navigate = useNavigate();
   const [plans, setPlans] = useState<PaymentPlan[]>([]);
   const [paymentHistory, setPaymentHistory] = useState<PaymentHistory[]>([]);
   const [totalPaid, setTotalPaid] = useState(0);
@@ -48,10 +61,34 @@ const PaymentPlan: React.FC = () => {
   const [paymentProof, setPaymentProof] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [bankAccounts, setBankAccounts] = useState<BankAccountsPayload | null>(null);
 
-  const selectedAmount = planType === 'monthly' ? '100' : '1000';
+  const selectedAmount =
+  planType === "monthly"
+    ? "5000"
+    : "60000";
 
   useEffect(() => {
+    const storedUser = getUser() as {
+      first_name?: string;
+      firstName?: string;
+      last_name?: string;
+      lastName?: string;
+      email?: string;
+      phone?: string;
+      phone_number?: string;
+    } | null;
+
+    if (storedUser) {
+      setFormData((prev) => ({
+        ...prev,
+        firstName: storedUser.first_name ?? storedUser.firstName ?? prev.firstName,
+        lastName: storedUser.last_name ?? storedUser.lastName ?? prev.lastName,
+        email: storedUser.email ?? prev.email,
+        phone: storedUser.phone ?? storedUser.phone_number ?? prev.phone,
+      }));
+    }
+
     const fetchPlans = async () => {
       try {
         const response = await fetch('https://ambchapcorps.org/api/payment/plans');
@@ -73,8 +110,35 @@ const PaymentPlan: React.FC = () => {
       }
     };
 
+    const fetchBankAccounts = async () => {
+      try {
+        const token = getToken();
+        const response = await fetch('https://ambchapcorps.org/api/bank-accounts', {
+          headers: {
+            Accept: 'application/json',
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        });
+
+        if (!response.ok) {
+          return;
+        }
+
+        const data = await response.json().catch(() => ({}));
+        const payload = data && typeof data === 'object' ? (data.data ?? data) : data;
+
+        setBankAccounts({
+          membership_fee_account: payload?.membership_fee_account ?? payload?.membership ?? undefined,
+          donation_account: payload?.donation_account ?? payload?.donation ?? undefined,
+        });
+      } catch (error) {
+        console.error('Failed to fetch bank accounts', error);
+      }
+    };
+
     fetchPlans();
     fetchSummary();
+    fetchBankAccounts();
   }, []);
 
   const updateField = (field: keyof PaymentFormState, value: string) => {
@@ -83,7 +147,7 @@ const PaymentPlan: React.FC = () => {
 
   const handlePlanChange = (value: 'monthly' | 'yearly') => {
     setPlanType(value);
-    updateField('amount', value === 'monthly' ? '100' : '1000');
+    updateField('amount', value === 'monthly' ? '5000' : '60000');
   };
 
   const handleContinue = () => {
@@ -93,9 +157,9 @@ const PaymentPlan: React.FC = () => {
     }
 
     if (step === 2) {
-      const { firstName, lastName, email, phone, amount, paymentMethod, description } = formData;
+      const { firstName, lastName, email, phone, amount, paymentMethod } = formData;
 
-      if (!firstName || !lastName || !email || !phone || !amount || !paymentMethod || !description) {
+      if (!firstName || !lastName || !email || !phone || !amount || !paymentMethod) {
         alert('Please complete all the billing fields before continuing.');
         return;
       }
@@ -118,6 +182,8 @@ const PaymentPlan: React.FC = () => {
 
     try {
       setLoading(true);
+      const token = getToken();
+      const chosenAccount = bankAccounts?.membership_fee_account ?? bankAccounts?.donation_account;
       const payload = new FormData();
       payload.append('first_name', formData.firstName);
       payload.append('last_name', formData.lastName);
@@ -125,21 +191,47 @@ const PaymentPlan: React.FC = () => {
       payload.append('phone', formData.phone);
       payload.append('amount', formData.amount || selectedAmount);
       payload.append('payment_method', formData.paymentMethod);
-      payload.append('description', formData.description);
+      payload.append('description', 'membership_fee');
       payload.append('payment_proof_image', paymentProof);
 
-      const response = await fetch('https://ambchapcorps.org/api/payment', {
+      if (chosenAccount?.id) {
+        payload.append('bank_account_id', String(chosenAccount.id));
+      } else if (chosenAccount) {
+        payload.append('bank_account_name', chosenAccount.account_name ?? '');
+      }
+
+      const response = await fetch('https://ambchapcorps.org/api/payment/pay', {
         method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: payload,
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
       if (response.ok) {
+        const storedUser = getUser();
+        setUser({
+          ...(storedUser ?? {}),
+          status: 'approved',
+          payment_status: 1,
+          NewMemberNotPaid: false,
+        });
         setIsComplete(true);
         setStep(4);
       } else {
-        alert(result.message || 'Payment failed. Please try again.');
+        const errorMessage =
+          typeof result?.message === 'string'
+            ? result.message
+            : result?.errors && typeof result.errors === 'object'
+              ? Object.values(result.errors)
+                  .flatMap((value) => (Array.isArray(value) ? value : [String(value)]))
+                  .join('\n')
+              : 'Payment failed. Please try again.';
+
+        alert(errorMessage);
       }
     } catch (error) {
       console.error(error);
@@ -147,14 +239,6 @@ const PaymentPlan: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleRestart = () => {
-    setStep(1);
-    setPlanType('monthly');
-    setFormData(initialFormState);
-    setPaymentProof(null);
-    setIsComplete(false);
   };
 
   const steps = ['Choose plan', 'Billing details', 'Confirm & upload', 'Complete'];
@@ -247,7 +331,7 @@ const PaymentPlan: React.FC = () => {
                 </div>
 
                 <div className="wizard-actions">
-                  <button type="button" className="ghost-btn" disabled>Back</button>
+                  <button type="button" className="ghost-btn" disabled={!isComplete} onClick={() => navigate('/register')}>Back</button>
                   <button type="button" className="primary-btn" onClick={handleContinue}>Continue</button>
                 </div>
               </div>
@@ -279,31 +363,26 @@ const PaymentPlan: React.FC = () => {
                       <input type="email" value={formData.email} onChange={(e) => updateField('email', e.target.value)} placeholder="Email address" />
                     </label>
                     <label>
-                      Phone number
-                      <input type="text" value={formData.phone} onChange={(e) => updateField('phone', e.target.value)} placeholder="Phone number" />
+                      Phone Number
+                      <input type="text" value={formData.phone} onChange={(e) => updateField('phone', e.target.value)} placeholder="Phone Number" />
                     </label>
                   </div>
 
                   <div className="form-row">
                     <label>
                       Amount
-                      <input type="text" value={formData.amount || selectedAmount} onChange={(e) => updateField('amount', e.target.value)} placeholder="Amount" />
+                      <input type="number" step="0.01" min="0" value={formData.amount || selectedAmount} onChange={(e) => updateField('amount', e.target.value)} placeholder="₦ 0.00" />
                     </label>
                     <label>
-                      Payment method
+                      Payment Method
                       <select value={formData.paymentMethod} onChange={(e) => updateField('paymentMethod', e.target.value)}>
-                        <option value="">Select method</option>
+                        <option value="">Select Payment Method</option>
                         <option value="Bank Transfer">Bank Transfer</option>
                         <option value="Cash">Cash</option>
                         <option value="POS">POS</option>
                       </select>
                     </label>
                   </div>
-
-                  <label>
-                    Description
-                    <textarea rows={4} value={formData.description} onChange={(e) => updateField('description', e.target.value)} placeholder="Tell us more about this contribution" />
-                  </label>
                 </div>
 
                 <div className="wizard-actions">
@@ -372,7 +451,7 @@ const PaymentPlan: React.FC = () => {
                   </div>
                 </div>
 
-                <button type="button" className="primary-btn" onClick={handleRestart}>Make another payment</button>
+                <button type="button" className="primary-btn" onClick={() => navigate('/dashboard-page', { replace: true })}>Go to dashboard</button>
               </div>
             )}
           </div>

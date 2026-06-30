@@ -6,6 +6,7 @@ interface Props {
 }
 const PersonalInfoCard = ({ user }: Props) => {
   const navigate = useNavigate();
+  const roleLabel = user?.role || user?.role_name || "Member";
 
   const goToEditProfile = () => {
     navigate('/edit-profile-page');
@@ -38,15 +39,15 @@ const PersonalInfoCard = ({ user }: Props) => {
             <span>Oct 12, 2021</span>
           </div>
           <div className="small-account-info-card">
-            <p>Department</p>
-            <span>Product Org</span>
+            <p>Gender</p>
+            <span>{user?.gender || "Not specified"}</span>
           </div>
         </div>
 
         <div className="small-account-info-card-box">
           <div className="small-account-info-card">
             <p>Role</p>
-            <span>Enterprise Admin</span>
+            <span>{roleLabel}</span>
           </div>
           <div className="small-account-info-card">
             <p>User ID</p>

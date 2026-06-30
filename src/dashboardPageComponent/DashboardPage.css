@@ -53,6 +53,10 @@
   height: 42px;
   border-radius: 50%;
   object-fit: cover;
+  background-image: url("../assets/images/imageProfile-demo.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .orionUserAvatarInitials,

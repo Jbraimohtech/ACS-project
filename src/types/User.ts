@@ -15,4 +15,7 @@ export interface User {
     id: number;
     name: string;
   } | null;
+  zone_name: string | null;
+  role: string | null;
+  role_name: string | null;
 }

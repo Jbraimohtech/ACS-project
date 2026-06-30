@@ -1171,7 +1171,6 @@
   }
 
   .profile-image-demo {
-      background-image: url("../assets/images/profile-images-demo.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
