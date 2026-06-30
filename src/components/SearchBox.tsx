@@ -10,16 +10,15 @@ const SearchBox = ({children, onSubmit}: SearchBoxProps ) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
-    if (onSubmit) {
-      onSubmit(event);
-      return;
-    }
 
-    // Default behavior: extract query and navigate to member-search
     const formData = new FormData(event.currentTarget);
     const query = formData.get('query')?.toString().trim() || '';
-    
+
+    if (onSubmit) {
+      onSubmit(event);
+    }
+
+    // Always route search requests to member-search so the shared search experience is consistent.
     if (query) {
       navigate(`/member-search?query=${encodeURIComponent(query)}`);
     }

@@ -1,6 +1,7 @@
 
 import {useNavigate} from 'react-router-dom';
 import type { User } from "../types/User";
+import { getProfileImageUrl } from "../utils/auth";
 
 interface Props {
   user: User | null;
@@ -10,6 +11,8 @@ const ProfileBanner = ({
   user,
 }: Props) => {
   const navigate = useNavigate();
+  const roleLabel = user?.role || user?.role_name || "Member";
+  const zoneLabel = user?.zone?.name || user?.zone_name || "No Zone Assigned";
 
   const goToEditProfile = () => {
     navigate('/edit-profile-page');
@@ -28,15 +31,13 @@ const ProfileBanner = ({
       <div className="auroraProfileSection">
         <img
           src={
-            user?.profile_image
-              ? `https://ambchapcorps.org/storage/${user.profile_image}`
-              : "/profile.jpg"
+            getProfileImageUrl(user?.profile_image)
           }
           alt="Profile"
           className="profile-image-demo"
           onError={(e) => {
             e.currentTarget.src =
-              "/profile.jpg";
+              "../assets/images/imageProfile-demo.jpeg";
           }}
         />
 
@@ -62,14 +63,13 @@ const ProfileBanner = ({
           </div>
 
           <div className="auroraMetaRow">
-            <p>Unit Coordinator</p>
+            <p>{roleLabel}</p>
 
             <span>
               <span>
                 <div className="edit-profile-location"></div>
 
-                {user?.zone?.name ??
-                  "No Zone Assigned"}
+                {zoneLabel}
               </span>
             </span>
           </div>

@@ -5,8 +5,10 @@ import PersonalInfoCard from "./PersonalInfoCard";
 import ProfileBanner from "./ProfileBanner";
 import "./ProfilePage.css"
 import QuickActionsCard from "./QuickActionsCard";
-import { useState, useEffect } from "react";
-import { getToken, getUser } from "../utils/auth";
+import { useState, useEffect, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { getProfileImageUrl, getToken, getUser, normalizeUserPayload, extractDashboardUser, setUser as persistUser } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 import {
   Bell,
   ChevronDown,
@@ -36,6 +38,7 @@ import type { User } from "../types/User";
 // }
 
 const ProfilePage = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(() => {
       const storedUser = getUser();
       if (!storedUser) return null;
@@ -48,6 +51,17 @@ const ProfilePage = () => {
     const [showMobileSearch, setShowMobileSearch] =
   useState(false);
 
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const query = formData.get("query")?.toString().trim() || "";
+
+    if (query) {
+      navigate(`/member-search?query=${encodeURIComponent(query)}`);
+    }
+  };
+
   
   useEffect(() => {
   const token = getToken();
@@ -57,9 +71,7 @@ const ProfilePage = () => {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch(
-        "https://ambchapcorps.org/api/user",
-        {
+      const response = await fetch(`${API_BASE}/dashboard`, {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -72,17 +84,15 @@ const ProfilePage = () => {
       }
 
       const data = await response.json();
+      const apiUser = extractDashboardUser(data);
+      const normalizedUser = normalizeUserPayload(apiUser);
 
-      console.log(data);
+      if (normalizedUser) {
+        const apiUser = normalizedUser as unknown as User;
+        const firstName = (apiUser.first_name ?? "").toLowerCase();
+        const lastName = (apiUser.last_name ?? "").toLowerCase();
+        const email = (apiUser.email ?? "").toLowerCase();
 
-      if (data.user && data.user.length > 0) {
-        const apiUser = data.user[0] as User;
-        
-        // Validate that this is not a default/demo user
-        const firstName = apiUser.first_name?.toLowerCase() || "";
-        const lastName = apiUser.last_name?.toLowerCase() || "";
-        const email = apiUser.email?.toLowerCase() || "";
-        
         const isDefaultUser =
           firstName === "super" ||
           lastName === "super" ||
@@ -93,6 +103,7 @@ const ProfilePage = () => {
 
         if (!isDefaultUser) {
           setUser(apiUser);
+          persistUser(apiUser);
         }
       }
     } catch (error) {
@@ -133,7 +144,7 @@ const ProfilePage = () => {
                         <Search size={22} />
                     </button>
                     ) : (
-                    <div className="orionSearchCluster">
+                    <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                         <Search
                         size={16}
                         className="orionSearchIcon"
@@ -142,11 +153,13 @@ const ProfilePage = () => {
                         <input
                         autoFocus
                         type="text"
-                        placeholder="Search members, events..."
+                        name="query"
+                        placeholder="Search for members"
                         className="orionSearchInput"
                         />
 
                         <button
+                        type="button"
                         className="orionMobileSearchClose"
                         onClick={() =>
                             setShowMobileSearch(false)
@@ -154,7 +167,7 @@ const ProfilePage = () => {
                         >
                         ✕
                         </button>
-                    </div>
+                    </form>
                     )}
 
                     <div className="notify-icon-profile"></div>
@@ -163,15 +176,11 @@ const ProfilePage = () => {
 
                         </div> */}
                         <img
-                            src={
-                                user?.profile_image
-                                ? `https://ambchapcorps.org/storage/${user.profile_image}`
-                                : "/profile.jpg"
-                            }
+                            src={getProfileImageUrl(user?.profile_image)}
                             alt="Profile"
                             className="profile-image-small"
                             onError={(e) => {
-                                e.currentTarget.src = "/profile.jpg";
+                                e.currentTarget.src = "../assets/images/imageProfile-demo.jpeg";
                             }}
                             />
                         
@@ -182,7 +191,7 @@ const ProfilePage = () => {
             {/* TOP BAR */}
             <div className="orionTopBarShell">
                 
-                <div className="orionSearchCluster">
+                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                     <Search
                     size={16}
                     className="orionSearchIcon"
@@ -190,10 +199,11 @@ const ProfilePage = () => {
 
                     <input
                     type="text"
-                    placeholder="Search members, events,..."
+                    name="query"
+                    placeholder="Search for members"
                     className="orionSearchInput"
                     />
-                </div>
+                </form>
 
                 <div className="orionTopBarActions">
                     {/* NOTIFICATION */}
@@ -208,11 +218,7 @@ const ProfilePage = () => {
 
                     <div className="orionUserProfileWidget">
                     <img
-                        src={
-                            user?.profile_image
-                            ? `https://ambchapcorps.org/storage/${user.profile_image}`
-                            : "/profile.jpg"
-                        }
+                        src={getProfileImageUrl(user?.profile_image)}
                         alt={`${user?.first_name} ${user?.last_name}`}
                         className="orionUserAvatar"
                         onError={(e) => {

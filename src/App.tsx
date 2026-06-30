@@ -35,7 +35,7 @@ import DashboardNewsDetails from './newsFeedComponents/DashboardNewsDetails'
 import PaymentPlan from './RegisterComponents/PaymentPlan'
 import RegisterWizard from './RegisterComponents/RegisterWizard'
 import MemberSearch from './MemberComponents/MemberSearch'
-import { getToken } from './utils/auth'
+import { getToken, getUser, isMembershipApproved } from './utils/auth'
 
 const App = () => {
   const location = useLocation();
@@ -43,10 +43,32 @@ const App = () => {
 
   useEffect(() => {
     const token = getToken();
+    const storedUser = getUser() as { NewMemberNotPaid?: unknown; status?: unknown; payment_status?: unknown } | null;
+    const isApprovedMember = isMembershipApproved(storedUser);
+    const pendingPayment = Boolean(storedUser?.NewMemberNotPaid) && !isApprovedMember;
     const isLoginRoute = location.pathname === '/login' || location.pathname === '/register';
+    const protectedDashboardRoutes = [
+      '/dashboard-page',
+      '/event-content-page',
+      '/event-detail-page',
+      '/past-event-page',
+      '/profile-page',
+      '/edit-profile-page',
+      '/profile-security-page',
+      '/billing-payment-page',
+      '/news-page',
+    ];
+    const isProtectedDashboardRoute = protectedDashboardRoutes.some((route) =>
+      location.pathname === route || location.pathname.startsWith(`${route}/`)
+    );
+
+    if (token && pendingPayment && isProtectedDashboardRoute) {
+      navigate('/payment-plan', { replace: true });
+      return;
+    }
 
     if (token && isLoginRoute) {
-      navigate('/dashboard-page', { replace: true });
+      navigate(isApprovedMember ? '/dashboard-page' : pendingPayment ? '/payment-plan' : '/dashboard-page', { replace: true });
     }
   }, [location.pathname, navigate]);
 

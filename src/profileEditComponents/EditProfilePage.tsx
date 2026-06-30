@@ -3,10 +3,23 @@ import EditProfile from "./EditProfile";
 import "./EditProfile.css";
 import "../profilePageComponent/ProfilePage.css";
 import { Bell, ChevronDown, Menu, Search } from "lucide-react";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 const EditProfilePage = () => {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const query = formData.get("query")?.toString().trim() || "";
+
+    if (query) {
+      navigate(`/member-search?query=${encodeURIComponent(query)}`);
+    }
+  };
 
   return (
     <div className="zenProfileLayout">
@@ -18,14 +31,15 @@ const EditProfilePage = () => {
             <Menu size={18} />
           </button>
 
-          <div className="orionSearchCluster">
+          <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
             <Search size={16} className="orionSearchIcon" />
             <input
               type="text"
+              name="query"
               placeholder="Search members, events,..."
               className="orionSearchInput"
             />
-          </div>
+          </form>
 
           <div className="orionTopBarActions">
             <button className="orionNotificationButton">

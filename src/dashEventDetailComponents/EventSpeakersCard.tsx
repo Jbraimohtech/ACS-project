@@ -77,9 +77,11 @@ const EventSpeakersCard = ({
         <p>No speakers available</p>
       )}
 
-      <button className="orionViewAllSpeakers">
-        View All {normalizedSpeakers.length} Speakers
-      </button>
+      {normalizedSpeakers.length > 3 && (
+        <button className="orionViewAllSpeakers">
+          View All {normalizedSpeakers.length} Speakers
+        </button>
+      )}
     </div>
   );
 };

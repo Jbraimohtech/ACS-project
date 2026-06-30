@@ -3,8 +3,8 @@ import {
   Search,
   Menu,
 } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, type FormEvent } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./EventDetailsPage.css";
 import DashboardSidebar from "../profilePageComponent/DashboardSidebar";
@@ -70,12 +70,24 @@ interface EventResponse {
 }
 
 const EventDetailsPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const query = formData.get("query")?.toString().trim() || "";
+
+    if (query) {
+      navigate(`/member-search?query=${encodeURIComponent(query)}`);
+    }
+  };
 
   const [event, setEvent] = useState<Event | null>(null);
   const [error, setError] = useState("");
@@ -157,7 +169,7 @@ const EventDetailsPage = () => {
       <div className="orionMainContent">
         {/* Desktop Header */}
         <div className="orionTopBarShell">
-          <div className="orionSearchCluster">
+          <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
             <Search
               size={16}
               className="orionSearchIcon"
@@ -165,10 +177,11 @@ const EventDetailsPage = () => {
 
             <input
               type="text"
-              placeholder="Search members, events..."
+              name="query"
+              placeholder="Search for members"
               className="orionSearchInput"
             />
-          </div>
+          </form>
 
           <div className="orionTopBarActions">
             <button className="orionNotificationButton">
@@ -204,7 +217,7 @@ const EventDetailsPage = () => {
                 <Search size={22} />
               </button>
             ) : (
-              <div className="orionSearchCluster">
+              <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                 <Search
                   size={16}
                   className="orionSearchIcon"
@@ -213,11 +226,13 @@ const EventDetailsPage = () => {
                 <input
                   autoFocus
                   type="text"
-                  placeholder="Search members, events..."
+                  name="query"
+                  placeholder="Search for members"
                   className="orionSearchInput"
                 />
 
                 <button
+                  type="button"
                   className="orionMobileSearchClose"
                   onClick={() =>
                     setShowMobileSearch(false)
@@ -225,7 +240,7 @@ const EventDetailsPage = () => {
                 >
                   ✕
                 </button>
-              </div>
+              </form>
             )}
 
             <div className="notify-icon-profile-box">

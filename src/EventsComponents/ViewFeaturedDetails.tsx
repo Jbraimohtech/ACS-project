@@ -124,9 +124,9 @@ const ViewFeaturedDetails: React.FC = () => {
                   />
                 ) : null}
                 <span className="featured-badge-and-title">
-                  <span className="featured-badge">
+                  {/* <span className="featured-badge">
                     FLAGSHIP EVENT
-                  </span>
+                  </span> */}
 
                   <h2>{event?.title}</h2>
 

@@ -2,8 +2,69 @@ import {
   CheckCircle,
   Sparkles,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { API_BASE } from "../utils/api";
+import { getToken } from "../utils/auth";
+
+interface DashboardData {
+  account_status: string;
+  last_payment: {
+    amount: string;
+    paid_on: string;
+  } | null;
+  dues: {
+    monthly_amount: string;
+    next_due_date: string;
+    next_due_amount: string;
+    message: string;
+    is_owing: boolean;
+  };
+}
 
 const CurrentPlanCard = () => {
+  const [dashboard, setDashboard] = useState<DashboardData | null>(null);
+  useEffect(() => {
+    const fetchDashboard = async () => {
+      try {
+        const token = getToken();
+
+        const response = await fetch(`${API_BASE}/dashboard`, {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to load dashboard");
+        }
+
+        const result = await response.json();
+
+        setDashboard(result.data);
+      } catch (error) {
+        console.error(error);
+      } 
+    };
+
+    fetchDashboard();
+  }, []);
+
+  const formatCurrency = (value?: string | number) =>
+    `₦${Number(value || 0).toLocaleString("en-NG", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`;
+
+  const formatDate = (date?: string) =>
+    date
+      ? new Date(date).toLocaleDateString("en-NG", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })
+      : "--";
+
   return (
      <div className="stellarCurrentPlanCard">
 
@@ -12,11 +73,11 @@ const CurrentPlanCard = () => {
         <div>
           <p>CURRENT PLAN</p>
 
-          <h2>Premium</h2>
+          <h2>{dashboard?.account_status === "approved" ? "Active Membership" : "Pending Membership"}</h2>
         </div>
 
         <span className="stellarActiveBadge">
-          ACTIVE
+          {dashboard?.account_status?.toUpperCase()}
         </span>
 
       </div>
@@ -30,17 +91,17 @@ const CurrentPlanCard = () => {
           </span>
 
           <h1>
-            $100
+            {formatCurrency(dashboard?.dues.monthly_amount)}
             <small>/mo</small>
           </h1>
 
           <p>
             Next billing cycle:
-            Oct 12, 2023
+            {formatDate(dashboard?.dues.next_due_date)}
           </p>
 
           <p>
-            Primary: Visa ending in 4242
+            Last Payment: {formatCurrency(dashboard?.last_payment?.amount)}
           </p>
 
         </div>
@@ -59,18 +120,18 @@ const CurrentPlanCard = () => {
           <ul>
 
             <li>
-              <CheckCircle size={14} />
-              Unlimited canvases and projects
+            <CheckCircle size={14}/>
+            {dashboard?.dues.message}
             </li>
 
             <li>
-              <CheckCircle size={14} />
-              Advanced team collaboration tools
+            <CheckCircle size={14}/>
+            Monthly Due: {formatCurrency(dashboard?.dues.monthly_amount)}
             </li>
 
             <li>
-              <CheckCircle size={14} />
-              24/7 Priority support access
+            <CheckCircle size={14}/>
+            Next Payment: {formatDate(dashboard?.dues.next_due_date)}
             </li>
 
           </ul>
@@ -79,19 +140,21 @@ const CurrentPlanCard = () => {
 
         <div className="stellarPaymentMethodCard">
 
-          <p>PAYMENT METHOD</p>
+          <p>LAST PAYMENT</p>
 
           <div className="stellarMiniCard">
-            <span>VISA</span>
 
-            <strong>4242</strong>
+          <span>Amount</span>
+
+          <strong>
+          {formatCurrency(dashboard?.last_payment?.amount)}
+          </strong>
+
           </div>
 
           <small>
-            Expires 12/25
+          Paid on {formatDate(dashboard?.last_payment?.paid_on)}
           </small>
-
-          <button>Edit</button>
 
         </div>
 

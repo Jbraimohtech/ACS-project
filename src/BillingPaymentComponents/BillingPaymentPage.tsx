@@ -10,12 +10,14 @@ import {
   Search,
   Menu,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import MembershipPage from "../memberShipComponents/MembershipPage"
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget"
 
 
 const BillingPaymentPage = () => {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<
     "membership" |
@@ -23,6 +25,17 @@ const BillingPaymentPage = () => {
     "payment-methods"
   >("membership");
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const query = formData.get("query")?.toString().trim() || "";
+
+    if (query) {
+      navigate(`/member-search?query=${encodeURIComponent(query)}`);
+    }
+  };
 
   return (
     <div className="zenProfileLayout">
@@ -35,18 +48,19 @@ const BillingPaymentPage = () => {
 
             <div className="orionTopBarShell">
 
-                <div className="orionSearchCluster">
-                    <Search
+                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
+                  <Search
                     size={16}
                     className="orionSearchIcon"
-                    />
+                  />
 
-                    <input
+                  <input
                     type="text"
-                    placeholder="Search members, events,..."
+                    name="query"
+                    placeholder="Search for members"
                     className="orionSearchInput"
-                    />
-                </div>
+                  />
+                </form>
 
                 <div className="orionTopBarActions">
                     {/* NOTIFICATION */}
@@ -87,7 +101,7 @@ const BillingPaymentPage = () => {
                     <Search size={22} />
                 </button>
                 ) : (
-                <div className="orionSearchCluster">
+                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
                     <Search
                     size={16}
                     className="orionSearchIcon"
@@ -96,11 +110,13 @@ const BillingPaymentPage = () => {
                     <input
                     autoFocus
                     type="text"
-                    placeholder="Search members, events..."
+                    name="query"
+                    placeholder="Search for members"
                     className="orionSearchInput"
                     />
 
                     <button
+                    type="button"
                     className="orionMobileSearchClose"
                     onClick={() =>
                         setShowMobileSearch(false)
@@ -108,7 +124,7 @@ const BillingPaymentPage = () => {
                     >
                     ✕
                     </button>
-                </div>
+                </form>
                 )}
 
                 <div className="notify-icon-profile"></div>

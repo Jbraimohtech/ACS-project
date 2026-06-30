@@ -1,9 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { getToken, getUser, setUser as persistUser } from "../utils/auth";
+import { getProfileImageUrl, getToken, getUser, normalizeUserPayload, extractDashboardUser, setUser as persistUser } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 import type { User as UserType } from "../types/User";
+import { useNavigate } from "react-router-dom";
 
 const DashboardUserProfileWidget = () => {
+
+  const navigate = useNavigate();
+  
   const [user, setUser] = useState<UserType | null>(() => {
     const storedUser = getUser();
     if (!storedUser) return null;
@@ -21,7 +26,7 @@ const DashboardUserProfileWidget = () => {
 
     const fetchUser = async () => {
       try {
-        const response = await fetch("https://ambchapcorps.org/api/user", {
+        const response = await fetch(`${API_BASE}/dashboard`, {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -31,17 +36,14 @@ const DashboardUserProfileWidget = () => {
         if (!response.ok) return;
 
         const data = await response.json();
-        let apiUser: unknown = data.user ?? data.data ?? data;
+        const apiUser = extractDashboardUser(data);
+        const normalizedUser = normalizeUserPayload(apiUser);
 
-        if (Array.isArray(apiUser)) {
-          apiUser = apiUser.length > 0 ? apiUser[0] : null;
-        }
-
-        if (apiUser && typeof apiUser === "object") {
-          const parsedUser = apiUser as UserType;
-          const firstName = parsedUser.first_name?.toLowerCase() || "";
-          const lastName = parsedUser.last_name?.toLowerCase() || "";
-          const email = parsedUser.email?.toLowerCase() || "";
+        if (normalizedUser && typeof normalizedUser === "object") {
+          const parsedUser = normalizedUser as unknown as UserType;
+          const firstName = (parsedUser.first_name ?? "").toLowerCase();
+          const lastName = (parsedUser.last_name ?? "").toLowerCase();
+          const email = (parsedUser.email ?? "").toLowerCase();
 
           const isDefaultUser =
             firstName === "super" ||
@@ -73,13 +75,21 @@ const DashboardUserProfileWidget = () => {
     return (user.first_name?.[0] || user.last_name?.[0] || user.email?.[0] || "?").toUpperCase();
   }, [user]);
 
-  const fullName = [user?.first_name, user?.last_name].filter(Boolean).join(" ").trim() || "Member";
+  const firstName = user?.first_name?.trim();
+  const lastName = user?.last_name?.trim();
+  const fullName = firstName || lastName
+    ? firstName && lastName
+      ? `${lastName} ${firstName}`
+      : [firstName, lastName].filter(Boolean).join(" ").trim()
+    : ((user as UserType & { name?: string | null; full_name?: string | null })?.name ||
+        (user as UserType & { name?: string | null; full_name?: string | null })?.full_name ||
+        "Member");
 
   return (
-    <div className="orionUserProfileWidget">
+    <div className="orionUserProfileWidget" onClick={() => navigate("/profile-page")}>
       {user?.profile_image ? (
         <img
-          src={`https://ambchapcorps.org/storage/${user.profile_image}`}
+          src={getProfileImageUrl(user.profile_image)}
           alt="User"
           className="orionUserAvatar"
           onError={(e) => {

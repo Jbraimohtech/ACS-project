@@ -433,7 +433,6 @@
         align-items: center;
     }
     .featured-first-img {
-        background-image: url("../assets/images/ofiice-five-img.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1231,7 +1230,6 @@
     .blog-first-img-featured {
         width: 98%;
         height: 201.38px;
-        background-image: url("../assets/images/blog-img.png");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

@@ -1,6 +1,7 @@
 import AllMainContent from "../components/AllMainContent"
 import HomeFooter from "../components/HomeFooter"
 import Navbar from "../components/Navbar/Navbar"
+import BeAccountedFor from "../EventsComponents/BeAccountedFor"
 import OurMission from "../homeComponents/AboutOrg"
 import Mission from "../homeComponents/Mission"
 import Vision from "../homeComponents/Vision"
@@ -21,6 +22,7 @@ const OurMissionLink = () => {
         <Mission />
         <Vision />
         <OurMission />
+        <BeAccountedFor />
         <HomeFooter />
     </div>
   )

@@ -1,19 +1,23 @@
 import { useState } from "react";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
-import { setToken, setUser } from "../utils/auth";
+import { setToken, setUser, isMembershipApproved } from "../utils/auth";
 
 interface User {
   id: number;
   first_name: string;
   last_name: string;
   email: string;
+  membership_id: string | null;
+  payment_status: number;
 }
 
 interface LoginResponse {
+  status?: boolean;
   token?: string;
   message?: string;
   user?: User;
+  NewMemberNotPaid?: boolean;
   errors?: {
     login?: string[];
     password?: string[];
@@ -85,11 +89,22 @@ const LoginPage = () => {
           setToken(data.token);
         }
 
-        if (data.user) {
-          setUser(data.user);
+        const persistedUser = {
+          ...(data.user ?? {}),
+          NewMemberNotPaid: Boolean(data.NewMemberNotPaid),
+        };
+
+        if (data.user || typeof data.NewMemberNotPaid === "boolean") {
+          setUser(persistedUser);
         }
 
-        navigate("/dashboard-page");
+        const approvedMember = isMembershipApproved(data.user ?? persistedUser);
+
+        if (data.NewMemberNotPaid && !approvedMember) {
+          navigate("/payment-plan", { replace: true });
+        } else {
+          navigate("/dashboard-page", { replace: true });
+        }
       } catch (err: unknown) {
         if (err instanceof Error) {
           setError(err.message);

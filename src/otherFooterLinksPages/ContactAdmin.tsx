@@ -3,6 +3,7 @@ import "./ContactAdmin.css";
 import HomeFooter from "../components/HomeFooter";
 import AllMainContent from "../components/AllMainContent";
 import Navbar from "../components/Navbar/Navbar";
+import BeAccountedFor from "../EventsComponents/BeAccountedFor";
 
 const ContactAdmin = () => {
   const [fullName, setFullName] = useState("");
@@ -128,6 +129,7 @@ const ContactAdmin = () => {
         </form>
       </div>
     </div>
+    <BeAccountedFor />
     <HomeFooter />
     </div>
   );

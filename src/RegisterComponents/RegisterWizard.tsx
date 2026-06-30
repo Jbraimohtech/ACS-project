@@ -6,7 +6,7 @@ import StepPersonalInfo from "./StepPersonalInfo";
 import StepPassword from "./StepPassword";
 import StepOtp from "./StepOtp";
 import { useNavigate } from "react-router-dom";
-import { setToken, setUser } from "../utils/auth";
+import { setToken, setUser, isMembershipApproved } from "../utils/auth";
 
 
 export interface RegisterData {
@@ -18,6 +18,26 @@ export interface RegisterData {
   phone: string;
   password: string;
   confirmPassword: string;
+}
+
+interface RegisterResponse {
+  status: boolean;
+  message: string;
+  token?: string;
+  user?: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    profile_image: string | null;
+    gender: string;
+    phone: string;
+    zone_id: number;
+    status: string;
+    payment_status: boolean | number;
+  };
+  NewMemberNotPaid?: boolean;
+  errors?: Record<string, string[]>;
 }
 
 const RegisterWizard = () => {
@@ -63,6 +83,8 @@ const RegisterWizard = () => {
       const payload = {
         first_name: formData.firstName,
         last_name: formData.surname,
+        name: `${formData.firstName} ${formData.surname}`.trim(),
+        full_name: `${formData.firstName} ${formData.surname}`.trim(),
         email: formData.email,
         password: formData.password,
         password_confirmation: formData.confirmPassword,
@@ -83,14 +105,14 @@ const RegisterWizard = () => {
         }
       );
 
-      const result = await response.json();
+      const result: RegisterResponse = await response.json();
       if (!response.ok) {
         const validationErrors =
           result.errors
             ? Object.values(result.errors)
                 .flat()
                 .join("\n")
-            : result.message || result.error || "Registration failed";
+            : result.message || "Registration failed"
 
         alert(`Registration Error (${response.status}):\n\n${validationErrors}`);
         return;
@@ -102,8 +124,11 @@ const RegisterWizard = () => {
       }
 
       // Store user data if provided
-      if (result.user) {
-        setUser(result.user);
+      if (result.user || typeof result.NewMemberNotPaid === "boolean") {
+        setUser({
+          ...(result.user ?? {}),
+          NewMemberNotPaid: Boolean(result.NewMemberNotPaid),
+        });
       }
 
       console.log("Registration Success", result);
@@ -120,8 +145,14 @@ const RegisterWizard = () => {
         confirmPassword: "",
       });
 
-      // Redirect to payment plan after success
-      navigate("/payment-plan");
+      const approvedMember = isMembershipApproved(result.user ?? result);
+
+      // Redirect based on backend response, but allow approved users through immediately.
+      if (result.NewMemberNotPaid && !approvedMember) {
+        navigate("/payment-plan");
+      } else {
+        navigate("/dashboard-page");
+      }
 
     } catch (err: unknown) {
       if (err instanceof Error) {

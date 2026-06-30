@@ -59,12 +59,12 @@ const goToProfileAbout = (memberId: number) => {
                 src={
                   member.profile_image
                     ? `https://ambchapcorps.org/storage/${member.profile_image}`
-                    : "/images/default-avatar.jpg"
+                    : "../assets/images/imageProfile-demo.jpeg"
                 }
                 alt={member.first_name}
                 onError={(e) => {
                   e.currentTarget.src =
-                    "/images/default-avatar.jpg";
+                    "../assets/images/imageProfile-demo.jpeg";
                 }}
               />
 
