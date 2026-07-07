@@ -12,6 +12,7 @@ import HomeFooter from '../components/HomeFooter'
 import Target from '../homeComponents/Target'
 import UpdateBlog from '../homeComponents/UpdateBlog'
 import "../components/Navbar/Navbar.css"
+import LeaderCarousel from '../leaderCarouselComponents/LeaderCarousel'
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
       <OurMission />
       <Blog />
       <Target />
+      <LeaderCarousel />
       <UpdateBlog />
       <ViewAllBlog />
       <HomeFooter />

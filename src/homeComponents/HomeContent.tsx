@@ -11,7 +11,7 @@ const HomeContent = () => {
             <Navbar />
         </div>
         <div className='home-head-text'>
-            <h1>A Platform Born From Purpose, For Our People</h1>
+            <h1>Raising Disciplined Chaplains, Serving Humanity, Transforming Communities.</h1>
         </div>
         <div className='home-body-text'>
             <p>

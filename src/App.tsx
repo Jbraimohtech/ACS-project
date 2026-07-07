@@ -12,8 +12,8 @@ import BlogDetails from './blogComponents/BlogDetails'
 import MobileScreenNav from './components/Navbar/MobileScreenNav'
 import ScrollToTop from './components/ScrollToTop'
 import AboutUs from './otherFooterLinksPages/AboutUs'
+import BecomeMember from './otherFooterLinksPages/BecomeMember'
 import MemberProfile from './otherFooterLinksPages/MemberProfile'
-import OurMissionLink from './otherFooterLinksPages/OurMissionLink'
 import ContactAdmin from './otherFooterLinksPages/ContactAdmin'
 import Departments from './otherFooterLinksPages/Departments'
 import HelpCenter from './otherFooterLinksPages/HelpCenter'
@@ -36,6 +36,9 @@ import PaymentPlan from './RegisterComponents/PaymentPlan'
 import RegisterWizard from './RegisterComponents/RegisterWizard'
 import MemberSearch from './MemberComponents/MemberSearch'
 import { getToken, getUser, isMembershipApproved } from './utils/auth'
+import Leaders from './otherFooterLinksPages/Leaders'
+import RankingStructure from './rankingStructureComponent/RankingStructure'
+import OurMissionLink from './otherFooterLinksPages/OurMissionLink'
 
 const App = () => {
   const location = useLocation();
@@ -73,7 +76,7 @@ const App = () => {
   }, [location.pathname, navigate]);
 
   return (
-    <div className='container'>
+    <div className='container app-shell'>
       <ScrollToTop />
       {/* <Navbar /> */}
       <Routes>
@@ -102,8 +105,8 @@ const App = () => {
         <Route path='/member/:id' element={<MemberProfile />} />
         {/* To About Us Page */}
         <Route path='/about-us' element={<AboutUs />} />
-        {/* To Our Mission Page */}
-        <Route path='/our-mission' element={<OurMissionLink />} />
+        {/* Become a Member */}
+        <Route path='/become-member' element={<BecomeMember />} />
         {/* To Contact Admin Page */}
         <Route path='/contact-admin' element={<ContactAdmin />} />
         {/* To Departments Page */}
@@ -144,6 +147,12 @@ const App = () => {
         <Route path='/news/:id' element={<DashboardNewsDetails />} />
         {/* To  News Feed Page */}
         <Route path='/member-search' element={<MemberSearch />} />
+        {/* To  Leaders Page */}
+        <Route path='/leaders' element={<Leaders />} />
+        {/* To  Ranking Structure Page */}
+        <Route path='/ranking-structure' element={<RankingStructure />} />
+        {/* To  Our Mission Page */}
+        <Route path='/our-mission' element={<OurMissionLink />} />
       </Routes>
     </div>
   )

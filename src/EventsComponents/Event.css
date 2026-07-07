@@ -53,6 +53,16 @@
     align-items: center;
 }
 
+.event-head-text-our-leaders {
+    width: 100%;
+    height: 142px;
+    text-align: center;
+    margin-bottom: 50px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
 .event-head-text-phone {
     display: none;
 }
@@ -62,6 +72,15 @@
 }
 
 .event-head-text h1 {
+    font-family: myFont, sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--light);
+    width: 100%;
+    text-align: center;
+}
+
+.event-head-text-our-leaders h1 {
     font-family: myFont, sans-serif;
     font-size: 56px;
     font-weight: 700;
@@ -345,6 +364,10 @@
 
     .event-head-text-box, .event-head-text  {
         display: none;
+    }
+
+    .event-head-text-our-leaders h1 {
+      font-size: 30px;
     }
 
     .event-blog-head-text-phone {
@@ -982,7 +1005,6 @@
     position: absolute;
     top: 180%;
     left: 30%;
-    transform: translate(-50%, -50%);
 }
 
 .featured-badge-and-title h2 {
@@ -1388,7 +1410,6 @@
 
   position: relative;
 
-  animation: modalFade 0.25s ease;
 }
 
 /* CLOSE BUTTON */
@@ -1440,7 +1461,6 @@
   font-size: 1rem;
   cursor: pointer;
 
-  transition: 0.2s ease;
 }
 
 /* GOING */
@@ -1469,19 +1489,6 @@
 
 /* ANIMATION */
 
-@keyframes modalFade {
-  from {
-    opacity: 0;
-    transform: translateY(20px)
-      scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0)
-      scale(1);
-  }
-}
 
 /* RESPONSIVE */
 
@@ -1523,7 +1530,6 @@
   border-radius: 24px;
   position: relative;
 
-  animation: modalFade 0.25s ease;
 }
 
 /* REGISTER MODAL */
@@ -1604,7 +1610,6 @@
   /* position: absolute;
   right: 24px;
   top: 50%;
-  transform: translateY(-50%);
   color: #dbeafe; */
 
   display: none;
@@ -1675,19 +1680,6 @@
 
 /* ANIMATION */
 
-@keyframes modalFade {
-  from {
-    opacity: 0;
-    transform: translateY(20px)
-      scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0)
-      scale(1);
-  }
-}
 
 /* RESPONSIVE */
 

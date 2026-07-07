@@ -68,7 +68,6 @@
   font-size: 16px;
   color: #374151;
 
-  transition: 0.2s ease;
 }
 
 .plan-toggle button.active {
@@ -149,7 +148,6 @@
 
   cursor: pointer;
 
-  transition: 0.2s ease;
 }
 
 .next-btn:hover {
@@ -215,7 +213,6 @@
 
   position: relative;
 
-  animation: modalFade 0.25s ease;
 }
 
 /* CLOSE BUTTON */
@@ -237,11 +234,9 @@
 
   font-size: 20px;
 
-  transition: 0.2s ease;
 }
 
 .quantumDismissTrigger:hover {
-  transform: rotate(90deg);
   color: #475569;
 }
 
@@ -311,7 +306,6 @@
 
   margin-bottom: 30px;
 
-  transition: 0.2s ease;
 }
 
 .payment-method-btn:hover {
@@ -444,19 +438,6 @@
 
 /* ANIMATION */
 
-@keyframes modalFade {
-  from {
-    opacity: 0;
-    transform: translateY(20px)
-      scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0)
-      scale(1);
-  }
-}
 
 /* MOBILE */
 
@@ -513,7 +494,6 @@
 
   position: relative;
 
-  animation: modalFade 0.25s ease;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -581,7 +561,6 @@
 
   margin-bottom: 30px;
 
-  transition: 0.2s ease;
 }
 
 .payment-method-btn:hover {
@@ -636,19 +615,6 @@
 
 /* ANIMATION */
 
-@keyframes modalFade {
-  from {
-    opacity: 0;
-    transform: translateY(20px)
-      scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0)
-      scale(1);
-  }
-}
 
 /* MOBILE */
 
@@ -682,7 +648,6 @@
 
   position: relative;
 
-  animation: modalFade 0.25s ease;
 
   overflow-x: hidden;
   overflow-y: hidden;
@@ -747,7 +712,6 @@
   font-size: 1rem;
   font-weight: 600;
 
-  transition: 0.2s ease;
   justify-content: center;
   align-items: center;
 }
@@ -834,7 +798,6 @@
   right: 14px;
   top: 50%;
 
-  transform: translateY(-50%);
 
   color: #94a3b8;
   font-size: 14px;
@@ -977,19 +940,6 @@
 
 /* ANIMATION */
 
-@keyframes modalFade {
-  from {
-    opacity: 0;
-    transform: translateY(16px)
-      scale(0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0)
-      scale(1);
-  }
-}
 
 /* MOBILE */
 
@@ -1075,7 +1025,6 @@
 
   cursor: pointer;
 
-  transition: 0.2s ease;
 
   margin-bottom: 18px;
 }
@@ -1171,7 +1120,6 @@
   flex-direction: column;
   align-items: center;
 
-  animation: successPopUp 0.25s ease;
 
   box-shadow:
     0 12px 40px rgba(0,0,0,0.08),
@@ -1258,7 +1206,6 @@
 
   cursor: pointer;
 
-  transition: 0.2s ease;
 }
 
 .successAdvanceButton:hover {
@@ -1268,19 +1215,3 @@
 
 
 /* ANIMATION */
-
-@keyframes successPopUp {
-  from {
-    opacity: 0;
-    transform:
-      scale(0.9)
-      translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      scale(1)
-      translateY(0);
-  }
-}

@@ -67,12 +67,9 @@
   border-radius: 14px;
   overflow: hidden;
   will-change: transform;
-  transform: translateZ(0);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .resourceCard:hover {
-  transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(15, 91, 85, 0.12);
 }
 

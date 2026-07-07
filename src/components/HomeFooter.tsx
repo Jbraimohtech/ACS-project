@@ -21,7 +21,7 @@ const HomeFooter = () => {
             <div className='home-footer-col-two-row'>
                 <h6>Organization</h6>
                 <Link to="/about-us" className='home-footer-col-two-row-link'>About Us</Link>
-                <Link to="/our-mission" className='home-footer-col-two-row-link'>Our Mission</Link>
+                {/* <Link to="/our-mission" className='home-footer-col-two-row-link'>Our Mission</Link> */}
                 {/* <Link to="/leadership-structure" className='home-footer-col-two-row-link'>Leadership Structure</Link> */}
             </div>
             <div className='home-footer-col-two-row'>

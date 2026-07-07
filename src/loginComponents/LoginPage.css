@@ -87,7 +87,6 @@
 
   outline: none;
 
-  transition: 0.3s ease;
 }
 
 .novaInputGalaxy input:focus {
@@ -110,7 +109,6 @@
 
   cursor: pointer;
 
-  transition: 0.3s ease;
 }
 
 .novaLoginButton:hover {

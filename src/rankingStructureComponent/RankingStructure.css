@@ -1,0 +1,188 @@
+.rocketRankingUniverse{
+
+    width:94%;
+    margin:70px auto;
+
+}
+
+.waffleRankingHeading{
+
+    text-align:center;
+    margin-bottom:45px;
+
+}
+
+.bananaBadge{
+
+    display:inline-block;
+
+    background:#e9faf6;
+
+    color:#0f5c56;
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+}
+
+.waffleRankingHeading h2{
+
+    margin:18px 0;
+
+    font-size:42px;
+
+    color:#0f172a;
+
+}
+
+.waffleRankingHeading p{
+
+    max-width:720px;
+
+    margin:auto;
+
+    line-height:1.8;
+
+    color:#64748b;
+
+}
+
+.pickleTableWrapper{
+
+    overflow-x:auto;
+
+    border-radius:18px;
+
+    box-shadow:0 15px 45px rgba(0,0,0,.08);
+
+}
+
+.cheeseRankingTable{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    min-width:900px;
+
+}
+
+.cheeseRankingTable thead{
+
+    background:#0f5c56;
+
+    color:white;
+
+}
+
+.cheeseRankingTable th{
+
+    padding:20px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    position:sticky;
+
+    top:0;
+
+}
+
+.cheeseRankingTable td{
+
+    padding:18px 20px;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.cheeseRankingTable tbody tr:nth-child(even){
+
+    background:#fafafa;
+
+}
+
+
+.cheeseRankingTable tbody tr:hover{
+
+    background:#ecfdf5;
+
+}
+
+.penguinLegend{
+
+    margin-top:40px;
+
+    background:#f8fafc;
+
+    border-radius:18px;
+
+    padding:30px;
+
+}
+
+.penguinLegend h3{
+
+    margin-bottom:20px;
+
+    color:#0f172a;
+
+}
+
+.penguinLegendGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:15px;
+
+}
+
+.penguinLegendGrid span{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    text-align:center;
+
+    border:1px solid #e2e8f0;
+
+    font-weight:600;
+
+}
+
+@media(max-width:768px){
+
+    .waffleRankingHeading h2{
+
+        font-size:30px;
+
+    }
+
+    .waffleRankingHeading p{
+
+        font-size:15px;
+
+    }
+
+    .penguinLegendGrid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}

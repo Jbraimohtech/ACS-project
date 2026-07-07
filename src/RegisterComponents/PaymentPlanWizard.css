@@ -192,11 +192,9 @@
   background: #fff;
   text-align: left;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
 .plan-card:hover {
-  transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
 }
 

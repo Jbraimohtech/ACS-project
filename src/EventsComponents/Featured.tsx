@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import fallbackEventImage from '../assets/images/ofiice-five-img.jpg';
 import { getEventImage } from '../utils/eventUtils';
 import LoadingBrand from '../components/LoadingBrand';
+import { getToken, getUser } from "../utils/auth";
 
 interface Event {
   id: number;
@@ -30,6 +31,18 @@ interface Event {
 }
 
 const Featured = () => {
+  const currentUser = getUser();
+
+  const [attendanceForm, setAttendanceForm] = useState({
+    first_name: currentUser?.first_name || "",
+    last_name: currentUser?.last_name || "",
+    phone_number: currentUser?.phone ?? currentUser?.phone_number ?? "",
+    email: currentUser?.email || "",
+    home_address: "",
+    gender: currentUser?.gender || "",
+  });
+
+  const [submittingAttendance, setSubmittingAttendance] = useState(false);
     const [showModal, setShowModal] =
     useState(false);
 
@@ -53,6 +66,78 @@ const Featured = () => {
 
     const [featuredEvent, setFeaturedEvent] = useState<Event | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    const handleAttendanceSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault();
+
+  const trimmedHomeAddress = attendanceForm.home_address.trim();
+
+  if (!trimmedHomeAddress) {
+    alert("Home address is required before submitting your attendance.");
+    return;
+  }
+
+  if (!featuredEvent) return;
+
+  try {
+    setSubmittingAttendance(true);
+
+    const token = getToken();
+
+    const response = await fetch(
+      "https://ambchapcorps.org/api/event/attendance",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({
+          event_id: featuredEvent.id,
+          ...attendanceForm,
+          home_address: trimmedHomeAddress,
+        }),
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        result.message ||
+        Object.values(result.errors || {})
+          .flat()
+          .join(", ") ||
+        "Attendance registration failed"
+      );
+    }
+
+    alert(result.message);
+
+    setShowRegisterModal(false);
+
+    setAttendanceForm({
+      first_name: currentUser?.first_name || "",
+      last_name: currentUser?.last_name || "",
+      phone_number: currentUser?.phone ?? currentUser?.phone_number ?? "",
+      email: currentUser?.email || "",
+      home_address: "",
+      gender: currentUser?.gender || "",
+    });
+
+  } catch (err) {
+    if (err instanceof Error) {
+      alert(err.message);
+    } else {
+      alert("Something went wrong");
+    }
+  } finally {
+    setSubmittingAttendance(false);
+  }
+};
 
     useEffect(() => {
       const fetchEvents = async () => {
@@ -231,31 +316,48 @@ const Featured = () => {
             </p>
 
             {/* FORM */}
-            <form className="register-form">
+            <form
+              className="register-form"
+              onSubmit={handleAttendanceSubmit}
+            >
               <input
                 type="text"
                 placeholder="First Name"
+                value={attendanceForm.first_name}
+                onChange={(e) =>
+                  setAttendanceForm({
+                    ...attendanceForm,
+                    first_name: e.target.value,
+                  })
+                }
               />
 
               <input
                 type="text"
                 placeholder="Surname"
+                value={attendanceForm.last_name}
+                onChange={(e) =>
+                  setAttendanceForm({
+                    ...attendanceForm,
+                    last_name: e.target.value,
+                  })
+                }
               />
 
               {/* GENDER */}
               <div className="select-wrapper">
-                <select>
-                  <option>
-                    Gender
-                  </option>
-
-                  <option>
-                    Male
-                  </option>
-
-                  <option>
-                    Female
-                  </option>
+                <select
+                  value={attendanceForm.gender}
+                  onChange={(e) =>
+                    setAttendanceForm({
+                      ...attendanceForm,
+                      gender: e.target.value,
+                    })
+                  }
+                >
+                  <option value="">Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
                 </select>
 
                 <ChevronDown
@@ -267,11 +369,26 @@ const Featured = () => {
               <input
                 type="email"
                 placeholder="Email Address"
+                value={attendanceForm.email}
+                onChange={(e) =>
+                  setAttendanceForm({
+                    ...attendanceForm,
+                    email: e.target.value,
+                  })
+                }
               />
 
               <input
                 type="text"
                 placeholder="Home Address"
+                required
+                value={attendanceForm.home_address}
+                onChange={(e) =>
+                  setAttendanceForm({
+                    ...attendanceForm,
+                    home_address: e.target.value,
+                  })
+                }
               />
 
               {/* PHONE */}
@@ -289,6 +406,13 @@ const Featured = () => {
                 <input
                   type="text"
                   placeholder="Phone Number"
+                  value={attendanceForm.phone_number}
+                  onChange={(e) =>
+                    setAttendanceForm({
+                      ...attendanceForm,
+                      phone_number: e.target.value,
+                    })
+                  }
                 />
               </div>
 
@@ -296,8 +420,9 @@ const Featured = () => {
               <button
                 type="submit"
                 className="register-continue-btn"
+                disabled={submittingAttendance}
               >
-                Continue
+                {submittingAttendance ? "Submitting..." : "Continue"}
               </button>
             </form>
           </div>

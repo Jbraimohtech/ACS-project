@@ -1,0 +1,1421 @@
+/* =========================================================
+   BECOME MEMBER PAGE
+   PART 2A
+=========================================================*/
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+
+    --pickleGreen:#0f5c56;
+    --bananaCream:#f8fbfb;
+    --waffleGray:#6b7280;
+    --cheeseWhite:#ffffff;
+    --shadowMagic:0 18px 45px rgba(15,92,86,.12);
+    --borderMagic:#e8ecef;
+}
+
+.becomeMemberPage {
+    width: 95%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary);
+  margin: 30px 15% 50px 3%;
+  border-radius: 12px; 
+  padding-bottom: 30px;
+}
+    
+
+.pickleRocketPage{
+
+    width:100%;
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:90px 7%;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:120px;
+}
+
+/*=========================================================
+ HERO
+=========================================================*/
+
+.bananaWizardHero{
+
+    width:100%;
+    height: fit-content;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+/* floating background */
+
+.bananaWizardHero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,.12),
+    transparent 70%);
+
+    top:-220px;
+    right:-150px;
+}
+
+.bananaWizardHero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,.08),
+    transparent 70%);
+
+    bottom:-120px;
+    left:-120px;
+}
+
+.bananaWizardHeroContent{
+
+    position:relative;
+    z-index:3;
+
+    width:min(850px,90%);
+
+    text-align:center;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:28px;
+
+    color:white;
+}
+
+.bananaWizardHeroContent h1{
+
+    font-size:72px;
+
+    font-weight:700;
+
+    line-height:1.1;
+    height: fit-content;
+    overflow: hidden;
+
+}
+
+.bananaWizardTag{
+
+    align-self:center;
+
+    background:rgba(255,255,255,.14);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(10px);
+
+    padding:10px 24px;
+
+    border-radius:999px;
+
+    font-size:15px;
+    font-weight:600;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+}
+
+.bananaWizardHero h1{
+
+    font-size:66px;
+
+    font-weight:700;
+
+    line-height:1.1;
+}
+
+.bananaWizardHero p{
+
+    font-size:20px;
+
+    line-height:1.9;
+
+    color:
+    rgba(255,255,255,.92);
+}
+
+/*=========================================================
+ HERO BUTTONS
+=========================================================*/
+
+.bananaWizardButtons{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:20px;
+
+    flex-wrap:wrap;
+}
+
+.bananaWizardButtons button{
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:18px 36px;
+
+    border-radius:14px;
+
+    font-size:17px;
+    font-weight:600;
+
+    box-shadow:
+    0 12px 28px rgba(0,0,0,.12);
+}
+
+.bananaWizardButtons button:first-child{
+
+    background:white;
+
+    color:var(--pickleGreen);
+}
+
+.bananaWizardButtons button:first-child:hover{
+
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.18);
+}
+
+.ghostButton{
+
+    background:transparent;
+
+    color:white;
+
+    border:2px solid rgba(255,255,255,.45)!important;
+}
+
+.ghostButton:hover{
+
+    background:white;
+
+    color:var(--pickleGreen);
+
+}
+
+/*=========================================================
+ INTRO SECTION
+=========================================================*/
+
+.pickleRocketIntro{
+
+    text-align:center;
+
+    max-width:900px;
+
+    margin:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:22px;
+}
+
+.pickleRocketIntro h2{
+
+    font-size:52px;
+
+    color:var(--pickleGreen);
+}
+
+.pickleRocketIntro p{
+
+    font-size:20px;
+
+    color:var(--waffleGray);
+
+    line-height:1.9;
+}
+
+/*=========================================================
+ SECTION HEADINGS
+=========================================================*/
+
+.sectionHeading{
+
+    width:100%;
+
+    text-align:center;
+
+    margin-bottom:55px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:16px;
+}
+
+.sectionHeading h2{
+
+    font-size:44px;
+
+    color:var(--pickleGreen);
+
+    font-weight:700;
+}
+
+.sectionHeading p{
+
+    width:min(760px,100%);
+
+    margin:auto;
+
+    color:var(--waffleGray);
+
+    line-height:1.9;
+
+    font-size:19px;
+}
+
+/*=========================================================
+ COMMON SECTION SPACING
+=========================================================*/
+
+.waffleCastle{
+
+    width:100%;
+}
+
+.penguinFlex{
+
+    width:100%;
+}
+
+.faqRocket{
+
+    width:100%;
+}
+
+.galaxyCallToAction{
+
+    width:100%;
+}
+
+/* Animations removed */
+
+/*=========================================================
+ RESPONSIVE
+=========================================================*/
+
+@media(max-width:992px){
+
+    .pickleRocketPage{
+
+        gap:90px;
+
+        padding:70px 6%;
+    }
+
+    .bananaWizardHero h1{
+
+        font-size:52px;
+    }
+
+    .bananaWizardHero p{
+
+        font-size:18px;
+    }
+
+    .sectionHeading h2{
+
+        font-size:36px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .becomeMemberPage {
+        width: 95%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--primary);
+        margin: 30px 15% 50px 3%;
+        border-radius: 12px; 
+        padding-bottom: 30px;
+    }
+
+    .bananaWizardHero{
+        height: fit-content;
+        
+    }
+
+    .bananaWizardHero h1{
+
+        font-size:30px;
+    }
+
+    .bananaWizardHero p{
+
+        font-size:17px;
+    }
+
+    .bananaWizardButtons{
+
+        flex-direction:column;
+    }
+
+    .bananaWizardButtons button{
+
+        width:100%;
+    }
+
+    .pickleRocketIntro h2{
+
+        font-size:38px;
+    }
+
+    .sectionHeading h2{
+
+        font-size:32px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .bananaWizardHero h1{
+
+        font-size:34px;
+    }
+
+    .bananaWizardHero p{
+
+        font-size:16px;
+    }
+
+    .bananaWizardTag{
+
+        font-size:13px;
+    }
+
+    .pickleRocketIntro p{
+
+        font-size:17px;
+    }
+
+    .sectionHeading p{
+
+        font-size:17px;
+    }
+
+}
+
+/*=========================================================
+PART 2B
+CARDS • ELIGIBILITY • BENEFITS
+=========================================================*/
+
+/* Sections */
+
+.waffleCastle{
+
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+/*=========================================================
+GRID LAYOUT
+=========================================================*/
+
+.marshmallowGalaxyGrid{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap:28px;
+}
+
+/*=========================================================
+CARD
+=========================================================*/
+
+.cheeseMeteorCard{
+
+    position:relative;
+
+    background:#ffffff;
+
+    border:1px solid #edf2f7;
+
+    border-radius:22px;
+
+    padding:38px 30px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 8px 22px rgba(15,92,86,.05);
+}
+
+/* Decorative Glow */
+
+.cheeseMeteorCard::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(15,92,86,.10),
+    transparent 70%);
+
+    top:-140px;
+    right:-120px;
+}
+
+.cheeseMeteorCard::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
+
+    width:0;
+
+    height:5px;
+
+    background:linear-gradient(
+    90deg,
+    #0f5c56,
+    #27ae60);
+}
+
+/*=========================================================
+ICON
+=========================================================*/
+
+.cardIcon{
+
+    width:72px;
+    height:72px;
+
+    border-radius:18px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(15,92,86,.12),
+    rgba(15,92,86,.03));
+
+    color:#0f5c56;
+}
+
+/*=========================================================
+TITLE
+=========================================================*/
+
+.cheeseMeteorCard h3{
+
+    font-size:23px;
+
+    color:#143c39;
+
+    line-height:1.35;
+
+    font-weight:700;
+}
+
+/*=========================================================
+DESCRIPTION
+=========================================================*/
+
+.cheeseMeteorCard p{
+
+    color:#6b7280;
+
+    line-height:1.8;
+
+    font-size:16px;
+}
+
+/*=========================================================
+HOVER EFFECTS
+=========================================================*/
+
+.cheeseMeteorCard:hover{
+
+
+    box-shadow:
+    0 28px 55px rgba(15,92,86,.14);
+
+    border-color:
+    rgba(15,92,86,.20);
+}
+
+.cheeseMeteorCard:hover::after{
+
+    width:100%;
+}
+
+
+.cheeseMeteorCard:hover .cardIcon{
+
+    background:#0f5c56;
+
+    color:white;
+
+}
+
+.cheeseMeteorCard:hover h3{
+
+    color:#0f5c56;
+}
+
+/*=========================================================
+BENEFIT CARD DIFFERENCE
+=========================================================*/
+
+.cheeseMeteorCard p{
+
+    margin-top:-5px;
+}
+
+/*=========================================================
+CARD APPEAR ANIMATION
+=========================================================*/
+
+/* Animations removed */
+
+/*=========================================================
+ELIGIBILITY CARD SPECIAL
+=========================================================*/
+
+.marshmallowGalaxyGrid:first-of-type
+.cheeseMeteorCard{
+
+    min-height:240px;
+
+    justify-content:center;
+}
+
+.marshmallowGalaxyGrid:first-of-type
+.cheeseMeteorCard h3{
+
+    margin-top:6px;
+}
+
+/*=========================================================
+BENEFITS CARD SPECIAL
+=========================================================*/
+
+.marshmallowGalaxyGrid:last-of-type
+.cheeseMeteorCard{
+
+    min-height:320px;
+}
+
+/*=========================================================
+RESPONSIVE
+=========================================================*/
+
+@media(max-width:1200px){
+
+    .marshmallowGalaxyGrid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .marshmallowGalaxyGrid{
+
+        grid-template-columns:1fr;
+    }
+
+    .cheeseMeteorCard{
+
+        padding:32px 24px;
+    }
+
+    .cardIcon{
+
+        width:64px;
+        height:64px;
+    }
+
+    .cheeseMeteorCard h3{
+
+        font-size:21px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .cheeseMeteorCard{
+
+        border-radius:18px;
+    }
+
+    .cardIcon{
+
+        width:58px;
+        height:58px;
+    }
+
+    .cheeseMeteorCard h3{
+
+        font-size:19px;
+    }
+
+    .cheeseMeteorCard p{
+
+        font-size:15px;
+    }
+
+}
+
+/*=========================================================
+PART 2C
+TIMELINE • FAQ • CTA
+=========================================================*/
+
+/*=========================================================
+WHAT WE EXPECT
+=========================================================*/
+
+.penguinFlex{
+
+    width:100%;
+}
+
+.bananaChecklist{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+}
+
+.bananaChecklistItem{
+
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+
+    padding:24px;
+
+    background:#ffffff;
+
+    border:1px solid #edf2f7;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(15,92,86,.05);
+}
+
+.bananaChecklistItem:hover{
+
+
+    box-shadow:0 24px 45px rgba(15,92,86,.12);
+}
+
+.bananaTick{
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:#0f5c56;
+
+    color:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:20px;
+    font-weight:bold;
+
+    flex-shrink:0;
+}
+
+.bananaChecklistItem p{
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+    font-size:16px;
+}
+
+/*=========================================================
+TIMELINE
+=========================================================*/
+
+.pizzaTimeline{
+
+    position:relative;
+
+    max-width:900px;
+
+    margin:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:30px;
+}
+
+.pizzaTimeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:26px;
+
+    top:0;
+    bottom:0;
+
+    width:4px;
+
+    background:#dce9e8;
+}
+
+.pizzaTimelineCard{
+
+    display:flex;
+
+    gap:28px;
+
+    position:relative;
+}
+
+.timelineBubble{
+
+    width:56px;
+    height:56px;
+
+    background:#0f5c56;
+
+    color:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:700;
+    font-size:18px;
+
+    flex-shrink:0;
+
+    z-index:2;
+
+    box-shadow:0 10px 25px rgba(15,92,86,.25);
+}
+
+.timelineContent{
+
+    flex:1;
+
+    background:#fff;
+
+    padding:24px 28px;
+
+    border-radius:18px;
+
+    border:1px solid #edf2f7;
+
+    box-shadow:0 10px 30px rgba(15,92,86,.05);
+}
+
+.timelineContent:hover{
+
+
+    box-shadow:0 22px 40px rgba(15,92,86,.12);
+}
+
+.timelineContent h3{
+
+    color:#0f5c56;
+
+    margin-bottom:10px;
+
+    font-size:22px;
+}
+
+.timelineContent p{
+
+    color:#6b7280;
+
+    line-height:1.8;
+}
+
+/* Animations removed */
+
+/*=========================================================
+FAQ
+=========================================================*/
+
+.faqRocket{
+
+    width:100%;
+}
+
+.faqStack{
+
+    max-width:900px;
+
+    margin:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.faqCard{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    border:1px solid #edf2f7;
+
+    padding:24px 28px;
+
+    box-shadow:0 10px 25px rgba(15,92,86,.05);
+}
+
+.faqCard:hover{
+
+
+    border-color:#0f5c56;
+
+    box-shadow:0 20px 40px rgba(15,92,86,.12);
+}
+
+.faqCard h3{
+
+    color:#0f5c56;
+
+    margin-bottom:12px;
+
+    font-size:22px;
+}
+
+.faqCard p{
+
+    color:#6b7280;
+
+    line-height:1.9;
+}
+
+/*=========================================================
+CALL TO ACTION
+=========================================================*/
+
+.galaxyCallToAction{
+
+    background:linear-gradient(135deg,#0f5c56,#17756d);
+
+    border-radius:30px;
+
+    padding:80px 60px;
+
+    text-align:center;
+
+    color:#fff;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+.galaxyCallToAction::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:50%;
+
+    right:-150px;
+    top:-150px;
+}
+
+.galaxyCallToAction h2{
+
+    font-size:50px;
+
+    margin-bottom:20px;
+}
+
+.galaxyCallToAction p{
+
+    width:min(760px,100%);
+
+    margin:auto;
+
+    font-size:20px;
+
+    line-height:1.9;
+
+    color:rgba(255,255,255,.92);
+}
+
+.galaxyCallToAction button{
+
+    margin-top:36px;
+
+    padding:18px 42px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:#fff;
+
+    color:#0f5c56;
+
+    font-size:18px;
+
+    font-weight:700;
+}
+
+.galaxyCallToAction button:hover{
+
+
+    box-shadow:0 18px 35px rgba(0,0,0,.18);
+}
+
+/*=========================================================
+FULL RESPONSIVE
+=========================================================*/
+
+@media(max-width:992px){
+
+    .pizzaTimeline::before{
+
+        left:22px;
+    }
+
+    .timelineBubble{
+
+        width:48px;
+        height:48px;
+
+        font-size:16px;
+    }
+
+    .galaxyCallToAction{
+
+        padding:60px 40px;
+    }
+
+    .galaxyCallToAction h2{
+
+        font-size:40px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .bananaChecklist{
+
+        grid-template-columns:1fr;
+    }
+
+    .pizzaTimelineCard{
+
+        gap:18px;
+    }
+
+    .timelineContent{
+
+        padding:20px;
+    }
+
+    .timelineContent h3{
+
+        font-size:20px;
+    }
+
+    .faqCard{
+
+        padding:20px;
+    }
+
+    .faqCard h3{
+
+        font-size:20px;
+    }
+
+    .galaxyCallToAction{
+
+        padding:55px 28px;
+    }
+
+    .galaxyCallToAction h2{
+
+        font-size:34px;
+    }
+
+    .galaxyCallToAction p{
+
+        font-size:17px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .pizzaTimeline::before{
+
+        left:18px;
+    }
+
+    .timelineBubble{
+
+        width:40px;
+        height:40px;
+
+        font-size:14px;
+    }
+
+    .timelineContent{
+
+        padding:18px;
+    }
+
+    .timelineContent h3{
+
+        font-size:18px;
+    }
+
+    .timelineContent p{
+
+        font-size:15px;
+    }
+
+    .bananaChecklistItem{
+
+        padding:18px;
+    }
+
+    .bananaTick{
+
+        width:40px;
+        height:40px;
+
+        font-size:16px;
+    }
+
+    .faqCard h3{
+
+        font-size:18px;
+    }
+
+    .faqCard p{
+
+        font-size:15px;
+    }
+
+    .galaxyCallToAction{
+
+        border-radius:20px;
+
+        padding:42px 20px;
+    }
+
+    .galaxyCallToAction h2{
+
+        font-size:28px;
+    }
+
+    .galaxyCallToAction p{
+
+        font-size:16px;
+    }
+
+    .galaxyCallToAction button{
+
+        width:100%;
+    }
+
+}
+
+/* =======================================================
+   EXPECTATIONS + JOURNEY SECTION
+======================================================= */
+
+.penguinFlex{
+    width: min(1300px, 94%);
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* LEFT COLUMN */
+
+.penguinLeft,
+.penguinRight{
+    background: #fff;
+    border: 1px solid var(--cheeseBorder);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.05);
+}
+
+.penguinLeft:hover,
+.penguinRight:hover{
+    box-shadow: var(--meteorShadow);
+}
+
+.penguinLeft h2,
+.penguinRight h2{
+    font-size: 34px;
+    color: var(--darkText);
+    margin-bottom: 30px;
+}
+
+/* ===========================
+    EXPECTATION LIST
+=========================== */
+
+.expectationList{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.expectationItem{
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    padding: 18px 20px;
+
+    border-radius: 16px;
+
+    background: var(--waffleCream);
+
+}
+
+.expectationItem:hover{
+    background: #eef8f6;
+}
+
+.expectationItem svg{
+    color: var(--pickleGreen);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.expectationItem span{
+    color: var(--darkText);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* ===========================
+        TIMELINE
+=========================== */
+
+.journeyTimeline{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.journeyCard{
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    border: 1px solid var(--cheeseBorder);
+
+    background: white;
+}
+
+.journeyCard:hover{
+    box-shadow: var(--rocketShadow);
+}
+
+.journeyIcon{
+
+    width: 62px;
+    height: 62px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #e8f7f4;
+
+    color: var(--pickleGreen);
+
+    flex-shrink: 0;
+}
+
+.journeyCard h3{
+    font-size: 18px;
+    color: var(--pickleGreen);
+    margin-bottom: 6px;
+}
+
+.journeyCard p{
+    color: var(--lightText);
+    line-height: 1.6;
+}
+
+.journeyArrow{
+
+    position: absolute;
+
+    right: 20px;
+
+    color: var(--pickleGreen);
+
+    opacity: .5;
+}
+
+.journeyCard:hover .journeyArrow{
+    opacity: 1;
+}
+
+/* ===========================
+        RESPONSIVE
+=========================== */
+
+@media (max-width: 992px){
+
+    .penguinFlex{
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .penguinLeft,
+    .penguinRight{
+        padding: 28px;
+    }
+
+    .penguinLeft h2,
+    .penguinRight h2{
+        font-size: 28px;
+    }
+
+}
+
+@media (max-width: 768px){
+
+    .journeyCard{
+        padding: 18px;
+    }
+
+    .journeyIcon{
+        width: 50px;
+        height: 50px;
+    }
+
+    .expectationItem{
+        padding: 16px;
+    }
+
+    .expectationItem span{
+        font-size: 15px;
+    }
+
+}

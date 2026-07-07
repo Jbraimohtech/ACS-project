@@ -260,7 +260,6 @@
 
   background: white;
 
-  transition: 0.25s;
 }
 
 .novaSwitch input:checked + span {
@@ -268,7 +267,6 @@
 }
 
 .novaSwitch input:checked + span::before {
-  transform: translateX(20px);
 }
 
 /* ===================================

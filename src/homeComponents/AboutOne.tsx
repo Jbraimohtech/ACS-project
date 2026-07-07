@@ -10,7 +10,7 @@ const TheChallenge = () => {
             <div className='number-reason-item'>
               <p>01</p>
             </div>
-            <h3 className='number-reason-text'>About the Organisation</h3>
+            <h3 className='number-reason-text'>About ACC</h3>
           </div>
         </div>
         {/* The content part */}
@@ -18,20 +18,20 @@ const TheChallenge = () => {
           <div className='pray-military-img'></div>
           <div className='the-content-part-text'>
             <span className='the-content-part-text-p'>
-              The organization came into being with the vision caught by 
-              Missionary Julianah Ebube, the vision which the Pioneering 
-              Commandant General, Late Chap. General M. U. Enebeli 
-              Ebube [2008 - 2010] brought into being.
+              Founded in 2008, Ambassadors Chaplain Corps (ACC) exists to raise disciplined 
+              chaplains who positively influence society through 
+              faith-based leadership, humanitarian service, and community transformation.
+              We believe that true ministry extends beyond the church walls into hospitals, 
+              correctional facilities, schools, communities, disaster zones, and every place 
+              where people need hope, guidance, and support.
+              Through professional chaplaincy training and practical community engagement, 
+              we prepare individuals to become effective ambassadors of peace, unity, compassion, 
+              and service.
             </span>
             <span className='the-content-part-text-p'>
-              The organization by the name AMBASSADORS CHAPLAIN  
-              CORPS LTD/GTE was incorporated with the Corporate Affairs  
-              Commission, Abuja vide Certificate Number 775432 dated  
-              25th September, 2008. Thus The Ambassadors Chaplain 
-              Corps (ACC) is a registered organization according to the 
-              provisions of the Constitution of the Federal Republic of  
-              Nigeria (1999 as amended) and the Companies and Allied 
-              Matters Act 2006.
+              Ambassadors Chaplain Corps Ltd/GTE is a non-profit Para-military organization dedicated
+               to equipping Gospel Ministers and Christians to serve as help professionals in critical 
+               areas of human need. 
             </span>
           </div>
         </div>
