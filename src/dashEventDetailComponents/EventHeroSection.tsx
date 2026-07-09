@@ -33,13 +33,22 @@ interface EventHeroSectionProps {
 const EventHeroSection = ({
   event,
 }: EventHeroSectionProps) => {
+  const imageSrc = event.image
+    ? event.image.startsWith("http")
+      ? event.image
+      : `https://ambchapcorps.org/storage/${event.image}`
+    : "/profile.jpg";
+
   return (
-    <div className="auroraHeroCard">
-      <div className="auroraHeroImage"></div>
+    <div
+      className="auroraHeroCard"
+      style={{ backgroundImage: `url(${imageSrc})` }}
+    >
+      <img src={imageSrc} alt={event.title} className="auroraHeroImage" />
 
       <div className="auroraHeroOverlay">
         <span className="auroraBadge">
-          FLAGSHIP EVENT
+           EVENT
         </span>
 
         <h1>{event.title}</h1>

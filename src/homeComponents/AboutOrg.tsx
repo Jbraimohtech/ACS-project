@@ -41,7 +41,7 @@ const OurMission = () => {
           <div className='classroom-pastor'></div>
           <p>
             To educate religious clerics like pastors, 
-            Christian leaders, workers ,and matured 
+            Christian leaders, workers, and matured 
             Christians, who will serve as Chaplain officers in such areas as civil society, military and paramilitary establishments, on acceptable best practices at all times and during crises situations such as civil disturbances, national emergencies and disasters.
           </p>
         </div>

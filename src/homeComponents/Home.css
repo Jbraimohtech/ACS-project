@@ -10,6 +10,10 @@
     margin: 2% 2% 2% 3%;
 }
 
+.theContentPartOrgBox {
+    margin: 50px 0;
+}
+
 .new-home-style-image {
     background-image: url("../assets/images/home-content-image.jpg");
     background-size: cover;
@@ -23,19 +27,20 @@
 
 .home-content-all-main-content {
     width: 100%;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: transparent;
-  border-radius: 12px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: transparent;
+    border-radius: 12px;
 }
 
 .stay-with-home-nav {
     width: 100%;
     height: fit-content;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -336,6 +341,28 @@
     margin-left: -50px;
 }
 
+.about-org-boxAbout {
+    background-color: #1856563a;
+    border-radius: 50px;
+    width: 93.3%;
+    color: #4b5563;
+    display: flex;
+    padding: 100px;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 50px 100px 50px;
+}
+
+.about-reason-textAbout {
+    font-family: MyOutfitFontBold, sans-serif;
+    font-size: 28px;
+    color: #185656;
+    font-weight: 600;
+    margin-left: 16px;
+}
+
+
 .about-reason-text {
     font-family: MyOutfitFontBold, sans-serif;
     font-size: 28px;
@@ -380,6 +407,10 @@
 }
 
 .about-org-con-phone {
+    display: none;
+}
+
+.about-org-con-phoneAbout {
     display: none;
 }
 
@@ -603,6 +634,15 @@
     margin: 50px 3%;
     justify-content: center;
     align-items: center;
+}
+
+.ACC {
+    width: 100%;
+    display: flex;
+    justify-content: baseline;
+    align-items: baseline;
+    text-align: left;
+    margin: 50px 0;
 }
 
 .content-numbering {
@@ -923,7 +963,6 @@
     height: 661px;
     border-radius: 12px;
     position: absolute;
-    transform: translate(-100px, 50px);
 }
 
 .down-img-our-mission {
@@ -1660,6 +1699,18 @@
         padding: 50px 7% 100px 6%;
     }
 
+    .about-org-boxAbout {
+        background-color: #1856563a;
+        border-radius: 50px;
+        width: 93%;
+        color: #4b5563;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-left: 15px;
+        padding: 50px 7% 100px 6%;
+    }
+
     .about-org-con-pc {
         display: none;
     }
@@ -1685,6 +1736,14 @@
         font-family: MyOutfitFontBold, sans-serif;
         font-size: 24px;
         color: var(--light);
+        font-weight: 600;
+        margin-left: 16px;
+    }
+
+    .about-reason-textAbout {
+        font-family: MyOutfitFontBold, sans-serif;
+        font-size: 24px;
+        color: #185656;
         font-weight: 600;
         margin-left: 16px;
     }

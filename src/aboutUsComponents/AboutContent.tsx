@@ -9,9 +9,10 @@ const AboutContent = ({
   member,
 }: Props) => {
 
-  // const imageUrl = member.profile_image
-  // ? `https://ambchapcorps.org/storage/${member.profile_image}`
-  // : "/src/assets/images/about-image.jpg";
+  const hasProfileImage = Boolean(member.profile_image);
+  const imageUrl = hasProfileImage
+    ? `https://ambchapcorps.org/storage/${member.profile_image}`
+    : "";
 
   return (
     <div>
@@ -20,21 +21,18 @@ const AboutContent = ({
         {/* LEFT PROFILE CARD */}
         <div className="profile-card">
           <div className="profile-image-wrapper">
-            <div className="about-us-image">
-                {/* <img
-                  src={imageUrl}
-                  alt={member.first_name}
-                  className="about-us-image"
-                  onError={(e) => {
-                    e.currentTarget.src = "/src/assets/images/about-image.jpg";
-                  }}
-                /> */}
+            <div
+              className="about-us-image"
+              style={hasProfileImage ? { backgroundImage: `url(${imageUrl})` } : undefined}
+            >
                 <div className="profile-badge">
                     <h4>
                       {member.first_name}{" "}
                       {member.last_name ?? ""}
                     </h4>
-                    <p>Regional Manager</p>
+                    
+                    <p>{member.status || "N/A"}</p>
+                    {/* <p>{member.position || "N/A"}</p> */}
                 </div>
             </div>
           </div>

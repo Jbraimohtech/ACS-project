@@ -1,0 +1,235 @@
+/* ==========================================
+   FAQ ACCORDION
+========================================== */
+
+.penguinAccordion{
+    background:#fff;
+    border:1px solid #ececec;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.penguinAccordion:hover{
+    box-shadow:0 14px 40px rgba(0,0,0,.08);
+}
+
+.penguinAccordionHeader{
+    width:100%;
+    background:none;
+    border:none;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:24px;
+
+    cursor:pointer;
+}
+
+.penguinAccordionHeader h3{
+    font-size:20px;
+    color:#183153;
+    text-align:left;
+}
+
+
+.penguinAccordionBody{
+    max-height:0;
+    overflow:hidden;
+    padding:0 24px;
+}
+
+.penguinAccordionBody.show{
+    max-height:300px;
+    padding:0 24px 24px;
+}
+
+.penguinAccordionBody p{
+    color:#666;
+    line-height:1.8;
+}
+
+/* ==========================================
+   BUTTON POLISH
+========================================== */
+
+
+.rocketButton:hover{
+    box-shadow:0 16px 40px rgba(15,92,86,.25);
+}
+
+
+/* ==========================================
+   CARD HOVER
+========================================== */
+
+
+/* ==========================================
+   CTA
+========================================== */
+
+.dragonRocketCTA{
+    margin-top:80px;
+    padding:80px 50px;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+        135deg,
+        #0f5c56,
+        #14786f
+    );
+
+    color:white;
+    text-align:center;
+}
+
+.dragonRocketCTA h2{
+    font-size:46px;
+    margin-bottom:18px;
+}
+
+.dragonRocketCTA p{
+    max-width:700px;
+    margin:auto;
+
+    line-height:1.9;
+
+    opacity:.95;
+}
+
+.dragonRocketCTA .rocketButton{
+    margin-top:35px;
+}
+
+/* ==========================================
+   SECTION SPACING
+========================================== */
+
+.pickleSection,
+.cheeseSection,
+.bananaSection,
+.waffleSection,
+.penguinSection{
+    margin-top:90px;
+}
+
+/* ==========================================
+   FADE ANIMATION
+========================================== */
+
+/* Animations removed */
+
+/* ==========================================
+   MOBILE RESPONSIVENESS
+========================================== */
+
+@media(max-width:1100px){
+
+    .waffleTimeline{
+        flex-direction:column;
+    }
+
+    .waffleCastleStep{
+        width:100%;
+    }
+
+}
+
+@media(max-width:900px){
+
+    .heroTitle{
+        font-size:46px;
+    }
+
+    .heroSubtitle{
+        font-size:18px;
+    }
+
+    .bananaWizardGrid,
+    .pickleRocketGrid,
+    .cheeseMeteorGrid{
+
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .heroSection{
+        padding:80px 25px;
+    }
+
+    .heroTitle{
+        font-size:38px;
+    }
+
+    .heroSubtitle{
+        width:100%;
+    }
+
+    .dragonRocketCTA{
+        padding:60px 24px;
+    }
+
+    .dragonRocketCTA h2{
+        font-size:34px;
+    }
+
+    .sectionHeading{
+        font-size:32px;
+    }
+
+    .bananaWizardGrid,
+    .pickleRocketGrid,
+    .cheeseMeteorGrid{
+
+        grid-template-columns:1fr;
+    }
+
+    .waffleCastleStep{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .waffleCastleNumber{
+        margin-bottom:20px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .heroTitle{
+        font-size:32px;
+    }
+
+    .heroSubtitle{
+        font-size:17px;
+    }
+
+    .rocketButton,
+    .moonButton{
+
+        width:100%;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .penguinAccordionHeader h3{
+        font-size:17px;
+    }
+
+    .dragonRocketCTA h2{
+        font-size:28px;
+    }
+
+    .dragonRocketCTA{
+        border-radius:18px;
+    }
+
+}

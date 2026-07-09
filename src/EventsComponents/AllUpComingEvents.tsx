@@ -326,6 +326,7 @@ const AllUpComingEvents = () => {
               <input
                 type="text"
                 placeholder="Home Address"
+                required
               />
 
               {/* PHONE */}

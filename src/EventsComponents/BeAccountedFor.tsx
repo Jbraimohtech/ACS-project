@@ -8,18 +8,16 @@ const BeAccountedFor = () => {
   return (
     <div className='be-accounted-for'>
         <div className='be-accounted-for-text-box'>
-            <h1>Be Accounted For</h1>
+            <h1>Join The Movement</h1>
             <div className='be-accounted-for-image-phone'>
             </div>
-            <p>Attendance is not just recorded — 
-                it reflects commitment, discipline, and
-                participation in the mission.</p>
+            <p>Become part of a growing network of chaplains, ministers, and volunteers committed to transforming lives and communities. Whether you are called to serve, support, train, or partner with us, there is aplace for you in ACC.</p>
             <button
               type="button"
               className='confirm-part-btn'
               onClick={() => navigate("/register")}
             >
-                <p>Confirm participation</p>
+                <p>Join ACC Today</p>
             </button>
         </div>
         <div className='be-accounted-for-image'></div>

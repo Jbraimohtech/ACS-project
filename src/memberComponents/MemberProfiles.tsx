@@ -15,21 +15,33 @@ const goToProfileAbout = (memberId: number) => {
   navigate(`/member/${memberId}`)
 }
 
+const goToRankingPage = () => {
+  navigate("/ranking-structure")
+}
+
+const goToLeaderboard = () => {
+  navigate("/leaders")
+}
+
+const goToMembersPage = () => {
+  navigate("/members")
+}
+
 
   return (
     <div className='member-profiles-box'>
         {/* TABS */}
       <div className="tabs">
 
-        <button className="active">
+        <button className="active" onClick={goToMembersPage}>
           Past Members
         </button>
 
-        <button>
+        <button onClick={goToLeaderboard}>
           Present Officers and Excos
         </button>
 
-        <button>
+        <button onClick={goToRankingPage}>
           ACC Ranking
         </button>
 

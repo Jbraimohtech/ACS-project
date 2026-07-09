@@ -30,10 +30,25 @@ const formatDate = (dateString: string | undefined): string => {
 
 const UpdateBlog = () => {
     const [article, setArticle] = useState<Article | null>(null);
+    const [articles, setArticles] = useState<Article[]>([]);
     const navigate = useNavigate();
 
     const goToViewBlog = () => {
         navigate("/blog")
+    }
+
+    const goToRandomBlog = () => {
+        if (!articles.length) {
+            navigate("/blog");
+            return;
+        }
+
+        const randomArticle = articles[Math.floor(Math.random() * articles.length)];
+        if (randomArticle?.id) {
+            navigate(`/blog-details/${randomArticle.id}`);
+        } else {
+            navigate("/blog");
+        }
     }
 
     useEffect(() => {
@@ -45,12 +60,15 @@ const UpdateBlog = () => {
             );
     
             const data = await response.json();
-            
-            // The API returns an array, get the first article
-            if (data.data && Array.isArray(data.data) && data.data.length > 0) {
-              setArticle(data.data[0]);
-            } else if (data.data && !Array.isArray(data.data)) {
-              setArticle(data.data);
+            const blogList = data?.data && Array.isArray(data.data) ? data.data : [];
+
+            if (blogList.length > 0) {
+              setArticles(blogList);
+              setArticle(blogList[0]);
+            } else if (data?.data && !Array.isArray(data.data)) {
+              const singleArticle = data.data as Article;
+              setArticles([singleArticle]);
+              setArticle(singleArticle);
             }
           } catch (error) {
             console.error(error);
@@ -85,7 +103,12 @@ const UpdateBlog = () => {
             </div>
 
             <div className='blog-content-outline'>
-                <div className='blog-content-outline-one'>
+                <div className='blog-content-outline-one' onClick={goToRandomBlog} role="button" tabIndex={0} onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        goToRandomBlog();
+                    }
+                }}>
                     <img
                         src={
                             article?.image
@@ -115,7 +138,12 @@ const UpdateBlog = () => {
                 </div>
                 <div className='blog-content-outline-two'>
                     <div className='blog-content-outline-two-row'>
-                        <div className='blog-content-outline-grid'>
+                        <div className='blog-content-outline-grid' onClick={goToRandomBlog} role="button" tabIndex={0} onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                goToRandomBlog();
+                            }
+                        }}>
                             <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
@@ -128,7 +156,12 @@ const UpdateBlog = () => {
                                 
                             </div>
                         </div>
-                        <div className='blog-content-outline-grid'>
+                        <div className='blog-content-outline-grid' onClick={goToRandomBlog} role="button" tabIndex={0} onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                goToRandomBlog();
+                            }
+                        }}>
                             <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
@@ -143,7 +176,12 @@ const UpdateBlog = () => {
                         </div>
                     </div>
                     <div className='blog-content-outline-two-row'>
-                        <div className='blog-content-outline-grid'>
+                        <div className='blog-content-outline-grid' onClick={goToRandomBlog} role="button" tabIndex={0} onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                goToRandomBlog();
+                            }
+                        }}>
                             <div className='blog-two'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
@@ -156,7 +194,12 @@ const UpdateBlog = () => {
                                 
                             </div>
                         </div>
-                        <div className='blog-content-outline-grid'>
+                        <div className='blog-content-outline-grid' onClick={goToRandomBlog} role="button" tabIndex={0} onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                goToRandomBlog();
+                            }
+                        }}>
                             <div className='blog-three'></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>

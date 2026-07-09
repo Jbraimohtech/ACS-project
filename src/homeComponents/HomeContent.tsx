@@ -1,17 +1,13 @@
 
-// import MobileScreenNav from '../components/Navbar/MobileScreenNav'
-import Navbar from '../components/Navbar/Navbar'
+
 import SearchBox from '../components/SearchBox'
 
 const HomeContent = () => {
   return (
     <div className='home-content-all-main-content'>
         {/* <MobileScreenNav /> */}
-        <div className='stay-with-home-nav'>
-            <Navbar />
-        </div>
         <div className='home-head-text'>
-            <h1>A Platform Born From Purpose, For Our People</h1>
+            <h1>Raising Disciplined Chaplains, Serving Humanity, Transforming Communities.</h1>
         </div>
         <div className='home-body-text'>
             <p>
@@ -21,7 +17,12 @@ const HomeContent = () => {
             </p>
         </div>
         <SearchBox>
-            <input type="text" name="query" placeholder='Search for members'/>
+            <input
+                type="text"
+                name="query"
+                placeholder='Search for members'
+                style={{ color: 'white' }}
+            />
             <button
                 type="submit"
                 className='search-icon-button-box'
