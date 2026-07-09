@@ -7,12 +7,13 @@ import Transformation from '../homeComponents/Vision'
 import OurMission from '../homeComponents/AboutOrg'
 import "../homeComponents/Home.css"
 import Blog from '../homeComponents/CoreValues'
-import ViewAllBlog from '../homeComponents/ViewAllBlog'
 import HomeFooter from '../components/HomeFooter'
 import Target from '../homeComponents/Target'
 import UpdateBlog from '../homeComponents/UpdateBlog'
 import "../components/Navbar/Navbar.css"
 import LeaderCarousel from '../leaderCarouselComponents/LeaderCarousel'
+import Navbar from '../components/Navbar/Navbar'
+import BeAccountedFor from '../EventsComponents/BeAccountedFor'
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
       <div className='new-home-box'>
         <div className='new-home-style-image'>
           <div className='new-home-style'>
+          <Navbar />
             <HomeContent />
           </div>
         </div>
@@ -34,7 +36,7 @@ const Home = () => {
       <Target />
       <LeaderCarousel />
       <UpdateBlog />
-      <ViewAllBlog />
+      <BeAccountedFor />
       <HomeFooter />
     </div>
   )

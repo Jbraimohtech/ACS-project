@@ -15,13 +15,19 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = headerRef.current?.offsetHeight || 80;
+      const threshold = 80;
       setIsScrolled(window.scrollY > threshold);
     };
 
+    const handleResize = () => {
+      setAboutDropdownOpen(false);
+    };
+
     handleScroll();
+    handleResize();
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     const shouldLockScroll = menuOpen;
     document.body.style.overflow = shouldLockScroll ? "hidden" : "";
@@ -30,6 +36,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("resize", handleResize);
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
@@ -70,8 +77,14 @@ const Navbar = () => {
           <Link to="/events">Events</Link>
           <Link to="/blog">Blog</Link>
           <div
-             className="novaNavDropdown"
+            className="novaNavDropdown"
             ref={dropdownRef}
+            onMouseEnter={() => {
+              if (window.innerWidth > 768) setAboutDropdownOpen(true);
+            }}
+            onMouseLeave={() => {
+              if (window.innerWidth > 768) setAboutDropdownOpen(false);
+            }}
           >
             <button
                 type="button"

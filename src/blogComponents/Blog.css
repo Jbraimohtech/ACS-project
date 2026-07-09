@@ -391,7 +391,7 @@
 .post-card{
   width: 100%;
   height: fit-content;
-  background:white;
+  background:transparent;
   border-radius:15px;
 }
 

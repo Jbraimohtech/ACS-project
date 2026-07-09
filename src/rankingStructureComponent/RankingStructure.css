@@ -167,22 +167,43 @@
 
 @media(max-width:768px){
 
+    .rocketRankingUniverse{
+        width: calc(100% - 24px);
+        margin: 40px auto;
+    }
+
     .waffleRankingHeading h2{
-
         font-size:30px;
-
     }
 
     .waffleRankingHeading p{
-
         font-size:15px;
+    }
 
+    .pickleTableWrapper{
+        border-radius:14px;
+    }
+
+    .cheeseRankingTable{
+        min-width: 0;
+        width: 100%;
+        table-layout: fixed;
+        font-size: 13px;
+    }
+
+    .cheeseRankingTable th,
+    .cheeseRankingTable td{
+        padding: 12px 10px;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .penguinLegend{
+        padding: 20px;
     }
 
     .penguinLegendGrid{
-
         grid-template-columns:repeat(2,1fr);
-
     }
 
 }

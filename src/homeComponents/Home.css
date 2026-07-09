@@ -27,19 +27,20 @@
 
 .home-content-all-main-content {
     width: 100%;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: transparent;
-  border-radius: 12px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: transparent;
+    border-radius: 12px;
 }
 
 .stay-with-home-nav {
     width: 100%;
     height: fit-content;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -1615,6 +1616,7 @@
         height: 306px;
         border-radius: 12px;
         position: absolute;
+        transform: translate(-100px, 50px);
         z-index: 1;
     }
     
@@ -1672,6 +1674,7 @@
         height: 306px;
         border-radius: 12px;
         position: absolute;
+        transform: translate(-100px, 50px);
         z-index: 1;
     }
 

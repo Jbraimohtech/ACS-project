@@ -21,8 +21,32 @@
     overflow-x: hidden;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* Internet Explorer & old Edge */
+* {
+  -ms-overflow-style: none;
 }
 
 body{

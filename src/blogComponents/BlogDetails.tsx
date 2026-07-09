@@ -148,20 +148,20 @@ function BlogDetails() {
                     </span>
               </div>
               
-              <h4>
+              {/* <h4>
                 From Traditional Banking
                 to Digital Disruption.
-              </h4>
+              </h4> */}
 
-              <p className="post-card-paragraph">
+              {/* <p className="post-card-paragraph">
                 Participate in a city-wide cleanup,
                 followed by a community barbecue.
               </p>
               <div className="flex-blog-announce">
                 <div className="flex-blog-announce-events">{article?.category?.name}</div>
                 <div className="flex-blog-announce-events">Event Reports</div>
-              </div>
-              <div className="blog-explore-topics">
+              </div> */}
+              {/* <div className="blog-explore-topics">
                 <h3>Explore Topics</h3>
                 <div className="flex-blog-announce">                                        
                   <div className="blog-explore-topics-trainings">Doctrines</div>
@@ -171,7 +171,7 @@ function BlogDetails() {
                   <div className="blog-explore-topics-trainings">Trainings</div>
                   <div className="blog-explore-topics-trainings">Trainings</div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

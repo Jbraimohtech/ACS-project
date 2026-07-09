@@ -23,8 +23,8 @@ interface BankAccountsPayload {
 
 
 const GivingContent : React.FC = () => {
-  const [donationType, setDonationType] =
-    useState<"one-time" | "monthly">("one-time");
+  // const [donationType, setDonationType] =
+  //   useState<"one-time" | "monthly">("one-time");
 
   const [showPaymentStep, setShowPaymentStep] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -33,11 +33,12 @@ const GivingContent : React.FC = () => {
   const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [description, setDescription] = useState("");
+  const [description] = useState("donation");
   const [paymentProof, setPaymentProof] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [bankAccounts, setBankAccounts] = useState<BankAccountsPayload | null>(null);
-  const [selectedAccountType, setSelectedAccountType] = useState<"donation" | "membership">("donation");
+
+  const donationAccount = bankAccounts?.donation_account;
 
   const handleSubmit = async () => {
     if (!amount.trim() || Number.isNaN(Number(amount)) || Number(amount) <= 0) {
@@ -65,9 +66,7 @@ const GivingContent : React.FC = () => {
 
       const token = getToken();
       const formData = new FormData();
-      const chosenAccount = selectedAccountType === "membership"
-        ? bankAccounts?.membership_fee_account
-        : bankAccounts?.donation_account;
+      const chosenAccount = donationAccount;
 
       formData.append("first_name", firstName.trim());
       formData.append("last_name", lastName.trim());
@@ -202,7 +201,7 @@ const GivingContent : React.FC = () => {
         <div className="donation-card">
           {!showPaymentStep ? (
             <>
-              <div className="tabs">
+              {/* <div className="tabs">
                 <button
                   className={`tab ${
                     donationType === "one-time"
@@ -228,7 +227,7 @@ const GivingContent : React.FC = () => {
                 >
                   Monthly
                 </button>
-              </div>
+              </div> */}
 
               <p className="section-label">
                 Personal Info
@@ -237,9 +236,9 @@ const GivingContent : React.FC = () => {
               {/* FORM */}
               <div className="form-grid">
                 <input
+                  className="giving-input"
                   type="text"
                   placeholder="First name"
-                  className="giving-input"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -290,11 +289,10 @@ const GivingContent : React.FC = () => {
 
               <select
                 className="giving-input full"
-                value={selectedAccountType}
-                onChange={(e) => setSelectedAccountType(e.target.value as "donation" | "membership")}
+                value="donation"
+                disabled
               >
                 <option value="donation">Donation Account</option>
-                <option value="membership">Membership Account</option>
               </select>
 
               <select
@@ -320,24 +318,14 @@ const GivingContent : React.FC = () => {
                   POS
                 </option>
               </select>
+                
+                <input
+                  type="hidden"
+                  className="giving-input full"
+                  value={description}
+                  name="description"
+                />
 
-              <select
-                className="giving-input full"
-                value={description}
-                onChange={(e) =>
-                  setDescription(e.target.value)
-                }
-              >
-                <option value="">
-                  Select Payment Description
-                </option>
-                <option value="membership_fee">
-                  Membership Fee
-                </option>
-                <option value="donation">
-                  Donation Fee
-                </option>
-              </select>
 
               <button className="donate-btn" onClick={() => setShowPaymentStep(true)}>
                 Donate Now
@@ -356,23 +344,17 @@ const GivingContent : React.FC = () => {
   <div className="payment-account-box">
     <p>
       <strong>Account Name:</strong>{" "}
-      {(selectedAccountType === "membership"
-        ? bankAccounts?.membership_fee_account?.account_name
-        : bankAccounts?.donation_account?.account_name) ?? "Loading..."}
+      {donationAccount?.account_name ?? "Loading..."}
     </p>
 
     <p>
       <strong>Bank:</strong>{" "}
-      {(selectedAccountType === "membership"
-        ? bankAccounts?.membership_fee_account?.bank_name
-        : bankAccounts?.donation_account?.bank_name) ?? "Loading..."}
+      {donationAccount?.bank_name ?? "Loading..."}
     </p>
 
     <p>
       <strong>Account Number:</strong>{" "}
-      {(selectedAccountType === "membership"
-        ? bankAccounts?.membership_fee_account?.account_number
-        : bankAccounts?.donation_account?.account_number) ?? "Loading..."}
+      {donationAccount?.account_number ?? "Loading..."}
     </p>
 
     <p>

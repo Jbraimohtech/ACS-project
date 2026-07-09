@@ -56,25 +56,20 @@
     0 15px 40px rgba(15,92,86,.18);
 }
 
-.pizzaSectionHeading h2{
+.pizzaText h2{
 
     font-size:36px;
     font-weight:700;
 
     color:#12362f;
 
-    margin-bottom:8px;
-
-    line-height:1.2;
 }
 
-.pizzaSectionHeading p{
+.pizzaText p{
 
     font-size:16px;
 
     color:#6b7280;
-
-    line-height:1.8;
 
     max-width:780px;
 }
@@ -116,29 +111,6 @@
     position:relative;
 
     overflow:hidden;
-}
-
-.rocketBananaCard::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:5px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #0f5c56,
-        #2bb5a6
-    );
-
-
-    transform-origin:left;
 }
 
 /* ==========================================================
@@ -290,6 +262,14 @@
 /* ==========================================================
    CARD HOVER
 ========================================================== */
+.pizzaText {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
 
 .rocketBananaCard:hover{
 
@@ -365,31 +345,6 @@
 
     position:relative;
 }
-
-.cheeseGalaxySection:not(:last-child)::after{
-
-    content:"";
-
-    position:absolute;
-
-    bottom:-45px;
-    left:50%;
-
-
-    width:180px;
-    height:2px;
-
-    border-radius:50px;
-
-    background:
-    linear-gradient(
-        90deg,
-        transparent,
-        #0f5c56,
-        transparent
-    );
-}
-
 
 /* ==========================================================
    ICON ANIMATION
@@ -654,8 +609,10 @@
     }
 
     .waffleLeaderInfo{
-        margin-top: -10px;
-        align-items:baseline;
+        flex:1;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
     }
 
     .waffleLeaderInfo h3{
@@ -701,17 +658,42 @@
 
     .rocketBananaCard{
 
-        border-radius:20px;
+        
+        background:#fff;
 
-        padding:22px 18px;
+        border-radius:24px;
+
+        border:1px solid #edf0f2;
+
+        padding:28px;
+
+        display:flex;
+
+        align-items:center;
+
+        position:relative;
+
+        overflow:hidden;
+        margin-bottom: -15px;
     }
 
     .pickleAvatarBox{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width:82px;
-        height:82px;
+        width:88px;
+        height:88px;
+
+        flex-shrink:0;
+
+        border-radius:50%;
+
+        overflow:hidden;
+
+        background:#ecf8f7;
+
+        border:4px solid #e4f5f3;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
     }
 
     .pickleAvatarPlaceholder{
@@ -734,6 +716,14 @@
         width:100%;
 
         justify-content:center;
+    }
+
+    .pizzaText {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
 }

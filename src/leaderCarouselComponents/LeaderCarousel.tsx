@@ -3,6 +3,8 @@ import "./LeaderCarousel.css";
 import { carouselLeaders } from "./leaders";
 
 const LeaderCarousel = () => {
+    const marqueeLeaders = [...carouselLeaders, ...carouselLeaders];
+
     return (
 
         <section className="rocketCarouselUniverse">
@@ -13,9 +15,13 @@ const LeaderCarousel = () => {
                     NATIONAL LEADERSHIP
                 </span>
 
-                <h2>
-                    Meet Our National Leaders
-                </h2>
+                <div className="waffleHeadingText-header">
+
+                    <h2>
+                        Meet Our National Leaders
+                    </h2>
+
+                </div>
 
                 <p>
                     Dedicated men and women committed to providing spiritual
@@ -29,7 +35,7 @@ const LeaderCarousel = () => {
 
                 <div className="cheeseMeteorTrack">
 
-                    {carouselLeaders.map((leader, index) => (
+                    {marqueeLeaders.map((leader, index) => (
 
                         <div
                             className="penguinLeaderCard"
@@ -72,6 +78,12 @@ const LeaderCarousel = () => {
 
                 </div>
 
+            </div>
+
+            <div className="pickleCarouselButtonWrapper">
+                <button className="rocketCarouselButton" onClick={() => window.location.href = "/leaders"}>
+                    View All Leaders
+                </button>
             </div>
 
         </section>

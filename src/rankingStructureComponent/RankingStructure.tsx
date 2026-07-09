@@ -1,3 +1,6 @@
+import AllMainContent from "../components/AllMainContent";
+import HomeFooter from "../components/HomeFooter";
+import Navbar from "../components/Navbar/Navbar";
 import "./RankingStructure.css";
 
 interface RankItem {
@@ -132,8 +135,16 @@ const rankings: RankItem[] = [
 
 const RankingStructure = () => {
   return (
-    <section className="rocketRankingUniverse">
-
+    <div>
+      <AllMainContent> 
+        <Navbar />
+        <div  className='event-head-text-our-leaders'>
+          <h1>
+            Our Ranking Structure
+          </h1>
+        </div> 
+      </AllMainContent>
+      <section className="rocketRankingUniverse">
       <div className="waffleRankingHeading">
 
         <span className="bananaBadge">
@@ -217,6 +228,8 @@ const RankingStructure = () => {
       </div>
 
     </section>
+    <HomeFooter />
+    </div>
   );
 };
 

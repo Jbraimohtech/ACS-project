@@ -78,7 +78,7 @@ const SectionBlock = ({ group }: { group: LeadershipGroup }) => {
 
         </div>
 
-        <div>
+        <div className="pizzaText">
 
           <h2>{group.title}</h2>
 

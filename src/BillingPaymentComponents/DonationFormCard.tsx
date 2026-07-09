@@ -21,11 +21,12 @@ const DonationFormCard = () => {
   const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [description, setDescription] = useState("");
+  const [description] = useState("donation");
   const [paymentProof, setPaymentProof] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [bankAccounts, setBankAccounts] = useState<BankAccountsPayload | null>(null);
-  const [selectedAccountType, setSelectedAccountType] = useState<"donation" | "membership">("donation");
+
+  const donationAccount = bankAccounts?.donation_account;
 
   useEffect(() => {
     const token = getToken();
@@ -125,9 +126,7 @@ const DonationFormCard = () => {
       formData.append("description", description.trim());
       formData.append("payment_proof_image", paymentProof);
 
-      const chosenAccount = selectedAccountType === "membership"
-        ? bankAccounts?.membership_fee_account
-        : bankAccounts?.donation_account;
+      const chosenAccount = donationAccount;
 
       if (chosenAccount?.id) {
         formData.append("bank_account_id", String(chosenAccount.id));
@@ -231,11 +230,10 @@ const DonationFormCard = () => {
           <label>Pay To</label>
           <select
             className="auroraInput full"
-            value={selectedAccountType}
-            onChange={(e) => setSelectedAccountType(e.target.value as "donation" | "membership")}
+            value="donation"
+            disabled
           >
             <option value="donation">Donation Account</option>
-            <option value="membership">Membership Account</option>
           </select>
 
           <select
@@ -249,15 +247,11 @@ const DonationFormCard = () => {
             <option value="POS">POS</option>
           </select>
 
-          <select
-            className="auroraInput full"
+          <input
+            type="hidden"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          >
-            <option value="">Select Payment Description</option>
-            <option value="membership_fee">Membership Fee</option>
-            <option value="donation">Donation Fee</option>
-          </select>
+            name="description"
+          />
 
           <button
             className="auroraDonateButton"
@@ -274,27 +268,15 @@ const DonationFormCard = () => {
           <div className="auroraPaymentAccountBox">
             <p>
               <strong>Account Name:</strong>{" "}
-              {(
-                selectedAccountType === "membership"
-                  ? bankAccounts?.membership_fee_account?.account_name
-                  : bankAccounts?.donation_account?.account_name
-              ) ?? "Loading..."}
+              {donationAccount?.account_name ?? "Loading..."}
             </p>
             <p>
               <strong>Bank:</strong>{" "}
-              {(
-                selectedAccountType === "membership"
-                  ? bankAccounts?.membership_fee_account?.bank_name
-                  : bankAccounts?.donation_account?.bank_name
-              ) ?? "Loading..."}
+              {donationAccount?.bank_name ?? "Loading..."}
             </p>
             <p>
               <strong>Account Number:</strong>{" "}
-              {(
-                selectedAccountType === "membership"
-                  ? bankAccounts?.membership_fee_account?.account_number
-                  : bankAccounts?.donation_account?.account_number
-              ) ?? "Loading..."}
+              {donationAccount?.account_number ?? "Loading..."}
             </p>
             <p><strong>Amount:</strong> ₦{amount || "0.00"}</p>
           </div>
