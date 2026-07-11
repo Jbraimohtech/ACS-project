@@ -33,7 +33,7 @@
 
 .novaNavbarContent-fixed {
   position: fixed;
-  top: 18px;
+  top: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: min(92%, 1180px);
@@ -393,7 +393,7 @@
   }
 
   .novaNavbarContent-fixed {
-    top: 12px;
+    top: -10px;
     width: min(94%, 680px);
     padding: 5px 16px;
     border-radius: 999px;

@@ -1,3 +1,4 @@
+import ScrollReveal from "../components/ScrollReveal"
 
 
 const Target = () => {
@@ -20,44 +21,58 @@ const Target = () => {
             <p className='say-no-target-top-text'>
                 Ambassadors Chaplain Corps operates nationwide and beyond the borders of Nigeria, focusing on:
             </p>
-          <div className='target-one'></div>
-          <h1>Prisons and Correctional Facilities</h1>
-          <p>Offering spiritual guidance, emotional support, and vocational training to inmates.</p>
+            <ScrollReveal>
+              <div>
+                <div className='target-one'></div>
+                <h1>Prisons and Correctional Facilities</h1>
+                <p>Offering spiritual guidance, emotional support, and vocational training to inmates.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+        <div className='say-no-box'>
+           <ScrollReveal>
+            <div className='target-four'></div>
+            <h1>Orphanages and Vulnerable Children</h1>
+            <p>
+              Supporting orphans and vulnerable children with basic needs, education, and mentorship.
+            </p>
+          </ScrollReveal>
         </div>
         <div className='say-no-box'>
-          <div className='target-four'></div>
-          <h1>Orphanages and Vulnerable Children</h1>
-          <p>
-            Supporting orphans and vulnerable children with basic needs, education, and mentorship.
-          </p>
-        </div>
-        <div className='say-no-box'>
-          <div className='target-three'></div>
-          <h1>Educational Institutions</h1>
-          <p> 
-            Offering first aid, spiritual care, and emotional support to patients and healthcare workers.
-          </p>
+          <ScrollReveal>
+            <div className='target-three'></div>
+            <h1>Educational Institutions</h1>
+            <p> 
+              Offering first aid, spiritual care, and emotional support to patients and healthcare workers.
+            </p>
+          </ScrollReveal>
         </div>
       </div>
 
       <div className='about-org-con-pc'>
         <div className='say-no-box'>
-          <div className='target-two'></div>
-          <h1>Hospitals and Healthcare Facilities</h1>
-          <p>
-            Offering first aid, spiritual care, and emotional support to patients and healthcare workers.
-          </p>
+          <ScrollReveal>
+            <div className='target-two'></div>
+            <h1>Hospitals and Healthcare Facilities</h1>
+            <p>
+              Offering first aid, spiritual care, and emotional support to patients and healthcare workers.
+            </p>
+          </ScrollReveal>
         </div>
         <div className='say-no-box'>
-          <div className='target-five'></div>
-          <h1>Widows and Physically Challenged Individuals</h1>
-          <p>
-            Empowering marginalized groups through skill development and emotional support.
-          </p>
+          <ScrollReveal>
+            <div className='target-five'></div>
+            <h1>Widows and Physically Challenged Individuals</h1>
+            <p>
+              Empowering marginalized groups through skill development and emotional support.
+            </p>
+          </ScrollReveal>
         </div>
         <div className='say-no-box'>
-          <div className='target-six'></div>
-           <h1>Identified communities in need of medical attention by which holistic medical outreach is being done to care for their spirit, soul and body – 3Jn 2</h1>
+          <ScrollReveal>
+            <div className='target-six'></div>
+            <h1>Identified communities in need of medical attention by which holistic medical outreach is being done to care for their spirit, soul and body – 3Jn 2</h1>
+          </ScrollReveal>
         </div>
       </div>
 
@@ -78,41 +93,53 @@ const Target = () => {
             <p className='say-no-target-top-text'>
                 Ambassadors Chaplain Corps operates nationwide and beyond the borders of Nigeria, focusing on:
             </p>
-          <div className='target-one'></div>
-          <h1>Prisons and Correctional Facilities</h1>
-          <p>Offering spiritual guidance, emotional support, and vocational training to inmates.</p>
+          <ScrollReveal>
+            <div className='target-one'></div>
+            <h1>Prisons and Correctional Facilities</h1>
+            <p>Offering spiritual guidance, emotional support, and vocational training to inmates.</p>
+          </ScrollReveal>
         </div>
         <div className='say-no-box'>
-          <div className='target-two'></div>
-          <h1>Hospitals and Healthcare Facilities</h1>
-          <p>
-            Offering first aid, spiritual care, and emotional support to patients and healthcare workers.
-          </p>
+          <ScrollReveal>
+            <div className='target-two'></div>
+            <h1>Hospitals and Healthcare Facilities</h1>
+            <p>
+              Offering first aid, spiritual care, and emotional support to patients and healthcare workers.
+            </p>
+          </ScrollReveal>
         </div>
         <div className='say-no-box'>
-          <div className='target-four'></div>
-          <h1>Orphanages and Vulnerable Children</h1>
-          <p>
-            Supporting orphans and vulnerable children with basic needs, education, and mentorship.
-          </p>
+          <ScrollReveal>
+            <div className='target-four'></div>
+            <h1>Orphanages and Vulnerable Children</h1>
+            <p>
+              Supporting orphans and vulnerable children with basic needs, education, and mentorship.
+            </p>
+          </ScrollReveal>
         </div>
         <div className='say-no-box'>
-          <div className='target-five'></div>
-          <h1>Widows and Physically Challenged Individuals</h1>
-          <p>
-            Empowering marginalized groups through skill development and emotional support.
-          </p>
+          <ScrollReveal>
+            <div className='target-five'></div>
+            <h1>Widows and Physically Challenged Individuals</h1>
+            <p>
+              Empowering marginalized groups through skill development and emotional support.
+            </p>
+          </ScrollReveal>
         </div>
         <div className='say-no-box'>
-          <div className='target-three'></div>
-          <h1>Educational Institutions</h1>
-          <p> 
-            Offering first aid, spiritual care, and emotional support to patients and healthcare workers.
-          </p>
+          <ScrollReveal>
+            <div className='target-three'></div>
+            <h1>Educational Institutions</h1>
+            <p> 
+              Offering first aid, spiritual care, and emotional support to patients and healthcare workers.
+            </p>
+          </ScrollReveal>
         </div>
         <div className='say-no-box'>
-          <div className='target-six'></div>
-           <h1>Identified communities in need of medical attention by which holistic medical outreach is being done to care for their spirit, soul and body – 3Jn 2</h1>
+          <ScrollReveal>
+            <div className='target-six'></div>
+             <h1>Identified communities in need of medical attention by which holistic medical outreach is being done to care for their spirit, soul and body – 3Jn 2</h1>
+          </ScrollReveal>
         </div>
 
       </div>

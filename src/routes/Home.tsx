@@ -13,7 +13,7 @@ import UpdateBlog from '../homeComponents/UpdateBlog'
 import "../components/Navbar/Navbar.css"
 import LeaderCarousel from '../leaderCarouselComponents/LeaderCarousel'
 import Navbar from '../components/Navbar/Navbar'
-import BeAccountedFor from '../EventsComponents/BeAccountedFor'
+import ViewAllBlog from '../homeComponents/ViewAllBlog'
 
 const Home = () => {
   return (
@@ -36,7 +36,7 @@ const Home = () => {
       <Target />
       <LeaderCarousel />
       <UpdateBlog />
-      <BeAccountedFor />
+      <ViewAllBlog />
       <HomeFooter />
     </div>
   )

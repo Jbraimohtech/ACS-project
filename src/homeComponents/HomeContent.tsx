@@ -21,7 +21,7 @@ const HomeContent = () => {
                 type="text"
                 name="query"
                 placeholder='Search for members'
-                style={{ color: 'white' }}
+                className='search-input-box'
             />
             <button
                 type="submit"

@@ -27,6 +27,13 @@ body {
   overflow-y: auto;
 }
 
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -107,9 +114,9 @@ img {
 }
 
 .app-shell {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 0 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0;
 }
 
 .primary-button,
@@ -152,6 +159,10 @@ img {
   justify-content: center;
   gap: 10px;
   width: 100%;
+}
+
+.search-input-box::placeholder {
+  color: #fff;
 }
 
 button {
@@ -227,14 +238,14 @@ button :focus-visible {
     background: transparent;
     border: 0;
     outline: 0;
-    color: var(--light);
+    color: #fff;
     font-size: 18px;
     width: 70%;
 }
 
 .search-box .member-search-form input::placeholder {
     font-size: 18px;
-    color: #64748B;
+    color: #fff;
 }
 
 .search-icon {

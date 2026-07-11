@@ -1,5 +1,6 @@
 
 
+
 const TheChallenge = () => {
   return (
     <div>
@@ -15,7 +16,9 @@ const TheChallenge = () => {
         </div>
         {/* The content part */}
         <div className='the-content-part-org'>
-          <div className='pray-military-img'></div>
+           
+              <div className='pray-military-img'></div>
+           
           <div className='the-content-part-text'>
             <span className='the-content-part-text-p'>
               Founded in 2008, Ambassadors Chaplain Corps (ACC) exists to raise disciplined 
@@ -55,7 +58,8 @@ const TheChallenge = () => {
               Matters Act 2006.
             </span>
           </div>
-          <div className='pray-sanctuary-img'></div>
+            <div className='pray-sanctuary-img'></div>
+          
         </div>
       </div>
     </div>
