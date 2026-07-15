@@ -19,6 +19,7 @@ import { getEventImage } from '../utils/eventUtils';
 import LoadingBrand from '../components/LoadingBrand';
 import EventSpeakersCard from "../dashEventDetailComponents/EventSpeakersCard";
 import { getToken, getUser } from "../utils/auth";
+import { Helmet } from "react-helmet";
 
 
 
@@ -175,6 +176,11 @@ const ViewFeaturedDetails: React.FC = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{event?.title ? `${event.title} - Ambassadors Chaplain Corps` : "Event Details - Ambassadors Chaplain Corps"}</title>
+        <meta name="description" content={event?.description || "Details about the event hosted by Ambassadors Chaplain Corps."} />
+        <meta name="keywords" content={`event, ${event?.title || ""}, ambassadors, chaplain, corps, details`} />
+      </Helmet>
         <AllMainContent> 
         <Navbar />
         <div  className='view-featured-head-text'>

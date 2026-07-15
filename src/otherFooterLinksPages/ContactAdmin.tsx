@@ -4,6 +4,7 @@ import HomeFooter from "../components/HomeFooter";
 import AllMainContent from "../components/AllMainContent";
 import Navbar from "../components/Navbar/Navbar";
 import BeAccountedFor from "../EventsComponents/BeAccountedFor";
+import { Helmet } from "react-helmet";
 
 const ContactAdmin = () => {
   const [fullName, setFullName] = useState("");
@@ -44,6 +45,11 @@ const ContactAdmin = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Contact Administrator - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Reach out to the administration team of the Ambassadors Chaplain Corps for assistance, questions, or feedback." />
+        <meta name="keywords" content="contact, administrator, ambassadors, chaplain, corps, support, assistance" />
+      </Helmet>
       <AllMainContent>
           <Navbar />
           <div className='about-us-head-text'>

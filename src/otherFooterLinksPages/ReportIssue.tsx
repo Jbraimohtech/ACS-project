@@ -4,6 +4,7 @@ import "./ReportIssue.css";
 import AllMainContent from "../components/AllMainContent";
 import Navbar from "../components/Navbar/Navbar";
 import HomeFooter from "../components/HomeFooter";
+import { Helmet } from "react-helmet";
 
 
 const ReportIssue = () => {
@@ -38,7 +39,12 @@ const ReportIssue = () => {
 
   return (
      <div>
-        <AllMainContent>
+      <Helmet>
+        <title>Report Issue - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Submit a report, complaint, suggestion, or concern to the Ambassadors Chaplain Corps." />
+        <meta name="keywords" content="report issue, submit report, ambassadors, chaplain, corps, complaint, suggestion, concern" />
+      </Helmet>
+      <AllMainContent>
           <Navbar />
           <div className='about-us-head-text'>
             <h1>Report Issue</h1>

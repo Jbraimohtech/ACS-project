@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './PaymentPlanWizard.css';
 import { getToken, setUser, getUser } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 interface PaymentPlan {
   id: number;
@@ -303,6 +304,11 @@ const PaymentPlan: React.FC = () => {
 
   return (
     <div className="payment-wizard-page">
+      <Helmet>
+        <title>Membership Payment - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Complete your membership payment for the Ambassadors Chaplain Corps in a few simple steps." />
+        <meta name="keywords" content="membership payment, payment plan, ambassadors, chaplain, corps, contribution, billing details" />
+      </Helmet>
       <div className="wizard-shell">
         <header className="wizard-header">
           <div>

@@ -16,6 +16,7 @@ import type { User as UserType } from "../types/User";
 import LoadingBrand from "../components/LoadingBrand";
 import { useNavigate } from "react-router-dom";
 import MembershipAlert from "../memberShipComponents/MembershipAlert";
+import { Helmet } from "react-helmet";
 
 interface DashboardData {
   account_status: string;
@@ -398,6 +399,11 @@ const DashboardPage = () => {
 
   return (
     <div className="zenProfileLayout">
+      <Helmet>
+        <title>Dashboard - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Manage your profile and view your dashboard." />
+        <meta name="keywords" content="dashboard, profile, ambassadors, chaplain, corps" />
+      </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}

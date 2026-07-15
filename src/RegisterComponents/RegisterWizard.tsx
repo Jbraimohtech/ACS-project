@@ -7,6 +7,7 @@ import StepPassword from "./StepPassword";
 import StepOtp from "./StepOtp";
 import { useNavigate } from "react-router-dom";
 import { setToken, setUser, isMembershipApproved } from "../utils/auth";
+import { Helmet } from "react-helmet";
 
 
 export interface RegisterData {
@@ -167,6 +168,11 @@ const RegisterWizard = () => {
 
   return (
     <div className="wizardPage">
+      <Helmet>
+        <title>Register - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Register to become a member of the Ambassadors Chaplain Corps and join our community." />
+        <meta name="keywords" content="register, membership, ambassadors, chaplain, corps, join, community" />
+      </Helmet>
       <div className="wizardImageSection">
         <div className="wizardImage" />
       </div>

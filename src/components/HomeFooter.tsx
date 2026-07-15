@@ -16,7 +16,7 @@ const HomeFooter = () => {
                 <Link to="/members" className='home-footer-col-two-row-link'>Members</Link>
                 {/* <Link to="/departments" className='home-footer-col-two-row-link'>Departments</Link> */}
                 <Link to="/events" className='home-footer-col-two-row-link'>Events</Link>
-                <Link to="/blogs" className='home-footer-col-two-row-link'>Blogs</Link>
+                <Link to="/blog" className='home-footer-col-two-row-link'>Blogs</Link>
             </div>
             <div className='home-footer-col-two-row'>
                 <h6>Organization</h6>
@@ -34,7 +34,7 @@ const HomeFooter = () => {
         </div>
         {/* footer for copyright */}
         <div className='home-footer-col-down'>
-            <p>© Copyright 2025 | Design & Developed By FadaWebs</p>
+            <p>© Copyright 2025 | Designed & Developed By FadaWebs</p>
         </div>
     </div>
   )

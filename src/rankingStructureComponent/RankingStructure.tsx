@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import AllMainContent from "../components/AllMainContent";
 import HomeFooter from "../components/HomeFooter";
 import Navbar from "../components/Navbar/Navbar";
@@ -136,6 +137,10 @@ const rankings: RankItem[] = [
 const RankingStructure = () => {
   return (
     <div>
+      <Helmet>
+        <title>Ranking Structure - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Explore the structured ranking system of the Ambassadors Chaplain Corps, promoting discipline, leadership, and accountability." />
+      </Helmet>
       <AllMainContent> 
         <Navbar />
         <div  className='event-head-text-our-leaders'>

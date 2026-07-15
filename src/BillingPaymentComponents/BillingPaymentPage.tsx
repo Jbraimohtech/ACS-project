@@ -14,6 +14,7 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import MembershipPage from "../memberShipComponents/MembershipPage"
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget"
+import { Helmet } from "react-helmet"
 
 
 const BillingPaymentPage = () => {
@@ -39,6 +40,11 @@ const BillingPaymentPage = () => {
 
   return (
     <div className="zenProfileLayout">
+      <Helmet>
+        <title>Billing & Payments - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Manage your billing and payment options, view donation history, and access membership payment details for the Ambassadors Chaplain Corps." />
+        <meta name="keywords" content="billing, payments, donation history, membership payment, ambassadors, chaplain, corps" />
+      </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}

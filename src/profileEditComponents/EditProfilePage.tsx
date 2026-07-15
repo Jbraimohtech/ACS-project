@@ -5,6 +5,7 @@ import "../profilePageComponent/ProfilePage.css";
 import { Bell, ChevronDown, Menu, Search } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
@@ -23,6 +24,11 @@ const EditProfilePage = () => {
 
   return (
     <div className="zenProfileLayout">
+      <Helmet>
+        <title>Edit Profile - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Edit your profile information, account settings, and personal details for the Ambassadors Chaplain Corps." />
+        <meta name="keywords" content="edit profile, account settings, personal information, ambassadors, chaplain, corps" />
+      </Helmet>
       <DashboardSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       <div className="orionMainContent">

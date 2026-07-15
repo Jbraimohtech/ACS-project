@@ -7,6 +7,7 @@ import { fetchBlogById } from "../services/blogService";
 import type { Blog } from "../types/blog";
 import { getBlogImage, formatDate } from "../utils/blogUtils";
 import "./DashboardNewsDetails.css";
+import { Helmet } from "react-helmet";
 
 const DashboardNewsDetails = () => {
   const { id } = useParams();
@@ -40,6 +41,11 @@ const DashboardNewsDetails = () => {
 
   return (
     <div className="zenProfileLayout">
+      <Helmet>
+        <title>{article ? `${article.title} - Ambassadors Chaplain Corps` : "News Article - Ambassadors Chaplain Corps"}</title>
+        <meta name="description" content={article ? article.content?.replace(/<[^>]+>/g, "").slice(0, 160) : "Stay updated with the latest news and articles from the Ambassadors Chaplain Corps."} />
+        <meta name="keywords" content="news feed, articles, ambassadors, chaplain, corps, updates" />
+      </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
