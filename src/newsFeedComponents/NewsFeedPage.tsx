@@ -20,6 +20,7 @@ import { fetchBlogs } from "../services/blogService";
 import type { Blog } from "../types/blog";
 import LoadingBrand from "../components/LoadingBrand";
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
+import { Helmet } from "react-helmet";
 
 const NewsFeedPage = () => {
   const [sidebarOpen, setSidebarOpen] =
@@ -161,7 +162,11 @@ const NewsFeedPage = () => {
 
   return (
     <div className="zenProfileLayout">
-
+      <Helmet>
+        <title>News Feed - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Stay updated with the latest news and articles from the Ambassadors Chaplain Corps." />
+        <meta name="keywords" content="news feed, articles, ambassadors, chaplain, corps, updates" />
+      </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={

@@ -14,6 +14,7 @@ import PastEventsPagination from "./PastEventPagination";
 import PastEventsFilters from "./PastEventFilter";
 import PastEventsHeader from "./PastEventsHeader";
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
+import { Helmet } from "react-helmet";
 
 const PastEventsPage = () => {
   const navigate = useNavigate();
@@ -34,6 +35,11 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   return (
     <div className="zenProfileLayout">
+        <Helmet>
+            <title>Past Events - Ambassadors Chaplain Corps</title>
+            <meta name="description" content="Explore past events and activities organized by the Ambassadors Chaplain Corps." />
+            <meta name="keywords" content="past events, ambassadors, chaplain, corps, activities, community" />
+        </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}

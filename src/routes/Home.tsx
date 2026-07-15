@@ -13,11 +13,17 @@ import UpdateBlog from '../homeComponents/UpdateBlog'
 import "../components/Navbar/Navbar.css"
 import LeaderCarousel from '../leaderCarouselComponents/LeaderCarousel'
 import Navbar from '../components/Navbar/Navbar'
-import BeAccountedFor from '../EventsComponents/BeAccountedFor'
+import ViewAllBlog from '../homeComponents/ViewAllBlog'
+import { Helmet } from 'react-helmet'
 
 const Home = () => {
   return (
     <div className='home'>
+      <Helmet>
+        <title>Home - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Welcome to the Ambassadors Chaplain Corps" />
+        <meta name="keywords" content="ambassadors, chaplain, corps, faith, community" />
+      </Helmet>
       <div className='new-home-box'>
         <div className='new-home-style-image'>
           <div className='new-home-style'>
@@ -36,7 +42,7 @@ const Home = () => {
       <Target />
       <LeaderCarousel />
       <UpdateBlog />
-      <BeAccountedFor />
+      <ViewAllBlog />
       <HomeFooter />
     </div>
   )

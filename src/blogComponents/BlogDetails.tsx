@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import LoadingBrand from "../components/LoadingBrand";
+import { Helmet } from "react-helmet";
 
 
 interface Article {
@@ -59,6 +60,11 @@ function BlogDetails() {
   }, [id]);
   return (
     <div>
+      <Helmet>
+        <title>{article?.title || "Blog Details"} - Ambassadors Chaplain Corps</title>
+        <meta name="description" content={article?.content || "Read the latest articles, insights, and updates from the Ambassadors Chaplain Corps blog."} />
+        <meta name="keywords" content="blog, ambassadors, chaplain, corps, articles, insights, updates" />
+      </Helmet>
       
         <AllMainContent> 
           <div className="inside-all-main-content">

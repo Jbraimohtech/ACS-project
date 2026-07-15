@@ -19,6 +19,7 @@ import {
 import { useNavigate } from "react-router-dom";;
 import LoadingBrand from "../components/LoadingBrand";
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
+import { Helmet } from "react-helmet";
 
 export interface Event {
   id: number;
@@ -166,6 +167,11 @@ const EventContentPage = () => {
 
   return (
     <div className="zenProfileLayout">
+      <Helmet>
+        <title>Events - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Explore upcoming events and activities organized by the Ambassadors Chaplain Corps." />
+        <meta name="keywords" content="events, ambassadors, chaplain, corps, activities, community" />
+      </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={

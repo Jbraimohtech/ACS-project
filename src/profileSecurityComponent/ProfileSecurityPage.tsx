@@ -10,6 +10,7 @@ import ProfileSecurity from "./ProfileSecurity";
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
+import { Helmet } from "react-helmet";
 
 const ProfileSecurityPage = () => {
     const navigate = useNavigate();
@@ -29,6 +30,11 @@ const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   return (
     <div className="zenProfileLayout">
+    <Helmet>
+        <title>Profile Security - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Manage your profile security settings, including password changes and account protection for the Ambassadors Chaplain Corps." />
+        <meta name="keywords" content="profile security, account protection, password change, ambassadors, chaplain, corps" />
+    </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}

@@ -2,6 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Member.css";
 import type { Member } from "../types/member";
+import { getProfileImageUrl, getUser } from "../utils/auth";
+import type { User as UserType } from "../types/User";
+import fallbackProfileImage from "../assets/images/imageProfile-demo.jpeg";
 
 interface MemberProfilesProps {
   members: Member[];
@@ -10,6 +13,8 @@ interface MemberProfilesProps {
 const MemberProfiles: React.FC<MemberProfilesProps> = ({ members }) => {
 
 const navigate = useNavigate();
+const currentUser = getUser() as UserType | null;
+const currentMembershipId = currentUser?.membership_id?.toString() ?? null;
 
 const goToProfileAbout = (memberId: number) => {
   navigate(`/member/${memberId}`)
@@ -62,23 +67,31 @@ const goToMembersPage = () => {
         {/* GRID */}
         <div className="members-grid">
 
-          {members.map((member) => (
-            <div
-              className="member-card"
-              key={member.id}
-            >
-              <img
-                src={
-                  member.profile_image
-                    ? `https://ambchapcorps.org/storage/${member.profile_image}`
-                    : "../assets/images/imageProfile-demo.jpeg"
-                }
-                alt={member.first_name}
-                onError={(e) => {
-                  e.currentTarget.src =
-                    "../assets/images/imageProfile-demo.jpeg";
-                }}
-              />
+          {members.map((member) => {
+            const memberMembershipId = member.membership_id?.toString() ?? null;
+            const matchedProfileImage =
+              memberMembershipId &&
+              currentMembershipId &&
+              memberMembershipId === currentMembershipId
+                ? currentUser?.profile_image || member.profile_image
+                : member.profile_image;
+
+            const profileImageSrc = matchedProfileImage
+              ? getProfileImageUrl(matchedProfileImage)
+              : fallbackProfileImage;
+
+            return (
+              <div
+                className="member-card"
+                key={member.id}
+              >
+                <img
+                  src={profileImageSrc}
+                  alt={member.first_name}
+                  onError={(e) => {
+                    e.currentTarget.src = fallbackProfileImage;
+                  }}
+                />
 
               <div className="member-content">
                 <h3>
@@ -99,7 +112,8 @@ const goToMembersPage = () => {
                 </button>
               </div>
             </div>
-          ))}
+            );
+          })}
 
         </div>
 

@@ -16,6 +16,7 @@ import EventSpeakersCard from "./EventSpeakersCard";
 import EventVenueCard from "./EventVenueCard";
 import LoadingBrand from "../components/LoadingBrand";
 import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
+import { Helmet } from "react-helmet";
 
 
 interface Schedule {
@@ -161,6 +162,11 @@ const EventDetailsPage = () => {
 
   return (
     <div className="zenProfileLayout">
+      <Helmet>
+        <title>{event.title} - Ambassadors Chaplain Corps</title>
+        <meta name="description" content={event.description} />
+        <meta name="keywords" content={`event, ${event.title}, ambassadors, chaplain, corps`} />
+      </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}

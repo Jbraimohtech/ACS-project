@@ -979,19 +979,21 @@
     flex: 1;
   }
 
-   .zenDashboardSidebar {
-    position: fixed;
+   .zenDashboardSidebar{
+    position:fixed;
+    top:0;
+    left:0;
 
-    left: 0;
-    top: 0;
+    width:280px;
+    height:100vh;
 
-    width: 280px;
-    height: 100vh;
+    background:#fff;
 
-    z-index: 1000;
+    transform:translateX(-100%);
+    transition:.3s;
 
-
-  }
+    z-index:1001;
+}
 
   .auroraProfileDetails {
     margin-top: 60%;
@@ -1019,21 +1021,24 @@
     margin-right: 12px;
   }
 
-  .zenDashboardSidebar {
-    position: fixed;
+  .zenDashboardSidebar{
+    position:fixed;
+    top:0;
+    left:0;
 
-    left: 0;
-    top: 0;
+    width:280px;
+    height:100vh;
 
-    width: 280px;
-    height: 100vh;
+    background:#fff;
 
-    z-index: 1000;
+    transform:translateX(-100%);
+    transition:.3s;
 
-
-  }
+    z-index:1001;
+}
 
   .zenSidebarActive {
+    transform:translateX(0);
   }
 
   .zenSidebarClose {
@@ -1124,6 +1129,22 @@
 
 @media (max-width: 991px) {
   /* Your mobile-specific styles here */
+  
+.quantumSidebarShell {
+  width: 30%;
+  min-width: 280px;
+  height: 100vh;
+
+  background: transparent;
+
+  border-right: 1px solid #eef1f5;
+
+  padding: 28px 18px;
+
+  display: flex;
+  flex-direction: column;
+}
+
   .notify-icon-profile-box {
     display: none;
     align-items: center;

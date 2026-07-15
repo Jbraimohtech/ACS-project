@@ -13,7 +13,6 @@ const OurVision = () => {
             <h3 className='number-reason-text'>Our Mission</h3>
           </div>
         </div>
-
         <div className='reason-content-box'>
           <div className='reason-title-two'>
             <h2>
@@ -22,10 +21,11 @@ const OurVision = () => {
           </div>
         </div>
 
-        <div className='mission-images-box'>
-          <div className='man-and-woman'></div>
-          <div className='church-settings'></div>
-        </div>
+        
+          <div className='mission-images-box'>
+            <div className='man-and-woman'></div>
+            <div className='church-settings'></div>
+          </div>
       </div>
     </div>
   )

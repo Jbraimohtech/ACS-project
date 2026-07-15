@@ -1,0 +1,101 @@
+/* Global responsive adjustments for tablet and phone screens only */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  body {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .container,
+  .app-shell,
+  .home,
+  .events,
+  .blog,
+  .resources,
+  .members,
+  .giving,
+  .login,
+  .register,
+  .about-us,
+  .contact-admin,
+  .help-center,
+  .profile-page,
+  .dashboard-page,
+  .news-page,
+  .member-search,
+  .leaders,
+  .ranking-structure,
+  .our-mission {
+    max-width: 100%;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .row,
+  .flex,
+  .grid,
+  .content-box,
+  .blog-content-outline,
+  .reason-content-box,
+  .mission-images-box,
+  .vision-images-new {
+    gap: 1rem;
+  }
+
+  .content-box,
+  .blog-content-outline,
+  .reason-content-box,
+  .mission-images-box,
+  .vision-images-new {
+    flex-wrap: wrap;
+  }
+
+  .content-box,
+  .blog-content-outline,
+  .reason-content-box,
+  .mission-images-box,
+  .vision-images-new,
+  .about-org-box,
+  .about-target-box,
+  .core-values-box,
+  .blog-box {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .container,
+  .app-shell {
+    max-width: 100%;
+    /* padding-left: 1rem;
+    padding-right: 1rem; */
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .row,
+  .flex,
+  .grid {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

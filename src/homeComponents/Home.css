@@ -15,7 +15,7 @@
 }
 
 .new-home-style-image {
-    background-image: url("../assets/images/home-content-image.jpg");
+    background-image: url("../assets/images/ACE/image146Can11.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -49,6 +49,8 @@
     background-color: #18565695;
     width: 100%;
     height: 719px;
+    border-radius: 12px;
+    padding-top: 2px;
 }
 
 .home-head-text {
@@ -101,7 +103,7 @@
 }
 
 .alhaji-img {
-    background-image: url("../assets/images/Alhaji-image.jpg");
+    background-image: url("../assets/images/ACE/image116CanWe.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -192,18 +194,8 @@
     gap: 30px;
 }
 
-/* .office-five-img {
-    background-image: url("../assets/images/ofiice-five-img.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 544px;
-    height: 419px;
-    border-radius: 12px;
-} */
-
 .office-three-img {
-    background-image: url("../assets/images/Office-three-img.jpg");
+    background-image: url("../assets/images/ACE/image54eCan.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -235,7 +227,7 @@
 }
 
 .pray-military-img {
-    background-image: url("../assets/images/pray-military.jpg");
+    background-image: url("../assets/images/ACE/the-image111Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -245,7 +237,7 @@
 }
 
 .pray-sanctuary-img {
-    background-image: url("../assets/images/pray-santury.jpg");
+    background-image: url("../assets/images/ACE/the-image106Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -253,6 +245,7 @@
     height: 390px;
     border-radius: 12px;
 }
+
 
 .the-content-part-text {
     display: flex;
@@ -279,7 +272,7 @@
 }
 
 .man-and-woman {
-    background-image: url("../assets/images/man&woman.jpg");
+    background-image: url("../assets/images/ACE/abmilimage170.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -289,7 +282,7 @@
 }
 
 .church-settings {
-    background-image: url("../assets/images/church-settings.jpg");
+    background-image: url("../assets/images/ACE/aaaimage26Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -304,26 +297,53 @@
     gap: 50px;
     width: 100%;
     margin-top: 20px;
+    align-items: stretch;
 }
 
-.pastor{
-    background-image: url("../assets/images/pastor.jpg");
+.pastor,
+.commander {
+    position: relative;
+    overflow: hidden;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 50%;
+    flex: 1 1 0;
+    min-width: 0;
     height: 605px;
     border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    transform: translateY(28px) scale(0.97);
+    opacity: 0;
+    animation: visionImageReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition: transform 0.45s ease, box-shadow 0.45s ease, filter 0.45s ease;
+}
+
+.pastor {
+    background-image: url("../assets/images/ACE/aassimage49Can.jpg");
+    animation-delay: 0.12s;
 }
 
 .commander {
-    background-image: url("../assets/images/commander.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 50%;
-    height: 605px;
-    border-radius: 12px;
+    background-image: url("../assets/images/ACE/axximage50Can.jpg");
+    animation-delay: 0.24s;
+}
+
+.pastor:hover,
+.commander:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.24);
+    filter: saturate(1.05) brightness(1.02);
+}
+
+@keyframes visionImageReveal {
+    from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 /* About Organization Styles */
@@ -431,7 +451,7 @@
 }
 
 .say-no-icon {
-    background-image: url("../assets/images/say-no-icon.jpg");
+    background-image: url("../assets/images/ACE/ab1image51Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -441,7 +461,7 @@
 }
 
 .old-man-image {
-    background-image: url("../assets/images/old-man-icon.jpg");
+    background-image: url("../assets/images/ACE/ab2image57Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -451,7 +471,7 @@
 }
 
 .arms-giving {
-    background-image: url("../assets/images/arms-giving.jpg");
+    background-image: url("../assets/images/ACE/ab3image69Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -461,7 +481,7 @@
 }
 
 .tailor-boy {
-    background-image: url("../assets/images/tailor-boy.jpg");
+    background-image: url("../assets/images/ACE/ab4image96Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -471,7 +491,7 @@
 }
 
 .classroom-pastor {
-    background-image: url("../assets/images/classroom-pastor.jpg");
+    background-image: url("../assets/images/ACE/ab5image99Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -481,7 +501,7 @@
 }
 
 .military-march {
-    background-image: url("../assets/images/military-march.jpg");
+    background-image: url("../assets/images/ACE/ab6image110Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -496,6 +516,7 @@
     border-top-left-radius: 180px;
     border-top-right-radius: 180px;
     width: 107%;
+    height: fit-content;
     color: #fff;
     display: flex;
     padding: 100px;
@@ -546,7 +567,7 @@
 }
 
 .target-one {
-    background-image: url("../assets/images/target-one.jpg");
+    background-image: url("../assets/images/ACE/ab7image113Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -556,7 +577,7 @@
 }
 
 .target-two {
-    background-image: url("../assets/images/target-two.jpg");
+    background-image: url("../assets/images/ACE/ab8image118Can.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -566,7 +587,7 @@
 }
 
 .target-three {
-    background-image: url("../assets/images/target-three.jpg");
+    background-image: url("../assets/images/ACE/ab9image163.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -576,7 +597,7 @@
 }
 
 .target-four {
-    background-image: url("../assets/images/target-four.jpg");
+    background-image: url("../assets/images/ACE/ab10image164.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -586,7 +607,7 @@
 }
 
 .target-five {
-    background-image: url("../assets/images/target-five.jpg");
+    background-image: url("../assets/images/ACE/ab11image166.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -596,7 +617,7 @@
 }
 
 .target-six {
-    background-image: url("../assets/images/target-six.jpg");
+    background-image: url("../assets/images/ACE/ab13image168.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -606,7 +627,7 @@
 }
 
 .new-office-content {
-    background-image: url("../assets/images/Office-three-img.jpg");
+    background-image: url("../assets/images/ACE/AReal.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -616,7 +637,7 @@
 }
 
 .office-two-img {
-    background-image: url("../assets/images/Office-two-img.jpg");
+    background-image: url("../assets/images/ACE/image147.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1166,7 +1187,6 @@
 }
 
 .blog-img-one {
-    background-image: url("../assets/images/blog-one.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1296,7 +1316,212 @@
 }
 
 
+/* Tablet-specific improvements */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .home {
+        padding: 0;
+    }
+
+    .new-home-box {
+        width: 100%;
+        margin: 0;
+    }
+
+    .new-home-style-image,
+    .new-home-style {
+        height: auto;
+        min-height: 640px;
+    }
+
+    .home-head-text h1 {
+        width: 82%;
+        font-size: 42px;
+        line-height: 1.1;
+    }
+
+    .home-body-text p {
+        width: 82%;
+        font-size: 22px;
+        line-height: 1.5;
+        margin: 0 0 20px;
+        padding: 0;
+    }
+
+    .middle-images {
+        width: 100%;
+        margin: 36px 0;
+        gap: 20px;
+        align-items: stretch;
+    }
+
+    .alhaji-img {
+        width: 46%;
+        height: 560px;
+        padding: 28px;
+    }
+
+    .inside-alhaji-img {
+        width: min(82%, 280px);
+        height: auto;
+        padding: 24px;
+        gap: 14px;
+    }
+
+    .inside-alhaji-img h2 {
+        font-size: 28px;
+    }
+
+    .office-images {
+        width: 54%;
+        height: 560px;
+        gap: 18px;
+    }
+
+    .office-three-img {
+        height: 560px;
+        width: 100%;
+    }
+
+    .office-two-box {
+        gap: 18px;
+    }
+
+    .new-office-content,
+    .office-two-img {
+        height: 270px;
+    }
+
+    .the-content-part-org,
+    .the-content-part-org-two,
+    .mission-images-box,
+    .vision-images-new,
+    .blog-content-box,
+    .transform-content-box {
+        gap: 24px;
+        align-items: center;
+    }
+
+    .the-content-part-org,
+    .the-content-part-org-two,
+    .mission-images-box,
+    .vision-images-new {
+        flex-wrap: wrap;
+    }
+
+    .pray-military-img,
+    .pray-sanctuary-img,
+    .man-and-woman,
+    .church-settings,
+    .pastor,
+    .commander {
+        height: 360px;
+        min-height: 360px;
+        flex: 1 1 45%;
+    }
+
+    .the-content-part-text,
+    .about-org-con,
+    .about-org-con-b,
+    .about-org-con-pc,
+    .reason-title,
+    .reason-title-two,
+    .reason-title-four,
+    .blog-content-outline-one,
+    .blog-content-outline-two,
+    .blog-content-outline-grid,
+    .blog-content-outline-two-row,
+    .blog-content-outline-two-row-plug,
+    .blog-content-outline-two-row-plug {
+        width: 100%;
+    }
+
+    .about-org-box,
+    .about-target-box,
+    .blog-box, 
+    .core-values-box{
+        width: 100%;
+        margin: 0;
+        padding: 56px 32px;
+        border-radius: 100px 100px 0 0;
+        box-sizing: border-box;
+    }
+
+    .blog-content-outline {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .blog-content-outline-one,
+    .blog-content-outline-two {
+        width: 100%;
+        height: auto;
+    }
+
+    .blog-content-outline-two-row {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .blog-content-outline-two-row-plug,
+    .blog-content-outline-grid {
+        width: 100%;
+        height: auto;
+    }
+
+    .view-all-blog-container h1 {
+        font-size: 40px;
+    }
+
+    .view-all-blog-container p {
+        width: 90%;
+        font-size: 22px;
+    }
+
+    .about-org-boxAbout {
+        background-color: #1856563a;
+        border-radius: 50px;
+        width: 100%;
+        color: #4b5563;
+        display: flex;
+        padding: 50px;
+        gap: 50px;
+        justify-content: center;
+        align-items: center;
+        margin: 0 50px 100px 0px;
+    }
+}
+
 /* Media Query */
+@media (max-width: 600px ){
+    .about-org-box,
+    .about-target-box {
+        background-color: #122C2C;
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        width: 104%;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-left: -10px;
+        padding: 50px 7% 100px 6%;
+    }
+
+    .core-values-box {
+        background-color: var(--light);
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        width: 104%;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        padding: 100px;
+        gap: 50px;
+        margin-left: -10px;
+        padding: 50px 7% 100px 6%;
+    }
+}
+
 @media (max-width: 480px ){
     .home {
         background-color: #fff;
@@ -1311,7 +1536,7 @@
     }
 
     .new-home-style-image {
-        background-image: url("../assets/images/home-content-image.jpg");
+        background-image: url("../assets/images/ACE/image146Can11.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1396,7 +1621,7 @@
     }
 
     .alhaji-img {
-        background-image: url("../assets/images/Alhaji-image.jpg");
+        background-image: url("../assets/images/ACE/image116CanWe.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1462,7 +1687,7 @@
     }
 
     .new-office-content {
-        background-image: url("../assets/images/Office-three-img.jpg");
+        background-image: url("../assets/images/ACE/AReal.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1472,7 +1697,7 @@
     }
 
     .office-two-img {
-        background-image: url("../assets/images/Office-two-img.jpg");
+        background-image: url("../assets/images/ACE/image147.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1538,7 +1763,7 @@
     }
 
     .pray-military-img {
-        background-image: url("../assets/images/pray-military.jpg");
+    background-image: url("../assets/images/ACE/the-image111Can.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1548,7 +1773,7 @@
     }
 
     .pray-sanctuary-img {
-        background-image: url("../assets/images/pray-santury.jpg");
+        background-image: url("../assets/images/ACE/the-image106Can.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1556,6 +1781,8 @@
         height: 413px;
         border-radius: 12px;
     }
+
+
     
     .the-content-part-text {
         display: flex;
@@ -1608,7 +1835,7 @@
     }
 
     .man-and-woman {
-        background-image: url("../assets/images/man&woman.jpg");
+    background-image: url("../assets/images/ACE/abmilimage170.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1622,7 +1849,7 @@
     
 
     .church-settings {
-        background-image: url("../assets/images/church-settings.jpg");
+    background-image: url("../assets/images/ACE/aaaimage26Can.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1653,37 +1880,44 @@
         width: 100%;
     }
 
-    .pastor {
-        background-image: url("../assets/images/pastor.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        width: 73%;
-        height: 306px;
-        border-radius: 12px;
-        position: relative;
-    }
-    
-
     .commander {
-        background-image: url("../assets/images/commander.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        width: 73%;
+        width: 70%;
         height: 306px;
         border-radius: 12px;
         position: absolute;
         transform: translate(-100px, 50px);
         z-index: 1;
+        margin-top: 50px;
+    }
+
+    .pastor {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 70%;
+        height: 306px;
+        border-radius: 12px;
+        position: relative;
+        z-index: 0;
+        margin-left: 100px;
+    }
+
+    .pastor {
+        background-image: url("../assets/images/ACE/aassimage49Can.jpg");
+    }
+
+    .commander {
+        background-image: url("../assets/images/ACE/axximage50Can.jpg");
     }
 
     .vision-images-new {
         display: flex;
         width: 100%;
         gap: 10px;
-        width: 100%;
-        margin: 30px -55% 80px 0;
+        margin: 30px 0 80px;
     }
     
     .about-org-box {
@@ -1766,7 +2000,7 @@
     }
 
     .old-man-image {
-        background-image: url("../assets/images/old-man-icon.jpg");
+    background-image: url("../assets/images/ACE/ab2image57Can.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1776,7 +2010,7 @@
     }
     
     .tailor-boy {
-        background-image: url("../assets/images/tailor-boy.jpg");
+    background-image: url("../assets/images/ACE/ab4image96Can.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1786,7 +2020,7 @@
     }
 
     .classroom-pastor {
-        background-image: url("../assets/images/classroom-pastor.jpg");
+    background-image: url("../assets/images/ACE/ab5image99Can.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1796,7 +2030,7 @@
     }
 
     .arms-giving {
-        background-image: url("../assets/images/arms-giving.jpg");
+    background-image: url("../assets/images/ACE/ab3image69Can.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1806,7 +2040,7 @@
     }
 
     .military-march {
-        background-image: url("../assets/images/military-march.jpg");
+    background-image: url("../assets/images/ACE/ab6image110Can.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;

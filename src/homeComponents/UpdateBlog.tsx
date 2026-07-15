@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import YellowBtn from '../components/BlueBtn'
 import { useEffect, useState } from 'react';
+import ScrollReveal from '../components/ScrollReveal';
 
 interface Article {
   id: number;
@@ -32,6 +33,9 @@ const UpdateBlog = () => {
     const [article, setArticle] = useState<Article | null>(null);
     const [articles, setArticles] = useState<Article[]>([]);
     const navigate = useNavigate();
+    const blogImageUrl = article?.image
+        ? `https://ambchapcorps.org/storage/${article.image}`
+        : "";
 
     const goToViewBlog = () => {
         navigate("/blog")
@@ -109,18 +113,13 @@ const UpdateBlog = () => {
                         goToRandomBlog();
                     }
                 }}>
-                    <img
-                        src={
-                            article?.image
-                            ? `https://ambchapcorps.org/storage/${article.image}`
-                            : "/src/assets/images/blog-img-one.jpg"
-                        }
-                        alt={article?.title || "Blog"}
-                        className="blog-img-one"
-                        onError={(e) => {
-                            e.currentTarget.src = "/src/assets/images/blog-img-one.jpg";
-                        }}
-                    />
+                    <ScrollReveal>
+                        <img
+                            src={blogImageUrl}
+                            alt={article?.title || "Blog"}
+                            className="blog-img-one"
+                        />
+                    </ScrollReveal>
                     <div className='blog-img-one-letter'>
                         <h4>
                             {article?.title}
@@ -162,7 +161,10 @@ const UpdateBlog = () => {
                                 goToRandomBlog();
                             }
                         }}>
-                            <div className='blog-two'></div>
+                            <div
+                                className='blog-two'
+                                style={blogImageUrl ? { backgroundImage: `url(${blogImageUrl})` } : undefined}
+                            ></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
                                     {article?.title}
@@ -182,7 +184,10 @@ const UpdateBlog = () => {
                                 goToRandomBlog();
                             }
                         }}>
-                            <div className='blog-two'></div>
+                            <div
+                                className='blog-two'
+                                style={blogImageUrl ? { backgroundImage: `url(${blogImageUrl})` } : undefined}
+                            ></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
                                     {article?.title}
@@ -200,7 +205,10 @@ const UpdateBlog = () => {
                                 goToRandomBlog();
                             }
                         }}>
-                            <div className='blog-three'></div>
+                            <div
+                                className='blog-three'
+                                style={blogImageUrl ? { backgroundImage: `url(${blogImageUrl})` } : undefined}
+                            ></div>
                             <div className='blog-img-one-letter-repeat '>
                                 <h4>
                                     {article?.title}

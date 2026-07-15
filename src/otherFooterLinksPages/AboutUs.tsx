@@ -6,11 +6,17 @@ import HomeFooter from '../components/HomeFooter'
 import Navbar from '../components/Navbar/Navbar'
 import BeAccountedFor from '../EventsComponents/BeAccountedFor'
 import './OurMissionLink.css'
+import { Helmet } from 'react-helmet'
 
 const AboutUs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>About Us - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Learn more about the Ambassadors Chaplain Corps, our story, mission, and values." />
+        <meta name="keywords" content="about us, ambassadors, chaplain, corps, mission, values, story" />
+      </Helmet>
       <AllMainContent>
         <Navbar />
         <div className='about-us-head-text'>

@@ -9,10 +9,16 @@ import { FaChevronDown } from "react-icons/fa";
 import Navbar from "../components/Navbar/Navbar";
 import LoadingBrand from "../components/LoadingBrand";
 import type { Member } from "../types/member";
+import { getProfileImageUrl, getUser } from "../utils/auth";
+import type { User as UserType } from "../types/User";
+import fallbackProfileImage from "../assets/images/imageProfile-demo.jpeg";
+import { Helmet } from "react-helmet";
 
 const MemberSearch = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const currentUser = getUser() as UserType | null;
+  const currentMembershipId = currentUser?.membership_id?.toString() ?? null;
 
 const queryParam = searchParams.get("query") || "";
 const [query, setQuery] = useState(() => queryParam);
@@ -60,6 +66,11 @@ const [query, setQuery] = useState(() => queryParam);
 
   return (
     <div>
+      <Helmet>
+        <title>Member Search - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Search for members within the Ambassadors Chaplain Corps." />
+        <meta name="keywords" content="member search, ambassadors, chaplain, corps" />
+      </Helmet>
       <AllMainContent>
         <Navbar />
 
@@ -114,38 +125,48 @@ const [query, setQuery] = useState(() => queryParam);
 
         {hasSearched && !loading && members.length > 0 && (
           <div className="members-grid">
-            {members.map((member) => (
-              <div className="member-card" key={member.id}>
-                <img
-                  src={
-                    member.profile_image
-                      ? `https://ambchapcorps.org/storage/${member.profile_image}`
-                      : "../assets/images/imageProfile-demo.jpeg"
-                  }
-                  alt={member.first_name}
-                  onError={(e) => {
-                    e.currentTarget.src = "../assets/images/imageProfile-demo.jpeg";
-                  }}
-                />
+            {members.map((member) => {
+              const memberMembershipId = member.membership_id?.toString() ?? null;
+              const matchedProfileImage =
+                memberMembershipId &&
+                currentMembershipId &&
+                memberMembershipId === currentMembershipId
+                  ? currentUser?.profile_image || member.profile_image
+                  : member.profile_image;
 
-                <div className="member-content">
-                  <h3>
-                    {member.first_name}
-                    {member.last_name ? ` ${member.last_name}` : ""}
-                  </h3>
+              const profileImageSrc = matchedProfileImage
+                ? getProfileImageUrl(matchedProfileImage)
+                : fallbackProfileImage;
 
-                  <p>{member.membership_id}</p>
+              return (
+                <div className="member-card" key={member.id}>
+                  <img
+                    src={profileImageSrc}
+                    alt={member.first_name}
+                    onError={(e) => {
+                      e.currentTarget.src = fallbackProfileImage;
+                    }}
+                  />
 
-                  <span>{member.status}</span>
+                  <div className="member-content">
+                    <h3>
+                      {member.first_name}
+                      {member.last_name ? ` ${member.last_name}` : ""}
+                    </h3>
 
-                  <button
-                    onClick={() => goToProfileAbout(member.id)}
-                  >
-                    View Profile
-                  </button>
+                    <p>{member.membership_id}</p>
+
+                    <span>{member.status}</span>
+
+                    <button
+                      onClick={() => goToProfileAbout(member.id)}
+                    >
+                      View Profile
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>

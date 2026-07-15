@@ -19,6 +19,7 @@ import {
     Handshake,
     HelpCircle
 } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const eligibility = [
     {
@@ -140,6 +141,11 @@ const BecomeMember = () => {
 
     return (
         <>
+        <Helmet>
+            <title>Become a Member - Ambassadors Chaplain Corps</title>
+            <meta name="description" content="Join the Ambassadors Chaplain Corps and become part of a community committed to serving God and humanity." />
+            <meta name="keywords" content="become a member, join, ambassadors, chaplain, corps, service, community" />
+        </Helmet>
             <div className="becomeMemberPage">
                 {/* HERO */}
                 <section className="bananaWizardHero">

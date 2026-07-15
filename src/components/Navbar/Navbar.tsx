@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 import "./Navbar.css";
+import { Helmet } from "react-helmet";
 
 const Navbar = () => {
   const headerRef = useRef<HTMLElement | null>(null);
@@ -59,7 +60,12 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Desktop Navbar */}
+    <Helmet>
+        <title>Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Welcome to the Ambassadors Chaplain Corps" />
+        <meta name="keywords" content="ambassadors, chaplain, corps, faith, community" />
+    </Helmet>
+{/* Desktop Navbar */}
       <header
         ref={headerRef}
         className={`novaNavbar ${isScrolled ? "novaNavbarContent-fixed" : ""}`}
@@ -76,7 +82,7 @@ const Navbar = () => {
           <Link to="/">Home</Link>
           <Link to="/events">Events</Link>
           <Link to="/blog">Blog</Link>
-          <div
+          {/* <div
             className="novaNavDropdown"
             ref={dropdownRef}
             onMouseEnter={() => {
@@ -85,7 +91,7 @@ const Navbar = () => {
             onMouseLeave={() => {
               if (window.innerWidth > 768) setAboutDropdownOpen(false);
             }}
-          >
+          > */}
             <button
                 type="button"
                 className={`novaNavDropdownToggle ${
@@ -140,9 +146,9 @@ const Navbar = () => {
                 <strong>Ranking Structure</strong> 
               </Link>
             </div>
-          </div>
+          {/* </div> */}
           <Link to="/members">Members</Link>
-          <Link to="/giving">Giving</Link>
+          <Link to="/giving">Donate</Link>
         </nav>
 
         <div className="novaAuthButtons">
@@ -296,7 +302,7 @@ const Navbar = () => {
           </Link>
 
           <Link to="/giving">
-            Giving
+            Donate
           </Link>
 
         </nav>

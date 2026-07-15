@@ -230,3 +230,50 @@
         display: flex;
     }
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard {
+    padding: 16px;
+  }
+
+  .dashboardHeader {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .dashboardHeader h1 {
+    font-size: 30px;
+  }
+
+  .dashboardHeader p {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboardSection {
+    padding: 18px;
+  }
+
+  .profileCard img {
+    height: 260px;
+  }
+
+  .dashboardIcons {
+    display: none;
+  }
+
+  .dashboard-p {
+    font-size: 18px;
+    font-style: bold;
+    font-weight: 700;
+    display: flex;
+  }
+}

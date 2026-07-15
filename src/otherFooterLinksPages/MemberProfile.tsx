@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import type { Member } from '../types/member'
 import LoadingBrand from '../components/LoadingBrand'
+import { Helmet } from 'react-helmet'
 
 const MemberProfile = () => {
   const { id } = useParams<{ id: string }>()
@@ -48,6 +49,13 @@ const MemberProfile = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>
+          {member.first_name} {member.last_name} - Ambassadors Chaplain Corps
+        </title>
+        <meta name="description" content={`Learn more about ${member.first_name} ${member.last_name}`} />
+        <meta name="keywords" content={`member, ${member.first_name}, ${member.last_name}`} />
+      </Helmet>
       <AllMainContent>
         <Navbar />
         <div className='about-us-head-text'>

@@ -16,6 +16,7 @@ import {
   Menu,
 } from "lucide-react";
 import type { User } from "../types/User";
+import { Helmet } from "react-helmet";
 
 
 // interface User {
@@ -117,6 +118,11 @@ const ProfilePage = () => {
 
   return (
     <div className="zenProfileLayout">
+      <Helmet>
+        <title>Profile - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="View and manage your profile information, account settings, and quick actions for the Ambassadors Chaplain Corps." />
+        <meta name="keywords" content="profile, account settings, personal information, ambassadors, chaplain, corps" />
+      </Helmet>
        <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}

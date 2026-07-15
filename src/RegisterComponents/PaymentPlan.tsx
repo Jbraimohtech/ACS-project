@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './PaymentPlanWizard.css';
 import { getToken, setUser, getUser } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 interface PaymentPlan {
   id: number;
@@ -62,7 +63,10 @@ const PaymentPlan: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [bankAccounts, setBankAccounts] = useState<BankAccountsPayload | null>(null);
+  const [paymentReference, setPaymentReference] = useState("");
 
+
+  
   const selectedAmount =
   planType === "monthly"
     ? "5000"
@@ -101,10 +105,55 @@ const PaymentPlan: React.FC = () => {
 
     const fetchSummary = async () => {
       try {
-        const response = await fetch('https://ambchapcorps.org/api/payment/memberFeeSummary');
-        const data = await response.json();
-        setTotalPaid(data.total_sum || 0);
-        setPaymentHistory(data.data || []);
+        const token = getToken();
+
+        const response = await fetch(
+          "https://ambchapcorps.org/api/payment/memberFeeSummary",
+          {
+            headers: {
+              Accept: "application/json",
+              ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+          }
+        );
+
+        const data = await response.json().catch(() => ({}));
+        const payload = data && typeof data === "object" ? (data.data ?? data) : data;
+        const history = Array.isArray(payload?.data)
+          ? payload.data
+          : Array.isArray(data?.data)
+            ? data.data
+            : [];
+        const totalPaidValue = Number(payload?.total_sum ?? data?.total_sum ?? 0);
+        const reference =
+          data?.reference ??
+          payload?.reference ??
+          payload?.payment_reference ??
+          payload?.reference_number ??
+          "";
+
+        setTotalPaid(totalPaidValue);
+        setPaymentHistory(history);
+        setPaymentReference(reference);
+
+        const hasPaymentRecord =
+          totalPaidValue > 0 ||
+          Boolean(reference) ||
+          history.length > 0;
+
+        if (response.ok && hasPaymentRecord) {
+          const storedUser = getUser();
+
+          setUser({
+            ...(storedUser ?? {}),
+            status: "approved",
+            payment_status: 1,
+            NewMemberNotPaid: false,
+          });
+
+          setIsComplete(true);
+          setStep(4);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -174,6 +223,9 @@ const PaymentPlan: React.FC = () => {
     }
   };
 
+  
+      const chosenAccount = bankAccounts?.membership_fee_account ?? bankAccounts?.donation_account;
+
   const handleSubmit = async () => {
     if (!paymentProof) {
       alert('Please upload payment proof.');
@@ -183,7 +235,6 @@ const PaymentPlan: React.FC = () => {
     try {
       setLoading(true);
       const token = getToken();
-      const chosenAccount = bankAccounts?.membership_fee_account ?? bankAccounts?.donation_account;
       const payload = new FormData();
       payload.append('first_name', formData.firstName);
       payload.append('last_name', formData.lastName);
@@ -213,6 +264,14 @@ const PaymentPlan: React.FC = () => {
 
       if (response.ok) {
         const storedUser = getUser();
+        const reference =
+          result?.reference ??
+          result?.data?.reference ??
+          result?.payment_reference ??
+          result?.data?.payment_reference ??
+          "";
+
+        setPaymentReference(reference);
         setUser({
           ...(storedUser ?? {}),
           status: 'approved',
@@ -245,6 +304,11 @@ const PaymentPlan: React.FC = () => {
 
   return (
     <div className="payment-wizard-page">
+      <Helmet>
+        <title>Membership Payment - Ambassadors Chaplain Corps</title>
+        <meta name="description" content="Complete your membership payment for the Ambassadors Chaplain Corps in a few simple steps." />
+        <meta name="keywords" content="membership payment, payment plan, ambassadors, chaplain, corps, contribution, billing details" />
+      </Helmet>
       <div className="wizard-shell">
         <header className="wizard-header">
           <div>
@@ -331,7 +395,13 @@ const PaymentPlan: React.FC = () => {
                 </div>
 
                 <div className="wizard-actions">
-                  <button type="button" className="ghost-btn" disabled={!isComplete} onClick={() => navigate('/register')}>Back</button>
+                  <button
+                    type="button"
+                    className="ghost-btn"
+                    onClick={() => navigate("/register")}
+                  >
+                  Back
+                  </button>
                   <button type="button" className="primary-btn" onClick={handleContinue}>Continue</button>
                 </div>
               </div>
@@ -411,7 +481,10 @@ const PaymentPlan: React.FC = () => {
                   </div>
                   <div className="confirmation-row">
                     <span>Recipient</span>
-                    <strong>{`${formData.firstName} ${formData.lastName}`}</strong>
+                    <strong>{" "}
+                      {chosenAccount
+                        ? chosenAccount.account_name
+                        : "No payment account configured"}</strong>
                   </div>
                   <div className="confirmation-row">
                     <span>Method</span>
@@ -419,9 +492,37 @@ const PaymentPlan: React.FC = () => {
                   </div>
                 </div>
 
+                <div className="novaPaymentAccountBox">
+                <p>
+                  <strong>Account Name:</strong>{" "}
+                  {chosenAccount
+                    ? chosenAccount.account_name
+                    : "No payment account configured"}
+                </p>
+
+                <p>
+                  <strong>Bank:</strong>{" "}
+                  {chosenAccount
+                    ? chosenAccount.bank_name 
+                    : "No payment account configured"}
+                </p>
+
+                <p>
+                  <strong>Account Number:</strong>{" "}
+                  {chosenAccount
+                    ? chosenAccount.account_number 
+                    : "No payment account configured"}
+                </p>
+
+                <p>
+                  <strong>Amount:</strong> ₦
+                  {Number(formData.amount || selectedAmount).toLocaleString()}
+                </p>
+              </div>
+
                 <label className="upload-box" htmlFor="payment-proof">
                   <span>Upload payment proof</span>
-                  <input id="payment-proof" type="file" accept="image/*" onChange={(e) => e.target.files?.length && setPaymentProof(e.target.files[0])} />
+                  <input id="payment-proof" type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={(e) => e.target.files?.length && setPaymentProof(e.target.files[0])} />
                   <small>PNG or JPG image</small>
                 </label>
 
@@ -447,7 +548,7 @@ const PaymentPlan: React.FC = () => {
                   </div>
                   <div className="confirmation-row">
                     <span>Reference</span>
-                    <strong>ACC-10001</strong>
+                    <strong>{paymentReference}</strong>
                   </div>
                 </div>
 
