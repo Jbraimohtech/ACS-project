@@ -26,14 +26,26 @@ const EditProfilePage = () => {
     <div className="zenProfileLayout">
       <Helmet>
         <title>Edit Profile - Ambassadors Chaplain Corps</title>
-        <meta name="description" content="Edit your profile information, account settings, and personal details for the Ambassadors Chaplain Corps." />
-        <meta name="keywords" content="edit profile, account settings, personal information, ambassadors, chaplain, corps" />
+        <meta
+          name="description"
+          content="Edit your profile information, account settings, and personal details for the Ambassadors Chaplain Corps."
+        />
+        <meta
+          name="keywords"
+          content="edit profile, account settings, personal information, ambassadors, chaplain, corps"
+        />
       </Helmet>
-      <DashboardSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <DashboardSidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
 
       <div className="orionMainContent">
         <div className="orionTopBarShell">
-          <button className="orionSidebarToggle" onClick={() => setSidebarOpen(true)}>
+          <button
+            className="orionSidebarToggle"
+            onClick={() => setSidebarOpen(true)}
+          >
             <Menu size={18} />
           </button>
 
