@@ -1,29 +1,22 @@
-import DashboardSidebar from "../profilePageComponent/DashboardSidebar"
-import BillingPaymentsHeader from "./BillingPaymentsHeader"
-import BillingPaymentsTabs from "./BillingPaymentsTabs"
-import DonationFormCard from "./DonationFormCard"
-import DonationHistoryCard from "./DonationHistoryCard"
-import DonationStatsCards from "./DonationStatsCards"
-import "./BillingPayment.css"
-import {
-  Bell,
-  Search,
-  Menu,
-} from "lucide-react";
+import DashboardSidebar from "../profilePageComponent/DashboardSidebar";
+import BillingPaymentsHeader from "./BillingPaymentsHeader";
+import BillingPaymentsTabs from "./BillingPaymentsTabs";
+import DonationFormCard from "./DonationFormCard";
+import DonationHistoryCard from "./DonationHistoryCard";
+import DonationStatsCards from "./DonationStatsCards";
+import "./BillingPayment.css";
+import { Bell, Search, Menu } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import MembershipPage from "../memberShipComponents/MembershipPage"
-import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget"
-import { Helmet } from "react-helmet"
-
+import MembershipPage from "../memberShipComponents/MembershipPage";
+import DashboardUserProfileWidget from "../components/DashboardUserProfileWidget";
+import { Helmet } from "react-helmet";
 
 const BillingPaymentPage = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<
-    "membership" |
-    "donations" |
-    "payment-methods"
+    "membership" | "donations" | "payment-methods"
   >("membership");
   const [showMobileSearch, setShowMobileSearch] = useState(false);
 
@@ -42,139 +35,129 @@ const BillingPaymentPage = () => {
     <div className="zenProfileLayout">
       <Helmet>
         <title>Billing & Payments - Ambassadors Chaplain Corps</title>
-        <meta name="description" content="Manage your billing and payment options, view donation history, and access membership payment details for the Ambassadors Chaplain Corps." />
-        <meta name="keywords" content="billing, payments, donation history, membership payment, ambassadors, chaplain, corps" />
+        <meta
+          name="description"
+          content="Manage your billing and payment options, view donation history, and access membership payment details for the Ambassadors Chaplain Corps."
+        />
+        <meta
+          name="keywords"
+          content="billing, payments, donation history, membership payment, ambassadors, chaplain, corps"
+        />
       </Helmet>
       <DashboardSidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
       />
-        <div className="orionMainContent">
-            {/* TOP BAR */}
+      <div className="orionMainContent">
+        {/* TOP BAR */}
 
-            <div className="orionTopBarShell">
+        <div className="orionTopBarShell">
+          <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
+            <Search size={16} className="orionSearchIcon" />
 
-                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
-                  <Search
-                    size={16}
-                    className="orionSearchIcon"
-                  />
+            <input
+              type="text"
+              name="query"
+              placeholder="Search for members"
+              className="orionSearchInput"
+            />
+          </form>
 
-                  <input
-                    type="text"
-                    name="query"
-                    placeholder="Search for members"
-                    className="orionSearchInput"
-                  />
-                </form>
+          <div className="orionTopBarActions">
+            {/* NOTIFICATION */}
 
-                <div className="orionTopBarActions">
-                    {/* NOTIFICATION */}
+            <button className="orionNotificationButton">
+              <Bell size={18} />
 
-                    <button className="orionNotificationButton">
-                    <Bell size={18} />
+              <span className="orionNotificationDot"></span>
+            </button>
 
-                    <span className="orionNotificationDot"></span>
-                    </button>
+            {/* USER */}
 
-                    {/* USER */}
+            <DashboardUserProfileWidget />
+          </div>
+        </div>
 
-                    <DashboardUserProfileWidget />
-                </div>
-            </div>
+        {/* Mobile Header */}
+        <div className="orionTopBarShellMobile">
+          <div className="orionTopBarShellMobile-left">
+            <button
+              className="orionMobileMenuButton"
+              onClick={() => setSidebarOpen(true)}
+            >
+              <Menu size={22} />
+            </button>
 
-                {/* Mobile Header */}
-                <div className="orionTopBarShellMobile">
-                    <div className="orionTopBarShellMobile-left">
-                        <button
-                            className="orionMobileMenuButton"
-                            onClick={() => setSidebarOpen(true)}
-                        >
-                            <Menu size={22} />
-                        </button>
+            <p className="dashboard-p">Payment</p>
+          </div>
 
-                        <p className="dashboard-p">Payment</p>
-                    </div>
-            
-            <div className="orionMobileLogo-crop">
-                 {!showMobileSearch ? (
+          <div className="orionMobileLogo-crop">
+            {!showMobileSearch ? (
+              <button
+                className="orionMobileSearchTrigger"
+                onClick={() => setShowMobileSearch(true)}
+              >
+                <Search size={22} />
+              </button>
+            ) : (
+              <form
+                className="orionSearchCluster"
+                onSubmit={handleSearchSubmit}
+              >
+                <Search size={16} className="orionSearchIcon" />
+
+                <input
+                  autoFocus
+                  type="text"
+                  name="query"
+                  placeholder="Search for members"
+                  className="orionSearchInput"
+                />
+
                 <button
-                    className="orionMobileSearchTrigger"
-                    onClick={() =>
-                    setShowMobileSearch(true)
-                    }
+                  type="button"
+                  className="orionMobileSearchClose"
+                  onClick={() => setShowMobileSearch(false)}
                 >
-                    <Search size={22} />
+                  ✕
                 </button>
-                ) : (
-                <form className="orionSearchCluster" onSubmit={handleSearchSubmit}>
-                    <Search
-                    size={16}
-                    className="orionSearchIcon"
-                    />
+              </form>
+            )}
 
-                    <input
-                    autoFocus
-                    type="text"
-                    name="query"
-                    placeholder="Search for members"
-                    className="orionSearchInput"
-                    />
+            <div className="notify-icon-profile"></div>
 
-                    <button
-                    type="button"
-                    className="orionMobileSearchClose"
-                    onClick={() =>
-                        setShowMobileSearch(false)
-                    }
-                    >
-                    ✕
-                    </button>
-                </form>
-                )}
-
-                <div className="notify-icon-profile"></div>
-                
-                <div className="notify-icon-profile-box">
-                    
-                </div>
-                <div className="notify-icon-profile-box">
-                    <div className="profile-image-small"></div>
-                </div>
+            <div className="notify-icon-profile-box"></div>
+            <div className="notify-icon-profile-box">
+              <div className="profile-image-small"></div>
             </div>
+          </div>
         </div>
 
         {/* end of mobile header */}
-                <div className="stellarBillingWrapper">
+        <div className="stellarBillingWrapper">
+          <BillingPaymentsHeader />
 
-                <BillingPaymentsHeader />
+          <BillingPaymentsTabs
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
 
-                <BillingPaymentsTabs
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                />
+          {activeTab === "membership" && <MembershipPage />}
 
-                {activeTab === "membership" && (
-                  <MembershipPage />
-                )}
+          {activeTab === "donations" && (
+            <div className="stellarBillingGrid">
+              <DonationFormCard />
 
-                {activeTab === "donations" && (
-                  <div className="stellarBillingGrid">
-
-                    <DonationFormCard />
-
-                    <div className="stellarBillingRight">
-                      <DonationStatsCards />
-                      <DonationHistoryCard />
-                    </div>
-
-                  </div>
-                )}
-
-                </div>
-                </div>
+              <div className="stellarBillingRight">
+                <DonationStatsCards />
+                <DonationHistoryCard />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default BillingPaymentPage
+export default BillingPaymentPage;
