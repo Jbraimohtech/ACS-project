@@ -12,6 +12,7 @@ import {
 import { useEffect, useState, type FormEvent } from "react";
 import { getProfileImageUrl, getToken, getUser, normalizeUserPayload, extractDashboardUser, setUser as persistUser, isMembershipApproved } from "../utils/auth";
 import { API_BASE } from "../utils/api";
+import { STORAGE_BASE_URL } from "../utils/api";
 import type { User as UserType } from "../types/User";
 import LoadingBrand from "../components/LoadingBrand";
 import { useNavigate } from "react-router-dom";
@@ -199,7 +200,7 @@ const normalizeDashboardData = (incoming: unknown, fallbackUser: UserType | null
     upcoming_events_count: Number(upcomingEventsCount ?? 0),
     quick_resources: (quickResources as Array<Record<string, unknown>>).map((resource, index) => ({
       title: String(resource.title ?? resource.name ?? `Resource ${index + 1}`),
-      url: String(resource.download_url ?? resource.url ?? resource.link ?? (resource.file ? `https://ambchapcorps.org/storage/${String(resource.file)}` : "#")),
+      url: String(resource.download_url ?? resource.url ?? resource.link ?? (resource.file ? `${STORAGE_BASE_URL}/${String(resource.file)}` : "#")),
     })),
     user: {
       name: getPreferredUserName(

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { RegisterData } from "./RegisterWizard";
 import { Link } from "react-router-dom";
+import { API_BASE } from "../utils/api";
 
 interface Props {
   data: RegisterData;
@@ -31,7 +32,7 @@ const StepZone = ({
     const fetchZones = async () => {
       try {
         const response = await fetch(
-          "https://ambchapcorps.org/api/zone",
+          `${API_BASE}/zone`,
           {
             method: "GET",
             mode: "cors",

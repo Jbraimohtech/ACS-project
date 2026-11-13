@@ -4,6 +4,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { getToken } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 
 const ProfileSecurity = () => {
   const [currentPassword, setCurrentPassword] = useState("******");
@@ -25,7 +26,7 @@ const ProfileSecurity = () => {
     }
 
     const response = await fetch(
-      "https://ambchapcorps.org/api/auth/changePassword",
+      `${API_BASE}/auth/changePassword`,
       {
         method: "POST",
         headers: {

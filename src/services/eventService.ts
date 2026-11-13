@@ -1,4 +1,5 @@
 // services/eventService.ts
+import { API_BASE } from "../utils/api";
 
 interface Event {
   id: number;
@@ -12,7 +13,7 @@ interface Event {
   is_featured: number;
 }
 
-const API_URL = "https://ambchapcorps.org/api/event";
+const API_URL = `${API_BASE}/event`;
 
 export const fetchEvents = async (): Promise<Event[]> => {
   const response = await fetch(API_URL);

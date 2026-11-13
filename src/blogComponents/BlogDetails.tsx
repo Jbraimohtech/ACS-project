@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import LoadingBrand from "../components/LoadingBrand";
 import { Helmet } from "react-helmet";
+import { API_BASE, STORAGE_BASE_URL } from "../utils/api";
 
 
 interface Article {
@@ -43,7 +44,7 @@ function BlogDetails() {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `https://ambchapcorps.org/api/blog/${id}`
+          `${API_BASE}/blog/${id}`
         );
 
         const data = await response.json();
@@ -102,7 +103,7 @@ function BlogDetails() {
 
         {article?.image ? (
           <img
-            src={`https://ambchapcorps.org/storage/${article.image}`}
+            src={`${STORAGE_BASE_URL}/${article.image}`}
             alt={article?.title || "Blog"}
             className="blog-details-img-one"
           />

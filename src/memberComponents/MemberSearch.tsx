@@ -8,6 +8,7 @@ import HomeFooter from "../components/HomeFooter";
 import { FaChevronDown } from "react-icons/fa";
 import Navbar from "../components/Navbar/Navbar";
 import LoadingBrand from "../components/LoadingBrand";
+import { API_BASE } from "../utils/api";
 import type { Member } from "../types/member";
 import { getProfileImageUrl, getUser } from "../utils/auth";
 import type { User as UserType } from "../types/User";
@@ -43,7 +44,7 @@ const [query, setQuery] = useState(() => queryParam);
 
       try {
         const response = await fetch(
-          `https://ambchapcorps.org/api/members/search?query=${encodeURIComponent(
+          `${API_BASE}/members/search?query=${encodeURIComponent(
             query
           )}`
         );

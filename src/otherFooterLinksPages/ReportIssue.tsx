@@ -22,7 +22,7 @@ const ReportIssue = () => {
     console.log(payload);
 
     // Send to API here
-    // await fetch("https://ambchapcorps.org/api/reports", {
+    // await fetch("/api/reports", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",

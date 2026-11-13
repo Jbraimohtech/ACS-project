@@ -7,6 +7,7 @@ import AllMainContent from '../components/AllMainContent'
 import "../../src/EventsComponents/Event.css"
 import Navbar from "../components/Navbar/Navbar";
 import { getToken } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 
 interface PaymentAccount {
   id?: number;
@@ -83,7 +84,7 @@ const GivingContent : React.FC = () => {
         formData.append("bank_account_name", chosenAccount.account_name ?? "");
       }
 
-      const response = await fetch("https://ambchapcorps.org/api/payment/pay", {
+      const response = await fetch(`${API_BASE}/payment/pay`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -125,7 +126,7 @@ const GivingContent : React.FC = () => {
 
     const fetchDashboard = async () => {
       try {
-        const response = await fetch("https://ambchapcorps.org/api/dashboard", {
+        const response = await fetch(`${API_BASE}/dashboard`, {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -151,7 +152,7 @@ const GivingContent : React.FC = () => {
 
     const fetchBankAccounts = async () => {
       try {
-        const response = await fetch("https://ambchapcorps.org/api/bank-accounts", {
+        const response = await fetch(`${API_BASE}/bank-accounts`, {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,

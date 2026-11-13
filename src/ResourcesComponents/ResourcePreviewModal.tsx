@@ -1,6 +1,7 @@
 import "./ResourcePreviewModal.css";
 import { X, Download, Bookmark } from "lucide-react";
 import type { Resource } from "../types/Resources";
+import { STORAGE_BASE_URL } from "../utils/api";
 
 interface ResourcePreviewModalProps {
   resource: Resource;
@@ -31,7 +32,7 @@ const ResourcePreviewModal = ({
 
             <div className="novaPreviewImage">
               <img
-                src={resource.download_url || (resource.file ? `https://ambchapcorps.org/storage/${resource.file}` : "/profile.jpg")}
+                src={resource.download_url || (resource.file ? `${STORAGE_BASE_URL}/${resource.file}` : "/profile.jpg")}
                 alt={resource.title}
                 onError={(e) => {
                   e.currentTarget.src = "/profile.jpg";
@@ -96,7 +97,7 @@ const ResourcePreviewModal = ({
             </div>
 
             <a
-              href={resource.download_url || (resource.file ? `https://ambchapcorps.org/storage/${resource.file}` : "#")}
+              href={resource.download_url || (resource.file ? `${STORAGE_BASE_URL}/${resource.file}` : "#")}
               target="_blank"
               rel="noopener noreferrer"
               className="novaDownloadBtn"

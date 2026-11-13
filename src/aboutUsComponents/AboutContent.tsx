@@ -1,5 +1,6 @@
 import "./AboutUs.css"
 import type { Member } from "../types/member"
+import { STORAGE_BASE_URL } from "../utils/api";
 
 interface Props {
   member: Member;
@@ -11,7 +12,7 @@ const AboutContent = ({
 
   const hasProfileImage = Boolean(member.profile_image);
   const imageUrl = hasProfileImage
-    ? `https://ambchapcorps.org/storage/${member.profile_image}`
+    ? `${STORAGE_BASE_URL}/${member.profile_image}`
     : "";
 
   return (

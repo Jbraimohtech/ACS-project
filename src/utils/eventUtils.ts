@@ -1,4 +1,5 @@
 // utils/eventUtils.ts
+import { STORAGE_BASE_URL } from "./api";
 
 export const formatEventDate = (
   dateString: string
@@ -22,4 +23,4 @@ export const formatEventDate = (
 export const getEventImage = (
   image: string
 ) =>
-  `https://ambchapcorps.org/storage/events/${image}`;
+  `${STORAGE_BASE_URL}/events/${image}`;

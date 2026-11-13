@@ -8,6 +8,7 @@ import {
 import "./EventContentPage.css";
 import DashboardSidebar from "../profilePageComponent/DashboardSidebar";
 import EventCard from "./EventCard";
+import { API_BASE, STORAGE_BASE_URL } from "../utils/api";
 import EmptyPastEvents from "../dashEventDetailComponents/EmptyPastEvents";
 
 import {
@@ -63,7 +64,7 @@ const EventContentPage = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          "https://ambchapcorps.org/api/event"
+          `${API_BASE}/event`
         );
 
         if (!response.ok) {
@@ -422,7 +423,7 @@ const EventContentPage = () => {
 
                   <div className="stellarEventImage">
                     <img
-                      src={`https://ambchapcorps.org/storage/events/${featuredEvent.image}`}
+                      src={`${STORAGE_BASE_URL}/events/${featuredEvent.image}`}
                       alt={
                         featuredEvent.title
                       }

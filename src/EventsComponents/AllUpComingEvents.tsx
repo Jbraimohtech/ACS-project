@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import fallbackEventImage from '../assets/images/ofiice-five-img.jpg';
 import { getEventImage } from '../utils/eventUtils';
 import LoadingBrand from '../components/LoadingBrand';
+import { API_BASE } from "../utils/api";
 
 interface Event {
   id: number;
@@ -59,7 +60,7 @@ const AllUpComingEvents = () => {
 
       try {
         const response = await fetch(
-          `https://ambchapcorps.org/api/event?page=1&per_page=${PAGE_SIZE}`
+          `${API_BASE}/event?page=1&per_page=${PAGE_SIZE}`
         );
 
         if (!response.ok) {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getToken } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 
 interface PaymentAccount {
   id?: number;
@@ -36,7 +37,7 @@ const DonationFormCard = () => {
 
     const fetchDashboard = async () => {
       try {
-        const response = await fetch("https://ambchapcorps.org/api/dashboard", {
+        const response = await fetch(`${API_BASE}/dashboard`, {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -62,7 +63,7 @@ const DonationFormCard = () => {
 
     const fetchBankAccounts = async () => {
       try {
-        const response = await fetch("https://ambchapcorps.org/api/bank-accounts", {
+        const response = await fetch(`${API_BASE}/bank-accounts`, {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -134,7 +135,7 @@ const DonationFormCard = () => {
         formData.append("bank_account_name", chosenAccount.account_name ?? "");
       }
 
-      const response = await fetch("https://ambchapcorps.org/api/payment/pay", {
+      const response = await fetch(`${API_BASE}/payment/pay`, {
         method: "POST",
         headers: {
           Accept: "application/json",

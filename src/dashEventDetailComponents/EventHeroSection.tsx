@@ -1,4 +1,5 @@
 import "./EventHeroSection.css";
+import { STORAGE_BASE_URL } from "../utils/api";
 
 interface Event {
   id: number;
@@ -36,7 +37,7 @@ const EventHeroSection = ({
   const imageSrc = event.image
     ? event.image.startsWith("http")
       ? event.image
-      : `https://ambchapcorps.org/storage/${event.image}`
+      : `${STORAGE_BASE_URL}/${event.image}`
     : "/profile.jpg";
 
   return (

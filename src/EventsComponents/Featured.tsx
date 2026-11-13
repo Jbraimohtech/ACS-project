@@ -7,6 +7,7 @@ import fallbackEventImage from '../assets/images/ofiice-five-img.jpg';
 import { getEventImage } from '../utils/eventUtils';
 import LoadingBrand from '../components/LoadingBrand';
 import { getToken, getUser } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 
 interface Event {
   id: number;
@@ -87,7 +88,7 @@ const Featured = () => {
     const token = getToken();
 
     const response = await fetch(
-      "https://ambchapcorps.org/api/event/attendance",
+      `${API_BASE}/event/attendance`,
       {
         method: "POST",
         headers: {
@@ -144,7 +145,7 @@ const Featured = () => {
         try {
           setIsLoading(true);
           const response = await fetch(
-            "https://ambchapcorps.org/api/event?page=1&per_page=10"
+            `${API_BASE}/event?page=1&per_page=10`
           );
 
           if (!response.ok) {
