@@ -7,6 +7,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import "./Event.css"
+import { API_BASE } from "../utils/api";
 import AllMainContent from "../components/AllMainContent";
 import HomeFooter from "../components/HomeFooter";
 import "../blogComponents/Blog.css"
@@ -101,7 +102,7 @@ const ViewFeaturedDetails: React.FC = () => {
       try {
         setSubmittingAttendance(true);
 
-        const response = await fetch("https://ambchapcorps.org/api/event/attendance", {
+        const response = await fetch(`${API_BASE}/event/attendance`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -151,7 +152,7 @@ const ViewFeaturedDetails: React.FC = () => {
         try {
           setIsLoading(true);
           const response = await fetch(
-            `https://ambchapcorps.org/api/event/${id}`
+            `${API_BASE}/event/${id}`
           );
 
           if (!response.ok) {

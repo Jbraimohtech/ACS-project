@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import type { Member } from '../types/member'
 import LoadingBrand from '../components/LoadingBrand'
+import { API_BASE } from '../utils/api'
 import { Helmet } from 'react-helmet'
 
 const MemberProfile = () => {
@@ -21,7 +22,7 @@ const MemberProfile = () => {
     const fetchMember = async () => {
       try {
         const response = await fetch(
-          `https://ambchapcorps.org/api/members/${id}`
+          `${API_BASE}/members/${id}`
         )
         const result = await response.json()
         setMember(result.data)

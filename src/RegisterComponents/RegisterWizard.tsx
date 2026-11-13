@@ -8,6 +8,7 @@ import StepOtp from "./StepOtp";
 import { useNavigate } from "react-router-dom";
 import { setToken, setUser, isMembershipApproved } from "../utils/auth";
 import { Helmet } from "react-helmet";
+import { API_BASE } from "../utils/api";
 
 
 export interface RegisterData {
@@ -95,7 +96,7 @@ const RegisterWizard = () => {
       };
 
       const response = await fetch(
-        "https://ambchapcorps.org/api/auth/register",
+        `${API_BASE}/auth/register`,
         {
             method: "POST",
             headers: {

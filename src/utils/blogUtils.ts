@@ -1,7 +1,9 @@
+import { STORAGE_BASE_URL } from "./api";
+
 export const getBlogImage = (
   image: string
 ) =>
-  `https://ambchapcorps.org/storage/blogs/${image}`;
+  `${STORAGE_BASE_URL}/blogs/${image}`;
 
 export const formatDate = (
   dateString: string

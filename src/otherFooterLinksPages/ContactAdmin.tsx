@@ -27,7 +27,7 @@ const ContactAdmin = () => {
     console.log(payload);
 
     // Example API call
-    // await fetch("https://ambchapcorps.org/api/contact-admin", {
+    // await fetch("/api/contact-admin", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",

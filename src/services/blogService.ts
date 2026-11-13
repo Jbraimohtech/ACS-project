@@ -1,7 +1,7 @@
 import type { Blog } from "../types/blog";
+import { API_BASE } from "../utils/api";
 
-const BLOG_URL =
-  "https://ambchapcorps.org/api/blog";
+const BLOG_URL = `${API_BASE}/blog`;
 
 export const fetchBlogs =
   async (): Promise<Blog[]> => {

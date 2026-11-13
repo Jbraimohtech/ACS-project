@@ -1,3 +1,5 @@
+import { STORAGE_BASE_URL } from "./api";
+
 const TOKEN_KEY = "token";
 const USER_KEY = "user";
 
@@ -24,7 +26,7 @@ export const getProfileImageUrl = (value: unknown) => {
     return normalizedValue;
   }
 
-  return `https://ambchapcorps.org/storage/${normalizedValue}`;
+  return `${STORAGE_BASE_URL}/${normalizedValue}`;
 };
 
 const normalizeDisplayValue = (value: unknown) => {

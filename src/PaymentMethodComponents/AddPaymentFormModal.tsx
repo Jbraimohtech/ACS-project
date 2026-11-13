@@ -3,6 +3,7 @@ import "./AddPaymentFormModal.css";
 import PaySuccessModal from "./PaySuccessModal";
 import { useState, useEffect } from "react";
 import { getToken, setUser } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 
 interface AddPaymentFormModalProps {
   onClose: () => void;
@@ -44,7 +45,7 @@ const AddPaymentFormModal = ({ onClose }: AddPaymentFormModalProps) => {
 
     const fetchDashboard = async () => {
       try {
-        const res = await fetch("https://ambchapcorps.org/api/dashboard", {
+        const res = await fetch(`${API_BASE}/dashboard`, {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`,
@@ -81,7 +82,7 @@ const AddPaymentFormModal = ({ onClose }: AddPaymentFormModalProps) => {
     const token = getToken();
 
     try {
-      const response = await fetch("https://ambchapcorps.org/api/bank-accounts", {
+      const response = await fetch(`${API_BASE}/bank-accounts`, {
         headers: {
           Accept: "application/json",
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -156,7 +157,7 @@ const AddPaymentFormModal = ({ onClose }: AddPaymentFormModalProps) => {
         formData.append("bank_account_name", chosenAccount.account_name ?? "");
       }
 
-      const response = await fetch("https://ambchapcorps.org/api/payment/pay", {
+      const response = await fetch(`${API_BASE}/payment/pay`, {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -8,6 +8,7 @@ import HomeFooter from '../components/HomeFooter'
 import { FaChevronDown } from 'react-icons/fa'
 import Navbar from '../components/Navbar/Navbar'
 import LoadingBrand from '../components/LoadingBrand'
+import { API_BASE } from "../utils/api";
 import type { Member } from '../types/member'
 
 const MemberContent = () => {
@@ -21,7 +22,7 @@ const MemberContent = () => {
       try {
         setLoading(true)
         setError(null)
-        const res = await fetch('https://ambchapcorps.org/api/members')
+        const res = await fetch(`${API_BASE}/members`)
         const data = await res.json()
         const list = Array.isArray(data.data) ? data.data : Array.isArray(data) ? data : []
         setMembers(list)
@@ -47,14 +48,14 @@ const MemberContent = () => {
 
       if (!q) {
         // reload all members
-        const res = await fetch('https://ambchapcorps.org/api/members')
+        const res = await fetch(`${API_BASE}/members`)
         const data = await res.json()
         const list = Array.isArray(data.data) ? data.data : Array.isArray(data) ? data : []
         setMembers(list)
         return
       }
 
-      const res = await fetch(`https://ambchapcorps.org/api/members/search?query=${encodeURIComponent(q)}`)
+      const res = await fetch(`${API_BASE}/members/search?query=${encodeURIComponent(q)}`)
       const data = await res.json()
       setMembers(data.data || [])
     } catch (err) {

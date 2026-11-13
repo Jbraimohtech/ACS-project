@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import "./EventDetailsPage.css";
 import DashboardSidebar from "../profilePageComponent/DashboardSidebar";
+import { API_BASE } from "../utils/api";
 import EventHeroSection from "./EventHeroSection";
 import EventAboutCard from "./EventAboutCard";
 import EventInfoCard from "./EventInfoCard";
@@ -103,13 +104,13 @@ const EventDetailsPage = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `https://ambchapcorps.org/api/event/${id}`
+          `${API_BASE}/event/${id}`
         );
 
         if (!response.ok) {
           if (response.status === 404) {
 
-            throw new Error(`https://ambchapcorps.org/api/event/${id} Event not found`);
+            throw new Error(`${API_BASE}/event/${id} Event not found`);
           }
           throw new Error(`API Error: ${response.status}`);
         }

@@ -1,4 +1,5 @@
 import "./EventSpeakersCard.css";
+import { STORAGE_BASE_URL } from "../utils/api";
 
 interface Speaker {
   id: number;
@@ -30,7 +31,7 @@ const getSpeakerImage = (image?: string | null) => {
     return image;
   }
 
-  return `https://ambchapcorps.org/storage/${image}`;
+  return `${STORAGE_BASE_URL}/${image}`;
 };
 
 const EventSpeakersCard = ({

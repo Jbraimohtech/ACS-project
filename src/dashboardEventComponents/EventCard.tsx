@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ChevronDown, MapPin, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getToken, getUser } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 
 interface Event {
   id: number;
@@ -65,7 +66,7 @@ const EventCard = ({ event }: EventCardProps) => {
     const token = getToken();
 
     const response = await fetch(
-      "https://ambchapcorps.org/api/event/attendance",
+      `${API_BASE}/event/attendance`,
       {
         method: "POST",
         headers: {

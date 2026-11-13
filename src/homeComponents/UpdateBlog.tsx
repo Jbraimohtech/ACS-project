@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import YellowBtn from '../components/BlueBtn'
 import { useEffect, useState } from 'react';
 import ScrollReveal from '../components/ScrollReveal';
+import { API_BASE, STORAGE_BASE_URL } from "../utils/api";
 
 interface Article {
   id: number;
@@ -34,7 +35,7 @@ const UpdateBlog = () => {
     const [articles, setArticles] = useState<Article[]>([]);
     const navigate = useNavigate();
     const blogImageUrl = article?.image
-        ? `https://ambchapcorps.org/storage/${article.image}`
+        ? `${STORAGE_BASE_URL}/${article.image}`
         : "";
 
     const goToViewBlog = () => {
@@ -60,7 +61,7 @@ const UpdateBlog = () => {
         const fetchArticle = async () => {
           try {
             const response = await fetch(
-              `https://ambchapcorps.org/api/blog`
+              `${API_BASE}/blog`
             );
     
             const data = await response.json();

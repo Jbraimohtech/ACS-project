@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import fallbackBlogImage from '../assets/images/blog-img.png';
 import { getBlogImage } from '../utils/blogUtils';
 import LoadingBrand from '../components/LoadingBrand';
+import { API_BASE } from "../utils/api";
 
 interface Article {
   id: number;
@@ -39,7 +40,7 @@ const AllCategoryBoxCard = ({ activeCategory }: Props) => {
       });
 
       const res = await fetch(
-        `https://ambchapcorps.org/api/blog?${query.toString()}`
+        `${API_BASE}/blog?${query.toString()}`
       );
       const data = await res.json();
       const fetchedArticles = (Array.isArray(data?.data)

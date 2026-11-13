@@ -112,7 +112,7 @@ import { useEffect, useState, useCallback, type FormEvent } from "react";
       const fetchRoles = async () => {
         try {
           const response = await fetch(
-            "https://ambchapcorps.org/api/dashboard"
+            `${API_BASE}/dashboard`
           );
 
           console.log("Fetch roles response:", response);
@@ -224,7 +224,7 @@ import { useEffect, useState, useCallback, type FormEvent } from "react";
       const uploadAttempts = [
         // Try the exact URL you provided first
         {
-          url: `https://ambchapcorps.org/api/dashboard/changePicture`,
+          url: `${API_BASE}/dashboard/changePicture`,
           method: "POST" as const,
           headers: {
             Accept: "application/json",

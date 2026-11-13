@@ -3,6 +3,7 @@ import './PaymentPlanWizard.css';
 import { getToken, setUser, getUser } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { API_BASE } from '../utils/api';
 
 interface PaymentPlan {
   id: number;
@@ -95,7 +96,7 @@ const PaymentPlan: React.FC = () => {
 
     const fetchPlans = async () => {
       try {
-        const response = await fetch('https://ambchapcorps.org/api/payment/plans');
+        const response = await fetch(`${API_BASE}/payment/plans`);
         const data = await response.json();
         setPlans(data.data || []);
       } catch (error) {
@@ -108,7 +109,7 @@ const PaymentPlan: React.FC = () => {
         const token = getToken();
 
         const response = await fetch(
-          "https://ambchapcorps.org/api/payment/memberFeeSummary",
+          `${API_BASE}/payment/memberFeeSummary`,
           {
             headers: {
               Accept: "application/json",
@@ -162,7 +163,7 @@ const PaymentPlan: React.FC = () => {
     const fetchBankAccounts = async () => {
       try {
         const token = getToken();
-        const response = await fetch('https://ambchapcorps.org/api/bank-accounts', {
+        const response = await fetch(`${API_BASE}/bank-accounts`, {
           headers: {
             Accept: 'application/json',
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -251,7 +252,7 @@ const PaymentPlan: React.FC = () => {
         payload.append('bank_account_name', chosenAccount.account_name ?? '');
       }
 
-      const response = await fetch('https://ambchapcorps.org/api/payment/pay', {
+      const response = await fetch(`${API_BASE}/payment/pay`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',

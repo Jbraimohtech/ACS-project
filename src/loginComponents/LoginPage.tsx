@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
 import { setToken, setUser, isMembershipApproved } from "../utils/auth";
+import { API_BASE } from "../utils/api";
 
 interface User {
   id: number;
@@ -55,7 +56,7 @@ const LoginPage = () => {
 
       try {
         const response = await fetch(
-          "https://ambchapcorps.org/api/auth/login",
+          `${API_BASE}/auth/login`,
           {
             method: "POST",
             mode: "cors",
